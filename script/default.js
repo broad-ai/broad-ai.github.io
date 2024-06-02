@@ -8,7 +8,7 @@ const subscribe = () => {
       "Content-Type": "application/json"
     }
   }).then((resp) => {
-    console.log(resp);
+    console.log(resp.data);
   });
 
 }; // subscribe
