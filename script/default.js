@@ -12,8 +12,20 @@ const subscribe = () => {
       document.getElementById('btnsave').disabled = false;
       alert(name + " | " + email + ", there was a problem with your request.\nCan you please try again?");
     }
-    else
-      document.getElementById('lead').innerHTML = resp.message.ai_response;
+    else {
+      let intvl = setInterval(() => {
+        if (resp.message) {
+          if (resp.message.ai_response) {
+            document.getElementById('lead').innerHTML = resp.message.ai_response;
+            clearInterval(intvl);
+          }
+          else
+            document.getElementById('lead').innerHTML = "Almost done!";
+        }
+        else
+          document.getElementById('lead').innerHTML = "Almost done!";
+      }, 600);
+    }
   });
 
 }; // subscribe
