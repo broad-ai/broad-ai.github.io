@@ -12,7 +12,7 @@ const subscribe = () => {
     if (resp.error)
       alert(name + " | " + email + ", there was a problem with your request.\nCan you please try again?");
     else
-      document.getElementById('lead').innerHTML = "Thank you! We will stay in touch.";
+      document.getElementById('lead').innerHTML = JSON.stringify(resp.message);
   });
 
 }; // subscribe
