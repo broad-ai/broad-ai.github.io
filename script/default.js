@@ -8,11 +8,12 @@ const subscribe = () => {
       "Content-Type": "application/json"
     }
   }).then((resp) => {
-    document.getElementById('btnsave').disabled = false;
-    if (resp.error)
+    if (resp.error) {
+      document.getElementById('btnsave').disabled = false;
       alert(name + " | " + email + ", there was a problem with your request.\nCan you please try again?");
+    }
     else
-      document.getElementById('lead').innerHTML = JSON.stringify(resp.message);
+      document.getElementById('lead').innerHTML = resp.message.ai_response;
   });
 
 }; // subscribe
