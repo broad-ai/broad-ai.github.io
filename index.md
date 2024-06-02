@@ -3,6 +3,26 @@ layout: default
 title: BroadAI | Framework to build your multi-agent AI system
 ---
 
+## Concept
+
+Us humans naturally apply a cognitive approach to accomplish our tasks, and *albeit*, achieve bigger goals. Tasks, such as - having a cup of home brewed coffee, making indian or international cuisine for family dinner, responding to  emails, etc. are some of the tasks that we carry out very naturally, but we don't think about the skills required behind conduting these actions! 
+
+So, in a way, we are multi-faceted species that are constantly deploying our varied skillsets (even learning a few on the way) to meet a said goal and objective.
+
+Ever since inception of Artificial Intelligence (AI), we have been putting AI systems through the same tests. We expect the AI systems to think, act, and behave like us, *humans* (a.k.a. [Turing Test](./assets/docs/turing1948.pdf)).
+
+**BroadAI** is based on the similar idea and is built as a framework to support the latest iteration around building smart and intelligent AI systems. It takes a Multi-Agent Systems (MAS) approach where an AI system can demonstrate complex skills via working in an environment comprised of multiple expert agents with specialized skills. With centrally managed delegation by BroadAI, appropriate agents can collectively achieve any given goal.
+
+![BroadAI Architecture Framework](./assets/images/architecture-bw.png)
+
+<pre style="margin-top:-10px; background:none; border:0; text-align: center;">BroadAI framework</pre>
+
+The conceptual diagram above shows how we provide frameworks to help you build a multi-agent AI system. 
+
+A prominent point-of-view here is that BroadAI Agents can be built and used within private confines of trust and control, or can be published to our agent store for broader consumption. Either ways, our agentic framework follows plug-and-play principle.
+
+---
+
 <div class="top">
   <div class="mission">
   <h2>BroadAI Mission:</h2>
@@ -22,24 +42,6 @@ title: BroadAI | Framework to build your multi-agent AI system
     </form>
   </div>
 </div>
-
-## Concept
-
-Us humans naturally apply a cognitive approach to accomplish our tasks, and *albeit*, achieve bigger goals. Tasks, such as - having a cup of home brewed coffee, making indian or international cuisine for family dinner, responding to  emails, etc. are some of the tasks that we carry out very naturally, but we don't think about the skills required behind conduting these actions! 
-
-So, in a way, we are multi-faceted species that are constantly deploying our varied skillsets (even learning a few on the way) to meet a said goal and objective.
-
-Ever since inception of Artificial Intelligence (AI), we have been putting AI systems through the same tests. We expect the AI systems to think, act, and behave like us, *humans* (a.k.a. [Turing Test](./assets/docs/turing1948.pdf)).
-
-**BroadAI** is based on the similar idea and is built as a framework to support the latest iteration around building smart and intelligent AI systems. It takes a Multi-Agent Systems (MAS) approach where an AI system can demonstrate complex skills via working in an environment comprised of multiple expert agents with specialized skills. With centrally managed delegation by BroadAI, appropriate agents can collectively achieve any given goal.
-
-![BroadAI Architecture Framework](./assets/images/architecture-bw.png)
-
-<pre style="margin-top:-10px; background:none; border:0; text-align: center;">BroadAI framework</pre>
-
-The conceptual diagram above shows how we provide frameworks to help you build a multi-agent AI system. 
-
-A prominent point-of-view here is that BroadAI Agents can be built and used within private confines of trust and control, or can be published to our agent store for broader consumption. Either ways, our agentic framework follows plug-and-play principle.
 
 ---
 
