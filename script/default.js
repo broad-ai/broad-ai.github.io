@@ -12,7 +12,7 @@ const subscribe = () => {
     if (resp.error)
       alert("Oops! something went wrong. Can you please try again?");
     else
-      document.getElementById('lead').innerHTML = "<h2 style='text-align:center;margin-top:auto;margin-bottom:auto;'>Welcome to the community! We will stay in touch.<h2>";
+      document.getElementById('lead').innerHTML = "<h2 style='text-align:center;'>Welcome to the community, " + name + "!</h2> <p style='text-align:center;font-size:1.25em;'>Let's stay in touch.</p>";
   });
 
 }; // subscribe
