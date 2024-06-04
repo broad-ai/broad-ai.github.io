@@ -155,11 +155,12 @@ dl {
 
 .top {
   display: flex;
+  padding: 0;
 }
 
 .top .mission {
-  width: 50%;
-  margin-right: 10px;
+  width: 48%;
+  margin: 0 0.5% 0 0;
   padding: 1.2em 1em 1.2em 1em;
   font-weight: 400;
   box-shadow: 0 4px 8px 0 #999;
@@ -167,8 +168,8 @@ dl {
 }
 
 .top .lead {
-  width: 40%;
-  margin-left: 10px;
+  width: 48%;
+  margin: 0 0 0 0.5%;
   padding: 1.2em 1em 1.2em 1em;
   font-weight: 400;
   box-shadow: 0 4px 8px 0 #999;
