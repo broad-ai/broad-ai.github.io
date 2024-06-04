@@ -44,7 +44,7 @@ docker push mppise/broadai:$newversion
 hold 10
 gcloud config set project aidapter
 gcloud config set run/region us-central1
-gcloud run deploy broadai --image docker.io/mppise/broadai:$newversion --cors-allowed-origins
+gcloud run deploy broadai --image docker.io/mppise/broadai:$newversion
 hold 5
 docker rmi mppise/broadai:$newversion
 cd ..
