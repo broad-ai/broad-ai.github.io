@@ -5,7 +5,24 @@ import cors from "cors";
 const app = express();
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
-app.use(cors())
+
+const corsOptions = {
+  origin: 'https://broad-ai.github.io',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'X-Requested-With',
+    'Accept',
+    'Origin',
+    'Access-Control-Allow-Origin',
+    'Access-Control-Allow-Headers',
+    'Accept-Language',
+    'X-CSRF-Token'
+  ],
+  optionsSuccessStatus: 204
+};
+app.use(cors(corsOptions));
 
 // Import BroadAI
 import BroadAI from "broadai";
