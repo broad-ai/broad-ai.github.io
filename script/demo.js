@@ -126,52 +126,85 @@ const go = () => {
 const randomQ = () => {
   const randomQuestions = [
     // Using Researcher skill
-    "I'm planning a vacation to Paris next month. Can you find some popular tourist attractions and their opening hours for me?",
+    "I'm planning a trip to Paris and I want to explore some local bakeries. Could you find me a list of bakeries in Paris with high ratings?",
 
     // Using Aviator skill
-    "I'm expecting a friend to arrive at JFK Airport tomorrow. Can you check the status of Delta flight 123 from Los Angeles?",
+    "I'm expecting a friend to arrive at JFK Airport tomorrow. Can you tell me the status of flight DL123 from Los Angeles to JFK?",
 
     // Using Weatherman skill
-    "I'm hosting a barbecue this weekend. What's the weather forecast for Saturday in Chicago?",
+    "I'm organizing a beach party in Miami this weekend. What's the weather forecast for Saturday afternoon?",
 
     // Using FinancialAnalyst skill
-    "I'm considering investing in Apple (AAPL). Could you provide an overview of their recent financial performance?",
+    "I'm considering investing in Apple Inc. Can you provide me with their latest income statement?",
 
     // Using Researcher and Aviator skills
-    "I'm planning a business trip to Tokyo next week. Can you find some reputable hotels near Haneda Airport and their availability for my travel dates?",
-
-    // Using Researcher and Weatherman skills
-    "I'm thinking of relocating to Vancouver. Could you gather information about the cost of living there and also provide an overview of the typical weather patterns?",
-
-    // Using Aviator and FinancialAnalyst skills
-    "I'm interested in airline stocks. Can you tell me how United Airlines (UAL) performed financially in the last quarter?",
+    "I'm traveling to London next month and I want to rent a car. Could you find car rental companies near Heathrow Airport and their contact information?",
 
     // Using Aviator and Weatherman skills
-    "I have a flight scheduled from London Heathrow to New York JFK next Monday. What's the weather forecast for both cities around the departure and arrival times?",
+    "I'm flying from Chicago to Denver tomorrow morning. Can you tell me the expected weather conditions at O'Hare International Airport around my departure time?",
 
     // Using Weatherman and FinancialAnalyst skills
-    "I'm considering starting a beachside café in Miami. What's the typical weather trend there throughout the year, and how might that impact business revenue?",
+    "I'm planning a farming project in California. What's the weather forecast for the Central Valley region for the next three months, and how might it impact crop yields?",
 
-    // Using Researcher, Aviator, and FinancialAnalyst skills
-    "I'm interested in the hospitality industry. Could you find some data on hotel occupancy rates near Orlando International Airport and also provide insights into recent trends in the hotel industry?",
+    // Using Researcher and FinancialAnalyst skills
+    "I'm interested in investing in renewable energy companies. Can you provide me with a list of publicly traded solar energy companies along with their recent stock performances?",
+
+    // Using Aviator, Weatherman, and FinancialAnalyst skills
+    "I'm a pilot flying from New York to Los Angeles tomorrow morning. Could you provide the weather forecast for Los Angeles International Airport around my expected arrival time, and also check the stock performance of major airlines?",
+
+    // Using Researcher and Weatherman skills
+    "I'm planning a hiking trip to the Swiss Alps next week. Could you find the current snow conditions for popular hiking trails in the region?",
+
+    // Using Aviator and Researcher skills
+    "I have a layover in Dubai next week and I want to explore some local attractions. Can you find me a list of tourist spots near Dubai International Airport?",
+
+    // Using Weatherman and Aviator skills
+    "I'm a pilot scheduled to land in Tokyo tomorrow night. What's the weather forecast for Narita International Airport during my scheduled landing time?",
+
+    // Using FinancialAnalyst and Aviator skills
+    "I'm considering investing in Boeing. Can you provide me with their recent balance sheet and also check if there are any significant delays in their flights?",
 
     // Using Researcher, Weatherman, and FinancialAnalyst skills
-    "I'm looking to invest in renewable energy companies. Can you gather information on solar power companies in California, including their financial performance and the typical weather conditions for solar energy generation?",
+    "I'm planning a ski trip to Aspen next month. Could you find ski resorts in the area, check the current snow conditions, and also provide me with the stock performance of companies in the ski resort industry?",
 
-    // Using all skills
-    "I'm planning a ski trip to Aspen next winter. Can you find flights from major airports to Aspen Pitkin County Airport, check their current status, and also provide an overview of Aspen's weather during ski season?",
+    // Using Aviator and FinancialAnalyst skills
+    "I'm flying to Frankfurt next week for a business meeting. Can you provide me with the flight schedule for flights from London Heathrow to Frankfurt Airport, and also check the stock performance of major airlines operating on that route?",
 
-    // Using all skills
-    "I'm considering opening a vineyard in Napa Valley. Could you gather data on the local weather patterns, analyze recent financial reports of successful wineries in the area, and also provide information on inbound flights to the nearest airport?",
+    // Using Researcher and Aviator skills
+    "I'm traveling to Tokyo next month and I'm interested in exploring the local cuisine. Could you find me a list of restaurants near Haneda Airport with good reviews?",
 
-    // Using all skills
-    "I'm organizing a company retreat in Hawaii. Can you help me find a resort with conference facilities, check flight availability to Honolulu International Airport, and provide a weather forecast for our planned dates?",
+    // Using Weatherman and Researcher skills
+    "I'm planning a camping trip to Yellowstone National Park next weekend. What's the weather forecast for the park, and could you also find information on nearby camping grounds?",
 
-    // Using all skills
-    "I'm a travel blogger planning my next adventure. Can you help me research popular destinations, check flight options, provide weather forecasts, and analyze the financial feasibility of my travel plans?",
+    // Using FinancialAnalyst, Aviator, and Researcher skills
+    "I'm a frequent traveler and I'm considering investing in companies related to travel and tourism. Can you provide me with a list of major airlines, their recent stock performances, and also find hotel chains with strong financials?",
 
-    // Using all skills
-    "I'm a consultant advising a client on expanding their retail business. Can you assist me in researching potential locations, checking flight accessibility, analyzing local weather conditions, and assessing the financial viability of the proposed expansion?",
+    // Using Weatherman and Aviator skills
+    "I'm flying from Sydney to Auckland next week. Can you provide me with the expected weather conditions at Auckland Airport around my arrival time?",
+
+    // Using Researcher and Weatherman skills
+    "I'm planning a road trip through the Canadian Rockies next month. Could you find me information on road conditions and the weather forecast for the route?",
+
+    // Using Aviator and FinancialAnalyst skills
+    "I'm considering investing in Delta Air Lines. Can you provide me with their recent cash flow statement and also check if there are any disruptions in their flight schedules?",
+
+    // Using Researcher and FinancialAnalyst skills
+    "I'm interested in investing in tech startups. Can you provide me with a list of upcoming tech companies with strong growth potential and their latest financial reports?",
+
+    // Using Aviator and Weatherman skills
+    "I'm flying from Singapore to Bangkok tomorrow afternoon. Can you tell me the expected weather conditions at Suvarnabhumi Airport around my arrival time?",
+
+    // Using Researcher, Aviator, and FinancialAnalyst skills
+    "I'm planning a trip to Hawaii and I want to stay at a luxury resort. Could you find me a list of high-end resorts near Honolulu International Airport, and also check the stock performance of major hotel chains?",
+
+    // Using Weatherman, FinancialAnalyst, and Aviator skills
+    "I'm a pilot flying from Dallas to Houston tomorrow morning. Could you provide the weather forecast for George Bush Intercontinental Airport around my departure time, and also check the stock performance of major oil companies?",
+
+    // Using Researcher, Weatherman, and Aviator skills
+    "I'm planning a sailing trip to the Caribbean next month. Could you find me information on sailing conditions and the weather forecast for popular sailing destinations?",
+
+    // Using FinancialAnalyst and Researcher skills
+    "I'm interested in investing in the healthcare sector. Can you provide me with a list of pharmaceutical companies with promising pipelines and their recent financial statements?",
   ];
   document.getElementById('notes').value = randomQuestions[(Math.floor(Math.random() * randomQuestions.length))];
 }; // randomQ()
