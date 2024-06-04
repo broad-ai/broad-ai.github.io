@@ -3,6 +3,17 @@ layout: demo
 title: BroadAI | Demonstration
 ---
 
+# BroadAI in Action
+
+This is a <span style="color:#feaf4d;">LIVE</span> demonstration of an Application built using BroadAI MAS Framework. It is integrated with following agents built using BroadAI Agentic Framework. So please feel free to ask any question around these agents (or not!).
+
+To help you get some ideas, the demo is pre-populated with some examples.
+
+### Agents in Action
+
+| Researcher | Aviator | Weatherman | FinancialAnalyst |
+| Looks up information using external information providers. | Tells about inbound and outbound flights into or out of an airport, as well as flight status' for known flight numbers. | Reports current weather conditions as well as forecast. | Research the company fundamentals to help analyze company's performance. |
+
 ---
 
 <div class="top">
