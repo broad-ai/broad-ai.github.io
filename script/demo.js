@@ -7,7 +7,7 @@ const go = () => {
   document.getElementById('notes').disabled = true;
   document.getElementById('btngo').disabled = true;
   // ...
-  fetch(broadAIapiEndpoint + "/broadai/ask?notes=" + encodeURI(notes), {
+  fetch(broadAIapiEndpoint + "/ask?notes=" + encodeURI(notes), {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

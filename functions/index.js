@@ -47,7 +47,7 @@ researcher.register(broadai.config, { "google_search_engine": { "api_key": proce
 weatherman.register(broadai.config, { "openweathermap": { "api_key": process.env['openweathermap'] } });
 
 // -- Ask BroadAI
-app.get('/broadai/ask', (req, res) => {
+app.get('/ask', (req, res) => {
   let notes = decodeURI(req.query['notes']);
   console.log(notes);
   // plan
