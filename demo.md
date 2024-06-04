@@ -12,7 +12,10 @@ To help you get some ideas, the demo is pre-populated with some examples.
 ### Agents in Action
 
 | Researcher | Aviator | Weatherman | FinancialAnalyst |
+|---|---|---|---|
 | Looks up information using external information providers. | Tells about inbound and outbound flights into or out of an airport, as well as flight status' for known flight numbers. | Reports current weather conditions as well as forecast. | Research the company fundamentals to help analyze company's performance. |
+
+**NOTE**: This demo uses [Google Gemini Pro](https://deepmind.google/technologies/gemini/pro/). Results can vary based on use of other models.
 
 ---
 
