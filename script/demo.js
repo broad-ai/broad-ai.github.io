@@ -3,9 +3,9 @@ const broadAIapiEndpoint = "https://broadaidemo-7yg2a2s6sq-uc.a.run.app";
 // ------ ..... ------ ..... ------ ..... ------ 
 const go = () => {
   let notes = document.getElementById('notes').value; // Get the value from the textbox
-  document.getElementById('message').innerHTML = "";
+  document.getElementById('message').innerHTML = "Working ...";
   document.getElementById('notes').disabled = true;
-  document.getElementById('btngo').disabled = true;
+  document.getElementById('btngo').hidden = true;
   // ...
   fetch(broadAIapiEndpoint + "/ask", {
     method: "POST",
@@ -42,10 +42,10 @@ const go = () => {
       document.getElementById('message').innerHTML = message;
 
       document.getElementById('notes').disabled = false;
-      document.getElementById('btngo').disabled = false;
+      document.getElementById('btngo').hidden = false;
     }).catch((err) => {
       document.getElementById('notes').disabled = false;
-      document.getElementById('btngo').disabled = false;
+      document.getElementById('btngo').hidden = false;
       document.getElementById('plan').innerHTML = "";
       document.getElementById('results').innerHTML = "";
       document.getElementById('message').innerHTML = "Oops! Something went wrong. Could you please try again?";
