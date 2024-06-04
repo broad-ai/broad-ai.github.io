@@ -125,82 +125,63 @@ const go = () => {
 // ------ ..... ------ ..... ------ ..... ------ 
 const randomQ = () => {
   const randomQuestions = [
-    // Situation 1
-    // Skills used: researchTopic, companyProfile
-    "As a financial analyst, I've been tasked with assessing potential investment opportunities in the renewable energy sector. Could you provide me with a list of companies specializing in solar energy production along with their current financial profiles?",
-    // Situation 2
-    // Skills used: flightDepartures, currentWeather
-    "I'm planning a business trip to New York tomorrow morning, but I need to know if there are any delays expected for my outbound flight due to the current weather conditions. Can you check the departure schedule and provide the weather forecast for both my departure and arrival locations?",
-    // Situation 3
-    // Skills used: findBusinesses, weatherForecast
-    "I'm organizing an outdoor event next weekend, but I'm concerned about the weather. Can you help me find a reliable tent rental company in the area and also provide a weather forecast for the event date?",
-    // Situation 4
-    // Skills used: flightArrivals, companyProfile
-    "I'm eagerly awaiting the arrival of a business partner flying in from Singapore. While I wait for their flight to land, could you also provide me with some insights into the latest financial performance of our company's competitors?",
-    // Situation 5
-    // Skills used: researchTopic, flightStatus
-    "I'm planning a vacation to Paris next month and I'm considering booking a specific flight with a long layover. Before I confirm my reservation, could you check the status of that flight number for me and also provide some tips for sightseeing during the layover?",
-    // Situation 6
-    // Skills used: findBusinesses, historicalStockPrices
-    "I'm interested in investing in the tech sector, particularly in companies specializing in artificial intelligence. Could you help me find some AI startups with promising growth potential and also provide their historical stock prices for the past year?",
-    // Situation 7
-    // Skills used: companyProfile, currentWeather
-    "I'm attending a shareholders' meeting for a company located in a region prone to severe weather conditions. Before I head out, can you give me an overview of the company's financial health and also provide the current weather forecast for that area?",
-    // Situation 8
-    // Skills used: flightDepartures, weatherForecast
-    "I'm a pilot preparing for a flight tomorrow morning, but I need to factor in the weather conditions for my route. Can you check the departure schedule for my flight and provide a detailed weather forecast for the entire duration of the journey?",
-    // Situation 9
-    // Skills used: flightArrivals, findBusinesses
-    "I'm expecting an important client to arrive at the airport later today, and I want to make a good impression by taking them to a nice restaurant nearby. Could you check the flight status for me and also recommend some upscale dining options in the vicinity?",
-    // Situation 10
-    // Skills used: researchTopic, incomeStatement
-    "I'm conducting research on the pharmaceutical industry and need to analyze the financial performance of leading drug manufacturers. Can you provide me with the latest income statements of these companies along with any notable trends or developments?",
-    // Situation 11
-    // Skills used: companyProfile, flightStatus
-    "I work for a multinational corporation with frequent business travels. As I'm about to embark on another trip, could you give me an update on our company's financial standing and also check the status of my upcoming flight?",
-    // Situation 12
-    // Skills used: findBusinesses, cashFlowStatement
-    "I'm considering opening a small cafe in my neighborhood, but I need to assess the financial viability of such a venture. Can you help me find similar cafes in the area and also provide insights into their cash flow statements?",
-    // Situation 13
-    // Skills used: currentWeather, historicalStockPrices
-    "I'm a commodities trader specializing in agricultural products, and I need to anticipate market trends based on weather patterns. Can you provide me with both the current weather conditions and historical stock prices for key agricultural commodities?",
-    // Situation 14
-    // Skills used: flightDepartures, flightArrivals
-    "I'm a flight coordinator tasked with managing the arrival and departure schedules at a busy airport. Can you help me coordinate the timing of inbound and outbound flights to minimize delays and maximize efficiency?",
-    // Situation 15
-    // Skills used: researchTopic, flightStatus
-    "I'm a travel blogger planning my next adventure, and I want to feature a lesser-known airline in one of my articles. Could you help me research the safety record and reliability of a specific flight operated by that airline, as well as check its current status?",
-    // Situation 16
-    // Skills used: findBusinesses, weatherForecast
-    "I'm organizing a team-building retreat for my company, and we're considering outdoor activities. Can you recommend some local adventure companies offering activities like hiking or rafting, along with a weather forecast for the retreat dates?",
-    // Situation 17
-    // Skills used: companyProfile, historicalStockPrices
-    "I'm a financial advisor helping a client make informed investment decisions. Can you provide me with the historical stock prices of a particular company over the past decade, along with a comprehensive analysis of its performance and potential future trends?",
-    // Situation 18
-    // Skills used: flightDepartures, incomeStatement
-    "I'm a business executive traveling overseas for an important meeting, but I need to stay updated on our company's financial performance while I'm away. Can you check the departure schedule for my flight and also send me the latest income statement for our company?",
-    // Situation 19
-    // Skills used: researchTopic, flightArrivals
-    "I'm a journalist covering the tourism industry, and I'm interested in the impact of new flight routes on local economies. Could you help me identify recent airline expansions into specific regions and their corresponding economic effects upon arrival?",
-    // Situation 20
-    // Skills used: findBusinesses, cashFlowStatement
-    "I'm a venture capitalist seeking investment opportunities in emerging markets. Can you assist me in identifying promising startups in a particular industry and also provide insights into their cash flow statements to gauge their financial health?",
-    // Situation 21
-    // Skills used: companyProfile, currentWeather
-    "I'm a business owner planning an outdoor promotional event, but I need to consider potential weather disruptions. Can you give me an overview of our company's financial status and also provide the current weather forecast for the event date?",
-    // Situation 22
-    // Skills used: flightStatus, historicalStockPrices
-    "I'm an investor closely monitoring the performance of an airline company in my portfolio. Could you check the status of their recent flights and also provide me with the historical stock prices to help me assess their overall trajectory?",
-    // Situation 23
-    // Skills used: researchTopic, flightDepartures
-    "I'm a travel agent organizing group tours to exotic destinations, and I need to ensure smooth travel experiences for my clients. Can you help me research the best departure times for upcoming flights and advise on any potential scheduling conflicts?",
-    // Situation 24
-    // Skills used: findBusinesses, weatherForecast
-    "I'm planning a romantic getaway and want to surprise my partner with a hot air balloon ride. Can you recommend reputable balloon companies in the area and also provide a weather forecast for the date of our excursion?",
-    // Situation 25
-    // Skills used: companyProfile, flightArrivals
-    "I'm a business consultant meeting with potential clients flying in from different cities. Before I head to the airport, could you provide me with an overview of our company's financial performance and also check the arrival status of my clients' flights?",
+    // Using Researcher skill
+    "As a researcher, I'm interested in investing in the pharmaceutical industry. Can you find businesses of that type with strong financial fundamentals?",
+
+    "I'm planning a vacation and I want to know the top-rated restaurants in Paris. Can you research the best dining spots in the city?",
+
+    "I'm considering buying a new smartphone. Could you find reviews and comparisons of the latest models available on the market?",
+
+    // Using Aviator skill
+    "I have a flight to catch tomorrow morning. Can you tell me the departure time and gate number for my flight from JFK to LAX?",
+
+    "My friend is flying in from London today. Can you check the arrival status of the British Airways flight BA103?",
+
+    "I'm expecting a package via air freight. Could you find out if it has arrived at the airport yet?",
+
+    // Using Weatherman skill
+    "I'm planning a picnic this weekend. What's the weather forecast for Saturday in Central Park?",
+
+    "I have a business trip next week. Can you tell me what the weather will be like in Tokyo during my stay?",
+
+    "My cousin is planning to go hiking in the mountains. Can you check if there are any weather advisories for that area?",
+
+    // Using FinancialAnalyst skill
+    "I'm looking to invest in a tech company. Can you provide me with the income statement and balance sheet of Apple Inc.?",
+
+    "I'm thinking about buying stock in a retail chain. Could you analyze the historical stock prices of Walmart over the past year?",
+
+    "I'm considering starting my own business. Can you research the market trends and potential competitors in the fitness industry?",
+
+    // Using Aviator and Weatherman skills
+    "I'm traveling to Chicago tomorrow. Can you tell me if there are any weather-related delays expected for flights into O'Hare International Airport?",
+
+    "My parents are flying in from Florida, but I heard there's a storm in the area. Can you check if their flight will be affected?",
+
+    "I have a layover in Denver next week. What's the weather forecast for the day I'll be there?",
+
+    // Using Researcher and FinancialAnalyst skills
+    "I'm interested in renewable energy companies. Can you find businesses in that sector with strong financial performance?",
+
+    "I'm considering investing in a startup. Could you research the company's profile and provide an analysis of its cash flow statement?",
+
+    "I'm thinking about diversifying my investment portfolio. Can you find me companies in the healthcare sector with promising growth prospects?",
+
+    // Using Researcher, Aviator, and Weatherman skills
+    "I'm planning a destination wedding in the Caribbean. Can you research the best resorts, as well as check the weather forecast for the wedding date?",
+
+    "I have a business trip to London next month. Can you find the best flights and also provide the weather forecast for my stay?",
+
+    "I'm considering relocating to a new city for work. Could you research the job market, find flights for a visit, and check the weather forecast for next week?",
+
+    // Using Aviator, Weatherman, and FinancialAnalyst skills
+    "I'm attending a conference in New York next week. Can you find me a flight, check the weather forecast, and also analyze the hotel expenses to help me budget?",
+
+    "My company is considering expanding internationally. Can you find flights to potential business locations, check the weather conditions, and provide a cost analysis for the expansion?",
+
+    "I'm planning a vacation to a tropical destination. Can you find me affordable flights, check the weather forecast, and also suggest budget-friendly accommodation options?",
   ];
+
   document.getElementById('notes').value = randomQuestions[(Math.floor(Math.random() * randomQuestions.length))];
 }; // randomQ()
 
