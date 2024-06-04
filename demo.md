@@ -5,6 +5,9 @@ title: BroadAI | Demonstration
 
 <div class="top" style="margin-top:60px;">
   <div class="mission">
+  <a class="button" id="btnrandomcase" onclick="randomQ()">
+    <img src="./assets/images/refresh-button.png" style="height:1.5em;padding:0;margin:0;"> Example
+  </a>
   <form>
     <h3>
       How may I help you?
