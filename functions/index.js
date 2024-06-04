@@ -1,9 +1,11 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from "cors";
 
 const app = express();
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(cors())
 
 // Import BroadAI
 import BroadAI from "broadai";
@@ -47,21 +49,21 @@ researcher.register(broadai.config, { "google_search_engine": { "api_key": proce
 weatherman.register(broadai.config, { "openweathermap": { "api_key": process.env['openweathermap'] } });
 
 // -- Ask BroadAI
-app.get('/ask', (req, res) => {
-  let notes = decodeURI(req.query['notes']);
-  console.log(notes);
+app.post('/ask', (req, res) => {
+  let notes = req.body['notes'];
+  console.log("[LOG]", "Problem statement: \n", notes);
   // plan
   broadai.plan(notes, true)
     .then((plan) => {
-      console.log(JSON.stringify(plan, null, 2));
+      console.log("[LOG]", "Plan: \n", JSON.stringify(plan, null, 2));
       // execute
       broadai.execute(plan)
         .then((results) => {
-          console.log(JSON.stringify(results, null, 2));
+          console.log("[LOG]", "Plan results: \n", JSON.stringify(results, null, 2));
           // respond
           broadai.respond(results)
             .then((response) => {
-              console.log(JSON.stringify(response, null, 2));
+              console.log("[LOG]", "Final Response: \n", JSON.stringify(response, null, 2));
               res.json(response);
             }).catch((err) => res.json({ "html_tag": "p", "text": "Response generation FAILED" }));
         }).catch((err) => res.json({ "html_tag": "p", "text": "Plan execution FAILED" }));
