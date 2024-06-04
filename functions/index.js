@@ -68,21 +68,19 @@ weatherman.register(broadai.config, { "openweathermap": { "api_key": process.env
 
 // -- Ask BroadAI
 app.post('/ask', (req, res) => {
-  console.log("POST", req.headers);
-  let notes = req.body['notes'];
-  console.log("[LOG]", "Problem statement: \n", notes);
+  // console.log("[LOG]", "Problem statement: \n", notes);
   // plan
   broadai.plan(notes, true)
     .then((plan) => {
-      console.log("[LOG]", "Plan: \n", JSON.stringify(plan, null, 2));
+      // console.log("[LOG]", "Plan: \n", JSON.stringify(plan, null, 2));
       // execute
       broadai.execute(plan)
         .then((results) => {
-          console.log("[LOG]", "Plan results: \n", JSON.stringify(results, null, 2));
+          // console.log("[LOG]", "Plan results: \n", JSON.stringify(results, null, 2));
           // respond
           broadai.respond(results)
             .then((response) => {
-              console.log("[LOG]", "Final Response: \n", JSON.stringify(response, null, 2));
+              // console.log("[LOG]", "Final Response: \n", JSON.stringify(response, null, 2));
               res.json({
                 "plan": plan,
                 "results": results,

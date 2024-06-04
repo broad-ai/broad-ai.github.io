@@ -17,6 +17,7 @@ const go = () => {
     })
   }).then((response) => response.json())
     .then((data) => {
+      console.log(data);
       let message = "<div>";
       document.getElementById('plan').innerHTML = JSON.stringify(data.plan, null, 2);
       document.getElementById('results').innerHTML = JSON.stringify(data.results, null, 2);
