@@ -44,7 +44,8 @@ docker push mppise/broadai:$newversion
 hold 10
 gcloud config set project aidapter
 gcloud config set run/region us-central1
-gcloud run deploy broadai --image docker.io/mppise/broadai:$newversion
+gcloud run deploy broadai --image docker.io/mppise/broadai:$newversion 
+--set-env-vars "openweathermap=28f9ab9f2a3c6ae5ff2bd903459ad778"
 hold 5
 docker rmi mppise/broadai:$newversion
 cd ..
