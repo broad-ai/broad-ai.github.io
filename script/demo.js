@@ -4,7 +4,6 @@ const broadAIapiEndpoint = "https://broadaidemo-7yg2a2s6sq-uc.a.run.app";
 const go = () => {
   let notes = document.getElementById('notes').value; // Get the value from the textbox
   document.getElementById('plan').innerHTML = "";
-  document.getElementById('results').innerHTML = "";
   document.getElementById('message').innerHTML = "Working ...";
   document.getElementById('notes').disabled = true;
   document.getElementById('btngo').hidden = true;
