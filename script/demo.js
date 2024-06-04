@@ -13,7 +13,7 @@ const go = () => {
       "Content-Type": "application/json",
     },
     body: {
-      "notes": notes
+      "notes": JSON.stringify(notes)
     }
   }).then((response) => response.json())
     .then((data) => {

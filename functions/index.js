@@ -23,6 +23,7 @@ const corsOptions = {
   optionsSuccessStatus: 204
 };
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 // Import BroadAI
 import BroadAI from "broadai";
@@ -67,6 +68,7 @@ weatherman.register(broadai.config, { "openweathermap": { "api_key": process.env
 
 // -- Ask BroadAI
 app.post('/ask', (req, res) => {
+  console.log("POST", req.headers);
   let notes = req.body['notes'];
   console.log("[LOG]", "Problem statement: \n", notes);
   // plan
