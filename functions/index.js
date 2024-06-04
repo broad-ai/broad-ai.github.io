@@ -103,5 +103,5 @@ app.get('/', (req, res) => {
 // Start the server
 app.listen(process.env['PORT'] || 8080, async () => {
   console.log("---\n", "Server is running on port", process.env['PORT'] || 8080);
-  // console.log(process.env, "\n---");
+  console.log(process.env, "\n---");
 });
