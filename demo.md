@@ -17,20 +17,12 @@ title: BroadAI | Demonstration
     <textarea id="notes" name="notes" rows="6" required style="width:calc(100% - 20px); padding:10px; margin:0.5em 0; border:1px solid #ddd; border-radius:4px; box-sizing:border-box;"></textarea>
     <input type="button" id="btngo" value="Go" onClick="go()" style="font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif; font-size: 18px; text-align: center; padding: 10px; margin: 0 10px 10px 0; color: #fff; background-color: #2e7bcf; border: none; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;">
   </form>
+  <hr style="border:1px solid;">
+  <div id="plan"> <!-- .. result .. --> </div>
   </div>
 
   <div class="lead" id="lead">
     <div id="message"> <!-- .. result .. --> </div>
-  </div>
-</div>
-
-<div class="top">
-  <div class="mission" style="background-color:transparent;box-shadow: none;">
-    <div id="plan"> <!-- .. result .. --> </div>
-  </div>
-
-  <div class="lead" id="lead"  style="background-color:transparent;box-shadow: none;">
-    <div id="results"> <!-- .. result .. --> </div>
   </div>
 </div>
 

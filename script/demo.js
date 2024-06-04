@@ -23,16 +23,10 @@ const go = () => {
       data.plan.forEach((step) => {
         document.getElementById('plan').innerHTML += (step.sequence + 1);
         document.getElementById('plan').innerHTML += ". " + step.objective;
-        document.getElementById('plan').innerHTML += " using [" + step.agent + "." + step.skill.name + "]";
+        document.getElementById('plan').innerHTML += " using [" + step.agent + "." + step.skill.name + "]\n";
+        document.getElementById('plan').innerHTML += JSON.stringify(step.result) + "\n\n";
       });
       document.getElementById('plan').innerHTML += "</code></pre>";
-
-      document.getElementById('results').innerHTML = "<h4>Results of plan execution:</h4>" + "<pre><code>";
-      data.plan.forEach((step) => {
-        document.getElementById('results').innerHTML += (step.sequence + 1) + ":\n";
-        document.getElementById('results').innerHTML += JSON.stringify(step.result) + "\n\n";
-      });
-      document.getElementById('results').innerHTML += "</code></pre>";
 
       let message = "<div>";
       data.response.forEach((elem) => {
@@ -45,12 +39,6 @@ const go = () => {
 
       document.getElementById('notes').disabled = false;
       document.getElementById('btngo').hidden = false;
-    }).catch((err) => {
-      document.getElementById('notes').disabled = false;
-      document.getElementById('btngo').hidden = false;
-      document.getElementById('plan').innerHTML = "";
-      document.getElementById('results').innerHTML = "";
-      document.getElementById('message').innerHTML = "Oops! Something went wrong. Could you please try again?";
     });
   // ...
 }; // go
