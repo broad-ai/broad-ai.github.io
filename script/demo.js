@@ -71,14 +71,20 @@ const go = () => {
             }).catch((err) => {
               document.getElementById('message').innerHTML = "<p style='color:red;'>Uh! Oh!! Something went wrong with my last step.</p>";
               document.getElementById('plan').innerHTML = "<h4 style='color:red;'>ABORTED!</h4>";
+              document.getElementById('notes').disabled = false;
+              document.getElementById('btngo').hidden = false;
             });
 
         }).catch((err) => {
           document.getElementById('plan').innerHTML = "<p style='color:red;'>Plan execution ... FAILED</p>";
+          document.getElementById('notes').disabled = false;
+          document.getElementById('btngo').hidden = false;
         });
 
     }).catch((err) => {
       document.getElementById('plan').innerHTML = "<p style='color:red;'>Plan generation ... FAILED</p>";
+      document.getElementById('notes').disabled = false;
+      document.getElementById('btngo').hidden = false;
     });
 
 };
