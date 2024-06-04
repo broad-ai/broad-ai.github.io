@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: index
 title: BroadAI | Framework to build your multi-agent AI system
 ---
 
