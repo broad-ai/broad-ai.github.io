@@ -30,8 +30,6 @@ const go = () => {
 
       let message = "<div>";
       data.response.forEach((elem) => {
-        if (elem.html_tag == "li" || elem.html_tag == "td")
-          elem.html_tag = "p";
         message += "<" + elem.html_tag + ">" + elem.text + "</" + elem.html_tag + ">";
       });
       message += "</div>"
