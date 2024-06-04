@@ -55,7 +55,7 @@ header h2 {
 
 .inner {
   position: relative;
-  width: 60%;
+  width: 80%;
   margin: 0 auto;
 }
 
@@ -164,7 +164,7 @@ dl {
   padding: 1.2em 1em 1.2em 1em;
   font-weight: 400;
   box-shadow: 0 4px 8px 0 #999;
-  background-color: #c6e6f7;
+  background-color: #efefff;
 }
 
 .top .lead {
@@ -173,6 +173,7 @@ dl {
   padding: 1.2em 1em 1.2em 1em;
   font-weight: 400;
   box-shadow: 0 4px 8px 0 #999;
+  background-color: #efefef;
 }
 
 /* COMMON STYLES */
@@ -404,7 +405,7 @@ footer a:hover {
 /* Tablet Portrait size to standard 960 (devices and browsers) */
 @media only screen and (min-width: 768px) and (max-width: 959px) {
   .inner {
-    width: 60%;
+    width: 90%;
   }
 
   header h1,
@@ -452,7 +453,7 @@ footer a:hover {
 /* All Mobile Sizes (devices and browser) */
 @media only screen and (max-width: 767px) {
   .inner {
-    width: 60%;
+    width: 100%;
   }
 
   header {
