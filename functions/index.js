@@ -83,7 +83,11 @@ app.post('/ask', (req, res) => {
           broadai.respond(results)
             .then((response) => {
               console.log("[LOG]", "Final Response: \n", JSON.stringify(response, null, 2));
-              res.json(response);
+              res.json({
+                "plan": plan,
+                "results": results,
+                "response": response
+              });
             }).catch((err) => res.json({ "html_tag": "p", "text": "Response generation FAILED" }));
         }).catch((err) => res.json({ "html_tag": "p", "text": "Plan execution FAILED" }));
     }).catch((err) => res.json({ "html_tag": "p", "text": "Plan generation FAILED" }));

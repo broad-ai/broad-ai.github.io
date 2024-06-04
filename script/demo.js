@@ -18,7 +18,9 @@ const go = () => {
   }).then((response) => response.json())
     .then((data) => {
       let message = "<div>";
-      data.forEach((elem) => {
+      document.getElementById('plan').innerHTML = JSON.stringify(data.plan, null, 2);
+      document.getElementById('results').innerHTML = JSON.stringify(data.results, null, 2);
+      data.response.forEach((elem) => {
         if (elem.html_tag == "li" || elem.html_tag == "td")
           elem.html_tag = "p";
         message += "<" + elem.html_tag + ">" + elem.text + "</" + elem.html_tag + ">";

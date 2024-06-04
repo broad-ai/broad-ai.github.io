@@ -24,4 +24,14 @@ title: BroadAI | Demonstration
   </div>
 </div>
 
+<div class="top">
+  <div class="mission" style="background-color:#eee;">
+    <div id="plan"> <!-- .. result .. --> </div>
+  </div>
+
+  <div class="lead" id="lead"  style="background-color:#eee;">
+    <div id="results"> <!-- .. result .. --> </div>
+  </div>
+</div>
+
 ---
