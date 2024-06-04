@@ -22,7 +22,7 @@ const broadAIConfiguration = {
     "url": "https://api.openai.com/v1/chat/completions",
     "headers": {
       "Content-Type": "application/json",
-      "Authorization": "Bearer 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"
+      "Authorization": "Bearer " + process.env['OPENAI_KEY']
     },
     "data_template": {
       "model": "gpt-3.5-turbo-0125",
