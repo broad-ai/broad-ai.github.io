@@ -36,6 +36,8 @@ To help you get some ideas, the demo is pre-populated with some examples.
   </div>
 </div>
 
+---
+
 **NOTE**: This demo uses [Google Gemini Pro](https://deepmind.google/technologies/gemini/pro/). Results can vary based on use of other models.
 
 ---
