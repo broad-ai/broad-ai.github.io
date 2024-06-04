@@ -38,6 +38,8 @@ To help you get some ideas, the demo is pre-populated with some examples.
 
 ---
 
-**NOTE**: This demo uses [Google Gemini Pro](https://deepmind.google/technologies/gemini/pro/). Results can vary based on use of other models.
+<!-- **NOTE**: This demo uses [Google Gemini Pro](https://deepmind.google/technologies/gemini/pro/). Results can vary based on use of other models. -->
+
+**NOTE**: This demo uses [GPT 3.5-Turbo](https://platform.openai.com/docs/models/gpt-3-5-turbo). Results can vary based on use of other models.
 
 ---
