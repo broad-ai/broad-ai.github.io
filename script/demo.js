@@ -12,9 +12,9 @@ const go = () => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: {
-      "notes": JSON.stringify(notes)
-    }
+    body: JSON.stringify({
+      "notes": notes
+    })
   }).then((response) => response.json())
     .then((data) => {
       let message = "<div>";
