@@ -7,7 +7,7 @@ title: BroadAI | Demonstration
 
 <div class="top">
   <div class="mission">
-  <a class="button" id="btnrandomcase" onclick="randomQ()" style="float:right;background-color:transparent;">
+  <a class="button" id="btnrandomcase" onclick="randomQ()" style="float:right;background-color:transparent;color:#2e7bcf;">
     <img src="./assets/images/refresh-button.png" style="height:1.5em;padding:0;margin:0;"> Example
   </a>
   <form>

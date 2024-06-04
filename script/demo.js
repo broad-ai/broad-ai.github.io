@@ -1,4 +1,4 @@
-const broadAIapiEndpoint = "http://localhost:8080";
+const broadAIapiEndpoint = "https://broadai-7yg2a2s6sq-uc.a.run.app";
 
 // ------ ..... ------ ..... ------ ..... ------ 
 const go = () => {
@@ -7,15 +7,11 @@ const go = () => {
   document.getElementById('notes').disabled = true;
   document.getElementById('btngo').disabled = true;
   // ...
-  fetch(broadAIapiEndpoint + "/ask", {
+  fetch(broadAIapiEndpoint + "/broadai/ask?notes=" + encodeURI(notes), {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      "notes": notes
-    }),
-    mode: "cors"
   }).then((response) => response.json())
     .then((data) => {
       let message = "<div>";
