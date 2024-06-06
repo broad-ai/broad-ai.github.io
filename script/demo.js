@@ -65,7 +65,7 @@ const go = () => {
           document.getElementById('plan').innerHTML += "<ol>";
           results.forEach((step, i) => {
             document.getElementById('plan').innerHTML += "<li>" + p[i].step + "</li>";
-            document.getElementById('plan').innerHTML += "<p style='font-size:0.8em;'><strong>Agent: </strong>" + p[i].agent + "<br><strong>Skill: </strong>" + p[i].action + "</p>";
+            document.getElementById('plan').innerHTML += "<p><strong>Agent: </strong><span style='font-family:monospace;font-size:0.9em;color:#2e7bcf;'>" + p[i].agent + "</span> <br> <strong>Skill: </strong><span style='font-family:monospace;font-size:0.9em;color:#2e7bcf;'>" + p[i].action + "</span></p>";
             document.getElementById('plan').innerHTML += "<pre>" + JSON.stringify(step.result) + "</pre>";
           });
           document.getElementById('plan').innerHTML += "</ol>";
