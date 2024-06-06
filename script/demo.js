@@ -31,6 +31,7 @@ const go = () => {
       plan.plan.forEach((step) => {
         let s = {
           "step": step.objective,
+          "agent": step.agent,
           "action": step.skill ? step.skill.name : "none"
         };
         if (step.skill) {
@@ -64,7 +65,7 @@ const go = () => {
           document.getElementById('plan').innerHTML += "<ol>";
           results.forEach((step, i) => {
             document.getElementById('plan').innerHTML += "<li>" + p[i].step + "</li>";
-            document.getElementById('plan').innerHTML += "<span>" + p[i].action + "</span>";
+            document.getElementById('plan').innerHTML += "<blockquote><strong>Agent: </strong>" + p[i].agent + " | <strong>Skill: </strong>" + p[i].action + "</blockquote>";
             document.getElementById('plan').innerHTML += "<pre>" + JSON.stringify(step.result) + "</pre>";
           });
           document.getElementById('plan').innerHTML += "</ol>";
