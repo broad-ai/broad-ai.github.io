@@ -11,6 +11,8 @@ const go = () => {
 
   document.getElementById('plan').innerHTML = "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Planning ...</pre>";
 
+  let p = [];
+
   fetch(broadAIapiEndpoint + "/plan", {
     method: "POST",
     headers: {
@@ -26,6 +28,27 @@ const go = () => {
       document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + plan.reason + "</pre>";
       document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Executing " + plan.plan.length + " steps of the plan.</pre>";
 
+      plan.plan.forEach((step) => {
+        let s = {
+          "step": step.objective,
+          "action": step.skill ? step.skill.name : "none"
+        };
+        if (step.skill) {
+          if (step.skill.parameters) {
+            s.action += "(";
+            let p = [];
+            Object.keys(step.skill.parameters).forEach((param) => {
+              p.push(param + ":" + step.skill.parameters[param]);
+            });
+            s.action += p.join(', ');
+            s.action += ")";
+          }
+          else
+            s.action += "()";
+        }
+        p.push(s);
+      });
+
       fetch(broadAIapiEndpoint + "/execute", {
         method: "POST",
         headers: {
@@ -39,8 +62,8 @@ const go = () => {
 
           document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><h4>Plan steps & results:</h4>";
           document.getElementById('plan').innerHTML += "<ol>";
-          results.forEach((step) => {
-            document.getElementById('plan').innerHTML += "<li>" + step.objective + "</li>";
+          results.forEach((step, i) => {
+            document.getElementById('plan').innerHTML += "<li>" + p[i].step + "::" + p[i].action + "</li>";
             document.getElementById('plan').innerHTML += "<pre>" + JSON.stringify(step.result) + "</pre>";
           });
           document.getElementById('plan').innerHTML += "</ol>";
