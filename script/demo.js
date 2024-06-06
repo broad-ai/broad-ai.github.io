@@ -4,12 +4,12 @@ const broadAIapiEndpoint = "https://broadaidemo-7yg2a2s6sq-uc.a.run.app";
 const go = () => {
   let notes = document.getElementById('notes').value; // Get the value from the textbox
   document.getElementById('plan').innerHTML = "";
-  document.getElementById('message').innerHTML = "<p>Working ...</p>";
+  document.getElementById('message').innerHTML = "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Working ...</pre>";
   document.getElementById('notes').disabled = true;
   document.getElementById('btngo').hidden = true;
   // ...
 
-  document.getElementById('plan').innerHTML = "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Planning ...</pre>";
+  document.getElementById('plan').innerHTML = "<hr style='border:1px dotted;color:#eee;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Planning ...</pre>";
 
   fetch(broadAIapiEndpoint + "/plan", {
     method: "POST",
@@ -22,9 +22,9 @@ const go = () => {
   }).then((response) => response.json())
     .then((plan) => {
 
-      document.getElementById('plan').innerHTML = "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Plan " + plan.status + ".</pre>";
-      document.getElementById('plan').innerHTML += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + plan.reason + "</pre>";
-      document.getElementById('plan').innerHTML += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Executing " + plan.plan.length + " steps of the plan.</pre>";
+      document.getElementById('plan').innerHTML = "<hr style='border:1px dotted;color:#eee;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Plan " + plan.status + ".</pre>";
+      document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#eee;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + plan.reason + "</pre>";
+      document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#eee;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Executing " + plan.plan.length + " steps of the plan.</pre>";
 
       fetch(broadAIapiEndpoint + "/execute", {
         method: "POST",
@@ -37,7 +37,7 @@ const go = () => {
       }).then((response) => response.json())
         .then((results) => {
 
-          document.getElementById('plan').innerHTML += "<hr style='border:1px;color:#eee;'><h4>Plan steps & results:</h4>";
+          document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#eee;'><h4>Plan steps & results:</h4>";
           document.getElementById('plan').innerHTML += "<ol>";
           results.forEach((step) => {
             document.getElementById('plan').innerHTML += "<li>" + step.objective + "</li>";
@@ -65,7 +65,7 @@ const go = () => {
                 message += "<" + elem.html_tag + ">" + elem.text + "</" + elem.html_tag + ">";
               });
               message += "</div>"
-              message += "<hr style='border:1px;color:#eee;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Response: " + resp.status + "</pre>";
+              message += "<hr style='border:1px dotted;color:#eee;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Response: " + resp.status + "</pre>";
               message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + resp.reason + "</pre>";
               document.getElementById('message').innerHTML = message;
 
