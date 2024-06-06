@@ -61,11 +61,11 @@ const go = () => {
       }).then((response) => response.json())
         .then((results) => {
 
-          document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><h4>Plan steps & results:</h4>";
+          document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><h3>Plan steps & results:</h3>";
           document.getElementById('plan').innerHTML += "<ol>";
           results.forEach((step, i) => {
             document.getElementById('plan').innerHTML += "<li>" + p[i].step + "</li>";
-            document.getElementById('plan').innerHTML += "<p><strong>Agent: </strong><span style='font-family:monospace;font-size:0.9em;color:#2e7bcf;'>" + p[i].agent + "</span> <br> <strong>Skill: </strong><span style='font-family:monospace;font-size:0.9em;color:#2e7bcf;'>" + p[i].action + "</span></p>";
+            document.getElementById('plan').innerHTML += "<p>Agent: <span style='font-family:monospace;font-size:0.9em;color:#2e7bcf;'>" + p[i].agent + "</span> <br> Skill: <span style='font-family:monospace;font-size:0.9em;color:#2e7bcf;'>" + p[i].action + "</span></p>";
             document.getElementById('plan').innerHTML += "<pre>" + JSON.stringify(step.result) + "</pre>";
           });
           document.getElementById('plan').innerHTML += "</ol>";
