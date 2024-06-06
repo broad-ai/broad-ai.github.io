@@ -65,7 +65,7 @@ const go = () => {
           document.getElementById('plan').innerHTML += "<ol>";
           results.forEach((step, i) => {
             document.getElementById('plan').innerHTML += "<li>" + p[i].step + "</li>";
-            document.getElementById('plan').innerHTML += "<blockquote><strong>Agent: </strong>" + p[i].agent + " | <strong>Skill: </strong>" + p[i].action + "</blockquote>";
+            document.getElementById('plan').innerHTML += "<p style='font-size:0.8em;'><strong>Agent: </strong>" + p[i].agent + "<br><strong>Skill: </strong>" + p[i].action + "</p>";
             document.getElementById('plan').innerHTML += "<pre>" + JSON.stringify(step.result) + "</pre>";
           });
           document.getElementById('plan').innerHTML += "</ol>";
@@ -90,7 +90,7 @@ const go = () => {
                 message += "<" + elem.html_tag + ">" + elem.text + "</" + elem.html_tag + ">";
               });
               message += "</div>"
-              message += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Response: " + resp.status + "</pre>";
+              message += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'><strong>Status: </strong>" + resp.status + ".</pre>";
               message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + resp.reason + "</pre>";
               document.getElementById('message').innerHTML = message;
 
