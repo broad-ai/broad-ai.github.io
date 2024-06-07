@@ -28,6 +28,8 @@ const go = () => {
       document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + plan.reason + "</pre>";
       document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Executing " + plan.plan.length + " steps of the plan.</pre>";
 
+      document.getElementById('message').innerHTML = "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Almost there ...</pre>";
+
       plan.plan.forEach((step) => {
         let s = {
           "step": step.objective,
@@ -71,7 +73,7 @@ const go = () => {
           document.getElementById('plan').innerHTML += "</ol>";
           document.getElementById('plan').innerHTML += "</div>";
 
-          document.getElementById('message').innerHTML = "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Almost done ...</pre>";
+          document.getElementById('message').innerHTML = "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Wrapping up ...</pre>";
 
           fetch(broadAIapiEndpoint + "/response", {
             method: "POST",
