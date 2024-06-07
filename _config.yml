@@ -50,21 +50,17 @@ agents:
     agent-config: { "google_search_engine": { "api_key": "?", "programmable_search_engine_id": "?" }, "yelp": { "api_key": "?" } }
   - agent-name: Aviator
     package-name: aviator
-    capability: Aviator can tell about inbound and outbound flights into or out of an airport as well as flight status
+    capability: Aviator can find the status of a specific flight number or for multiple flights between two airports
     skills:
-      - skill-name: flightDepartures
-        objective: Identify nearest major IATA airport code for a given location and retrieve flights departing / leaving from that airport
-        action: flightDepartures
+      - skill-name: allFlights
+        objective: Retreive flights and their details between specified airports
+        action: allFlights
         parameters:
-          - iata_airport_code: string | must be an IATA airport code, e.g. CMH for Port Columbus International Airport
-      - skill-name: flightArrivals
-        objective: Identify nearest major IATA airport code for a given location and retrieve flights arriving into that airport
-        action: flightArrivals
-        parameters:
-          - iata_airport_code: string | must be an IATA airport code, e.g. CMH for Port Columbus International Airport
-      - skill-name: flightStatus
-        objective: Identify IATA flight number for a given flight and retrieve its details
-        action: flightStatus
+          - iata_departure: string | must be an IATA airport code from where flight originates, e.g. CMH for Port Columbus International Airport
+          - iata_arrival: string | must be an IATA airport code where flight destination is, e.g. ORD for O'Hare International Airport
+      - skill-name: specificFlight
+        objective: Retreive flight details about a specific flight
+        action: specificFlight
         parameters:
           - iata_flight_number: string | must be an IATA flight number, e.g. IATA flight number for flight 'United 5532' is 'UA5532'
     agent-config: { "aviationstack": { "api_key": "?" } }
