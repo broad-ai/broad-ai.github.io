@@ -4,12 +4,12 @@ const subscribe = () => {
   const name = document.getElementById('name').value;
   const email = document.getElementById('email').value;
   document.getElementById('btnsave').hidden = true;
-  fetch(broadAIapiEndpoint + "/subscribe", {
+  fetch(broadAIapiEndpoint + "/connect", {
     "method": "POST",
     "headers": {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({
+    "body": JSON.stringify({
       "name": name,
       "email": email,
     })
