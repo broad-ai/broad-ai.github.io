@@ -98,13 +98,14 @@ const go = () => {
               message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'><strong>Status: </strong>" + resp.response.status + ".</pre>";
               message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + resp.response.reason + "</pre>";
               // History
-              console.log(document.getElementById('history').checked);
-              sessionStorage.setItem('conversations', JSON.stringify(resp.conversations));
-              message += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'>";
-              message += "<h4>Conversation History: </h4>";
-              resp.conversations.forEach((c) => {
-                message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + c + "</pre>"
-              });
+              if (document.getElementById('history').checked) {
+                sessionStorage.setItem('conversations', JSON.stringify(resp.conversations));
+                message += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'>";
+                message += "<h4>Conversation History: </h4>";
+                resp.conversations.forEach((c) => {
+                  message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + c + "</pre>"
+                });
+              }
 
               document.getElementById('message').innerHTML = message;
 
