@@ -86,14 +86,22 @@ const go = () => {
             })
           }).then((response) => response.json())
             .then((resp) => {
-
               let message = "<div>";
-              resp.response.forEach((elem) => {
+              resp.response.response.forEach((elem) => {
                 message += "<" + elem.html_tag + ">" + elem.text + "</" + elem.html_tag + ">";
               });
               message += "</div>"
-              message += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'><strong>Status: </strong>" + resp.status + ".</pre>";
+              // Log
+              message += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'>";
+              message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'><strong>Status: </strong>" + resp.status + ".</pre>";
               message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + resp.reason + "</pre>";
+              // History
+              message += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'>";
+              message += "<h4>Conversation History: </h4>";
+              resp.conversations.forEach((c) => {
+                message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + c + "</pre>"
+              });
+
               document.getElementById('message').innerHTML = message;
 
               document.getElementById('notes').disabled = false;

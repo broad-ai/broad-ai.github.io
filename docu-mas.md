@@ -187,7 +187,7 @@ BroadAI leverages it's knowledge about the agents that are registered with the B
 
 *Note*: All methods return Promise.
 
-#### Method: `plan(question)`
+#### Method: `plan(question, refinedPlan, conversations)`
 
 This method generates a plan to address the problem statement / question. You can choose to generate a refined plan where BroadAI takes an iterative approach to audit it's initial plan and generate an optimized plan. It is highly recommended to generate a refined plan. However note that if `refinedPlan` is set to `true`, naturally more LLM tokens will be consumed.
 
@@ -195,6 +195,7 @@ This method generates a plan to address the problem statement / question. You ca
 |-----|-----|-----|-----|
 | **question** | string | Mandatory | User's question or problem statement. |
 | **refinedPlan** | boolean | Mandatory | Indicate whether BroadAI should critically audit it's initial plan and generate an updated plan. |
+| **conversations** | Array | Optional | Provide conversation history (if enabled). Conversation history is an array of Q & A exchanges between user and BroadAI. |
 
 **Output**: 
 
@@ -222,7 +223,7 @@ This method generates a plan to address the problem statement / question. You ca
 ```javascript
 const ai = new BroadAI([ /* BroadAIAgents */ ], /* BroadAIConfiguration */);
 
-ai.plan(problemStatement, true).then((plan)=>{ 
+ai.plan(problemStatement, true, conversations).then((plan)=>{ 
   console.log(plan);
 }).catch((err)=>console.log(err));
 ```
@@ -302,6 +303,7 @@ This method uses LLM to respond to the user's original question / problem statem
 |-----|-----|-----|-----|
 | **results** | Array<any> | Mandatory | The result of the plan execution are used to ground LLM and answer user's question or problem statement.  |
 | **question** | string | Mandatory | User's question or problem statement. |
+| **conversations** | Array | Optional | Provide conversation history (if enabled). Conversation history is an array of Q & A exchanges between user and BroadAI. |
 
 **Output**: 
 
@@ -326,14 +328,17 @@ const ai = new BroadAI([ /* BroadAIAgents */ ], /* BroadAIConfiguration */);
 // ai.plan() ...
   // ai.execute() ...
     
-    ai.respond(results, problemStatement).then((response)=>{
-      console.log(response);
+    ai.respond(results, problemStatement, conversations).then((response)=>{
+      console.log(response);          // response to problem statement
+      console.log(ai.conversations);  // coversation history
     }).catch((err)=>console.log(err));    
 ```
 
 **Example Output**: 
 
 ```json
+// Response to Problem Statement
+// ... ... ... ... ... ... ... ...
 {
     "status": "complete",
     "response": [
@@ -356,6 +361,18 @@ const ai = new BroadAI([ /* BroadAIAgents */ ], /* BroadAIConfiguration */);
     ],
     "reason": "The initial plan results provided information on fast food joints located around the identified Columbus airport. This information was used to list the fast food joints in the response."
 }
+```
+
+```json
+// Conversation History
+// ... ... ... ... ... ...
+[
+  "Q": "Find fast food joints around Columbus airport",
+  "A": "Here are some fast food joints around Columbus airport:\n\n1. Chick-fil-A (3.2 stars) | 3940 Morse Rd Columbus, OH 43219\n2. McDonald's (1.3 stars) | 4250 International Gtwy Columbus, OH 43219\n3. Sonic Drive-In (1.9 stars) | 2846 Stelzer Rd Columbus, OH 43219\n4. McDonald's (1.7 stars) | 298 S Hamilton Rd Gahanna, OH 43230\n5. Raising Cane's Chicken Fingers (3.4 stars) | 1320 N Hamilton Rd Gahanna, OH 43230\n6. MrBeast Burger (3.3 stars) | Columbus, OH 43219",
+  "Q": "Which ones have at least 3 stars?",
+  "A": "The fast food joints with at least 3 stars ratings are: Chick-fil-A, Raising Cane's Chicken Fingers and MrBeast Burger."
+]
+
 ```
 
 ---
