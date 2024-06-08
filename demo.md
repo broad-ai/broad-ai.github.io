@@ -26,7 +26,15 @@ To help you get some ideas, the demo is pre-populated with some examples.
       How may I help you?
     </h3>
     <textarea id="notes" name="notes" rows="6" required style="width:calc(100% - 20px); padding:10px; margin:0.5em 0; border:1px solid #ddd; border-radius:4px; box-sizing:border-box;"></textarea>
-    <input type="button" id="btngo" value="Go" onClick="go()" style="font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif; font-size: 18px; text-align: center; padding: 10px; margin: 0 10px 10px 0; color: #fff; background-color: #2e7bcf; border: none; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;">
+    <div>
+      <div style="margin:0.5em 0;float:left;">
+        <input type="checkbox" id="history" name="history" style="margin-right: 10px;">
+        <label for="history">Enable conversation history</label>
+      </div>
+      <div style="margin:0.5em 0;float:right;">
+        <input type="button" id="btngo" value="Go" onClick="go()" style="font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif; font-size: 18px; text-align: center; padding: 10px; margin: 0 10px 10px 0; color: #fff; background-color: #2e7bcf; border: none; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;">
+      </div>
+    </div>
   </form>
   <div id="plan"> <!-- .. result .. --> </div>
   </div>
