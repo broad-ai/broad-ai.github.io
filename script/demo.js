@@ -102,8 +102,10 @@ const go = () => {
                 sessionStorage.setItem('conversations', JSON.stringify(resp.conversations));
                 message += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'>";
                 message += "<h4>Conversation History: </h4>";
-                resp.conversations.forEach((c) => {
-                  message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + c + "</pre>"
+                resp.conversations.forEach((c, i) => {
+                  message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + c + "</pre>";
+                  if (i % 2 != 0)
+                    message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'></pre>";
                 });
               }
 
