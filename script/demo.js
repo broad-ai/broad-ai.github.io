@@ -25,7 +25,7 @@ const go = () => {
   }).then((response) => response.json())
     .then((plan) => {
 
-      document.getElementById('plan').innerHTML = "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Plan " + plan.status + ".</pre>";
+      document.getElementById('plan').innerHTML = "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Plan " + plan.status + ".</pre>";
       document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + plan.reason + "</pre>";
       document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Executing " + plan.plan.length + " steps of the plan.</pre>";
 
