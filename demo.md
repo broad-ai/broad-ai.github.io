@@ -26,12 +26,12 @@ To help you get some ideas, the demo is pre-populated with some examples.
       How may I help you?
     </h3>
     <textarea id="notes" name="notes" rows="6" required style="width:calc(100% - 20px); padding:10px; margin:0.5em 0; border:1px solid #ddd; border-radius:4px; box-sizing:border-box;"></textarea>
-    <div  style='display:block;'>
-      <div style="margin:0;float:left;">
+    <div style='padding:0;width:100%;margin-bottom:2em;'>
+      <div style="display:inline;float:left;">
         <input type="checkbox" id="history" name="history" style="margin-right: 10px;">
         <label for="history">Enable follow up</label>
       </div>
-      <div style="margin:0;float:right;">
+      <div style="display:inline;float:right;">
         <input type="button" id="btngo" value="Go" onClick="go()" style="font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif; font-size: 18px; text-align: center; padding: 10px; margin: 0 10px 10px 0; color: #fff; background-color: #2e7bcf; border: none; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;">
       </div>
     </div>
