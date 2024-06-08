@@ -446,22 +446,31 @@ const ai = new BroadAI([ researcher.agent, /* array of BroadAI agents */ ], {
         }]
     },
     "response_template": "choices.0.message.content"
+  },
+  "history": {
+    "enabled": true,
+    "max_exchanges": 5
   }
 });
 
 // register agents
 researcher.register(ai.config, agentConfig?);
 
+// conversation history
+let conversation = [];
+
 // problem statement
 let problemStatement = "When iPhone was first launched, how was it accepted? Where can I buy one around Columbus airport?";
 
 // use the framework to create a refined plan to answer the given question
-ai.plan(problemStatement, true).then((plan)=>{ 
+ai.plan(problemStatement, true, conversation).then((plan)=>{ 
   // execute the generated plan
   ai.execute(plan).then((results)=>{
     // generate a response based on the plan execution results
-    ai.respond(results, problemStatement).then((response)=>{
+    ai.respond(results, problemStatement, conversation).then((response)=>{
       console.log(response);
+      conversation = ai.conversations;  // -- conversation history for later use
+      console.log(conversation);
     });
   });
  });
