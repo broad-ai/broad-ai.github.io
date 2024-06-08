@@ -20,7 +20,7 @@ const go = () => {
     },
     body: JSON.stringify({
       "notes": notes,
-      "conversations": JSON.parse(sessionStorage.getItem('conversations') || [])
+      "conversations": JSON.parse(sessionStorage.getItem('conversations')) || []
     })
   }).then((response) => response.json())
     .then((plan) => {
@@ -84,7 +84,7 @@ const go = () => {
             body: JSON.stringify({
               "results": results,
               "notes": notes,
-              "conversations": JSON.parse(sessionStorage.getItem('conversations') || [])
+              "conversations": JSON.parse(sessionStorage.getItem('conversations')) || []
             })
           }).then((response) => response.json())
             .then((resp) => {

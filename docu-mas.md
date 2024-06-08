@@ -64,6 +64,7 @@ The structure of the ```BroadAIConfiguration``` is below:
 
 ```javascript
 let broadAIConfiguration = {
+  /* ** (1) LLM API Configuration ** */
   "llmapi": {
     "method": "GET" | "POST" | "PUT" | "DELETE",
     "url": "??",                // -- API endpoint to access the model
@@ -74,7 +75,12 @@ let broadAIConfiguration = {
     "data_template": {          // -- refer further details below
     
     },
-    "response_template": "??"     // -- refer further details below
+    "response_template": "??"   // -- refer further details below
+  },
+  /* ** (2) Conversation History Configuration ** */
+  "history": {
+    "enabled": true,            // -- whether conversation history should be enabled
+    "max_exchanges": 5         // -- number of Q & A exchanges that must be retained (1 exchange = 1 user question + 1 BroadAI answer)
   }
 }
 ```
