@@ -98,8 +98,7 @@ const go = () => {
               message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'><strong>Status: </strong>" + resp.response.status + ".</pre>";
               message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + resp.response.reason + "</pre>";
               // History
-              console.log(typeof document.getElementById('history').checked);
-              if (document.getElementById('history').checked == "true") {
+              if (document.getElementById('history').checked) {
                 sessionStorage.setItem('conversations', JSON.stringify(resp.conversations));
                 message += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'>";
                 message += "<h4>Conversation History: </h4>";
