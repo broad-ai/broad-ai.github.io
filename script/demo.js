@@ -19,7 +19,8 @@ const go = () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      "notes": notes
+      "notes": notes,
+      "conversations": JSON.parse(sessionStorage.getItem('conversations') || [])
     })
   }).then((response) => response.json())
     .then((plan) => {
@@ -82,7 +83,8 @@ const go = () => {
             },
             body: JSON.stringify({
               "results": results,
-              "notes": notes
+              "notes": notes,
+              "conversations": JSON.parse(sessionStorage.getItem('conversations') || [])
             })
           }).then((response) => response.json())
             .then((resp) => {
@@ -96,6 +98,7 @@ const go = () => {
               message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'><strong>Status: </strong>" + resp.status + ".</pre>";
               message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + resp.reason + "</pre>";
               // History
+              sessionStorage.setItem('conversations', JSON.stringify(resp.conversations));
               message += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'>";
               message += "<h4>Conversation History: </h4>";
               resp.conversations.forEach((c) => {
