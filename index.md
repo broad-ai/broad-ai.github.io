@@ -59,3 +59,17 @@ There are following two persona that use the BroadAI Framework:
 | 2. A news aggregator providing personalization so it's readers can be served news from it's preferred sources and from preferred topics. They use NLP capabilities instead of traditional filtering techniques. | Category-specific agents can be developed, such as, Business news agent, Tech news agent, etc., where each agent can provide RAG-based AI capabiltiies. Using such agents will drastically simplify the architecture for application developer and drive a modular approach so that each agent can be individually enhanced over time. |
 
 ---
+
+## Key Features
+
+- Low-code <span style='color:blue;'>developer accelerator</span> for incorporating Generative AI in applications.
+
+- <span style='color:green;'>Plug-and-play agentic</span> approach. Develop your own BroadAI agents or publish your BroadAI agents for wider adoption of your application / services (<span style='color:green;'>$$$</span>). 
+
+- No need to be an expert in prompt-engineering. <span style='color:purple;'>Well-designed prompts</span> are in-built in BroadAI MAS framework.
+
+- BroadAI framework effectively utilizes multiple agentic design patterns, viz. <span style='color:blue;'>Planning</span>, <span style='color:red;'>Reflection</span>, <span style='color:purple;'>Multi-Agent system</span>, and <span style='color:green;'>Tool use</span>.
+
+- Build state<span style='color:red;'>less</span> as well as state<span style='color:green;'>ful</span> applications by simply enabling configuration flag.
+
+---
