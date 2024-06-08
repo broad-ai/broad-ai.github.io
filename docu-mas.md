@@ -479,56 +479,60 @@ ai.plan(problemStatement, true, conversation).then((plan)=>{
 **Output**:
 
 ```json
-[
-  {
-    "html_tag": "h2",
-    "text": "Acceptance of the iPhone When First Launched:"
-  },
-  {
-    "html_tag": "p",
-    "text": "The iPhone was exceptionally well-accepted when it was first launched. It marked a revolutionary moment in the history of smartphones and consumer technology. With its unique design, intuitive interface, and groundbreaking features, the iPhone quickly gained immense popularity and changed the way people interacted with mobile devices."
-  },
-  {
-    "html_tag": "p",
-    "text": "According to Statista, the number of Apple iPhone unit sales dramatically increased between 2007 and 2023, indicating a consistent and strong demand for iPhones over the years."
-  },
-  {
-    "html_tag": "p",
-    "text": "Apple's founder, Steve Jobs, was named the 'Most Powerful Person in Business,' which showcases the impact of Apple and its innovative products like the iPhone on the industry and society as a whole."
-  },
-  {
-    "html_tag": "h2",
-    "text": "Where to Buy an iPhone Around Columbus Airport:"
-  },
-  {
-    "html_tag": "p",
-    "text": "If you are looking to purchase an iPhone around Columbus airport, you have several options:"
-  },
-  {
-    "html_tag": "li",
-    "text": "Experimax (4.6 stars) - 1337 Worthington Centre Dr Worthington, OH 43085 - Ph: (614) 396-7090"
-  },
-  {
-    "html_tag": "li",
-    "text": "iFixandRepair (4 stars) - 3900 Morse Rd Columbus, OH 43219 - Ph: (614) 470-5242"
-  },
-  {
-    "html_tag": "li",
-    "text": "uBreakiFix by Asurion (3.3 stars) - 121 Mill St Ste 116 Gahanna, OH 43230 - Ph: (614) 532-5635"
-  },
-  {
-    "html_tag": "li",
-    "text": "SmartFix (2.7 stars) - 1196 N High St Columbus, OH 43201 - Ph: (614) 307-8932"
-  },
-  {
-    "html_tag": "li",
-    "text": "CPR Cell Phone Repair Columbus (4.1 stars) - 1426 N High St Columbus, OH 43201 - Ph: (614) 350-3130"
-  },
-  {
-    "html_tag": "li",
-    "text": "Apple Easton Town Center (3 stars) - 4210 The Strand Columbus, OH 43219 - Ph: (614) 934-2810"
-  }
-]
+{
+  "status": "complete",
+  [
+    {
+      "html_tag": "h2",
+      "text": "Acceptance of the iPhone When First Launched:"
+    },
+    {
+      "html_tag": "p",
+      "text": "The iPhone was exceptionally well-accepted when it was first launched. It marked a revolutionary moment in the history of smartphones and consumer technology. With its unique design, intuitive interface, and groundbreaking features, the iPhone quickly gained immense popularity and changed the way people interacted with mobile devices."
+    },
+    {
+      "html_tag": "p",
+      "text": "According to Statista, the number of Apple iPhone unit sales dramatically increased between 2007 and 2023, indicating a consistent and strong demand for iPhones over the years."
+    },
+    {
+      "html_tag": "p",
+      "text": "Apple's founder, Steve Jobs, was named the 'Most Powerful Person in Business,' which showcases the impact of Apple and its innovative products like the iPhone on the industry and society as a whole."
+    },
+    {
+      "html_tag": "h2",
+      "text": "Where to Buy an iPhone Around Columbus Airport:"
+    },
+    {
+      "html_tag": "p",
+      "text": "If you are looking to purchase an iPhone around Columbus airport, you have several options:"
+    },
+    {
+      "html_tag": "li",
+      "text": "Experimax (4.6 stars) - 1337 Worthington Centre Dr Worthington, OH 43085 - Ph: (614) 396-7090"
+    },
+    {
+      "html_tag": "li",
+      "text": "iFixandRepair (4 stars) - 3900 Morse Rd Columbus, OH 43219 - Ph: (614) 470-5242"
+    },
+    {
+      "html_tag": "li",
+      "text": "uBreakiFix by Asurion (3.3 stars) - 121 Mill St Ste 116 Gahanna, OH 43230 - Ph: (614) 532-5635"
+    },
+    {
+      "html_tag": "li",
+      "text": "SmartFix (2.7 stars) - 1196 N High St Columbus, OH 43201 - Ph: (614) 307-8932"
+    },
+    {
+      "html_tag": "li",
+      "text": "CPR Cell Phone Repair Columbus (4.1 stars) - 1426 N High St Columbus, OH 43201 - Ph: (614) 350-3130"
+    },
+    {
+      "html_tag": "li",
+      "text": "Apple Easton Town Center (3 stars) - 4210 The Strand Columbus, OH 43219 - Ph: (614) 934-2810"
+    }
+  ],
+  "reason": "I used the results of the following steps in the plan: 1, 2, 3, 4." 
+}
 ```
 
 ---
