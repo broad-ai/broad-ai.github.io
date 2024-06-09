@@ -26,11 +26,6 @@ agents:
         parameters:
           - source: string | information source
             item_category: string | frame a question to specify which category of items must be extracted
-      - skill-name: readWebPage
-        objective: Read the contents of a given web page
-        action: readWebPage
-        parameters:
-          - url: string | web page address
     agent-config: {}
   - agent-name: Researcher
     package-name: researcher
@@ -47,6 +42,11 @@ agents:
         parameters:
           - term: string | business type, e.g. diner, coffee, tailor, etc.
           - location: string | address or landmark within a city and state
+      - skill-name: readWebPage
+        objective: Read the contents of a given web page
+        action: readWebPage
+        parameters:
+          - url: string | web page address
     agent-config: { "google_search_engine": { "api_key": "?", "programmable_search_engine_id": "?" }, "yelp": { "api_key": "?" } }
   - agent-name: Aviator
     package-name: aviator
