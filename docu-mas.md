@@ -265,9 +265,11 @@ BroadAI leverages it's knowledge about the agents that are registered with the B
 
 *Note*: All methods return Promise.
 
-### Method: `plan(question, refinedPlan, conversations)`
+### 1. Plan: 
 
 This method generates a plan to address the problem statement / question. You can choose to generate a refined plan where BroadAI takes an iterative approach to audit it's initial plan and generate an optimized plan. It is highly recommended to generate a refined plan. However note that if `refinedPlan` is set to `true`, naturally more LLM tokens will be consumed.
+
+`plan(question, refinedPlan, conversations)`
 
 | Parameter | Type | M / O | Description |
 |-----|-----|-----|-----|
@@ -329,9 +331,11 @@ ai.plan(problemStatement, true, conversations).then((plan)=>{
 }
 ```
 
-### Method: `execute(plan)`
+### 2. Execute:
 
 This method executes the plan using identified agents and their skills. If a step of the plan cannot be executed, the step will be retained in the results as it may contain useful instructions for `respond` method to generate an optimal response. This method itself does not need LLM, but depending on the agent and the skill used, LLM usage may occur.
+
+`execute(plan)`
 
 | Parameter | Type | M / O | Description |
 |-----|-----|-----|-----|
@@ -373,9 +377,11 @@ const ai = new BroadAI([ /* BroadAIAgents */ ], /* BroadAIConfiguration */);
 ]
 ```
 
-### Method: `respond(results, question)`
+### 3. Respond:
 
 This method uses LLM to respond to the user's original question / problem statement using the results for grounding. The output contains suggested HTML tags so you can customize formatting requirements in your application.
+
+`respond(results, question)`
 
 | Parameter | Type | M / O | Description |
 |-----|-----|-----|-----|
