@@ -171,12 +171,6 @@ let broadAIConfiguration = {
       "content": [{
         "type": "text",
         "text": "\{\{task\}\} \{\{format\}\}"
-      },
-      {
-        "type": "image_url",
-        "image_url":{
-          "url": "data:\{\{image_type\}\};base64,\{\{image_data\}\}",  
-        }
       }]
     }]
   }
@@ -190,20 +184,12 @@ let broadAIConfiguration = {
   let data_template ={
    "contents": [{
     "role": "user",
-    "parts": [
-     {
+    "parts": [{
       "text": "\{\{system\}\} \{\{context\}\}",
      },
      {
       "text": "\{\{task\}\} \{\{format\}\}",
-     },
-     {
-      "inlineData": {
-       "mimeType": "\{\{image_type\}\}",
-       "data": "\{\{image_data\}\}",
-      }
-     }
-    ]
+     }]
    }]
   }
   ```
@@ -217,20 +203,14 @@ let broadAIConfiguration = {
     "model": "claude-3-haiku-20240307",
     "messages": [{
       "role": "user",
-      "content": [
-        {
+      "content": [{
           "type": "text", 
-          "text": "\{\{system\}\} \{\{context\}\} \{\{task\}\} \{\{format\}\}"
+          "text": "\{\{system\}\} \{\{context\}\}"
         },
         {
-          "type": "image", 
-          "source": {
-            "type": "base64",
-            "media_type": "\{\{image_type\}\}",
-            "data": "\{\{image_data\}\}", 
-          }
-        }
-      ]
+          "type": "text", 
+          "text": "\{\{task\}\} \{\{format\}\}"
+        }]
     }]
   }
   ```
