@@ -187,16 +187,17 @@ let broadAIConfiguration = {
   *Refer [Google Gemini API Reference](https://ai.google.dev/api/rest/v1/models/generateContent#request-body){:target="_blank"}*
     
   ```javascript
-  let data_template = {
+  let data_template ={
    "contents": [{
-    "role": "user",
-    "parts": [{ "text": "\{\{system\}\} \{\{context\}\}" }]
-   },
-   {
     "role": "user",
     "parts": [
      {
+      "text": "\{\{system\}\} \{\{context\}\}",
+     },
+     {
       "text": "\{\{task\}\} \{\{format\}\}",
+     },
+     {
       "inlineData": {
        "mimeType": "\{\{image_type\}\}",
        "data": "\{\{image_data\}\}",
