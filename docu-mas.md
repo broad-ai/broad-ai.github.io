@@ -175,7 +175,7 @@ let broadAIConfiguration = {
       {
         "type": "image_url",
         "image_url":{
-          "url": "data:\{\{image_type\}\};base64,{\{\{image_data\}\}}",  
+          "url": "data:\{\{image_type\}\};base64,\{\{image_data\}\}",  
         }
       }]
     }]
