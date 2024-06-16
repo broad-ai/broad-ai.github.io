@@ -21,7 +21,7 @@ The BroadAI MAS framework relies on Large Language Model's (LLM's) capabilities 
 
 ---
 
-### Installation
+## Installation
 
 Install the `broadai` package locally.
 
@@ -47,7 +47,7 @@ import BroadAI from 'broadai';
 
 ---
 
-### Creating BroadAI instance (object)
+## Creating BroadAI instance (object)
 
 At this point, you are ready to create BroadAI object by passing two parameters to the constructor:
 
@@ -255,7 +255,7 @@ let broadAIConfiguration = {
 
 ---
 
-### BroadAI MAS Methods
+## BroadAI MAS Methods
 
 BroadAI MAS provides three methods that must ideally be used together to obtain an optimal developer experience. However, considering needs to use intermittent results from each of these methods, they have been provided as separate capabilities. 
 
@@ -265,7 +265,7 @@ BroadAI leverages it's knowledge about the agents that are registered with the B
 
 *Note*: All methods return Promise.
 
-#### Method: `plan(question, refinedPlan, conversations)`
+### Method: `plan(question, refinedPlan, conversations)`
 
 This method generates a plan to address the problem statement / question. You can choose to generate a refined plan where BroadAI takes an iterative approach to audit it's initial plan and generate an optimized plan. It is highly recommended to generate a refined plan. However note that if `refinedPlan` is set to `true`, naturally more LLM tokens will be consumed.
 
@@ -329,7 +329,7 @@ ai.plan(problemStatement, true, conversations).then((plan)=>{
 }
 ```
 
-#### Method: `execute(plan)`
+### Method: `execute(plan)`
 
 This method executes the plan using identified agents and their skills. If a step of the plan cannot be executed, the step will be retained in the results as it may contain useful instructions for `respond` method to generate an optimal response. This method itself does not need LLM, but depending on the agent and the skill used, LLM usage may occur.
 
@@ -373,7 +373,7 @@ const ai = new BroadAI([ /* BroadAIAgents */ ], /* BroadAIConfiguration */);
 ]
 ```
 
-#### Method: `respond(results, question)`
+### Method: `respond(results, question)`
 
 This method uses LLM to respond to the user's original question / problem statement using the results for grounding. The output contains suggested HTML tags so you can customize formatting requirements in your application.
 
@@ -455,34 +455,7 @@ const ai = new BroadAI([ /* BroadAIAgents */ ], /* BroadAIConfiguration */);
 
 ---
 
-### BroadAI MAS Configuration
-
-`BroadAIConfiguration` can be accessed with a simple object as shown below. 
-
-```javascript
-const BroadAI = require('broadai');
-const ai = new BroadAI([ /* BroadAIAgents */ ], /* BroadAIConfiguration */);
-
-/* BroadAIConfiguration can be accessed using */
-let broadAIConfig = ai.config;
-```
-
-The primary reason for such access is to pass the configuration during agent registration process as shown below.
-
-```javascript
-const ai = new BroadAI([ /* BroadAIAgents */ ], /* BroadAIConfiguration */);
-
-// import the required agent. Note: 'agent' below is ficticious
-const agent = require('broadai-agents/agent');
-
-/* Register the agent by passing broadAIConfig and optional agentConfig */
-agent.register(ai.config, agentConfig?);
-
-```
-
-----
-
-### Full Example
+## Full Example
 
 Below is an example showing creation of BroadAI MAS instance using an agent called `researcher`. The BroadAI MAS instance further uses LLM to create a `plan` to solve the given `problemStatement`, `execute` it, and finally uses an LLM to `respond` to the problem statement using the `results` from plan execution. 
 
