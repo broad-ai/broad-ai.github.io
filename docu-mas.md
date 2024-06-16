@@ -188,17 +188,22 @@ let broadAIConfiguration = {
     
   ```javascript
   let data_template = {
-    "contents": [{
-      "parts": [
-        { "text": "\{\{system\}\} \{\{context\}\}" },
-        { "text": "\{\{task\}\} \{\{format\}\}" },
-        { "inlineData": {
-            "mimeType": "\{\{image_type\}\}",
-            "data": "\{\{image_data\}\}",
-          }
-        }
-      ]
-    }]
+   "contents": [{
+    "role": "user",
+    "parts": [{ "text": "\{\{system\}\} \{\{context\}\}" }]
+   },
+   {
+    "role": "user",
+    "parts": [
+     {
+      "text": "\{\{task\}\} \{\{format\}\}",
+      "inlineData": {
+       "mimeType": "\{\{image_type\}\}",
+       "data": "\{\{image_data\}\}",
+      }
+     }
+    ]
+   }]
   }
   ```
 
