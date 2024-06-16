@@ -95,7 +95,12 @@ let broadAIConfiguration = {
   *Refer [OpenAI API Reference](https://platform.openai.com/docs/api-reference/making-requests)*
     
   ```javascript
-    "url": "https://api.openai.com/v1/chat/completions"
+    "method": "POST",
+    "url": "https://api.openai.com/v1/chat/completions",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer <OPENAI_KEY>"
+    }
   ```
     
   **Example for Google Gemini**:
@@ -103,7 +108,11 @@ let broadAIConfiguration = {
   *Refer [Google Gemini API Reference](https://ai.google.dev/api/rest/v1/models/generateContent#http-request)*
     
   ```javascript
-    "url": "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent"
+    "method": "POST",
+    "url": "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=<GOOGLEAI_KEY>",
+    "headers": {
+      "Content-Type": "application/json"
+    }
   ```
 
 </div>
