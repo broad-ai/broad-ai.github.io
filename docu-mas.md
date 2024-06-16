@@ -105,7 +105,7 @@ let broadAIConfiguration = {
     
   **Example for Google Gemini**:
     
-  *Refer [Google Gemini API Reference](https://ai.google.dev/api/rest/v1/models/generateContent#http-request)*
+  *Refer [Google Gemini API Reference](https://ai.google.dev/api/rest/v1/models/generateContent#http-request){:target="_blank"}*
     
   ```javascript
     "method": "POST",
@@ -117,7 +117,7 @@ let broadAIConfiguration = {
 
   **Example for Anthropic**:
     
-  *Refer [Anthropic API Reference](https://docs.anthropic.com/en/api/messages)*
+  *Refer [Anthropic API Reference](https://docs.anthropic.com/en/api/messages){:target="_blank"}*
     
   ```javascript
     "method": "POST",
@@ -147,7 +147,7 @@ let broadAIConfiguration = {
  
   **Example for OpenAI**:
     
-  *Refer [OpenAI API Reference](https://platform.openai.com/docs/api-reference/making-requests)*
+  *Refer [OpenAI API Reference](https://platform.openai.com/docs/api-reference/making-requests){:target="_blank"}*
     
   ```javascript
   let data_template = {
@@ -177,7 +177,7 @@ let broadAIConfiguration = {
     
   **Example for Google Gemini**:
     
-  *Refer [Google Gemini API Reference](https://ai.google.dev/api/rest/v1/models/generateContent#request-body)*
+  *Refer [Google Gemini API Reference](https://ai.google.dev/api/rest/v1/models/generateContent#request-body){:target="_blank"}*
     
   ```javascript
   let data_template = {
@@ -197,7 +197,7 @@ let broadAIConfiguration = {
 
   **Example for Anthropic**:
     
-  *Refer [Anthropic API Reference](https://docs.anthropic.com/en/api/messages)*
+  *Refer [Anthropic API Reference](https://docs.anthropic.com/en/api/messages){:target="_blank"}*
     
   ```javascript
   let data_template = {
@@ -229,7 +229,7 @@ let broadAIConfiguration = {
 
   **Example for OpenAI**:
     
-  *Refer [OpenAI API Reference](https://platform.openai.com/docs/api-reference/making-requests)*
+  *Refer [OpenAI API Reference](https://platform.openai.com/docs/api-reference/making-requests){:target="_blank"}*
     
   ```javascript
     "response_template": "choices.0.message.content"
