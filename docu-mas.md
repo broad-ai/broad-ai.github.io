@@ -34,10 +34,6 @@ You must then import the package into your application code.
 BroadAI can be used with both ECMAScript as well as TypeScript codebases.
 
 ```javascript
-/*
-  Use only one of the below import statements.
-*/
-
 // if using ECMAScript
 const BroadAI = require('broadai');
 
@@ -56,7 +52,18 @@ At this point, you are ready to create BroadAI object by passing two parameters 
 const ai = new BroadAI([ /* BroadAIAgents */ ], /* BroadAIConfiguration */);
 ```
 
-- **`BroadAIAgents`** is an array of agents that BroadAI MAS must take into account when addressing the problem statement.
+- **`BroadAIAgents`** is an array of agents that BroadAI MAS must take into account when addressing the problem statement. Each agent has a `agent` property, which must be supplied during instantiation of BroadAI MAS object. Make sure to register the agent and pass BroadAI configuration property, `config` along with agent-specific configuration.
+
+```javascript
+// import required agent (e.g. researcher)
+import researcher from 'broadai-agents/researcher';
+
+// supply agent property when creating BroadAI instance (object)
+const ai = new BroadAI([ research.agent ], /* BroadAIConfiguration */);
+
+// register the agent along with agent-specific configuration (as provided in agent documentation)
+researcher.register(ai.config, agentConfig?); // note we are passing BroadAI configuration (ai.config)
+```
 
 - **`BroadAIConfiguration`** which is providing access and structure to use the Large Language Model (LLM) of your choice. Since the API call signatures differ between different LLM providers, the configuration is flexible to adopt any large language model, including privately hosted models. 
 
