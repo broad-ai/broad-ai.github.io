@@ -175,7 +175,7 @@ let broadAIConfiguration = {
       {
         "type": "image_url",
         "image_url":{
-          "url": "data:image/jpeg;base64,{/9j/4AAQSkZJRg...}",  // image data url
+          "url": "data:\{\{image_type\}\};base64,{\{\{image_data\}\}}",  
         }
       }]
     }]
@@ -193,8 +193,8 @@ let broadAIConfiguration = {
         { "text": "\{\{system\}\} \{\{context\}\}" },
         { "text": "\{\{task\}\} \{\{format\}\}" },
         { "inlineData": {
-            "mimeType": "image/jpeg",
-            "data": "/9j/4AAQSkZJRg...",  // base64-encoded string
+            "mimeType": "\{\{image_type\}\}",
+            "data": "\{\{image_data\}\}",
           }
         }
       ]
@@ -218,8 +218,11 @@ let broadAIConfiguration = {
         },
         {
           "type": "image", 
-          "media_type": "image/jpeg",
-          "data": "/9j/4AAQSkZJRg...",  // base64-encoded string
+          "source": {
+            "type": "base64",
+            "media_type": "\{\{image_type\}\}",
+            "data": "\{\{image_data\}\}", 
+          }
         }
       ]
     }]
