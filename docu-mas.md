@@ -92,7 +92,7 @@ let broadAIConfiguration = {
 
   **Example for OpenAI**:
     
-  *Refer [OpenAI API Reference](https://platform.openai.com/docs/api-reference/making-requests)*
+  *Refer [OpenAI API Reference](https://platform.openai.com/docs/api-reference/making-requests){:target="_blank"}*
     
   ```javascript
     "method": "POST",
