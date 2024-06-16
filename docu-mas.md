@@ -64,23 +64,23 @@ The structure of the ```BroadAIConfiguration``` is below:
 
 ```javascript
 let broadAIConfiguration = {
+  
   /* ** (1) LLM API Configuration ** */
   "llmapi": {
     "method": "GET" | "POST" | "PUT" | "DELETE",
-    "url": "??",                // -- API endpoint to access the model
-    "headers": {                // -- optional headers
+    "url": "<https://>",          // -- API endpoint to access the model
+    "headers": {                  // -- API headers
       // e.g. "Content-Type": "application/json"
       // e.g. "Authorization": "Bearer <token>"
     },
-    "data_template": {          // -- refer further details below
-    
-    },
-    "response_template": "??"   // -- refer further details below
+    "data_template": { ... },               // -- refer further details below
+    "response_template": "<dot.notation>"   // -- refer further details below
   },
+
   /* ** (2) Conversation History Configuration ** */
   "history": {
     "enabled": true,            // -- whether conversation history should be enabled
-    "max_exchanges": 5         // -- number of Q & A exchanges that must be retained (1 exchange = 1 user question + 1 BroadAI answer)
+    "max_exchanges": 5          // -- number of Q & A exchanges that must be retained (1 exchange = 1 user question + 1 BroadAI answer)
   }
 }
 ```
@@ -115,6 +115,20 @@ let broadAIConfiguration = {
     }
   ```
 
+  **Example for Anthropic**:
+    
+  *Refer [Anthropic API Reference](https://docs.anthropic.com/en/api/messages)*
+    
+  ```javascript
+    "method": "POST",
+    "url": "https://api.anthropic.com/v1/messages",
+    "headers": {
+      "Content-Type": "application/json",
+      "anthropic-version": "2023-06-01",
+      "x-api-key": "<CLAUDEAI_KEY>"
+    }
+  ```
+
 </div>
 
   **`data_template`**:
@@ -137,15 +151,15 @@ let broadAIConfiguration = {
     
   ```javascript
   let data_template = {
-      "model": "gpt-3.5-turbo-0125",
-      "messages": [{
-        "role": "system",
-        "content": "\{\{system\}\} \{\{context\}\}"
-      },
-      {
-        "role": "user",
-        "content": "\{\{task\}\} \{\{format\}\}"
-      }]
+    "model": "gpt-3.5-turbo-0125",
+    "messages": [{
+      "role": "system",
+      "content": "\{\{system\}\} \{\{context\}\}"
+    },
+    {
+      "role": "user",
+      "content": "\{\{task\}\} \{\{format\}\}"
+    }]
   }
   ```
     
@@ -155,12 +169,41 @@ let broadAIConfiguration = {
     
   ```javascript
   let data_template = {
-      "contents": [{
-        "parts": [
-          { "text": "\{\{system\}\} \{\{context\}\}" },
-          { "text": "\{\{task\}\} \{\{format\}\}" }
-        ]
-      }]
+    "contents": [{
+      "parts": [
+        { "text": "\{\{system\}\} \{\{context\}\}" },
+        { "text": "\{\{task\}\} \{\{format\}\}" },
+        { "inlineData": {
+            "mimeType": "image/jpeg",
+            "data": "/9j/4AAQSkZJRg...",  // base64-encoded string
+          }
+        }
+      ]
+    }]
+  }
+  ```
+
+  **Example for Anthropic**:
+    
+  *Refer [Anthropic API Reference](https://docs.anthropic.com/en/api/messages)*
+    
+  ```javascript
+  let data_template = {
+    "model": "claude-3-haiku-20240307",
+    "messages": [{
+      "role": "user",
+      "content": [
+        {
+          "type": "text", 
+          "text": "\{\{system\}\} \{\{context\}\} \{\{task\}\} \{\{format\}\}"
+        },
+        {
+          "type": "image", 
+          "media_type": "image/jpeg",
+          "data": "/9j/4AAQSkZJRg...",  // base64-encoded string
+        }
+      ]
+    }]
   }
   ```
 
@@ -186,6 +229,14 @@ let broadAIConfiguration = {
     
   ```javascript
     "response_template": "candidates.0.content.parts.0.text"
+  ```
+
+  **Example for Anthropic**:
+    
+  *Refer [Anthropic API Reference](https://docs.anthropic.com/en/api/messages)*
+    
+  ```javascript
+    "response_template": "content.0.text"
   ```
 
 </div>
