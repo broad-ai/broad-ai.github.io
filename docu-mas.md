@@ -154,11 +154,23 @@ let broadAIConfiguration = {
     "model": "gpt-3.5-turbo-0125",
     "messages": [{
       "role": "system",
-      "content": "\{\{system\}\} \{\{context\}\}"
+      "content": [{
+        "type": "text",
+        "text": "\{\{system\}\} \{\{context\}\}"
+      }]
     },
     {
       "role": "user",
-      "content": "\{\{task\}\} \{\{format\}\}"
+      "content": [{
+        "type": "text",
+        "text": "\{\{task\}\} \{\{format\}\}"
+      },
+      {
+        "type": "image_url",
+        "image_url":{
+          "url": "data:image/jpeg;base64,{/9j/4AAQSkZJRg...}",  // image data url
+        }
+      }]
     }]
   }
   ```
