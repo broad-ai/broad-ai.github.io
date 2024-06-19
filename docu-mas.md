@@ -54,6 +54,12 @@ const ai = new BroadAI([ /* BroadAIAgents */ ], /* BroadAIConfiguration */);
 
 - **`BroadAIAgents`** is an array of agents that BroadAI MAS must take into account when addressing the problem statement. Each agent has a `agent` property, which must be supplied during instantiation of BroadAI MAS object. Make sure to register the agent and pass BroadAI configuration property, `config` along with agent-specific configuration.
 
+Install the `broadai-agents` package locally.
+
+```shell
+npm install broadai-agents --save
+```
+
 ```javascript
 // import required agent (e.g. researcher)
 import researcher from 'broadai-agents/researcher';
