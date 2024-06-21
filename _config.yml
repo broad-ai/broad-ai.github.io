@@ -110,13 +110,3 @@ agents:
           stock_symbol: \| string \| Stock Symbol for the speficied company, e.g. MSFT for Microsoft
           number_records: number | Specify number of records to present. default value = 7
     agent-config: { "financialmodelingprep": { "api_key": "?" } }
-  - agent-name: Mangesh
-    package-name: mangesh
-    capability: Access to all blogs and articles written and published by Mangesh Pise along with details about his professional experience and resume.
-    skills:
-      - skill-name: mangeshThinks
-        objective: For technology and thought leadership topics or how-to questions, check with this skill if you can find any references. These are Mangesh's point-of-views based on his published articles
-        action: mangeshThinks
-        parameters:
-          question: \| string \| user's question about a topic
-    agent-config: { "openai": { "api_key": "?" }, "pinecone": { "api_key": "?" } }
