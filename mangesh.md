@@ -1,9 +1,9 @@
 ---
-layout: docs
-title: Mangesh Pise | Transforming Enterprises: Expert Enterprise Architect & AI Thought Leader
+layout: resume
+title: Mangesh Pise | Expert Enterprise Architect & AI Thought Leader
 ---
 
-## Mangesh Pise
+## Contact
 - Phone:+1 (614) 943-1787 		
 - Email: mppise@gmail.com	
 - Location: Columbus, OH USA 		
