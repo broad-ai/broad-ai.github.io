@@ -79,6 +79,13 @@ The structure of the ```BroadAIConfiguration``` is below:
 let broadAIConfiguration = {
   
   /* ** (1) LLM API Configuration ** */
+  "personality":{
+    "name": "<name>",                         // -- default: Sutradhar, meaning conductor
+    "role": "<role>",                         // -- default: analyst
+    "pov": "first-person |or| third-person",  // -- default: first-person
+  },
+
+  /* ** (2) LLM API Configuration ** */
   "llmapi": {
     "method": "GET" | "POST" | "PUT" | "DELETE",
     "url": "<https://>",          // -- API endpoint to access the model
@@ -90,7 +97,7 @@ let broadAIConfiguration = {
     "response_template": "<dot.notation>"   // -- refer further details below
   },
 
-  /* ** (2) Conversation History Configuration ** */
+  /* ** (3) Conversation History Configuration ** */
   "history": {
     "enabled": true,            // -- whether conversation history should be enabled
     "max_exchanges": 5          // -- number of Q & A exchanges that must be retained (1 exchange = 1 user question + 1 BroadAI answer)
@@ -98,7 +105,24 @@ let broadAIConfiguration = {
 }
 ```
 
+### personality
+
+  **`name`**:
+
+  A BroadAI system runs as a singular entity and uses agents to acquaint skills. This parameter will help identify the MAS system with a persoanable name.
+
+  **`role`**:
+
+  What role does your BroadAI system play? e.g. Analyst, Stock broker, News reporter, etc.
+
+  **`pov`**:
+
+  What point-of-view (pov) should BroadAI use when responding? Choose between 'first-person' or 'third-person'.
+
+### llmapi
+
   **`url`**:
+
   This refers to the API endpoint where LLM is accessible.
 
 <div markdown="1" style="margin-top:20px; margin-bottom:40px; padding:1.25em 1em 1.25em 1em; font-weight:400; box-shadow:2px 2px 4px 1px #999; border:1px solid;">
@@ -254,6 +278,16 @@ let broadAIConfiguration = {
   ```
 
 </div>
+
+### history
+
+  **`enabled`**:
+
+  Whether BroadAI should collect history of conversations.
+
+  **`max_exchanges`**:
+
+  If BroadAI must remember conversations, this parameter defines how many exchanges should it maintain. Note: 1 exchange is a rountrip of 1 user question and 1 response.
 
 ---
 
