@@ -436,6 +436,7 @@ This method uses LLM to respond to the user's original question / problem statem
           "text": "text"
       }, ...
   ],
+  "history": [],
   "reason": "reason"
 }
 ```
@@ -617,6 +618,10 @@ ai.plan(problemStatement, true, conversation).then((plan)=>{
       "html_tag": "li",
       "text": "Apple Easton Town Center (3 stars) - 4210 The Strand Columbus, OH 43219 - Ph: (614) 934-2810"
     }
+  ],
+  "history": [
+    "> Q: When iPhone was first launched, how was it accepted? Where can I buy one around Columbus airport?",
+    "> A: Acceptance of the iPhone When First Launched: The iPhone was exceptionally well-accepted when it was first launched. It marked a revolutionary moment in the history of smartphones and consumer technology. With its unique design, intuitive interface, and groundbreaking features, the iPhone quickly gained immense popularity and changed the way people interacted with mobile devices. ..."
   ],
   "reason": "I used the results of the following steps in the plan: 1, 2, 3, 4." 
 }
