@@ -78,7 +78,7 @@ The structure of the ```BroadAIConfiguration``` is below:
 ```javascript
 let broadAIConfiguration = {
   
-  /* ** (1) LLM API Configuration ** */
+  /* ** (1) BroadAI Personality ** */
   "personality":{
     "name": "<name>",                         // -- default: Sutradhar, meaning conductor
     "role": "<role>",                         // -- default: analyst
