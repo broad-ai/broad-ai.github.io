@@ -7,13 +7,11 @@ const go = () => {
   document.getElementById('message').innerHTML = "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Working ...</pre>";
   document.getElementById('notes').disabled = true;
   document.getElementById('btngo').hidden = true;
-  // ...
+  // // ...
 
-  document.getElementById('plan').innerHTML = "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Planning ...</pre>";
+  document.getElementById('plan').innerHTML = "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>...</pre>";
 
-  let p = [];
-
-  fetch(broadAIapiEndpoint + "/plan", {
+  fetch(broadAIapiEndpoint + '/go', {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -22,116 +20,161 @@ const go = () => {
       "notes": notes,
       "conversations": JSON.parse(sessionStorage.getItem('conversations')) || []
     })
-  }).then((response) => response.json())
-    .then((plan) => {
-
-      document.getElementById('plan').innerHTML = "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Plan " + plan.status + ".</pre>";
-      document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + plan.reason + "</pre>";
-      document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Executing " + plan.plan.length + " steps of the plan.</pre>";
-
-      document.getElementById('message').innerHTML = "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Almost there ...</pre>";
-
-      plan.plan.forEach((step) => {
-        let s = {
-          "step": step.objective,
-          "agent": step.agent,
-          "action": step.skill ? step.skill.name : "none"
-        };
-        if (step.skill) {
-          if (step.skill.parameters) {
-            s.action += "(";
-            let p = [];
-            Object.keys(step.skill.parameters).forEach((param) => {
-              p.push(param + ":" + step.skill.parameters[param]);
-            });
-            s.action += p.join(', ');
-            s.action += ")";
-          }
-          else
-            s.action += "()";
-        }
-        p.push(s);
-      });
-
-      fetch(broadAIapiEndpoint + "/execute", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          "plan": plan.plan
-        })
-      }).then((response) => response.json())
-        .then((results) => {
-
-          document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><h3>Plan steps & results:</h3>";
-          document.getElementById('plan').innerHTML += "<ol>";
-          results.forEach((step, i) => {
-            document.getElementById('plan').innerHTML += "<li>" + p[i].step + "</li>";
-            document.getElementById('plan').innerHTML += "<p>Agent: <span style='font-family:monospace;font-size:0.9em;color:#2e7bcf;'>" + p[i].agent + "</span> <br> Skill: <span style='font-family:monospace;font-size:0.9em;color:#2e7bcf;'>" + p[i].action + "</span></p>";
-            document.getElementById('plan').innerHTML += "<pre>" + JSON.stringify(step.result) + "</pre>";
-          });
-          document.getElementById('plan').innerHTML += "</ol>";
-          document.getElementById('plan').innerHTML += "</div>";
-
-          document.getElementById('message').innerHTML = "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Wrapping up ...</pre>";
-
-          fetch(broadAIapiEndpoint + "/response", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              "results": results,
-              "notes": notes,
-              "conversations": JSON.parse(sessionStorage.getItem('conversations')) || []
-            })
-          }).then((response) => response.json())
-            .then((resp) => {
-              let message = "<div>";
-              resp.response.response.forEach((elem) => {
-                message += "<" + elem.html_tag + ">" + elem.text + "</" + elem.html_tag + ">";
-              });
-              message += "</div>"
-              // Log
-              message += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'>";
-              message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'><strong>Status: </strong>" + resp.response.status + ".</pre>";
-              message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + resp.response.reason + "</pre>";
-              // History
-              if (document.getElementById('history').checked) {
-                sessionStorage.setItem('conversations', JSON.stringify(resp.conversations));
-                message += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'>";
-                message += "<h4>Conversation History: </h4>";
-                resp.conversations.forEach((c, i) => {
-                  message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + c + "</pre>";
-                  if (i % 2 != 0)
-                    message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'></pre>";
-                });
-              }
-
-              document.getElementById('message').innerHTML = message;
-
-              document.getElementById('notes').disabled = false;
-              document.getElementById('btngo').hidden = false;
-
-            }).catch((err) => {
-              document.getElementById('message').innerHTML = "<h4 style='color:red;'>Uh! Oh!! Something went wrong as I was responding to your question.</h4>";
-              document.getElementById('plan').innerHTML = "<h4 style='color:red;'>ABORTED!</h4>";
-              document.getElementById('notes').disabled = false;
-              document.getElementById('btngo').hidden = false;
-            });
-
-        }).catch((err) => {
-          document.getElementById('plan').innerHTML = "<h4 style='color:red;'>Uh! Oh!! Something went wrong as I was executing my plan to answer your question.</h4>";
-          document.getElementById('notes').disabled = false;
-          document.getElementById('btngo').hidden = false;
-        });
-
-    }).catch((err) => {
-      document.getElementById('plan').innerHTML = "<h4 style='color:red;'>Uh! Oh!! Something went wrong as I was creating a plan to respond to your question.</h4>";
-      document.getElementById('notes').disabled = false;
-      document.getElementById('btngo').hidden = false;
+  }).then((resp) => {
+    // -- show logs
+    document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><h3>Plan steps & results:</h3>";
+    document.getElementById('plan').innerHTML += "<ol>";
+    resp.plan.plan.forEach((step, i) => {
+      document.getElementById('plan').innerHTML += "<li>" + step.objective + "</li>";
+      document.getElementById('plan').innerHTML += "<p>Agent: <span style='font-family:monospace;font-size:0.9em;color:#2e7bcf;'>" + step.agent + "</span> <br> Skill: <span style='font-family:monospace;font-size:0.9em;color:#2e7bcf;'>" + step.skill.name + "</span></p>";
+      document.getElementById('plan').innerHTML += "<pre>" + JSON.stringify(step.result) + "</pre>";
     });
+    document.getElementById('plan').innerHTML += "</ol>";
+    document.getElementById('plan').innerHTML += "</div>";
+    // -- show results
+    let message = "<div>";
+    resp.response.response.forEach((elem) => {
+      message += "<" + elem.html_tag + ">" + elem.text + "</" + elem.html_tag + ">";
+    });
+    message += "</div>";
+    // -- show conversation history
+    if (document.getElementById('history').checked) {
+      sessionStorage.setItem('conversations', JSON.stringify(resp.history));
+      message += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'>";
+      message += "<h4>Conversation History: </h4>";
+      resp.history.forEach((c, i) => {
+        message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + c + "</pre>";
+        if (i % 2 != 0)
+          message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'></pre>";
+      });
+    }
+    // -- reset form
+    document.getElementById('message').innerHTML = message;
+    document.getElementById('notes').disabled = false;
+    document.getElementById('btngo').hidden = false;
+  });
+
+  // let p = [];
+
+  // fetch(broadAIapiEndpoint + "/plan", {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify({
+  //     "notes": notes,
+  //     "conversations": JSON.parse(sessionStorage.getItem('conversations')) || []
+  //   })
+  // }).then((response) => response.json())
+  //   .then((plan) => {
+
+  //     document.getElementById('plan').innerHTML = "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Plan " + plan.status + ".</pre>";
+  //     document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + plan.reason + "</pre>";
+  //     document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Executing " + plan.plan.length + " steps of the plan.</pre>";
+
+  //     document.getElementById('message').innerHTML = "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Almost there ...</pre>";
+
+  //     plan.plan.forEach((step) => {
+  //       let s = {
+  //         "step": step.objective,
+  //         "agent": step.agent,
+  //         "action": step.skill ? step.skill.name : "none"
+  //       };
+  //       if (step.skill) {
+  //         if (step.skill.parameters) {
+  //           s.action += "(";
+  //           let p = [];
+  //           Object.keys(step.skill.parameters).forEach((param) => {
+  //             p.push(param + ":" + step.skill.parameters[param]);
+  //           });
+  //           s.action += p.join(', ');
+  //           s.action += ")";
+  //         }
+  //         else
+  //           s.action += "()";
+  //       }
+  //       p.push(s);
+  //     });
+
+  //     fetch(broadAIapiEndpoint + "/execute", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         "plan": plan.plan
+  //       })
+  //     }).then((response) => response.json())
+  //       .then((results) => {
+
+  //         document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><h3>Plan steps & results:</h3>";
+  //         document.getElementById('plan').innerHTML += "<ol>";
+  //         results.forEach((step, i) => {
+  //           document.getElementById('plan').innerHTML += "<li>" + p[i].step + "</li>";
+  //           document.getElementById('plan').innerHTML += "<p>Agent: <span style='font-family:monospace;font-size:0.9em;color:#2e7bcf;'>" + p[i].agent + "</span> <br> Skill: <span style='font-family:monospace;font-size:0.9em;color:#2e7bcf;'>" + p[i].action + "</span></p>";
+  //           document.getElementById('plan').innerHTML += "<pre>" + JSON.stringify(step.result) + "</pre>";
+  //         });
+  //         document.getElementById('plan').innerHTML += "</ol>";
+  //         document.getElementById('plan').innerHTML += "</div>";
+
+  //         document.getElementById('message').innerHTML = "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>Wrapping up ...</pre>";
+
+  //         fetch(broadAIapiEndpoint + "/response", {
+  //           method: "POST",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //           body: JSON.stringify({
+  //             "results": results,
+  //             "notes": notes,
+  //             "conversations": JSON.parse(sessionStorage.getItem('conversations')) || []
+  //           })
+  //         }).then((response) => response.json())
+  //           .then((resp) => {
+  //             let message = "<div>";
+  //             resp.response.response.forEach((elem) => {
+  //               message += "<" + elem.html_tag + ">" + elem.text + "</" + elem.html_tag + ">";
+  //             });
+  //             message += "</div>"
+  //             // Log
+  //             message += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'>";
+  //             message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'><strong>Status: </strong>" + resp.response.status + ".</pre>";
+  //             message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + resp.response.reason + "</pre>";
+  //             // History
+  //             if (document.getElementById('history').checked) {
+  //               sessionStorage.setItem('conversations', JSON.stringify(resp.conversations));
+  //               message += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'>";
+  //               message += "<h4>Conversation History: </h4>";
+  //               resp.conversations.forEach((c, i) => {
+  //                 message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + c + "</pre>";
+  //                 if (i % 2 != 0)
+  //                   message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'></pre>";
+  //               });
+  //             }
+
+  //             document.getElementById('message').innerHTML = message;
+
+  //             document.getElementById('notes').disabled = false;
+  //             document.getElementById('btngo').hidden = false;
+
+  //           }).catch((err) => {
+  //             document.getElementById('message').innerHTML = "<h4 style='color:red;'>Uh! Oh!! Something went wrong as I was responding to your question.</h4>";
+  //             document.getElementById('plan').innerHTML = "<h4 style='color:red;'>ABORTED!</h4>";
+  //             document.getElementById('notes').disabled = false;
+  //             document.getElementById('btngo').hidden = false;
+  //           });
+
+  //       }).catch((err) => {
+  //         document.getElementById('plan').innerHTML = "<h4 style='color:red;'>Uh! Oh!! Something went wrong as I was executing my plan to answer your question.</h4>";
+  //         document.getElementById('notes').disabled = false;
+  //         document.getElementById('btngo').hidden = false;
+  //       });
+
+  //   }).catch((err) => {
+  //     document.getElementById('plan').innerHTML = "<h4 style='color:red;'>Uh! Oh!! Something went wrong as I was creating a plan to respond to your question.</h4>";
+  //     document.getElementById('notes').disabled = false;
+  //     document.getElementById('btngo').hidden = false;
+  //   });
 
 }; // go
 
