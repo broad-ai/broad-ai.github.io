@@ -20,43 +20,40 @@ const go = () => {
       "notes": notes,
       "conversations": JSON.parse(sessionStorage.getItem('conversations')) || []
     })
-  }).then((r) => {
-    let resp = r.json();
-    console.log(resp.plan);
-    console.log(resp.response);
-    console.log(resp.history);
-    // -- show logs
-    document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><h3>Plan steps & results:</h3>";
-    document.getElementById('plan').innerHTML += "<ol>";
-    resp.plan.plan.forEach((step) => {
-      document.getElementById('plan').innerHTML += "<li>" + step.objective + "</li>";
-      document.getElementById('plan').innerHTML += "<p>Agent: <span style='font-family:monospace;font-size:0.9em;color:#2e7bcf;'>" + step.agent + "</span> <br> Skill: <span style='font-family:monospace;font-size:0.9em;color:#2e7bcf;'>" + step.skill.name + "</span></p>";
-      document.getElementById('plan').innerHTML += "<pre>" + JSON.stringify(step.result) + "</pre>";
-    });
-    document.getElementById('plan').innerHTML += "</ol>";
-    document.getElementById('plan').innerHTML += "</div>";
-    // -- show results
-    let message = "<div>";
-    resp.response.response.forEach((elem) => {
-      message += "<" + elem.html_tag + ">" + elem.text + "</" + elem.html_tag + ">";
-    });
-    message += "</div>";
-    // -- show conversation history
-    if (document.getElementById('history').checked) {
-      sessionStorage.setItem('conversations', JSON.stringify(resp.history));
-      message += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'>";
-      message += "<h4>Conversation History: </h4>";
-      resp.history.forEach((c, i) => {
-        message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + c + "</pre>";
-        if (i % 2 != 0)
-          message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'></pre>";
+  }).then((response) => response.json())
+    .then((resp) => {
+      // -- show logs
+      document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><h3>Plan steps & results:</h3>";
+      document.getElementById('plan').innerHTML += "<ol>";
+      resp.plan.plan.forEach((step) => {
+        document.getElementById('plan').innerHTML += "<li>" + step.objective + "</li>";
+        document.getElementById('plan').innerHTML += "<p>Agent: <span style='font-family:monospace;font-size:0.9em;color:#2e7bcf;'>" + step.agent + "</span> <br> Skill: <span style='font-family:monospace;font-size:0.9em;color:#2e7bcf;'>" + step.skill.name + "</span></p>";
+        document.getElementById('plan').innerHTML += "<pre>" + JSON.stringify(step.result) + "</pre>";
       });
-    }
-    // -- reset form
-    document.getElementById('message').innerHTML = message;
-    document.getElementById('notes').disabled = false;
-    document.getElementById('btngo').hidden = false;
-  });
+      document.getElementById('plan').innerHTML += "</ol>";
+      document.getElementById('plan').innerHTML += "</div>";
+      // -- show results
+      let message = "<div>";
+      resp.response.response.forEach((elem) => {
+        message += "<" + elem.html_tag + ">" + elem.text + "</" + elem.html_tag + ">";
+      });
+      message += "</div>";
+      // -- show conversation history
+      if (document.getElementById('history').checked) {
+        sessionStorage.setItem('conversations', JSON.stringify(resp.history));
+        message += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'>";
+        message += "<h4>Conversation History: </h4>";
+        resp.history.forEach((c, i) => {
+          message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'>" + c + "</pre>";
+          if (i % 2 != 0)
+            message += "<pre style='border:0;margin:0;padding:0;text-wrap:wrap;'></pre>";
+        });
+      }
+      // -- reset form
+      document.getElementById('message').innerHTML = message;
+      document.getElementById('notes').disabled = false;
+      document.getElementById('btngo').hidden = false;
+    });
 }; // go
 
 // ------ ..... ------ ..... ------ ..... ------ 
