@@ -23,7 +23,7 @@ const go = () => {
   }).then((response) => response.json())
     .then((resp) => {
       // -- show logs
-      document.getElementById('plan').innerHTML += "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><h3>Plan steps & results:</h3>";
+      document.getElementById('plan').innerHTML = "<hr style='border:1px dotted;color:#ddd;margin:0.6em;padding:0;'><h3>Plan steps & results:</h3>";
       document.getElementById('plan').innerHTML += "<ol>";
       resp.plan.plan.forEach((step) => {
         document.getElementById('plan').innerHTML += "<li>" + step.objective + "</li>";
