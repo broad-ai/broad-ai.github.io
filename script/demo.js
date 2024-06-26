@@ -20,7 +20,8 @@ const go = () => {
       "notes": notes,
       "conversations": JSON.parse(sessionStorage.getItem('conversations')) || []
     })
-  }).then((resp) => {
+  }).then((r) => {
+    let resp = r.json();
     console.log(resp.plan);
     console.log(resp.response);
     console.log(resp.history);
