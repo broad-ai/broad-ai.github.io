@@ -145,7 +145,7 @@ module.exports = {
 | **skills** | Array of following elements. |  |
 | **skill-name** | Define the skill. | searchFlights, searchRentals, etc. |
 | **objective** | Provide a specific description of what this skill will help the agent achieve. | Searches for available flights between two cities |
-| **action** | This is the function that will be executed when the agent determines that this skill must be involved in it's plan to arrive at a solution to answer user's question. **It is crucial that the `skill-name` matches with the `action` function name**. | searchFlights, searchRentals, etc. |
+| **action** | This is the function that will be executed when the agent determines that this skill must be involved in it's plan to arrive at a solution to answer user's question. **It is crucial that the `skill-name` matches with the `action` function name**. Also note that the function specified as action must return a promise containing response strictly in string type. | searchFlights, searchRentals, etc. |
 | **parameters** | This is a key-value pair of all the parameters the action for this skill will need to execute and provide results. **It is crucial that these exact parameter keys are used in function definitions**. We recommend a `type \| description` pattern to define the parameters. This will help the LLM determine appropriate values based on available information. In addition, providing a few examples will also help increase accuracy of parameter and value determination during the planning process.  | { "start": "string \| start address", "destination": "string \| destination address", "max_stops": "number \| maximum number of stops acceptable to reach the destination"  } |
 
 ---
@@ -155,12 +155,25 @@ module.exports = {
 The BroadAI Agentic framework provides some useful methods that accelerate development of agents. These methods largely have to do with ability to quickly build a prompt, call LLM or other APIs, etc.
 
 ---
+#### createPrompt()
+
+If your agent is going to use a LLM, you will need to first create a prompt. The following accelerator function helps you create a well-engineered prompt in one single step.
+
+Note: A well-engineered LLM prompt in BroadAI's sense contains following elements:
+
+- **system**: Used to set high-level guidelines for the LLM to work with. This is where you may set role, personality and expectations from the LLM. See full example below for more details.
+
+- **context**: Provide grounding context here. This may be as simple as the placeholder for BroadAI to fill in the appropriate context. See full example below for more details.
+
+- **task**: Clearly specify the actions or guidelines LLM must follow to provide you the results you expect. See full example below for more details.
+
+- **format**: As a best-practice, always specify the expected formatting, even if it is plain text. As a general BroadAI recommendation, request response in JSON structure. See full example below for more details.
 
 | Agentic Method |  Input Parameters | Expected Output | Purpose |
 |----|----|----|----|----|
 | **createPrompt** | system: string, context: string, task: string, format: string, params: Record<string, any> | Response consists of JSON object containing four key elements - `system`, `context`, `task`, `format` - which together form a complete well-engineered prompt populated with context, specific output format, etc. Regarding `format`, we recommend asking for a JSON format with fields per your requirements. | Create a well-engineered prompt object | 
 
-#### Example
+##### Example
 
 ```javascript
 const prompt = agentic.createPrompt(
@@ -201,22 +214,23 @@ In above example, the contents of the context `\{\{\flights}\}` will be replaced
 }
 ```
 
-Once the prompt object is created, it can be used to feed into another agentic method called `getGenAIResponse(prompt)` which is described next.
-
 ---
+
+#### getGenAIResponse()
+
+Once the prompt object is created, it can be used to feed into another agentic method called `getGenAIResponse(prompt)` which is described next.
 
 | Agentic Method |  Input Parameters | Expected Output | Purpose |
 |----|----|----|----|----|
 | **getGenAIResponse** | prompt: any | This method calls the LLM as specified in the BroadAIConfiguration. The response from LLM is provided back here. | Accelerator to call LLM using BroadAI configuration supplied in the BroadAI MAS application, without the need to write the entire LLM API call. | 
 
-#### Example
+##### Example
 
 ```javascript
 const prompt = agentic.createPrompt(/* system, context, task, format */);
 
 agentic.getGenAIResponse(prompt)
-  .then((resp) => resolve(llmResponse))  
-    // llmResponse contains LLM's response to the prompt supplied
+  .then((llmResponse) => console.log(JSON.stringify(llmResponse)))  
   .catch((err) => reject({ "error": true, "details": err }));
 ```
 
@@ -230,6 +244,8 @@ agentic.getGenAIResponse(prompt)
 
 ---
 
+#### callExternalResource()
+
 The final accelerator method provided by BroadAI Agentic framework is to accelerate calling external APIs. 
 
 | Agentic Method |  Input Parameters | Expected Output | Purpose |
@@ -237,7 +253,7 @@ The final accelerator method provided by BroadAI Agentic framework is to acceler
 | **callExternalResource** | {"method": "GET"\|"POST"\|"PUT"\|"DELETE", "url":string, "headers"?:Record<string,string>, "data"?:any}
  | Response from the external API (refer appropriate documentation by the API provider) | Accelerator to call external API. | 
 
-#### Example
+##### Example
 
 ```javascript
 agentic.callExternalResource({

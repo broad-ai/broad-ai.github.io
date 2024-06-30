@@ -342,9 +342,9 @@ This single method generates a plan to address the problem statement / question.
             "text": "text"
         }, ...
     ],
+    "conversation": [ ],
     "reason": "reason"
-  },
-  "history": [ ]
+  }
 }
 
 ```
@@ -392,12 +392,12 @@ ai.go(problemStatement, true, conversations).then((response)=>{
         "text": 'To find the latitude and longitude coordinates of the fast food joints around Columbus airport, I would need the specific addresses of the fast food locations near the airport. Once provided, I can extract the coordinates based on the addresses provided.'
       }
     ],
+    "conversation": [
+      '> Q: Find fast food joints around Columbus airport',
+      '> A: To find the latitude and longitude coordinates of the fast food joints around Columbus airport, I would need the specific addresses of the fast food locations near the airport. Once provided, I can extract the coordinates based on the addresses provided.'
+    ],
     "reason": 'Utilized the plan results which highlighted the need for addresses to determine the latitude and longitude coordinates of the fast food joints.'
-  },
-  "history": [
-    ' > Q: /usr/local/bin/node,/Users/mangeshpise/Code/broadaitest/index.js,Find fast food joints around Columbus airport',
-    ' > A: To find the latitude and longitude coordinates of the fast food joints around Columbus airport, I would need the specific addresses of the fast food locations near the airport. Once provided, I can extract the coordinates based on the addresses provided.'
-  ]
+  }
 }
 ```
 
