@@ -110,3 +110,24 @@ agents:
           stock_symbol: \| string \| Stock Symbol for the speficied company, e.g. MSFT for Microsoft
           number_records: number | Specify number of records to present. default value = 7
     agent-config: { "financialmodelingprep": { "api_key": "?" } }
+  - agent-name: Writer
+    package-name: writer
+    capability: Writes aptly drafted communication messages for email, SMS, or social media interactions
+    skills:
+      - skill-name: composeEmail
+        objective: Write an email message to respond to a specified situation or as a reply to an existing email
+        action: composeEmail
+        parameters:
+          - to: \| string \| to whom the email is addressed. Format - 'First Last <email>'
+          - situation: \| string \| describe the situation for which an email must be written
+          - outcome: \| string \| describe the outcome that is expected after sending this email
+          - original_email: \| string \| (optional) provide original email for which a reply must be generated
+      - skill-name: socialMessage
+        objective: Write a message suitable for social media messengers, such as, LinkedIn, Twitter, etc., or mobile phone text messages, about a specified situation or as a reply to an existing message
+        action: socialMessage
+        parameters:
+           - to: \| string \| to whom the message is addressed. Format - 'First Last <email or phone number>'
+          - situation: \| string \| describe the situation for which this message must be written
+          - outcome: \| string \| describe the outcome that is expected after sending this message
+          - original_email: \| string \| (optional) provide original message for which a reply must be generated
+    agent-config: {  }
