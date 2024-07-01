@@ -79,6 +79,17 @@ agents:
         parameters:
           - city: \| string \| valid and recognizable City name without State or State Code. e.g. Columbus
     agent-config: { "openweathermap": { "api_key": "?" } }
+  - agent-name: NewsReporter
+    package-name: newsreporter
+    capability: Report top news headlines in specific categories from specific countries
+    skills:
+      - skill-name: getHeadlines
+        objective: Retrieve top news headlines for the specified country and specified category
+        action: getHeadlines
+        parameters:
+          country_code: \| string \| 2-letter country code based on ISO 3166, e.g. US for USA, IN for India, etc. | default=us
+          category: pick only one amongst - business|entertainment|general|health|science|sports|technology | default=general
+    agent-config: { "newsapi": { "api_key": "?" } }
   - agent-name: FinancialAnalyst
     package-name: financial-analyst
     capability: Research the company fundamentals to help analyze company's performance
@@ -112,7 +123,7 @@ agents:
     agent-config: { "financialmodelingprep": { "api_key": "?" } }
   - agent-name: Writer
     package-name: writer
-    capability: Writes aptly drafted communication messages for email, SMS, or social media interactions.
+    capability: Writes aptly drafted communication messages for email, SMS, or social media interactions
     skills:
       - skill-name: composeEmail
         objective: Write an email message to respond to a specified situation or as a reply to an existing email
