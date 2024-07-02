@@ -25,13 +25,10 @@ The BroadAI MAS framework relies on Large Language Model's (LLM's) capabilities 
 
 Register your application to generate a unique **App ID**. If you do not provide `appid` in your BroadAIConfiguration, BroadAI will be able to use only the in-built General Assistant agent. All other registered agents will be ignored until a valid `appid` is provided in the BroadAIConfiguration.
 
-> We will use this App ID to track anonymous engagement metrics, such as number of calls to agents registered in your application for monitoring usage, billing, etc. We will not collect any of your user's information - not even their emailIDs. We leave the application monitoring on your shoulders. 
+> We will use this App ID to track anonymous engagement metrics, such as number of calls to agents registered in your application for monitoring usage, billing, etc. We will not collect any of your user's information - not even their emailIDs. We leave the application monitoring on your shoulders!
 
 <div class="top">
   <div class="mission">
-  <a class="button" id="btnrandomcase" onclick="randomQ()" style="float:right;background-color:transparent;color:#2e7bcf;">
-    <img src="./assets/images/refresh-button.png" style="height:1.5em;padding:0;margin:0;"> Example
-  </a>
   <form>
     <h3>
       Please tell us about your App
@@ -44,11 +41,10 @@ Register your application to generate a unique **App ID**. If you do not provide
         <textarea id="purpose" name="purpose" rows="6" required placeholder="Briefly describe how you will use BroadAI in your application" style="width:calc(100% - 20px); padding:10px; margin:0.5em 0; border:1px solid #ddd; border-radius:4px; box-sizing:border-box;"></textarea>
       </div>
       <div style="display:inline;float:right;">
-        <input type="button" id="btngo" value="Go" onClick="go()" style="font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif; font-size: 18px; text-align: center; padding: 10px; margin: 0 10px 10px 0; color: #fff; background-color: #2e7bcf; border: none; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;">
+        <input type="button" id="btnregister" value="Register" onClick="registerApp()" style="font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif; font-size: 18px; text-align: center; padding: 10px; margin: 0 10px 10px 0; color: #fff; background-color: #2e7bcf; border: none; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;">
       </div>
     </div>
   </form>
-  <div style='display:block;' id="plan"> <!-- .. result .. --> </div>
   </div>
 
   <div class="lead" id="lead">
