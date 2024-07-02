@@ -40,6 +40,23 @@ const registerApp = () => {
 
     document.getElementById('message').innerHTML = "<p style='color:#006400;'>" + resp.status + "</p>";
     document.getElementById('message').innerHTML += "<code>" + resp.appid + "</code>";
+
+    fetch(broadAIapiEndpoint + "/app/notify", {
+     "method": "POST",
+     "headers": {
+      "Content-Type": "application/json"
+     },
+     "body": JSON.stringify({
+      "name": ownername,
+      "email": owneremail,
+     })
+    }).then((response) => response.json())
+     .then((resp) => {
+      if (resp.error)
+       document.getElementById('message').innerHTML += "<hr style='margin-top:50px;'><p style='color:red;'>We could not send this App ID via email. Please copy and save it right now!</p>";
+      else
+       document.getElementById('message').innerHTML += "<hr style='margin-top:50px;'><p>App ID has been sent via email.</p>";
+     });
    }
    else {
     document.getElementById('appname').disabled = false;
