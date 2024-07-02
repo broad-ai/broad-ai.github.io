@@ -17,7 +17,27 @@ title: BroadAI Agent Store
 
 {% for agent in site.agents %}
 
-<div style="margin-top:20px; margin-bottom:40px; padding:1.25em 1em 1.25em 1em; font-weight:400; box-shadow:0 4px 8px 0 #999;">
+<div class="container">
+  <div class="card" id="{{ agent.agent-name | downcase }}">
+    <h2>{{ agent.agent-name }}</h2>
+    <p>{{ agent.capability }}</p>
+    <div class="sub-categories">
+      {% for skill in agent.skills %}
+        <div class="sub-category">
+          <h4>{{ skill.skill-name }}</h4>
+          <p>{{ skill.objective }}</p>
+          <ul>
+            {% for parameter in skill.parameters %}
+              <li>{{ parameter }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- <div style="margin-top:20px; margin-bottom:40px; padding:1.25em 1em 1.25em 1em; font-weight:400; box-shadow:0 4px 8px 0 #999;">
 
   <h2 id="{{ agent.agent-name | downcase }}">Agent: {{ agent.agent-name }}</h2>
   <p>{{ agent.capability }}. See usage below for detailed information about package name and agent configuration.</p>
@@ -50,7 +70,7 @@ title: BroadAI Agent Store
   {{ agent.agent-name | downcase }}.register(ai.config, {{ agent.agent-config }});
   </code></pre>
 
-</div>
+</div> -->
 
 {% endfor %}
 

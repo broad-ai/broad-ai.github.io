@@ -9,6 +9,62 @@
     media="screen" type="text/css">
   <link rel="stylesheet" href="{{ '/assets/css/print.css' | relative_url }}" media="print" type="text/css">
   <link rel="stylesheet" href="/assets/css/font-awesome.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.5em;
+      color: #333;
+    }
+
+    .card p {
+      font-size: 1em;
+      color: #666;
+    }
+
+    .sub-categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .sub-category {
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      padding: 5px 10px;
+      background-color: #f1f1f1;
+      font-size: 0.9em;
+      color: #333;
+    }
+  </style>
   <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
