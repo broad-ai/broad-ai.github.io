@@ -21,7 +21,7 @@ title: BroadAI Agent Store
   <div class="card" id="{{ agent.agent-name | downcase }}">
     <h2>{{ agent.agent-name }}</h2>
     <p>{{ agent.capability }}</p>
-    <div class="sub-categories">
+    <div>
       {% for skill in agent.skills %}
         <div class="sub-category">
           <h4>{{ skill.skill-name }}</h4>
