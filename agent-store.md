@@ -28,7 +28,7 @@ title: BroadAI Agent Store
           <p>{{ skill.objective }}</p>
           <ul>
             {% for parameter in skill.parameters %}
-              <li>{{ parameter }}</li>
+              <li>{{ parameter[0] }}: {{ parameter[1] }}</li>
             {% endfor %}
           </ul>
         </div>
