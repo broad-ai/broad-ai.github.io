@@ -3,11 +3,11 @@ layout: store
 title: BroadAI Agent Store
 ---
 
-<img src="./assets/images/icon-rocket.png" style="height:1.5em;padding:0;margin:0;"> Interested in publishing your agent? Please [send us a note](mailto:broad.agents.ai@gmail.com?subject=Re%20publishing%20our%20BroadAI%20Agent).
+<img src="./assets/images/icon-rocket.png" style="height:1.5em;padding:0;margin:0;"> Interested in publishing your agent? Please [reach out to us](mailto:broad.agents.ai@gmail.com?subject=Re%20publishing%20our%20BroadAI%20Agent).
 
-# Published Agents
+<!-- # Published Agents
 
-<!-- {% for agent in site.agents %}
+{% for agent in site.agents %}
 
 - [{{ agent.agent-name }}](#{{ agent.agent-name | downcase }})
 
