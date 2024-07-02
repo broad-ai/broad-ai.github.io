@@ -24,8 +24,8 @@ const registerApp = () => {
     body: JSON.stringify({
       "appname": appname,
       "owner": {
-        "ownername": ownername,
-        "owneremail": owneremail
+        "name": ownername,
+        "email": owneremail
       },
       "purpose": purpose,
     })
