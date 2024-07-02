@@ -39,7 +39,7 @@ const registerApp = () => {
         document.getElementById('btnregister').hidden = false;
 
         document.getElementById('message').innerHTML = "<p style='color:#006400;'>" + resp.status + "</p>";
-        document.getElementById('message').innerHTML = "<p><strong> App ID:</strong></p>";
+        document.getElementById('message').innerHTML += "<p><strong style='color:#2e7bcf;'> App ID:</strong></p>";
         document.getElementById('message').innerHTML += "<code style='font-size:3em;'>" + resp.appid + "</code>";
         document.getElementById('message').innerHTML += "<p>" + resp.notification + "</p>";
       }
