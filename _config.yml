@@ -13,19 +13,19 @@ agents:
         objective: Identify the appropriate Timezone area for a given location and tell time at that location
         action: getCurrentTime
         parameters:
-          - area_location: \| string \| An example of area_location is America/New_York or Europe/London. Based on the valid location provided, determine appropriate area_location
+          - area_location: string | An example of area_location is America/New_York or Europe/London. Based on the valid location provided, determine appropriate area_location
       - skill-name: extractSpecificValue
         objective: Extract specific values from the provided source"
         action: extractSpecificValue
         parameters:
-          - source: \| string \| information source
-            question: \| string \| frame a question to specify which value must be extracted
+          - source: string | information source
+            question: string | frame a question to specify which value must be extracted
       - skill-name: extractList
         objective: Extract list of requested items from the source
         action: extractList
         parameters:
-          - source: \| string \| information source
-            item_category: \| string \| frame a question to specify which category of items must be extracted
+          - source: string | information source
+            item_category: string | frame a question to specify which category of items must be extracted
     agent-config: {}
   - agent-name: Researcher
     package-name: researcher
@@ -35,18 +35,18 @@ agents:
         objective: Search internet for information about the given topic
         action: researchTopic
         parameters:
-          - topic: \| string \| topic that must be researched
+          - topic: string | topic that must be researched
       - skill-name: findBusinesses
         objective: Search specific business type around a 10 mile radius of a given location
         action: findBusinesses
         parameters:
-          - term: \| string \| business type, e.g. diner, coffee, tailor, etc.
-          - location: \| string \| address or landmark within a city and state
+          - term: string | business type, e.g. diner, coffee, tailor, etc.
+          - location: string | address or landmark within a city and state
       - skill-name: readWebPage
         objective: Read the contents of a given web page
         action: readWebPage
         parameters:
-          - url: \| string \| web page address
+          - url: string | web page address
     agent-config: { "google_search_engine": { "api_key": "?", "programmable_search_engine_id": "?" }, "yelp": { "api_key": "?" } }
   - agent-name: Aviator
     package-name: aviator
@@ -56,13 +56,13 @@ agents:
         objective: Retreive flights and their details between specified airports
         action: allFlights
         parameters:
-          - iata_departure: \| string \| must be an IATA airport code from where flight originates, e.g. CMH for Port Columbus International Airport
-          - iata_arrival: \| string \| must be an IATA airport code where flight destination is, e.g. ORD for O'Hare International Airport
+          - iata_departure: string | must be an IATA airport code from where flight originates, e.g. CMH for Port Columbus International Airport
+          - iata_arrival: string | must be an IATA airport code where flight destination is, e.g. ORD for O'Hare International Airport
       - skill-name: specificFlight
         objective: Retreive flight details about a specific flight
         action: specificFlight
         parameters:
-          - iata_flight_number: \| string \| must be an IATA flight number, e.g. IATA flight number for flight 'United 5532' is 'UA5532'
+          - iata_flight_number: string | must be an IATA flight number, e.g. IATA flight number for flight 'United 5532' is 'UA5532'
     agent-config: { "aviationstack": { "api_key": "?" } }
   - agent-name: Weatherman
     package-name: weatherman
@@ -72,12 +72,12 @@ agents:
         objective: Obtain current weather conditions for a location
         action: currentWeather
         parameters:
-          - city: \| string \| valid and recognizable City name without State or State Code. e.g. Columbus
+          - city: string | valid and recognizable City name without State or State Code. e.g. Columbus
       - skill-name: weatherForecast
         objective: Get weather forecast for a location
         action: weatherForecast
         parameters:
-          - city: \| string \| valid and recognizable City name without State or State Code. e.g. Columbus
+          - city: string | valid and recognizable City name without State or State Code. e.g. Columbus
     agent-config: { "openweathermap": { "api_key": "?" } }
   - agent-name: NewsReporter
     package-name: newsreporter
@@ -87,7 +87,7 @@ agents:
         objective: Retrieve top news headlines for the specified country and specified category
         action: getHeadlines
         parameters:
-          country_code: \| string \| 2-letter country code based on ISO 3166, e.g. US for USA, IN for India, etc. | default=us
+          country_code: string | 2-letter country code based on ISO 3166, e.g. US for USA, IN for India, etc. | default=us
           category: pick only one amongst - business|entertainment|general|health|science|sports|technology | default=general
     agent-config: { "newsapi": { "api_key": "?" } }
   - agent-name: FinancialAnalyst
@@ -98,27 +98,27 @@ agents:
         objective: Lean more about a company such as what they do, their HQ location, market capitalization, and who's who
         action: companyProfile
         parameters:
-          stock_symbol: \| string \| Stock Symbol for the speficied company, e.g. MSFT for Microsoft
+          stock_symbol: string | Stock Symbol for the speficied company, e.g. MSFT for Microsoft
       - skill-name: incomeStatement
         objective: Obtain the income statement for specified company. It focuses on the revenue, expenses, gains, and losses of a company during a particular period. An income statement provides valuable insights into a company’s operations, the efficiency of its management, underperforming sectors, and its performance relative to industry peers
         action: incomeStatement
         parameters:
-          stock_symbol: \| string \| Stock Symbol for the speficied company, e.g. MSFT for Microsoft
+          stock_symbol: string | Stock Symbol for the speficied company, e.g. MSFT for Microsoft
       - skill-name: balanceSheet
         objective: Obtain the balance sheet for specified company. It reports a company's assets, liabilities, and shareholder equity. The balance sheet adheres to an equation where Assets equal sum of Liabilities and Equity. Fundamental analysts use balance sheets to calculate financial ratios
         action: balanceSheet
         parameters:
-          stock_symbol: \| string \| Stock Symbol for the speficied company, e.g. MSFT for Microsoft
+          stock_symbol: string | Stock Symbol for the speficied company, e.g. MSFT for Microsoft
       - skill-name: cashFlowStatement
         objective: Obtain the cash flow statement (CFS) for specified company. It not only summarizes the amount of cash and cash equivalents entering and leaving a company, but also highlights how well a company generates cash. The main components of the CFS are cash in and out from three major areas, viz. Operating, Investing, and Financing activities
         action: cashFlowStatement
         parameters:
-          stock_symbol: \| string \| Stock Symbol for the speficied company, e.g. MSFT for Microsoft
+          stock_symbol: string | Stock Symbol for the speficied company, e.g. MSFT for Microsoft
       - skill-name: historicalStockPrices
         objective: Analyze stock prices for a valid listed company over past few days
         action: historicalStockPrices
         parameters:
-          stock_symbol: \| string \| Stock Symbol for the speficied company, e.g. MSFT for Microsoft
+          stock_symbol: string | Stock Symbol for the speficied company, e.g. MSFT for Microsoft
           number_records: number | Specify number of records to present. default value = 7
     agent-config: { "financialmodelingprep": { "api_key": "?" } }
   - agent-name: Writer
@@ -129,16 +129,16 @@ agents:
         objective: Write an email message to respond to a specified situation or as a reply to an existing email
         action: composeEmail
         parameters:
-          to: \| string \| To whom the email is addressed
-          situation: \| string \| Describe the situation for which an email must be written
-          outcome: \| string \| Describe the outcome that is expected after sending this email
-          original_email: \| string \| (optional) Provide original email for which a reply must be generated
+          to: string | To whom the email is addressed
+          situation: string | Describe the situation for which an email must be written
+          outcome: string | Describe the outcome that is expected after sending this email
+          original_email: string | (optional) Provide original email for which a reply must be generated
       - skill-name: socialMessage
         objective: Write a message suitable for social media messengers, such as LinkedIn, Twitter, etc., or mobile phone text messages, about a specified situation or as a reply to an existing message
         action: socialMessage
         parameters:
-          to: \| string \| To whom the message is addressed
-          situation: \| string \| Describe the situation for which this message must be written
-          outcome: \| string \| Describe the outcome that is expected after sending this message
-          original_message: \| string \| (optional) Provide original message for which a reply must be generated
+          to: string | To whom the message is addressed
+          situation: string | Describe the situation for which this message must be written
+          outcome: string | Describe the outcome that is expected after sending this message
+          original_message: string | (optional) Provide original message for which a reply must be generated
     agent-config: {  }
