@@ -50,7 +50,7 @@ const registerApp = () => {
         document.getElementById('purpose').disabled = false;
         document.getElementById('btnregister').hidden = false;
 
-        document.getElementById('message').innerHTML = resp.reason;
+        document.getElementById('message').innerHTML = "<p style='color:red;'>" + resp.reason + "</p>";
       }
     });
 
