@@ -15,12 +15,13 @@ title: BroadAI Agent Store
 
 --- -->
 
+<div class="container">
+  <input type="text" id="searchBox" placeholder="Search...">
+</div>
+
 {% for agent in site.agents %}
 
 <div class="container">
-
-  <input type="text" id="searchBox" placeholder="Search...">
-
   <div class="card" id="{{ agent.agent-name | downcase }}">
     <h2>{{ agent.agent-name }}</h2>
     <p>{{ agent.capability }}</p>
