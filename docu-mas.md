@@ -21,6 +21,39 @@ The BroadAI MAS framework relies on Large Language Model's (LLM's) capabilities 
 
 ---
 
+## Register Your App (FREE & OPTIONAL)
+
+Register your application to generate a unique **App ID**. If you do not provide `appid` in your BroadAIConfiguration, BroadAI will be able to use only the in-built General Assistant agent. All other registered agents will be ignored until a valid `appid` is provided in the BroadAIConfiguration.
+
+> We will use this App ID to track anonymous engagement metrics, such as number of calls to agents registered in your application for monitoring usage, billing, etc. We will not collect any of your user's information - not even their emailIDs. We leave the application monitoring on your shoulders. 
+
+<div class="top">
+  <div class="mission">
+  <form>
+    <h3>
+      Tell us about your App
+    </h3>
+    <div style='padding:0;width:100%;margin-bottom:2em;'>
+      <input type="text" id="appname" name="appname" placeholder="App Name" required style="width:calc(100% - 20px); padding:10px; margin:0.5em 0; border:1px solid #ddd; border-radius:4px; box-sizing:border-box;">
+      <input type="text" id="ownername" name="ownername" placeholder="Your Name" required style="width:calc(100% - 20px); padding:10px; margin:0.5em 0; border:1px solid #ddd; border-radius:4px; box-sizing:border-box;">
+      <div style="display:inline;float:right;">
+      <input type="text" id="owneremail" name="owneremail" placeholder="Your Email" required style="width:calc(100% - 20px); padding:10px; margin:0.5em 0; border:1px solid #ddd; border-radius:4px; box-sizing:border-box;">
+      <div style="display:inline;float:right;">
+      <textarea id="purpose" name="purpose" rows="6" required placeholder="Briefly describe how you will use BroadAI in your application" style="width:calc(100% - 20px); padding:10px; margin:0.5em 0; border:1px solid #ddd; border-radius:4px; box-sizing:border-box;"></textarea>
+      <div style="display:inline;float:right;">
+        <input type="button" id="btnregister" value="Register" onClick="registerApp()" style="font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif; font-size: 18px; text-align: center; padding: 10px; margin: 0 10px 10px 0; color: #fff; background-color: #2e7bcf; border: none; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;">
+      </div>
+    </div>
+  </form>
+  </div>
+
+  <div class="lead" id="lead">
+    <div id="message"> <!-- .. result .. --> </div>
+  </div>
+</div>
+
+---
+
 ## Installation
 
 Install the `broadai` package locally.
