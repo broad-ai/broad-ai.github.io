@@ -39,8 +39,9 @@ const registerApp = () => {
         document.getElementById('btnregister').hidden = false;
 
         document.getElementById('message').innerHTML = "<p style='color:#006400;'>" + resp.status + "</p>";
+        document.getElementById('message').innerHTML = "<h4> App ID:</h4>";
         document.getElementById('message').innerHTML += "<code>" + resp.appid + "</code>";
-        document.getElementById('message').innerHTML += "<hr><p>Please save this App ID to some place safe now!</p>";
+        document.getElementById('message').innerHTML += "<p>Please save this App ID to some place safe now!</p>";
       }
       else {
         document.getElementById('appname').disabled = false;
