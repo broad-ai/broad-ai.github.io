@@ -4,7 +4,7 @@ const broadAIapiEndpoint = "http://localhost:8080";
 const fetchUsage = () => {
  const searchParams = new URLSearchParams(window.location.search);
  let appid = searchParams.get('appid');
- let html = "<span style='font-size:5em;'>...</span>";
+ let html = "...";
  setTimeout(() => {
   document.getElementById('dashboard').innerHTML = html;
   fetch(broadAIapiEndpoint + '/app/metering/' + appid, {
@@ -14,7 +14,7 @@ const fetchUsage = () => {
    }
   }).then((response) => response.json())
    .then((metrics) => {
-    html = JSON.stringify(metrics);
+    html = JSON.stringify(metrics, null, 4);
 
     document.getElementById('dashboard').innerHTML = html;
    });
