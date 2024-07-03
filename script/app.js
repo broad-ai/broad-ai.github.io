@@ -14,6 +14,8 @@ const registerApp = () => {
   document.getElementById('purpose').disabled = true;
 
   document.getElementById('btnregister').hidden = true;
+
+  document.getElementById('message').innerHTML = "<p>Working...</p>";
   // // ...
 
   fetch(broadAIapiEndpoint + '/app/register', {
