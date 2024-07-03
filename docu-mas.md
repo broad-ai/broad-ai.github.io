@@ -110,15 +110,18 @@ The structure of the ```BroadAIConfiguration``` is below:
 
 ```javascript
 let broadAIConfiguration = {
-  
+
   /* ** (1) BroadAI Personality ** */
+  "appid": "XXXXXXXX",
+  
+  /* ** (2) BroadAI Personality ** */
   "personality":{
     "name": "<name>",                         // -- default: Sutradhar, meaning conductor
     "role": "<role>",                         // -- default: analyst
     "pov": "first-person |or| third-person",  // -- default: first-person
   },
 
-  /* ** (2) LLM API Configuration ** */
+  /* ** (3) LLM API Configuration ** */
   "llmapi": {
     "method": "GET" | "POST" | "PUT" | "DELETE",
     "url": "<https://>",          // -- API endpoint to access the model
@@ -130,13 +133,17 @@ let broadAIConfiguration = {
     "response_template": "<dot.notation>"   // -- refer further details below
   },
 
-  /* ** (3) Conversation History Configuration ** */
+  /* ** (4) Conversation History Configuration ** */
   "history": {
     "enabled": true,            // -- whether conversation history should be enabled
     "max_exchanges": 5          // -- number of Q & A exchanges that must be retained (1 exchange = 1 user question + 1 BroadAI answer)
   }
 }
 ```
+
+### appid
+
+  Use the `appid` received after registering your application. Each BroadAI MAS application must be registered with a new `appid`. This is an optional field and if not provided, all registered agents in your app will be ignored until a valid `appid` is provided in the BroadAIConfiguration.
 
 ### personality
 
