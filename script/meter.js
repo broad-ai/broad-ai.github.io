@@ -1,9 +1,8 @@
-const broadAIapiEndpoint = 'http://localhost:8080';
-// const broadAIapiEndpoint = 'https://broadai-7yg2a2s6sq-uc.a.run.app';
+const broadAIapiEndpoint = "http://localhost:8080";
+// const broadAIapiEndpoint = "https://broadai-7yg2a2s6sq-uc.a.run.app";
 
 const getDetails = () => {
  const searchParams = new URLSearchParams(window.location.search);
-
  let appid = searchParams.get('appid');
  let usage = "";
  fetch(broadAIapiEndpoint + '/app/metering/' + appid, {
@@ -12,8 +11,7 @@ const getDetails = () => {
    'Content-Type': 'application/json',
   }
  }).then((response) => response.json())
-  .then((resp) => {
-   let metrics = resp;
+  .then((metrics) => {
    usage += "<div class='container'>";
    Object.keys(metrics).forEach((agent) => {
     usage += "<div class='card'>";
