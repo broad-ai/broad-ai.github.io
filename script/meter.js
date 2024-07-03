@@ -15,12 +15,12 @@ const fetchUsage = () => {
    .then((metrics) => {
     document.getElementById('dashboard').innerHTML = "<div>";
     Object.keys(metrics).forEach((agent) => {
-     document.getElementById('dashboard').innerHTML += "<div class='card'>";
+     document.getElementById('dashboard').innerHTML += "<div style='border:1px;border-color:#C0C0C0;'>";
      document.getElementById('dashboard').innerHTML += "<h2>" + agent + "</h2>";
      Object.keys(metrics[agent]).forEach((skill) => {
-      document.getElementById('dashboard').innerHTML += "<div class='sub-category'>";
+      document.getElementById('dashboard').innerHTML += "<div style='background-color:#DCDCDC;'>";
       document.getElementById('dashboard').innerHTML += "<span style='float:left;'>" + skill + "</span>";
-      document.getElementById('dashboard').innerHTML += "<span style='float:right;font-size:3em;font-weight:bold;'>" + metrics[agent][skill] + "</span>";
+      document.getElementById('dashboard').innerHTML += "<span style='float:right;font-weight:bold;'>" + metrics[agent][skill] + "</span>";
       document.getElementById('dashboard').innerHTML += "</div>";
      });
      document.getElementById('dashboard').innerHTML += "</div>";
