@@ -20,8 +20,8 @@ const fetchUsage = () => {
      Object.keys(metrics[agent]).forEach((skill) => {
       document.getElementById('dashboard').innerHTML += "<li>";
       document.getElementById('dashboard').innerHTML += skill + "&nbsp;";
-      document.getElementById('dashboard').innerHTML += "&emsp;" + metrics[agent];
-      document.getElementById('dashboard').innerHTML += "<li>";
+      document.getElementById('dashboard').innerHTML += "&emsp;" + metrics[agent][skill];
+      document.getElementById('dashboard').innerHTML += "</li>";
      });
      document.getElementById('dashboard').innerHTML += "</ul>";
     });
