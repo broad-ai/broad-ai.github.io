@@ -14,6 +14,7 @@ const getDetails = () => {
   .then((resp) => {
    let usage = `<div class="container">`;
    let metrics = resp.data;
+   console.log(metrics);
    Object.keys(metrics).forEach((agent) => {
     console.log(agent, metrics[agent]);
     usage += `<div class="card">`;
@@ -29,5 +30,6 @@ const getDetails = () => {
    });
    usage += `</div>`;
   });
+ console.log(usage);
  document.getElementById('usage').innerHTML = usage;
 };
