@@ -14,6 +14,19 @@
    {% seo %}
    {% include head-custom.html %}
    <script src="/script/meter.js"></script>
+   <style>
+      #dashboard {
+         width: 50%;
+         margin: auto;
+      }
+
+      @media only screen and (max-width: 600px) {
+         #dashboard {
+            width: 100%;
+            margin: auto;
+         }
+      }
+   </style>
 </head>
 
 <body onload="fetchUsage()">

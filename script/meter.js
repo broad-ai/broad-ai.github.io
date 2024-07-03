@@ -16,14 +16,14 @@ const fetchUsage = () => {
     document.getElementById('dashboard').innerHTML = "";
     Object.keys(metrics).forEach((agent) => {
      document.getElementById('dashboard').innerHTML += "<h2>" + agent + "</h2>";
-     document.getElementById('dashboard').innerHTML += "<ul>";
+     document.getElementById('dashboard').innerHTML += "<table>";
      Object.keys(metrics[agent]).forEach((skill) => {
-      document.getElementById('dashboard').innerHTML += "<li>";
-      document.getElementById('dashboard').innerHTML += skill + "&nbsp;";
-      document.getElementById('dashboard').innerHTML += "&emsp;" + metrics[agent][skill];
-      document.getElementById('dashboard').innerHTML += "</li>";
+      document.getElementById('dashboard').innerHTML += "<tr>";
+      document.getElementById('dashboard').innerHTML += "<th>" + skill + "</th>";
+      document.getElementById('dashboard').innerHTML += "<td>" + metrics[agent][skill] + "</td>";
+      document.getElementById('dashboard').innerHTML += "</tr>";
      });
-     document.getElementById('dashboard').innerHTML += "</ul>";
+     document.getElementById('dashboard').innerHTML += "</table>";
     });
    });
  }, 600);
