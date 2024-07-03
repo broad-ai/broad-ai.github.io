@@ -27,5 +27,6 @@ const getDetails = () => {
    });
    usage += "</div>";
   });
+ // -- display on page
  document.getElementById('dashboard').innerHTML = usage;
 };
