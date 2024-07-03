@@ -13,8 +13,8 @@ const getDetails = () => {
  }).then((response) => response.json())
   .then((resp) => {
    console.log(resp);
+   let metrics = resp;
    let usage = `<div class="container">`;
-   let metrics = resp.data;
    console.log(metrics);
    Object.keys(metrics).forEach((agent) => {
     console.log(agent, metrics[agent]);
