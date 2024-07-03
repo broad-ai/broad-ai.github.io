@@ -20,7 +20,7 @@ const getDetails = () => {
     Object.keys(metrics[agent]).forEach((skill) => {
      usage += `<div class="sub-category">`;
      usage += `<span style="float:left;">` + skill + `</span>`;
-     usage += `<span style="float:right;">` + metrics[agent][skill] + `</span>`;
+     usage += `<span style="float:right;font-size:3em;font-weight:bold;">` + metrics[agent][skill] + `</span>`;
      usage += `</div>`;
     });
     usage += `</div>`;
