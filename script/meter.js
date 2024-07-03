@@ -14,7 +14,9 @@ const fetchUsage = () => {
    }
   }).then((response) => response.json())
    .then((metrics) => {
+    html = JSON.stringify(metrics);
 
+    document.getElementById('dashboard').innerHTML = html;
    });
  }, 600);
 };
