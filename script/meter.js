@@ -13,19 +13,18 @@ const fetchUsage = () => {
    }
   }).then((response) => response.json())
    .then((metrics) => {
-    document.getElementById('dashboard').innerHTML = "<div style='width:80%;margin-left:auto;margin-right:auto;'>";
+    document.getElementById('dashboard').innerHTML = "";
     Object.keys(metrics).forEach((agent) => {
-     document.getElementById('dashboard').innerHTML += "<div style='margin-bottom:20px;border:1px;border-color:#C0C0C0;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);background-color:#fff;'>";
      document.getElementById('dashboard').innerHTML += "<h2>" + agent + "</h2>";
+     document.getElementById('dashboard').innerHTML += "<ul>";
      Object.keys(metrics[agent]).forEach((skill) => {
-      document.getElementById('dashboard').innerHTML += "<div style='margin-top:20px;background-color:#DCDCDC;'>";
-      document.getElementById('dashboard').innerHTML += "<span style='float:left;'>" + skill + "</span>";
-      document.getElementById('dashboard').innerHTML += "<span style='float:right;font-weight:bold;'>" + metrics[agent][skill] + "</span>";
-      document.getElementById('dashboard').innerHTML += "</div>";
+      document.getElementById('dashboard').innerHTML += "<li>";
+      document.getElementById('dashboard').innerHTML += skill + "&nbsp;";
+      document.getElementById('dashboard').innerHTML += "&emsp;" + metrics[agent];
+      document.getElementById('dashboard').innerHTML += "<li>";
      });
-     document.getElementById('dashboard').innerHTML += "</div>";
+     document.getElementById('dashboard').innerHTML += "</ul>";
     });
-    document.getElementById('dashboard').innerHTML += "</div>";
    });
  }, 600);
 };
