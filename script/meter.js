@@ -29,5 +29,6 @@ const getDetails = () => {
    usage += "</div>";
   });
  // -- display on page
+ console.log(usage);
  document.getElementById('dashboard').innerHTML = usage;
 };
