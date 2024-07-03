@@ -13,9 +13,9 @@ const fetchUsage = () => {
    }
   }).then((response) => response.json())
    .then((metrics) => {
-    document.getElementById('dashboard').innerHTML = "<div>";
+    document.getElementById('dashboard').innerHTML = "<div style='width:80%;margin-left:auto;margin-right:auto;'>";
     Object.keys(metrics).forEach((agent) => {
-     document.getElementById('dashboard').innerHTML += "<div style='border:1px;border-color:#C0C0C0;'>";
+     document.getElementById('dashboard').innerHTML += "<div style='margin-bottom:20px;border:1px;border-color:#C0C0C0;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);background-color:#fff;'>";
      document.getElementById('dashboard').innerHTML += "<h2>" + agent + "</h2>";
      Object.keys(metrics[agent]).forEach((skill) => {
       document.getElementById('dashboard').innerHTML += "<div style='background-color:#DCDCDC;'>";
