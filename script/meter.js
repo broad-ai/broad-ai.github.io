@@ -12,6 +12,7 @@ const getDetails = () => {
   }
  }).then((response) => response.json())
   .then((resp) => {
+   console.log(resp);
    let usage = `<div class="container">`;
    let metrics = resp.data;
    console.log(metrics);
