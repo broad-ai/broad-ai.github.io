@@ -5,6 +5,7 @@ const getDetails = () => {
  const searchParams = new URLSearchParams(window.location.search);
 
  let appid = searchParams.get('appid');
+ let usage = "";
  fetch(broadAIapiEndpoint + '/app/metering/' + appid, {
   method: 'GET',
   headers: {
@@ -13,7 +14,7 @@ const getDetails = () => {
  }).then((response) => response.json())
   .then((resp) => {
    let metrics = resp;
-   let usage = "<div class='container'>";
+   usage += "<div class='container'>";
    Object.keys(metrics).forEach((agent) => {
     usage += "<div class='card'>";
     usage += "<h2>" + agent + "</h2>";
