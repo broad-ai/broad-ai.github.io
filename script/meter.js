@@ -12,7 +12,20 @@ const getDetails = () => {
   }
  }).then((response) => response.json())
   .then((resp) => {
-   console.log(resp.data);
+   let usage = `<div class="container">`;
+   let metrics = resp.data;
+   Object.keys(metrics).forEach((agent) => {
+    usage += `<div class="card">`;
+    usage += `<h2>` + agent + `</h2>`;
+    Object.keys(metrics[agent]).forEach((skill) => {
+     usage += `<div class="sub-category">`;
+     usage += `<span style="float:left;">` + skill + `</span>`;
+     usage += `<span style="float:right;">` + metrics[agent][skill] + `</span>`;
+     usage += `</div>`;
+    });
+    usage += `</div>`;
+   });
+   usage += `</div>`;
   });
-
+ document.getElementById('usage').innerHTML = usage;
 };
