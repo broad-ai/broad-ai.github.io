@@ -15,7 +15,7 @@ const registerApp = () => {
   document.getElementById('purpose').disabled = true;
 
   // // ...
-  if (emailRegex.test(email)) {
+  if (emailRegex.test(owneremail)) {
     document.getElementById('btnregister').hidden = true;
     document.getElementById('message').innerHTML = "<p>Working...</p>";
     document.getElementById('emailvalidation').innerHTML = "";
