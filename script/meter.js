@@ -16,8 +16,10 @@ const fetchUsage = () => {
         let agents = Object.keys(metrics);
         if (agents.length) {
           agents.forEach((agent) => {
-            html = "<h2>" + agent + "</h2>";
-            html += "<code>" + JSON.stringify(metrics[agent], null, 4) + "</code>";
+            html = "<p>Agent:</p><h2>" + agent + "</h2><p>Skills:</p>";
+            Object.keys(metrics[agent]).forEach((skill) => {
+              html += "<code>" + skill + "</code> used <code>" + JSON.stringify(metrics[agent][skill], null, 4) + "</code> times";
+            })
             html += "<p></p>";
           });
         }
