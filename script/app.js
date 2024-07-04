@@ -2,20 +2,20 @@ const broadAIapiEndpoint = "https://broadai-7yg2a2s6sq-uc.a.run.app";
 
 const registerApp = () => {
   let appname = document.getElementById('appname').value;
-  document.getElementById('appname').disabled = true;
 
   let ownername = document.getElementById('ownername').value;
-  document.getElementById('ownername').disabled = true;
 
   let owneremail = document.getElementById('owneremail').value;
-  document.getElementById('owneremail').disabled = true;
   const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 
   let purpose = document.getElementById('purpose').value;
-  document.getElementById('purpose').disabled = true;
 
   // // ...
   if (emailRegex.test(owneremail)) {
+    document.getElementById('appname').disabled = true;
+    document.getElementById('ownername').disabled = true;
+    document.getElementById('owneremail').disabled = true;
+    document.getElementById('purpose').disabled = true;
     document.getElementById('btnregister').hidden = true;
     document.getElementById('message').innerHTML = "<p>Working...</p>";
     document.getElementById('emailvalidation').innerHTML = "";
