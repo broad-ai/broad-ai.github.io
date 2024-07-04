@@ -51,8 +51,6 @@ const registerApp = () => {
         document.getElementById('owneremail').disabled = false;
         document.getElementById('purpose').disabled = false;
         document.getElementById('btnregister').hidden = false;
-
-        document.getElementById('message').innerHTML = "<p style='color:red;'>" + resp.reason + "</p>";
       }
     });
 

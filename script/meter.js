@@ -1,4 +1,3 @@
-// const broadAIapiEndpoint = "http://localhost:8080";
 const broadAIapiEndpoint = "https://broadai-7yg2a2s6sq-uc.a.run.app";
 
 const fetchUsage = () => {
