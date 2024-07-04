@@ -11,8 +11,11 @@ To help you get some ideas, the demo is pre-populated with some examples.
 
 ### Agents in Action
 
-| **Researcher** | **Aviator** | **Weatherman** | **FinancialAnalyst** |
-| Looks up information using external information providers. | Tells about inbound and outbound flights into or out of an airport, as well as flight status' for known flight numbers. | Reports current weather conditions as well as forecast. | Research the company fundamentals to help analyze company's performance. |
+| **Researcher** | **Aviator** | **Weatherman** |
+| Looks up information using external information providers. | Tells about inbound and outbound flights into or out of an airport, as well as flight status' for known flight numbers. | Reports current weather conditions as well as forecast. | 
+
+| **FinancialAnalyst** | **NewsReporter** | **Writer** |
+| Research the company fundamentals to help analyze company's performance. | Report top news headlines in specific categories from specific countries | Writes aptly drafted communication messages for email, SMS, or social media interactions |
 
 ---
 
