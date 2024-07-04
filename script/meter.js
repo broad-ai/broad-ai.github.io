@@ -15,14 +15,32 @@ const fetchUsage = () => {
       .then((metrics) => {
         let agents = Object.keys(metrics);
         if (agents.length) {
-          html = "";
           agents.forEach((agent) => {
-            html += "<p style='margin-bottom:0;'>Agent:</p><h2>" + agent + "</h2><p style='margin-bottom:0;'>Skills:</p>";
+            // html += "<p style='margin-bottom:0;'>Agent:</p><h2>" + agent + "</h2><p style='margin-bottom:0;'>Skills:</p>";
+            html = `
+          <table>
+          `;
+            html += `
+            <tr>
+              <td colspan="2">
+                  <h2>`+ agent + `</h2>
+              </td>
+            </tr>
+            `;
             Object.keys(metrics[agent]).forEach((skill) => {
-              html += "<code>" + skill + "</code> used <code>" + JSON.stringify(metrics[agent][skill], null, 4) + "</code> times";
-              html += "<p><p>";
+              // html += "<code>" + skill + "</code> used <code>" + JSON.stringify(metrics[agent][skill], null, 4) + "</code> times";
+              // html += "<p><p>";
+              html += `
+            <tr>
+              <td style="width:90%;">`+ skill + `</td>
+              <td>`+ metrics[agent][skill] + `</td>
+            </tr>
+            `;
             });
-            html += "<hr>";
+            // html += "<hr>";
+            html += `
+          </table>
+          `;
           });
         }
         else
