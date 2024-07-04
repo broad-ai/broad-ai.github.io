@@ -18,7 +18,7 @@ const fetchUsage = () => {
           html = ``;
           agents.forEach((agent) => {
             html += `
-          <table>
+          <table style="margin-top:20px;">
           `;
             html += `
             <tr>
@@ -28,8 +28,8 @@ const fetchUsage = () => {
             Object.keys(metrics[agent]).forEach((skill) => {
               html += `
             <tr>
-              <td style="min-width:90%;">`+ skill + `</td>
-              <td  style="max-width:10%;">`+ metrics[agent][skill] + `</td>
+              <td>`+ skill + `</td>
+              <td>`+ metrics[agent][skill] + `</td>
             </tr>
             `;
             });
