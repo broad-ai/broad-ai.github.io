@@ -25,8 +25,6 @@ The BroadAI MAS framework relies on Large Language Model's (LLM's) capabilities 
 
 Register your application to generate a unique **App ID**. If you do not provide `appid` in your BroadAIConfiguration, BroadAI will be able to use only the in-built General Assistant agent. All other registered agents will be ignored until a valid `appid` is provided in the BroadAIConfiguration.
 
-> We will use this App ID to track anonymous engagement metrics, such as number of calls to agents registered in your application for monitoring usage, billing, etc. We will not collect any of your user's information - not even their emailIDs. We leave the application monitoring on your shoulders!
-
 <div class="top">
   <div class="mission">
   <form>
@@ -49,7 +47,12 @@ Register your application to generate a unique **App ID**. If you do not provide
   </div>
 
   <div class="lead" id="lead">
-    <div id="message"> <!-- .. result .. --> </div>
+    <div id="message"> 
+    <span style="font-size:0.8em;">
+    We will use this App ID to track anonymous engagement metrics, such as number of calls to agents registered in your application for monitoring usage, billing, etc. We will not collect any of your user's information - not even their emailIDs. We leave the application monitoring on your shoulders!
+    </span>
+    <!-- .. result .. --> 
+    </div>
   </div>
 </div>
 
