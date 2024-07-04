@@ -35,9 +35,10 @@ Register your application to generate a unique **App ID**. If you do not provide
     </h3>
     <div style='padding:0;width:100%;margin-bottom:2em;'>
       <div style="display:inline;float:left;">
-        <input type="text" id="appname" name="appname" placeholder="App Name" required style="width:calc(100% - 20px); padding:10px; margin:0.5em 0; border:1px solid #ddd; border-radius:4px; box-sizing:border-box;">
-        <input type="text" id="ownername" name="ownername" placeholder="Your Name" required style="width:calc(100% - 20px); padding:10px; margin:0.5em 0; border:1px solid #ddd; border-radius:4px; box-sizing:border-box;">
-        <input type="text" id="owneremail" name="owneremail" placeholder="Your Email" required style="width:calc(100% - 20px); padding:10px; margin:0.5em 0; border:1px solid #ddd; border-radius:4px; box-sizing:border-box;">
+        <input type="text" id="appname" name="appname" placeholder="App name, e.g. CustomerCaseFinder" required style="width:calc(100% - 20px); padding:10px; margin:0.5em 0; border:1px solid #ddd; border-radius:4px; box-sizing:border-box;">
+        <input type="text" id="ownername" name="ownername" placeholder="Your name, e.g. John Doe" required style="width:calc(100% - 20px); padding:10px; margin:0.5em 0; border:1px solid #ddd; border-radius:4px; box-sizing:border-box;">
+        <input type="text" id="owneremail" name="owneremail" placeholder="Your email, e.g. johndoe@example.com" required style="width:calc(100% - 20px); padding:10px; margin:0.5em 0; border:1px solid #ddd; border-radius:4px; box-sizing:border-box;">
+        <div id="emailvalidation" style="color:red;"></div>
         <textarea id="purpose" name="purpose" rows="6" required placeholder="Briefly describe how you will use BroadAI in your application" style="width:calc(100% - 20px); padding:10px; margin:0.5em 0; border:1px solid #ddd; border-radius:4px; box-sizing:border-box;"></textarea>
       </div>
       <div style="display:inline;float:right;">
