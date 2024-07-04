@@ -43,7 +43,8 @@ const registerApp = () => {
         document.getElementById('message').innerHTML = "<p style='color:#006400;'>" + resp.status + "</p>";
         document.getElementById('message').innerHTML += "<p><strong style='color:#2e7bcf;'> App ID:</strong></p>";
         document.getElementById('message').innerHTML += "<code style='font-size:3em;'>" + resp.appid + "</code>";
-        document.getElementById('message').innerHTML += "<p>" + resp.notification + "</p>";
+
+        document.getElementById('message').innerHTML += "<p style='color:#006400;'>" + resp.reason + "</p>";
       }
       else {
         document.getElementById('appname').disabled = false;
@@ -51,6 +52,12 @@ const registerApp = () => {
         document.getElementById('owneremail').disabled = false;
         document.getElementById('purpose').disabled = false;
         document.getElementById('btnregister').hidden = false;
+
+        document.getElementById('message').innerHTML = "<p style='color:red;'>" + resp.status + "</p>";
+        document.getElementById('message').innerHTML += "<p><strong style='color:#696969;'> App ID:</strong></p>";
+        document.getElementById('message').innerHTML += "<code style='font-size:3em;color:#C0C0C0;'>(not generated)</code>";
+
+        document.getElementById('message').innerHTML += "<p style='color:red;'>" + resp.reason + "</p>";
       }
     });
 
