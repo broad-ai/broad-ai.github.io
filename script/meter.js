@@ -15,8 +15,8 @@ const fetchUsage = () => {
     }).then((response) => response.json())
       .then((metrics) => {
         Object.keys(metrics).forEach((agent) => {
-          html += "<h2>" + agent + "</h2>";
-          html += "<code>" + JSON.stringify(metrics[agent]) + "</code>";
+          html = "<h2>" + agent + "</h2>";
+          html += "<code>" + JSON.stringify(metrics[agent], null, 4) + "</code>";
           html += "<p></p>";
         });
         document.getElementById('dashboard').innerHTML = html;
