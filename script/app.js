@@ -46,6 +46,7 @@ const registerApp = () => {
           document.getElementById('message').innerHTML += "<code style='font-size:3em;'>" + resp.appid + "</code>";
 
           document.getElementById('message').innerHTML += "<p style='color:#006400;'>" + resp.reason + "</p>";
+          document.getElementById('message').innerHTML += "<p>You can monitor usage of this App ID using the following URL: <br> <a href = 'https://broad-ai.github.io/metering.html?appid=" + resp.appid + "'>https://broad-ai.github.io/metering.html?appid=" + resp.appid + "</a></p>";
         }
         else {
           document.getElementById('appname').disabled = false;
