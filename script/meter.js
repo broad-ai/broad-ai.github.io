@@ -17,11 +17,12 @@ const fetchUsage = () => {
         if (agents.length) {
           html = "";
           agents.forEach((agent) => {
-            html += "<u>Agent:</u><h2>" + agent + "</h2><u>Skills:</u>";
+            html += "<p style='margin-bottom:0;'>Agent:</p><h2>" + agent + "</h2><p style='margin-bottom:0;'>Skills:</p>";
             Object.keys(metrics[agent]).forEach((skill) => {
               html += "<code>" + skill + "</code> used <code>" + JSON.stringify(metrics[agent][skill], null, 4) + "</code> times";
+              html += "<p><p>";
             });
-            html += "<p></p>";
+            html += "<hr>";
           });
         }
         else
