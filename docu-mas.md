@@ -131,7 +131,8 @@ let broadAIConfiguration = {
   "llm": {
     "provider": "openai" | "azure-openai" | "google" | "anthropic",
     "model": "<exact model name, e.g. gpt-3.5-turbo-0125>",
-    "apikey": "<API Key>"
+    "apikey": "<API Key>",
+    "other":{}  // provide hyperscaler-specific details (see below for more details) 
   },
 
   /* ** (4) Conversation History Configuration ** */
@@ -165,9 +166,13 @@ let broadAIConfiguration = {
 
   **`provider`**:
 
+  Possible values: `openai` | `azure-openai` | `google` | `anthropic`.
+
   BroadAI currently supports following LLM providers:
 
   - [OpenAI](https://platform.openai.com/docs/models){:target="_blank"}
+
+  - [Microsoft Azure OpenAI](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models){:target="_blank"}
 
   - [Google](https://ai.google.dev/gemini-api/docs/models/gemini){:target="_blank"} *(models within v1beta release)*
 
@@ -177,7 +182,24 @@ let broadAIConfiguration = {
   
   **`model`**:
 
-  Please refer to the appropriate model provider documentation to identify the model you want to choose. All models are generally supported. You must provide the exact model name, such as, `gpt-3.5-turbo-0125` or `gemini-1.5-flash`. 
+  Please refer to the appropriate model provider documentation to identify the model you want to choose. All models are generally supported. You must provide the exact model name, such as, `gpt-3.5-turbo-0125` or `gemini-1.5-flash`.
+
+<div markdown="1" style="margin-top:20px; margin-bottom:40px; padding:1.25em 1em 1.25em 1em; font-weight:400; box-shadow:2px 2px 4px 1px #999; border:1px solid;">
+
+  *`azure-openai` specific details*
+
+  If your model provider is Microsoft Azure, select this provider. In this case, the value of the `model` parameter must be the `deployment-id` from Azure OpenAI deployment. In addition, provide following parameters within `other` property:
+
+  ```json
+  { ...,
+    "other": {
+      "azure-resource-name": "?",
+      "azure-api-version": "?"  // default: '2024-02-01'
+    }, ...
+  }
+  ``` 
+
+</div>
     
   **`apikey`**: 
    
