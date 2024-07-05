@@ -15,6 +15,8 @@ title: BroadAI Agent Store
 
 --- -->
 
+---
+
 <div class="container">
   <input type="text" id="searchBox" placeholder="Search...">
 </div>
