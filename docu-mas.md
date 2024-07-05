@@ -191,11 +191,13 @@ let broadAIConfiguration = {
   If your model provider is Microsoft Azure, select this provider. In this case, the value of the `model` parameter must be the `deployment-id` from Azure OpenAI deployment. In addition, provide following parameters within `other` property:
 
   ```json
-  { ...,
+  { 
+    "model": "?", // point to azure openai deployment-id, default: 'default'
+    ...,
     "other": {
       "azure-resource-name": "?",
       "azure-api-version": "?"  // default: '2024-02-01'
-    }, ...
+    }
   }
   ``` 
 
