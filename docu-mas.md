@@ -125,16 +125,11 @@ let broadAIConfiguration = {
     "pov": "first-person |or| third-person",  // -- default: first-person
   },
 
-  /* ** (3) LLM API Configuration ** */
-  "llmapi": {
-    "method": "GET" | "POST" | "PUT" | "DELETE",
-    "url": "<https://>",          // -- API endpoint to access the model
-    "headers": {                  // -- API headers
-      // e.g. "Content-Type": "application/json"
-      // e.g. "Authorization": "Bearer <token>"
-    },
-    "data_template": { ... },               // -- refer further details below
-    "response_template": "<dot.notation>"   // -- refer further details below
+  /* ** (3) LLM Configuration ** */
+  "llm": {
+    "provider": "openai" | "google" | "anthropic",
+    "model": "<exact model name, e.g. gpt-3.5-turbo-0125>",
+    "apikey": "<API Key>"
   },
 
   /* ** (4) Conversation History Configuration ** */
@@ -163,170 +158,39 @@ let broadAIConfiguration = {
 
   What point-of-view (pov) should BroadAI use when responding? Choose between 'first-person' or 'third-person'.
 
-### llmapi
 
+### llm
 
-  **`url`**:
+  **`provider`**:
 
-  This refers to the API endpoint where LLM is accessible.
+  BroadAI currently supports following LLM providers:
+
+  - [OpenAI](https://platform.openai.com/docs/models){:target="_blank"}
+
+  - [Google](https://ai.google.dev/gemini-api/docs/models/gemini){:target="_blank"} *(models within v1beta release)*
+
+  - [Anthropic](https://docs.anthropic.com/en/docs/about-claude/models){:target="_blank"}
+
+  - *additional model providers will be added [upon request](mailto:broad.agents.ai@gmail.com?subject=Re%20new%20model%20support%20requested)*
   
-  **`method`**:
+  **`model`**:
 
-  This refers to the HTTP method used by the LLM API endpoint. 
-
-<div markdown="1" style="margin-top:20px; margin-bottom:40px; padding:1.25em 1em 1.25em 1em; font-weight:400; box-shadow:2px 2px 4px 1px #999; border:1px solid;">
-
-  **Example for OpenAI**:
+  Please refer to the appropriate model provider documentation to identify the model you want to choose. All models are generally supported. You must provide the exact model name, such as, `gpt-3.5-turbo-0125` or `gemini-1.5-flash`. 
     
-  *Refer [OpenAI API Reference](https://platform.openai.com/docs/api-reference/making-requests){:target="_blank"}*
-    
-  ```javascript
-    "method": "POST",
-    "url": "https://api.openai.com/v1/chat/completions",
-    "headers": {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer <OPENAI_KEY>"
-    }
-  ```
-    
-  **Example for Google Gemini**:
-    
-  *Refer [Google Gemini API Reference](https://ai.google.dev/api/rest/v1/models/generateContent#http-request){:target="_blank"}*
-    
-  ```javascript
-    "method": "POST",
-    "url": "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=<GOOGLEAI_KEY>",
-    "headers": {
-      "Content-Type": "application/json"
-    }
-  ```
-
-  **Example for Anthropic**:
-    
-  *Refer [Anthropic API Reference](https://docs.anthropic.com/en/api/messages){:target="_blank"}*
-    
-  ```javascript
-    "method": "POST",
-    "url": "https://api.anthropic.com/v1/messages",
-    "headers": {
-      "Content-Type": "application/json",
-      "anthropic-version": "2023-06-01",
-      "x-api-key": "<CLAUDEAI_KEY>"
-    }
-  ```
-
-</div>
-
-  **`data_template`**:
-  
-  This refers to the data that must be sent to the API endpoint as per the LLM provider's documentation. This is where the prompt gets supplied dynamically for the LLM to respond. Hence the configuration must specify prompt elements (`system`, `context`, `task`, and `format`) them as placeholders.
-
-  *Note:* The Prompt elements - `system`, `context`, `task`, and `format` - must be passed in here within double-brace-brackets - \{\{ and \}\}. Escaping the brace-brackets is not required. Read more about this in the [Create BroadAI Agents](/docu-agentic.html) section since this background information is greatly relevant when you are developing an agent.
-  
-  e.g. **\{\{system\}\}** is valid, while **\\\{\\\{system\\\}\\\}** is invalid. 
-  
-  *Also note:* There must be no spaces between the brace-brackets and prompt part. 
-  
-  e.g. **\{\{system\}\}** is valid, while **\{\{ system \}\}** is invalid.
-
-<div markdown="1" style="margin-top:20px; margin-bottom:40px; padding:1.25em 1em 1.25em 1em; font-weight:400; box-shadow:2px 2px 4px 1px #999; border:1px solid;">
- 
-  **Example for OpenAI**:
-    
-  *Refer [OpenAI API Reference](https://platform.openai.com/docs/api-reference/making-requests){:target="_blank"}*
-    
-  ```javascript
-  let data_template = {
-    "model": "gpt-3.5-turbo-0125",
-    "messages": [{
-      "role": "system",
-      "content": [{
-        "type": "text",
-        "text": "\{\{system\}\} \{\{context\}\}"
-      }]
-    },
-    {
-      "role": "user",
-      "content": [{
-        "type": "text",
-        "text": "\{\{task\}\} \{\{format\}\}"
-      }]
-    }]
-  }
-  ```
-    
-  **Example for Google Gemini**:
-    
-  *Refer [Google Gemini API Reference](https://ai.google.dev/api/rest/v1/models/generateContent#request-body){:target="_blank"}*
-    
-  ```javascript
-  let data_template ={
-   "contents": [{
-    "role": "user",
-    "parts": [{
-      "text": "\{\{system\}\} \{\{context\}\}",
-     },
-     {
-      "text": "\{\{task\}\} \{\{format\}\}",
-     }]
-   }]
-  }
-  ```
-
-  **Example for Anthropic**:
-    
-  *Refer [Anthropic API Reference](https://docs.anthropic.com/en/api/messages){:target="_blank"}*
-    
-  ```javascript
-  let data_template = {
-    "model": "claude-3-haiku-20240307",
-    "messages": [{
-      "role": "user",
-      "content": [{
-          "type": "text", 
-          "text": "\{\{system\}\} \{\{context\}\}"
-        },
-        {
-          "type": "text", 
-          "text": "\{\{task\}\} \{\{format\}\}"
-        }]
-    }]
-  }
-  ```
-
-</div>
-    
-  **`response_template`**: 
+  **`apikey`**: 
    
-  This refers to the <u>dot-path-notation</u> of where LLM's response will be provided. 
+  Please provide a valid API Key or authorization keys to successfully connect to LLM provider and leverage the specified model. <span style="color:red;"> Please follow secure practices to store API Keys and do not provide them in plain text.</span> You must appropriately access the value and provide that here. 
 
-<div markdown="1" style="margin-top:20px; margin-bottom:40px; padding:1.25em 1em 1.25em 1em; font-weight:400; box-shadow:2px 2px 4px 1px #999; border:1px solid;">
+  For example, if keys are stored in environment variables, access the environment variable and provide the value to this property.
 
-  **Example for OpenAI**:
-    
-  *Refer [OpenAI API Reference](https://platform.openai.com/docs/api-reference/making-requests){:target="_blank"}*
-    
-  ```javascript
-    "response_template": "choices.0.message.content"
-  ```
-    
-  **Example for Google Gemini**:
-    
-  *Refer [Google Gemini API Reference](https://ai.google.dev/api/rest/v1/GenerateContentResponse)*
-    
-  ```javascript
-    "response_template": "candidates.0.content.parts.0.text"
+  ```json
+    { ..., "apikey": process.env['LLM_API_KEY], ... }
   ```
 
-  **Example for Anthropic**:
-    
-  *Refer [Anthropic API Reference](https://docs.anthropic.com/en/api/messages)*
-    
-  ```javascript
-    "response_template": "content.0.text"
-  ```
+### Custom LLM API Endpoint
 
-</div>
+If you need to access a custom LLM endpoint, such as, privately hosted LLM, please refer this [detailed documentation](/docu-customllm.html).  
+
 
 ### history
 
