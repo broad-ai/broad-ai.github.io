@@ -166,7 +166,7 @@ let broadAIConfiguration = {
 
   **`provider`**:
 
-  Possible values: `openai` | `azure-openai` | `google` | `anthropic`.
+  Possible values: `openai`, `azure-openai`, `google`, `anthropic`.
 
   BroadAI currently supports following LLM providers:
 
