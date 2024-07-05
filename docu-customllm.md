@@ -11,7 +11,9 @@ title: BroadAI MAS Documentation | Custom LLM
   <a href="/demo.html" class="button" style="background-color:#20a18e;">Live Demo</a>
 </div>
 
-# Run with Custom LLM API Endpoint
+--- 
+
+# Custom LLM API Endpoint
 
 In order to run BroadAI MAS framework with custom LLM configuration, such as privately hosted LLMs, you can utilize the property `llmapi` within the BroadAIConfiguration as described below. 
 

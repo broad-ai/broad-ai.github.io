@@ -10,6 +10,8 @@ title: BroadAI MAS Documentation
   <a href="/demo.html" class="button" style="background-color:#20a18e;">Live Demo</a>
 </div>
 
+---
+
 # Create BroadAI Agents
 
 <img src="./assets/images/agentic.png" style="background:transparent;width:80%;margin-left:auto;margin-right:auto;margin:20px;">
