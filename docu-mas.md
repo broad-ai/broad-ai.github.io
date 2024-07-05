@@ -186,7 +186,7 @@ let broadAIConfiguration = {
 
 <div markdown="1" style="margin-top:20px; margin-bottom:40px; padding:1.25em 1em 1.25em 1em; font-weight:400; box-shadow:2px 2px 4px 1px #999; border:1px solid;">
 
-  *`azure-openai` specific details*
+  **`azure-openai` specific details**
 
   If your model provider is Microsoft Azure, select this provider. In this case, the value of the `model` parameter must be the `deployment-id` from Azure OpenAI deployment. In addition, provide following parameters within `other` property:
 
