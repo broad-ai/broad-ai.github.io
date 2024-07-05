@@ -129,7 +129,7 @@ let broadAIConfiguration = {
 
   /* ** (3) LLM Configuration ** */
   "llm": {
-    "provider": "openai" | "google" | "anthropic",
+    "provider": "openai" | "azure-openai" | "google" | "anthropic",
     "model": "<exact model name, e.g. gpt-3.5-turbo-0125>",
     "apikey": "<API Key>"
   },
