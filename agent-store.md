@@ -30,14 +30,14 @@ title: BroadAI Agent Store
         </div>
       {% endfor %}
       <h5>Usage:</h5>
-      <code>
+      <pre><code class="language-javascript">
         // import agent
         const {{ agent.agent-name | downcase }} = require('broadai-agents/{{ agent.package-name }}');
         // integrate with BroadAI MAS object
         const broadai = new BroadAI([ {{ agent.agent-name | downcase }}.agent, /* other agents */ ], /* BroadAIConfiguration */);
         // register agent with BroadAI MAS object
         {{ agent.agent-name | downcase }}.register(broadai.config, {{ agent.agent-config }});
-      </code>
+      </code></pre>
     </div>
   </div>
 </div>
