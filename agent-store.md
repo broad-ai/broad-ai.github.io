@@ -5,16 +5,6 @@ title: BroadAI Agent Store
 
 <img src="./assets/images/icon-rocket.png" style="height:1.5em;padding:0;margin:0;"> Interested in publishing your agent? Please [reach out to us](mailto:broad.agents.ai@gmail.com?subject=Re%20publishing%20our%20BroadAI%20Agent).
 
-<!-- # Published Agents
-
-{% for agent in site.agents %}
-
-- [{{ agent.agent-name }}](#{{ agent.agent-name | downcase }})
-
-{% endfor %}
-
---- -->
-
 ---
 
 <div class="container">
@@ -39,6 +29,15 @@ title: BroadAI Agent Store
           </ul>
         </div>
       {% endfor %}
+      <h5>Usage:</h5>
+      <code>
+        // import agent
+        const {{ agent.agent-name | downcase }} = require('broadai-agents/{{ agent.package-name }}');
+        // integrate with BroadAI MAS object
+        const broadai = new BroadAI([ {{ agent.agent-name | downcase }}.agent, /* other agents */ ], /* BroadAIConfiguration */);
+        // register agent with BroadAI MAS object
+        {{ agent.agent-name | downcase }}.register(broadai.config, {{ agent.agent-config }});
+      </code>
     </div>
   </div>
 </div>
