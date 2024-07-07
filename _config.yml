@@ -6,7 +6,7 @@ theme: jekyll-theme-architect
 # -- For App Store
 agents:
   - agent-name: "GeneralAssistant"
-    package-name: "general-assistant"
+    package-name: "GeneralAssistant"
     capability: "This is an in-built agent. You do not have to explicitly import it in your BroadAI MAS application. It performs a variety of general, everyday tasks"
     skills:
       - skill-name: "getCurrentTime"
@@ -28,7 +28,7 @@ agents:
           item_category: "string | frame a question to specify which category of items must be extracted"
     agent-config: {}
   - agent-name: "Researcher"
-    package-name: "researcher"
+    package-name: "Researcher"
     capability: "Looks up information using external information providers"
     skills:
       - skill-name: "researchTopic"
@@ -54,7 +54,7 @@ agents:
       yelp: 
         api_key: "?"
   - agent-name: "Aviator"
-    package-name: "aviator"
+    package-name: "Aviator"
     capability: "Aviator can find the status of a specific flight number or for multiple flights between two airports"
     skills:
       - skill-name: "departingFlights"
@@ -76,7 +76,7 @@ agents:
       aviationstack: 
         api_key: "?"
   - agent-name: "Weatherman"
-    package-name: "weatherman"
+    package-name: "Weatherman"
     capability: "Reports current weather conditions as well as forecast"
     skills:
       - skill-name: "currentWeather"
@@ -93,7 +93,7 @@ agents:
       openweathermap: 
         api_key: "?"
   - agent-name: "NewsReporter"
-    package-name: "newsreporter"
+    package-name: "NewsReporter"
     capability: "Report top news headlines in specific categories from specific countries"
     skills:
       - skill-name: "getHeadlines"
@@ -106,7 +106,7 @@ agents:
       newsapi: 
         api_key: "?"
   - agent-name: "FinancialAnalyst"
-    package-name: "financial-analyst"
+    package-name: "FinancialAnalyst"
     capability: "Research the company fundamentals to help analyze company's performance"
     skills:
       - skill-name: "companyProfile"
@@ -139,7 +139,7 @@ agents:
       financialmodelingprep: 
         api_key: "?"
   - agent-name: "Writer"
-    package-name: "writer"
+    package-name: "Writer"
     capability: "Writes aptly drafted communication messages for email, SMS, or social media interactions"
     skills:
       - skill-name: "composeEmail"
@@ -160,7 +160,7 @@ agents:
           original_message: "string | (optional) Provide original message for which a reply must be generated"
     agent-config: {}
   - agent-name: "CineExpert"
-    package-name: "cineexpert"
+    package-name: "CineExpert"
     capability: "An expert on Movies who knows everything from movie details, directors, actors and to some extent user reviews"
     skills:
       - skill-name: "askAnything"
