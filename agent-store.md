@@ -29,7 +29,7 @@ title: BroadAI Agent Store
           </ul>
         </div>
       {% endfor %}
-      <h5>Usage:</h5>
+      <h4>Usage:</h4>
       <pre><code class="language-javascript">
         // import agent
         const {{ agent.agent-name | downcase }} = require('broadai-agents/{{ agent.package-name }}');
