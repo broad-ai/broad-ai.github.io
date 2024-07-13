@@ -37,7 +37,7 @@ Here are some ideas to help you get a first-hand experience with Multi-Agent AI 
         <input type="button" id="btnGoChatbot" value="Go" onClick="goChatbot()">
       </div>
     </form>
-    <div style='display:block;' id="planChatbot"> <!-- .. plan .. --> </div>
+    <div class="plan" id="planChatbot"> <!-- .. plan .. --> </div>
   </div>
 
   <div class="lead">
@@ -61,7 +61,7 @@ Here are some ideas to help you get a first-hand experience with Multi-Agent AI 
         <input type="button" value="Go" onClick="goConcierge()">
       </div>
     </form>
-    <div style='display:block;' id="planConcierge"> <!-- .. plan .. --> </div>
+    <div class="plan" id="planConcierge"> <!-- .. plan .. --> </div>
   </div>
 
   <div class="lead">
@@ -85,7 +85,7 @@ Here are some ideas to help you get a first-hand experience with Multi-Agent AI 
         <input type="button" value="Go" onClick="goMovflick()">
       </div>
     </form>
-    <div style='display:block;' id="planMovflick"> <!-- .. plan .. --> </div>
+    <div class="plan" id="planMovflick"> <!-- .. plan .. --> </div>
   </div>
 
   <div class="lead">

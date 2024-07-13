@@ -149,6 +149,14 @@ dl {
   background-color: #a534f60d;
 }
 
+.mission .plan {
+  display: block;
+}
+
+.mission form {
+  display: block;
+}
+
 .mission input[type=button] {
   font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: 18px;
@@ -179,6 +187,11 @@ dl {
   font-weight: 400;
   box-shadow: 0 4px 8px 0 #999;
   background-color: #12c3e20d;
+}
+
+
+.top h3 {
+  display: block;
 }
 
 /* COMMON STYLES */
