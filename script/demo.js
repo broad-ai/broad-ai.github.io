@@ -7,13 +7,13 @@ const refreshChat = () => {
     JSON.parse(sessionStorage.getItem('conversations')).forEach((qa, i) => {
       messages += "<p style='text-align:" + ((i % 2 == 0) ? "right" : "left") + ";color:" + ((i % 2 == 0) ? "black" : "blue") + ";'>" + qa.replace('?: ', '').replace('>: ', '').replaceAll('\n', '<br>') + "</p>"
     });
-  document.getElementById('chat').innerHTML = messages;
+  document.getElementById('responseChatbot').innerHTML = messages;
 }; // refreshChat
 
 // ------ ..... ------ ..... ------ ..... ------ 
 const goChatbot = () => {
   // -- pre results formatting
-  document.getElementById('chat').innerHTML += "<p style='text-align:right;color:black;font-size:2em;'>...</p>";
+  document.getElementById('responseChatbot').innerHTML += "<p style='text-align:right;color:black;font-size:2em;'>...</p>";
   document.getElementById('btnGoChatbot').disabled = true;
   document.getElementById('chatbox').disabled = true;
 
