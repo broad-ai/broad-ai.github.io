@@ -136,35 +136,26 @@ dl {
 }
 
 .top {
-  display: block;
+  display: flex;
   padding: 0;
 }
 
 .top .mission,
 .top .lead {
-  display: inline;
-  width: 48%;
+  width: 50%;
   padding: 1.2em 1em;
   font-weight: 400;
   box-shadow: 0 4px 8px 0 #999;
 }
 
 .top .mission {
-  margin-right: 1%;
+  margin: 1%;
   background-color: #a534f60d;
 }
 
 .top .lead {
-  margin-left: 1%;
+  margin: 1%;
   background-color: #12c3e20d;
-}
-
-.mission .plan,
-.mission form,
-.mission input[type=text],
-.mission input[type=button],
-.mission textarea {
-  display: block;
 }
 
 .mission input[type=button] {
