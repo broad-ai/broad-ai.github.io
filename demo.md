@@ -22,10 +22,10 @@ Here are some ideas to help you get a first-hand experience with Multi-Agent AI 
 
 ---
 
+<h3 id="chatbot">
+  Chatbot
+</h3>
 <div class="top">
-  <h3 id="chatbot">
-    Chatbot
-  </h3>
   <div class="mission">
     <form>
       <div style="float:left;">
@@ -47,10 +47,10 @@ Here are some ideas to help you get a first-hand experience with Multi-Agent AI 
 
 ---
 
+<h3 id="concierge">
+  Concierge
+</h3>
 <div class="top">
-  <h3 id="concierge">
-    Concierge
-  </h3>
   <div class="mission">
     <form>
       <div style="float:left;">
@@ -71,10 +71,10 @@ Here are some ideas to help you get a first-hand experience with Multi-Agent AI 
 
 ---
 
+<h3 id="movflick">
+  MovFlick
+</h3>
 <div class="top">
-  <h3 id="movflick">
-    MovFlick
-  </h3>
   <div class="mission">
     <form>
       <div style="float:left;">
