@@ -29,11 +29,12 @@ Here are some ideas to help you get a first-hand experience with Multi-Agent AI 
     </h3>
     <form>
       <div style="display:inline;float:left;">
-      <!-- form elements here -->
+        <!-- form elements here -->
+        <textarea id="chatbox" rows="3" required></textarea>
       </div>
       <!--  -->
       <div style="display:inline;float:right;">
-        <input type="button" value="Go" onClick="goChatbot()">
+        <input type="button" id="btnGoChatbot" value="Go" onClick="goChatbot()">
       </div>
     </form>
     <div style='display:block;' id="planChatbot"> <!-- .. plan .. --> </div>

@@ -149,6 +149,29 @@ dl {
   background-color: #a534f60d;
 }
 
+.mission input[type=button] {
+  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
+  font-size: 18px;
+  text-align: center;
+  padding: 10px;
+  margin: 0 10px 10px 0;
+  color: #fff;
+  background-color: #2e7bcf;
+  border: none;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.mission textarea {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 0.5em 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 .top .lead {
   width: 48%;
   margin: 0 0 0 0.5%;
@@ -412,20 +435,6 @@ footer a:hover {
 
   .top {
     display: block;
-  }
-
-  .top input[type=button] {
-    font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
-    font-size: 18px;
-    text-align: center;
-    padding: 10px;
-    margin: 0 10px 10px 0;
-    color: #fff;
-    background-color: #2e7bcf;
-    border: none;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
   }
 
   .top .mission {
