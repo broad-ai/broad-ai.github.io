@@ -136,18 +136,13 @@ dl {
 }
 
 .top {
-  display: flex;
-  padding: 0;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.top h3 {
   display: block;
+  padding: 0;
 }
 
 .top .mission,
 .top .lead {
+  display: inline;
   width: 48%;
   padding: 1.2em 1em;
   font-weight: 400;
@@ -187,9 +182,10 @@ dl {
 }
 
 .mission textarea {
-  width: calc(100% - 20px);
+  width: 90%;
   padding: 10px;
-  margin: 0.5em 0;
+  margin-left: auto;
+  margin-right: auto;
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
