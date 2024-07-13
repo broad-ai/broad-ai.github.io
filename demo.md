@@ -5,54 +5,87 @@ title: BroadAI | Demonstration
 
 ---
 
-# BroadAI in Action
+# Watch BroadAI in Live Action!
 
-This is a <span style="color:#feaf4d;">LIVE</span> demonstration of an Application built using BroadAI MAS Framework. It is integrated with following agents built using BroadAI Agentic Framework. So please feel free to ask any question around these agents (or not!).
+Here are some ideas to help you get a first-hand experience with Multi-Agent AI Systems implemented using **BroadAI**'s wide capabilities.
 
-To help you get some ideas, the demo is pre-populated with some examples.
+### Examples
 
-### Agents in Action
+| **Chatbot** | **Concierge** | **MovFlick** |
+| Basic use-case | Advanced use-case | Advanced use-case |
+| A typical chatbot application using Generative AI, with a twist that it utilizes multiple agents. | Planning trips is more than just purchasing tickets. This application emulates a concierge service that will guide you with additional information around booking tickets. | Yes, this application is drawn from a typical streaming service and will help you find your pick(s) for the day. | 
+| With specific capabilities, such as, looking up weather, financial statements and stock prices of companies, etc., BroadAI will utilize appropriate agents based on the question asked. | This multi-agent system will seek help of other agents such as researcher, weather, etc. to plan your trip. Heck! it will also draft a social media message on your behalf using a trained writer agent. | This advanced use-case of BroadAI utilizes an agent that leverages Knowledge Graphs in a RAG pattern to pick recommendations. It then utilizes the writer agent from another BroadAI MAS system to write a fictional story based on the plot of the movie you pick! |
+| Multiple agents | Multiple agents | Multiple BroadAI MAS |
+| Contextual conversation | Utility application example | RAG using dynamic Knowledge Graph queries |
+| Zero-prompting | Minimal prompting | Extended prompting |
 
-| **Researcher** | **Aviator** | **Weatherman** |
-| Looks up information using external information providers. | Tells about inbound and outbound flights into or out of an airport, as well as flight status' for known flight numbers. | Reports current weather conditions as well as forecast. | 
-
-| **FinancialAnalyst** | **NewsReporter** | **Writer** |
-| Research the company fundamentals to help analyze company's performance. | Report top news headlines in specific categories from specific countries | Writes aptly drafted communication messages for email, SMS, or social media interactions |
 
 ---
 
 <div class="top">
   <div class="mission">
-  <a class="button" id="btnrandomcase" onclick="randomQ()" style="float:right;background-color:transparent;color:#2e7bcf;">
-    <img src="./assets/images/refresh-button.png" style="height:1.5em;padding:0;margin:0;"> Example
-  </a>
-  <form>
-    <h3>
-      How may I help you?
-    </h3>
-    <textarea id="notes" name="notes" rows="6" required style="width:calc(100% - 20px); padding:10px; margin:0.5em 0; border:1px solid #ddd; border-radius:4px; box-sizing:border-box;"></textarea>
-    <div style='padding:0;width:100%;margin-bottom:2em;'>
-      <div style="display:inline;float:left;">
-        <input type="checkbox" id="history" name="history" style="margin-right: 10px;">
-        <label for="history">Enable follow up</label>
-      </div>
-      <div style="display:inline;float:right;">
-        <input type="button" id="btngo" value="Go" onClick="go()" style="font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif; font-size: 18px; text-align: center; padding: 10px; margin: 0 10px 10px 0; color: #fff; background-color: #2e7bcf; border: none; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;">
-      </div>
-    </div>
-  </form>
-  <div style='display:block;' id="plan"> <!-- .. result .. --> </div>
+    <h2 id="chatbot">
+      Chatbot
+    </h2>
+    <form>
+    </form>
+    <div style='display:block;' id="planChatbot"> <!-- .. plan .. --> </div>
   </div>
 
-  <div class="lead" id="lead">
-    <div id="message"> <!-- .. result .. --> </div>
+  <div class="lead">
+    <div id="responseChatbot"> <!-- .. response .. --> </div>
   </div>
 </div>
 
 ---
 
-<!-- **NOTE**: This demo uses [Google Gemini Pro](https://deepmind.google/technologies/gemini/pro/). Results can vary based on use of other models. -->
+<div class="top">
+  <div class="mission">
+    <h2 id="concierge">
+      Chatbot
+    </h2>
+    <form>
+    </form>
+    <div style='display:block;' id="planConcierge"> <!-- .. plan .. --> </div>
+  </div>
 
-**NOTE**: This demo uses [GPT 3.5-Turbo](https://platform.openai.com/docs/models/gpt-3-5-turbo). Results can vary based on use of other models.
+  <div class="lead">
+    <div id="responseConcierge"> <!-- .. response .. --> </div>
+  </div>
+</div>
 
 ---
+
+<div class="top">
+  <div class="mission">
+    <h2 id="movflick">
+      Chatbot
+    </h2>
+    <form>
+    </form>
+    <div style='display:block;' id="planMovflick"> <!-- .. plan .. --> </div>
+  </div>
+
+  <div class="lead">
+    <div id="responseMovflick"> <!-- .. response .. --> </div>
+  </div>
+</div>
+
+---
+
+
+
+<!-- 
+
+<textarea id="notes" name="notes" rows="6" required style="width:calc(100% - 20px); padding:10px; margin:0.5em 0; border:1px solid #ddd; border-radius:4px; box-sizing:border-box;"></textarea>
+<div style='padding:0;width:100%;margin-bottom:2em;'>
+  <div style="display:inline;float:left;">
+    <input type="checkbox" id="history" name="history" style="margin-right: 10px;">
+    <label for="history">Enable follow up</label>
+  </div>
+  <div style="display:inline;float:right;">
+    <input type="button" id="btngo" value="Go" onClick="go()" style="font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif; font-size: 18px; text-align: center; padding: 10px; margin: 0 10px 10px 0; color: #fff; background-color: #2e7bcf; border: none; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;">
+  </div>
+</div>
+
+-->

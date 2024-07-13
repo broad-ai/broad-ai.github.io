@@ -190,10 +190,6 @@ tr {
   font-family: 'Helvetica Neue', Helvetica, Arial, serif;
 }
 
-// tr:nth-child(even) {
-//   background-color: #edf4f7;
-// }
-
 td {
   font-weight: 300;
   border: 1px solid #ebebeb;
@@ -219,7 +215,6 @@ td {
   padding-right: 0.5em;
   margin-left: -0.9em;
   color: #c6e6f7;
-  // content: "/";
 }
 
 #main-content h2 {
@@ -235,7 +230,6 @@ td {
 #main-content h2:before {
   padding-right: 0.5em;
   margin-left: -1.5em;
-  // content: "//";
   color: #c6e6f7;
 }
 
@@ -252,7 +246,6 @@ td {
 #main-content h3:before {
   padding-right: 0.5em;
   margin-left: -2em;
-  // content: "///";
   color: #c6e6f7;
 }
 
@@ -269,7 +262,6 @@ td {
 h4:before {
   padding-right: 0.5em;
   margin-left: -2.8em;
-  // content: "////";
   color: #c6e6f7;
 }
 
