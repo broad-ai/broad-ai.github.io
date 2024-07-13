@@ -311,7 +311,6 @@ h4:before {
 h5:before {
   padding-right: 0.5em;
   margin-left: -3.2em;
-  // content: "/////";
   color: #c6e6f7;
 }
 
@@ -327,7 +326,6 @@ h5:before {
 h6:before {
   padding-right: 0.5em;
   margin-left: -3.7em;
-  // content: "//////";
   color: #c6e6f7;
 }
 
@@ -429,10 +427,6 @@ footer a:hover {
     font-size: 30px;
   }
 
-  // #main-content {
-  //   width: 490px;
-  // }
-
   #main-content h1:before,
   #main-content h2:before,
   #main-content h3:before,
@@ -448,11 +442,9 @@ footer a:hover {
     display: block;
   }
 
-  .top .mission {
-    width: 90%;
-  }
-
+  .top .mission,
   .top .lead {
+    display: block;
     width: 90%;
   }
 
@@ -506,23 +498,10 @@ footer a:hover {
     font-size: 13px;
   }
 
-  // aside#sidebar,
   #main-content {
     float: none;
     width: 100% ! important;
   }
-
-  // aside#sidebar {
-  //   min-height: 0;
-  //   // padding: 20px 0;
-  //   margin-top: 20px;
-  //   background-image: none;
-  //   border-top: solid 1px #ddd;
-  // }
-
-  // aside#sidebar a.button {
-  //   display: none;
-  // }
 
   #main-content h1:before,
   #main-content h2:before,
@@ -539,13 +518,12 @@ footer a:hover {
     display: block;
   }
 
-  .top .mission {
+  .top .mission,
+  .top .lead {
+    display: block;
     width: 90%;
   }
 
-  .top .lead {
-    width: 90%;
-  }
 }
 
 
