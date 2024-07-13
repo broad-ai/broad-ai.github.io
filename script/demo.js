@@ -5,7 +5,7 @@ const refreshChat = () => {
   let messages = "";
   if (sessionStorage.getItem('conversations'))
     JSON.parse(sessionStorage.getItem('conversations')).forEach((qa, i) => {
-      messages += "<p style='text-align:" + ((i % 2 == 0) ? "right" : "left") + ";color:" + ((i % 2 == 0) ? "black" : "blue") + ";'>" + qa.replace('?: ', '').replace('>: ', '').replaceAll('\n', '<br>') + "</p>"
+      messages += "<p style='text-align:" + ((i % 2 == 0) ? "right" : "left") + ";color:" + ((i % 2 == 0) ? "black" : "blue") + ";'>" + qa.replace('?: ', '').replace('>: ', '').replaceAll('\n', '<br>') + "</p>";
     });
   document.getElementById('responseChatbot').innerHTML = messages;
 }; // refreshChat
@@ -139,6 +139,5 @@ const randomQ = () => {
     "I need to fly from New York to London next week for a business meeting. Can you help me find a suitable flight and check the weather forecast for both cities to plan my trip?",
     "I'm planning a vacation to Tokyo next month. Can you check the current weather forecast and suggest the best time to book my flight?"
   ];
-  document.getElementById('notes').value = randomQuestions[(Math.floor(Math.random() * randomQuestions.length))];
 }; // randomQ()
 

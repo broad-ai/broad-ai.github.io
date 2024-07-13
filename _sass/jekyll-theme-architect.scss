@@ -138,45 +138,41 @@ dl {
 .top {
   display: flex;
   padding: 0;
+  justify-content: space-between;
+  align-items: flex-start;
 }
-
 
 .top h3 {
   display: block;
 }
 
-.top .mission {
+.top .mission,
+.top .lead {
   width: 48%;
-  margin: 0 0.5% 0 0;
-  padding: 1.2em 1em 1.2em 1em;
+  padding: 1.2em 1em;
   font-weight: 400;
   box-shadow: 0 4px 8px 0 #999;
+}
+
+.top .mission {
+  margin-right: 1%;
   background-color: #a534f60d;
 }
 
 .top .lead {
-  width: 48%;
-  margin: 0 0 0 0.5%;
-  padding: 1.2em 1em 1.2em 1em;
-  font-weight: 400;
-  box-shadow: 0 4px 8px 0 #999;
+  margin-left: 1%;
   background-color: #12c3e20d;
 }
 
-.mission .plan {
-  display: block;
-}
-
-.mission form {
-  display: block;
-}
-
-.mission input[type=text] {
+.mission .plan,
+.mission form,
+.mission input[type=text],
+.mission input[type=button],
+.mission textarea {
   display: block;
 }
 
 .mission input[type=button] {
-  display: block;
   font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: 18px;
   text-align: center;
@@ -191,7 +187,6 @@ dl {
 }
 
 .mission textarea {
-  display: block;
   width: calc(100% - 20px);
   padding: 10px;
   margin: 0.5em 0;
@@ -199,6 +194,7 @@ dl {
   border-radius: 4px;
   box-sizing: border-box;
 }
+
 
 /* COMMON STYLES */
 
