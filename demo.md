@@ -24,10 +24,17 @@ Here are some ideas to help you get a first-hand experience with Multi-Agent AI 
 
 <div class="top">
   <div class="mission">
-    <h2 id="chatbot">
+    <h3 id="chatbot">
       Chatbot
-    </h2>
+    </h3>
     <form>
+      <div style="display:inline;float:left;">
+      <!-- form elements here -->
+      </div>
+      <!--  -->
+      <div style="display:inline;float:right;">
+        <input type="button" value="Go" onClick="goChatbot()">
+      </div>
     </form>
     <div style='display:block;' id="planChatbot"> <!-- .. plan .. --> </div>
   </div>
@@ -41,10 +48,17 @@ Here are some ideas to help you get a first-hand experience with Multi-Agent AI 
 
 <div class="top">
   <div class="mission">
-    <h2 id="concierge">
-      Chatbot
-    </h2>
+    <h3 id="concierge">
+      Concierge
+    </h3>
     <form>
+      <div style="display:inline;float:left;">
+      <!-- form elements here -->
+      </div>
+      <!--  -->
+      <div style="display:inline;float:right;">
+        <input type="button" value="Go" onClick="goConcierge()">
+      </div>
     </form>
     <div style='display:block;' id="planConcierge"> <!-- .. plan .. --> </div>
   </div>
@@ -58,10 +72,17 @@ Here are some ideas to help you get a first-hand experience with Multi-Agent AI 
 
 <div class="top">
   <div class="mission">
-    <h2 id="movflick">
-      Chatbot
-    </h2>
+    <h3 id="movflick">
+      MovFlick
+    </h3>
     <form>
+      <div style="display:inline;float:left;">
+      <!-- form elements here -->
+      </div>
+      <!--  -->
+      <div style="display:inline;float:right;">
+        <input type="button" value="Go" onClick="goMovflick()">
+      </div>
     </form>
     <div style='display:block;' id="planMovflick"> <!-- .. plan .. --> </div>
   </div>
