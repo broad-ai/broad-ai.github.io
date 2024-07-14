@@ -20,13 +20,13 @@ description: Drawn from a typical streaming service, this app will help you find
               </div>
               <div class="card">
                 <img id="pickPoster"
-                  src="https://cdn.pixabay.com/photo/2015/02/12/11/54/popcorn-633627_1280.png"
+                  src="assets/popcorn-576599_1280.png"
                   class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="row card-text">
                     <span class="col-6 text-left">
                       <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKUcjZf0JSxm1mHIGsYM9vL_VxH0gDxHggyA&s" style="height:1em;"
+                        src="assets/star.png" style="height:1em;"
                         alt="IMDB rating">
                       <span id="pickRating">0.0</span>
                     </span>

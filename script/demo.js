@@ -219,7 +219,7 @@ Use exactly the following JSON structure to generate your final response (note t
                   <p class="row card-text">
                     <span class="col-6 text-left">
                       <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKUcjZf0JSxm1mHIGsYM9vL_VxH0gDxHggyA&s" style="height:1em;"
+                        src="assets/star.png" style="height:1em;"
                         alt="IMDB rating">
                       <span>`+ recommendation.imdb_rating + `</span>
                     </span>
@@ -250,7 +250,7 @@ Use exactly the following JSON structure to generate your final response (note t
                   <p class="row card-text">
                     <span class="col-6 text-left">
                       <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKUcjZf0JSxm1mHIGsYM9vL_VxH0gDxHggyA&s" style="height:1em;"
+                        src="assets/star.png" style="height:1em;"
                         alt="IMDB rating">
                       <span>-</span>
                     </span>
