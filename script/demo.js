@@ -104,7 +104,6 @@ const goConcierge = () => {
 
   document.getElementById('plan').innerHTML = "<srtong>Task:</srtong><p>" + document.getElementById('task').value.replaceAll('\n', '<br>') + "</p>";
 
-  // --- ask
   fetch(broadAIapiEndpoint + '/go', {
     method: "POST",
     headers: {
@@ -142,6 +141,237 @@ const goConcierge = () => {
       document.getElementById('btnGoConcierge').disabled = false;
     });
 }; // goConcierge
+
+// ------ ..... ------ ..... ------ ..... ------ 
+const findSimilarMovies = (movie) => {
+  document.getElementById('btnFindSimilarMovies').disabled = true;
+  document.getElementById('btnWriteNewStory').disabled = true;
+
+  const currentMovie = movie || {
+    "title": document.getElementById('pickTitle').innerHTML,
+    "director": document.getElementById('pickDirector').innerHTML,
+    "year": document.getElementById('pickYear').innerHTML,
+    "imdb_rating": document.getElementById('pickRating').innerHTML,
+    "plot": document.getElementById('plot').innerHTML
+  };
+  document.getElementById('story').innerHTML = "<p style='color:#999;margin-bottom:20px;'>Okay!</p><h5 style='color:#C39BD3;'>Please hang on!</h5><p style='color:#6C3483;'>Finding other movies like " + currentMovie.title + " which you might also enjoy...</p>";
+  // --- ask
+  fetch('/movflick', {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "question": `I was recommended the following movie to watch:
+--- 
+`+ JSON.stringify(currentMovie) + `
+---
+
+### Selection criteria
+Find similar movies sorted in descending order by rating that are:
+- based on similar genre, 
+- from same director, 
+- played by commmon actors.
+Limit to only 9 movies. You must retreive the fields specified in the formatting requirements below.
+
+# Format
+Use exactly the following JSON structure to generate your final response (note this is stringified JSON format):
+~~~json
+{
+"html_tag": "p",
+"text": "[ { \"title\": \"Toy Story\", \"director\": \"John Lasseter\", \"year\": \"1995\", \"imdb_rating\": 8.3, \"poster\": \"https://image.tmdb.org/t/p/w440_and_h660_face/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg\", \"plot\": \"A cowboy doll is profoundly threatened ...\" }, ...]"
+}
+~~~
+`,
+    })
+  })
+    .then((resp) => resp.json())
+    .then((data) => {
+      let recommendations = [];
+      let details = {
+        "title": "...", "director": "...", "year": "...", "imdb_rating": "...", "poster": "https://media.istockphoto.com/id/1301379569/vector/golden-podium-with-laurel-glowing-gold-stage-with-glitter-and-light-fog-on-dark-background.jpg?s=2048x2048&w=is&k=20&c=dZDkezuCTX6xOnuLC17aK_3p1lE18UHLyURecwMClRY=", "plot": "..."
+      };
+      data.response.response.forEach((element) => {
+        if (element.text.indexOf('[') >= 0 && element.text.indexOf(']') > 0) {
+          r = JSON.parse(element.text.substring(element.text.indexOf('['), element.text.lastIndexOf(']') + 1)) || [];
+          r.forEach((rr) => recommendations.push(rr));
+        }
+      });
+      // -- showing results
+      document.getElementById('btnFindSimilarMovies').disabled = false;
+      document.getElementById('btnWriteNewStory').disabled = false;
+      let html = `
+          <div class="row">`;
+      if (recommendations.length) {
+        recommendations.forEach((recommendation) => {
+          html += `
+            <div class="col-12 col-md-4">
+              <div class="row mt-5">
+                <div class="col-12 text-center">
+                  <button class="btn btn-success" type="button" onclick="writeSimilarStory('`+ encodeURI(recommendation.title) + `', '` + encodeURI(recommendation.director) + `', '` + recommendation.year + `', '` + recommendation.imdb_rating + `', '` + encodeURI(recommendation.poster) + `', '` + encodeURI(recommendation.plot) + `')">Create
+                    Story</button>
+                  <p><small>inspired by this plot</small></p>
+                </div>
+              </div>
+              <div class="card">
+                <img src="`+ recommendation.poster + `" onerror="this.src='https://media.istockphoto.com/id/1301379569/vector/golden-podium-with-laurel-glowing-gold-stage-with-glitter-and-light-fog-on-dark-background.jpg?s=2048x2048&w=is&k=20&c=dZDkezuCTX6xOnuLC17aK_3p1lE18UHLyURecwMClRY='" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="row card-text">
+                    <span class="col-6 text-left">
+                      <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKUcjZf0JSxm1mHIGsYM9vL_VxH0gDxHggyA&s"
+                        alt="IMDB rating">
+                      <span>`+ recommendation.imdb_rating + `</span>
+                    </span>
+                    <span class="col-6 text-right">
+                      <span>`+ recommendation.year + `</span>
+                    </span>
+                  </p>
+                  <h2 class="card-title">
+                    <span>`+ recommendation.title + `</span>
+                  </h2>
+                  <h6 class="card-title">
+                    <strong>Directed by: </strong>
+                    <span>`+ recommendation.director + `</span>
+                  </h6>
+                </div>
+                <div class="px-3 py-3"><h5>Plot:</h5>`+ recommendation.plot + `</div>
+              </div>
+            </div>
+            `;
+        });
+      }
+      else {
+        html += `
+            <div class="col-12 col-md-4">
+              <div class="card">
+                <img src="https://media.istockphoto.com/id/2052734068/vector/popcorn-box-and-white-background.jpg?s=2048x2048&w=is&k=20&c=ibJQIJSeTH09x0z1KTjoDP8PB8Rd_OuE18Hp1h3MddU=" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="row card-text">
+                    <span class="col-6 text-left">
+                      <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKUcjZf0JSxm1mHIGsYM9vL_VxH0gDxHggyA&s"
+                        alt="IMDB rating">
+                      <span>-</span>
+                    </span>
+                    <span class="col-6 text-right">
+                      <span>----</span>
+                    </span>
+                  </p>
+                  <h2 class="card-title">
+                    <span>Nada!</span>
+                  </h2>
+                  <h6 class="card-title">
+                    <strong>Directed by: </strong>
+                    <span>-</span>
+                  </h6>
+                </div>
+                <div class="px-3"><h5>Plot:</h5>Hmmm! No further recommendations.</div>
+              </div>
+            </div>
+            `;
+      }
+      html += `
+          </div>`;
+      document.getElementById('story').innerHTML = html;
+    });
+}; // findSimilarMovies
+
+// ------ ..... ------ ..... ------ ..... ------ 
+const pickRandomMovie = () => {
+  document.getElementById('story').innerHTML = "<h5 style='color:#C39BD3;'>Welcome!</h5><p style='color:#6C3483;'>Picking a movie might like...</p>";
+  document.getElementById('btnFindSimilarMovies').disabled = true;
+  document.getElementById('btnWriteNewStory').disabled = true;
+  // --- ask
+  fetch('/movflick', {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "question": `Recommend one random movie (note there are 9125 choices).
+You must retreive the fields specified in the formatting requirements below.
+
+# Format
+Use exactly the following JSON structure to generate your final response (note this is stringified JSON format):
+~~~json
+{
+"html_tag": "p",
+"text": "{ \"title\": \"Toy Story\", \"director\": \"John Lasseter\", \"year\": \"1995\", \"imdb_rating\": 8.3, \"poster\": \"https://image.tmdb.org/t/p/w440_and_h660_face/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg\", \"plot\": \"A cowboy doll is profoundly threatened ...\" }"
+}
+~~~
+`,
+    })
+  })
+    .then((resp) => resp.json())
+    .then((data) => {
+      let details = {
+        "title": "...", "director": "...", "year": "...", "imdb_rating": "...", "poster": "https://media.istockphoto.com/id/1301379569/vector/golden-podium-with-laurel-glowing-gold-stage-with-glitter-and-light-fog-on-dark-background.jpg?s=2048x2048&w=is&k=20&c=dZDkezuCTX6xOnuLC17aK_3p1lE18UHLyURecwMClRY=", "plot": "..."
+      };
+      data.response.response.forEach((element) => {
+        if (element.text.indexOf('{') >= 0 && element.text.indexOf('}') > 0) {
+          details = JSON.parse(element.text.substring(element.text.indexOf('{'), element.text.lastIndexOf('}') + 1));
+        }
+      });
+      // -- showing results
+      document.getElementById('btnFindSimilarMovies').disabled = false;
+      document.getElementById('btnWriteNewStory').disabled = false;
+      document.getElementById('plot').innerHTML = "<h5>Plot:</h5>" + details.plot;
+      document.getElementById('pickTitle').innerHTML = details.title;
+      document.getElementById('pickDirector').innerHTML = details.director;
+      document.getElementById('pickPoster').setAttribute('src', details.poster);
+      document.getElementById('pickPoster').setAttribute('onerror', 'this.src="https://media.istockphoto.com/id/1301379569/vector/golden-podium-with-laurel-glowing-gold-stage-with-glitter-and-light-fog-on-dark-background.jpg?s=2048x2048&w=is&k=20&c=dZDkezuCTX6xOnuLC17aK_3p1lE18UHLyURecwMClRY="');
+      document.getElementById('pickRating').innerHTML = details.imdb_rating;
+      document.getElementById('pickYear').innerHTML = details.year;
+
+      findSimilarMovies(details);
+
+    });
+}; // pickRandomMovie
+
+// ------ ..... ------ ..... ------ ..... ------ 
+const writeSimilarStory = (title, director, year, imdb_rating, poster, plot) => {
+  document.getElementById('btnFindSimilarMovies').disabled = true;
+  document.getElementById('btnWriteNewStory').disabled = true;
+  document.getElementById('story').innerHTML = "...";
+  const currentPlot = decodeURI(plot) || document.getElementById('plot').innerHTML;
+  // -- show cover of selected movie
+  if (title && director && year && imdb_rating && poster && plot) {
+    document.getElementById('plot').innerHTML = "<h5>Plot:</h5>" + decodeURI(plot);
+    document.getElementById('pickTitle').innerHTML = decodeURI(title);
+    document.getElementById('pickDirector').innerHTML = decodeURI(director);
+    document.getElementById('pickPoster').setAttribute('src', decodeURI(poster));
+    document.getElementById('pickPoster').setAttribute('onerror', 'this.src="https://media.istockphoto.com/id/1301379569/vector/golden-podium-with-laurel-glowing-gold-stage-with-glitter-and-light-fog-on-dark-background.jpg?s=2048x2048&w=is&k=20&c=dZDkezuCTX6xOnuLC17aK_3p1lE18UHLyURecwMClRY="');
+    document.getElementById('pickRating').innerHTML = imdb_rating;
+    document.getElementById('pickYear').innerHTML = year;
+  }
+  // --- ask
+  fetch('/ask', {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "question": `Take a look at this plot below:
+~~~
+`+ currentPlot + `
+~~~
+Using merely the inspiration from this plot, write a new fictional story in about 500 words. Give enough details to explain the story well.
+`,
+    })
+  })
+    .then((resp) => resp.json())
+    .then((data) => {
+      let html = "<div style='color:#999;font-family:courier;'>";
+      data.response.response.forEach((element) => {
+        html += "<" + element.html_tag + ">" + element.text + "</" + element.html_tag + ">";
+      });
+      html += "</div>";
+      document.getElementById('btnFindSimilarMovies').disabled = false;
+      document.getElementById('btnWriteNewStory').disabled = false;
+      document.getElementById('story').innerHTML = html;
+    });
+};
 
 // ------ ..... ------ ..... ------ ..... ------ 
 const randomQ = () => {
