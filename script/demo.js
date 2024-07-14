@@ -39,8 +39,8 @@ const goChatbot = () => {
       let html = "<div>";
       data.plan.plan.forEach((step, s) => {
         html += "<p>Step <strong>" + (s + 1) + "</strong>: " + step.objective + "</p>";
-        html += "<p>Agent.Skill: <strong>" + step.agent + "." + step.skill.name + "</strong></p>";
-        html += "<p><strong>Result</strong>: <pre>" + JSON.stringify(step, null, 2) + "</pre></p>";
+        html += "<p>Agent.Skill: <strong>" + step.agent + "." + step.skill ? step.skill.name : 'none' + "</strong></p>";
+        html += "<p><strong>Result</strong>: <pre>" + step.result ? JSON.stringify(step.result, null, 2) : 'none' + "</pre></p>";
       });
       html += "</div>";
       document.getElementById('logs').innerHTML += html;
@@ -145,8 +145,8 @@ const goConcierge = () => {
       let html = "<div>";
       data.plan.plan.forEach((step, s) => {
         html += "<p>Step <strong>" + (s + 1) + "</strong>: " + step.objective + "</p>";
-        html += "<p>Agent.Skill: <strong>" + step.agent + "." + step.skill.name + "</strong></p>";
-        html += "<p><strong>Result</strong>: <pre>" + JSON.stringify(step, null, 2) + "</pre></p>";
+        html += "<p>Agent.Skill: <strong>" + step.agent + "." + step.skill ? step.skill.name : 'none' + "</strong></p>";
+        html += "<p><strong>Result</strong>: <pre>" + step.result ? JSON.stringify(step.result, null, 2) : 'none' + "</pre></p>";
       });
       html += "</div>";
       document.getElementById('logs').innerHTML += html;

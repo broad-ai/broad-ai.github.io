@@ -19,9 +19,7 @@ description: BroadAI will utilize appropriate agents based on the question asked
     </div>
   </div>
   <div class="row">
-    <div class="col-12 px-3 py-3" id="logs">
-      <!-- logs here -->
-    </div>
+    <div class="col-12 px-3 py-3" id="logs" style="font-weight:100;color:#999;"></div>
   </div>
 </div>
 

@@ -53,7 +53,7 @@ description: This multi-agent system will seek help of other agents such as rese
       <div id="results"><!-- Results --></div>
     </div>
     <div class="col-12 col-md-4">
-      <div id="logs" style="font-weight:100;color:#999;"><!-- Plan --></div>
+      <div id="logs" style="font-weight:100;color:#999;"></div>
     </div>
   </div>
 </div>
