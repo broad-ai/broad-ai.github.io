@@ -162,25 +162,20 @@ const findSimilarMovies = (movie) => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      "notes": `I was recommended the following movie to watch:
+      "notes": `## Movie Recommended
 --- 
 `+ JSON.stringify(currentMovie) + `
 ---
+## Specific Task
+First, find similar movies based on similar genre, director, etc. Limit to a total of 6 movie recommendations. For each movie, you must extract the movie title, director, year of release, IMDB rating, poster image url, and the movie plot.
 
-### Selection criteria
-Find similar movies sorted in descending order by rating that are:
-- based on similar genre, 
-- from same director, 
-- played by commmon actors.
-Limit to only 9 movies. You must retreive the fields specified in the formatting requirements below.
-
-# Format
-Prepare exactly the following stringified JSON structure to generate your final response:
+## Response Format
+Then, using all the movies listed in the context, generate your final response within 'text' field in stringified JSON structure shown below. It is critical that response is only in this specified format:
 ~~~json
-{
-"html_tag": "p",
-"text": "[ { \"title\": \"Toy Story\", \"director\": \"John Lasseter\", \"year\": \"1995\", \"imdb_rating\": 8.3, \"poster\": \"https://image.tmdb.org/t/p/w440_and_h460_face/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg\", \"plot\": \"A cowboy doll is profoundly threatened ...\" }, ...]"
-}
+[{
+  "html_tag": "p",
+  "text": (stringified JSON) "[{ \"title\": <movie title>, \"director\": <director name>, \"year\": <year>, \"imdb_rating\": <imdbRating>, \"poster\": <poster url>, \"plot\": <movie plot> }, ...]"
+}]
 ~~~
 `,
     })
@@ -289,16 +284,18 @@ const pickRandomMovie = () => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      "notes": `Recommend one random movie (note there are 9125 choices).
-You must retreive the fields specified in the formatting requirements below.
+      "notes": `## Specific Task
+First, find one random movie from the 9125 choices.
+Hint (Cypher): 'MATCH (m:Movie)<-[:DIRECTED]-(d:Director) RETURN m.title, d.name ORDER BY rand() LIMIT 1'
+You must extract movie title, director, year of release, IMDB rating, poster image url, and the movie plot, as specified below.
 
-# Format
-Prepare exactly the following stringified JSON structure to generate your final response:
+## Response Format
+Then, using all the movies listed in the context, generate your final response within 'text' field in stringified JSON structure shown below. It is critical that response is only in this specified format:
 ~~~json
-{
-"html_tag": "p",
-"text": "{ \"title\": \"Toy Story\", \"director\": \"John Lasseter\", \"year\": \"1995\", \"imdb_rating\": 8.3, \"poster\": \"https://image.tmdb.org/t/p/w440_and_h460_face/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg\", \"plot\": \"A cowboy doll is profoundly threatened ...\" }"
-}
+[{
+  "html_tag": "p",
+  "text": (stringified JSON) "{ \"title\": <movie title>, \"director\": <director name>, \"year\": <year>, \"imdb_rating\": <imdbRating>, \"poster\": <poster url>, \"plot\": <movie plot> }"
+}]
 ~~~
 `,
     })
@@ -371,7 +368,7 @@ Using merely the inspiration from this plot, write a new fictional story in abou
       document.getElementById('btnWriteNewStory').disabled = false;
       document.getElementById('story').innerHTML = html;
     });
-};
+}; // writeSimilarStory
 
 // ------ ..... ------ ..... ------ ..... ------ 
 const randomQ = () => {
