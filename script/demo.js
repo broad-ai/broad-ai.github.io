@@ -320,7 +320,9 @@ Use exactly the following JSON structure to generate your final response (note t
       document.getElementById('pickTitle').innerHTML = details.title;
       document.getElementById('pickDirector').innerHTML = details.director;
       document.getElementById('pickPoster').setAttribute('src', details.poster);
-      document.getElementById('pickPoster').setAttribute('onerror', 'this.src="https://media.istockphoto.com/id/1301379569/vector/golden-podium-with-laurel-glowing-gold-stage-with-glitter-and-light-fog-on-dark-background.jpg?s=2048x2048&w=is&k=20&c=dZDkezuCTX6xOnuLC17aK_3p1lE18UHLyURecwMClRY="');
+      setTimeout(() => {
+        document.getElementById('pickPoster').setAttribute('onerror', 'this.src="https://media.istockphoto.com/id/1301379569/vector/golden-podium-with-laurel-glowing-gold-stage-with-glitter-and-light-fog-on-dark-background.jpg?s=2048x2048&w=is&k=20&c=dZDkezuCTX6xOnuLC17aK_3p1lE18UHLyURecwMClRY="');
+      }, 1000);
       document.getElementById('pickRating').innerHTML = details.imdb_rating;
       document.getElementById('pickYear').innerHTML = details.year;
 
