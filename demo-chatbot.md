@@ -5,7 +5,7 @@ title: BroadAI Demonstration | Chatbot
 
 <div class="container mt-5 px-5">
   <div class="row">
-    <div class="col-12 px-3 py-3" id="responseChatbot" style="height: calc(80vh - 100px);border: 1px solid #ccc;margin-bottom: 2em;overflow-y: scroll;">
+    <div class="col-12 px-3 py-3" id="responseChatbot" style="height: calc(50vh - 100px);border: 1px solid #ccc;margin-bottom: 2em;overflow-y: scroll;">
       <!-- chat messages here -->
     </div>
   </div>

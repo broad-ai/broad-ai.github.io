@@ -6,7 +6,7 @@ title: BroadAI Demonstration | Concierge
 <div class="container mt-5">
   <div class="row">
     <div class="col-12 col-md-5 py-2">
-      <h6>Trip type:</h6>
+      <h4>Trip type:</h4>
       <div class="d-flex px-2">
         <div class="form-check mx-2">
           <input class="form-check-input" type="radio" name="tripType" id="radioBusiness" onchange="updateTask()">
@@ -39,7 +39,7 @@ title: BroadAI Demonstration | Concierge
         rows="3" onkeyup="updateTask()"></textarea>
     </div>
     <div class="col-12 col-md-1 py-3">
-      <button class="btn btn-lg btn-primary" id="btnAsk" onclick="goConcierge()">Submit</button>
+      <button class="btn btn-lg btn-primary" id="btnGoConcierge" onclick="goConcierge()">Submit</button>
     </div>
   </div>
   <div class="row">

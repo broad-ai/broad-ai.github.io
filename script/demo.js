@@ -100,7 +100,7 @@ const updateTask = () => {
 const goConcierge = () => {
   // -- pre results formatting
   document.getElementById('results').innerHTML = "<p style='color:black;font-size:2em;'>...</p>";
-  document.getElementById('btnAsk').disabled = true;
+  document.getElementById('btnGoConcierge').disabled = true;
 
   document.getElementById('plan').innerHTML = "<h5>Task:</h5><p>" + document.getElementById('task').value.replaceAll('\n', '<br>') + "</p>";
 
@@ -139,7 +139,7 @@ const goConcierge = () => {
       document.getElementById('plan').innerHTML += "</ol>";
 
       // -- post results formatting
-      document.getElementById('btnAsk').disabled = false;
+      document.getElementById('btnGoConcierge').disabled = false;
     });
 }; // goConcierge
 
