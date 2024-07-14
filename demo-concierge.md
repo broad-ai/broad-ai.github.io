@@ -52,7 +52,7 @@ title: BroadAI Demonstration | Concierge
       <div id="results"><!-- Results --></div>
     </div>
     <div class="col-12 col-md-4">
-      <div id="plan"><!-- Plan --></div>
+      <div id="plan" style="font-weight:100;color:#eee;"><!-- Plan --></div>
     </div>
   </div>
 </div>
