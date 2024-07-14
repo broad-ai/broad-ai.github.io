@@ -119,7 +119,7 @@ const goConcierge = () => {
   document.getElementById('results').innerHTML = "<p style='color:black;font-size:2em;'>...</p>";
   document.getElementById('btnGoConcierge').disabled = true;
 
-  document.getElementById('plan').innerHTML = "<srtong>Task:</srtong><p>" + document.getElementById('task').value.replaceAll('\n', '<br>') + "</p>";
+  document.getElementById('logs').innerHTML = "<h4>Task:</h4><p>" + document.getElementById('task').value.replaceAll('\n', '<br>') + "</p>";
 
   fetch(broadAIapiEndpoint + '/go', {
     method: "POST",
@@ -146,7 +146,7 @@ const goConcierge = () => {
       data.plan.plan.forEach((step, s) => {
         html += "<p>Step <strong>" + (s + 1) + "</strong>: " + step.objective + "</p>";
         html += "<p>Agent.Skill: <strong>" + step.agent + "." + step.skill.name + "</strong></p>";
-        html += "<p><strong>Result</strong>: <pre>" + JSON.stringify(step.result, null, 2) + "</pre></p>";
+        html += "<p><strong>Result</strong>: <pre>" + JSON.stringify(step, null, 2) + "</pre></p>";
       });
       html += "</div>";
       document.getElementById('logs').innerHTML += html;
