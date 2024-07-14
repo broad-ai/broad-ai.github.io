@@ -245,7 +245,7 @@ Use exactly the following JSON structure to generate your final response (note t
         html += `
             <div class="col-12 col-md-4">
               <div class="card">
-                <img src="https://cdn.pixabay.com/photo/2024/01/25/17/39/ai-generated-8532273_1280.jpg" class="card-img-top" alt="...">
+                <img src="`+ ['https://cdn.pixabay.com/photo/2015/10/04/23/04/popcorn-972047_1280.png', 'https://cdn.pixabay.com/photo/2012/04/13/21/17/ticket-33657_1280.png', 'https://cdn.pixabay.com/photo/2015/08/20/21/13/popcorn-898154_1280.png', 'https://cdn.pixabay.com/photo/2014/12/22/00/01/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)] + `" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="row card-text">
                     <span class="col-6 text-left">
@@ -259,14 +259,14 @@ Use exactly the following JSON structure to generate your final response (note t
                     </span>
                   </p>
                   <h2 class="card-title">
-                    <span>Nada!</span>
+                    <span>Nothing else here!</span>
                   </h2>
                   <h4 class="card-title">
                     <strong>Directed by: </strong>
                     <span>-</span>
                   </h4>
                 </div>
-                <div class="px-3"><h4>Plot:</h4>Hmmm! No further recommendations.</div>
+                <div class="px-3"><h4>Plot:</h4><p>No further recommendations.</p></div>
               </div>
             </div>
             `;
@@ -320,7 +320,7 @@ Use exactly the following JSON structure to generate your final response (note t
       document.getElementById('pickTitle').innerHTML = details.title;
       document.getElementById('pickDirector').innerHTML = details.director;
       document.getElementById('pickPoster').setAttribute('src', details.poster);
-      document.getElementById('pickPoster').setAttribute('onerror', 'https://cdn.pixabay.com/photo/2015/10/04/23/04/popcorn-972047_1280.png');
+      document.getElementById('pickPoster').setAttribute('onerror', ['https://cdn.pixabay.com/photo/2015/10/04/23/04/popcorn-972047_1280.png', 'https://cdn.pixabay.com/photo/2012/04/13/21/17/ticket-33657_1280.png', 'https://cdn.pixabay.com/photo/2015/08/20/21/13/popcorn-898154_1280.png', 'https://cdn.pixabay.com/photo/2014/12/22/00/01/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)]);
       document.getElementById('pickRating').innerHTML = details.imdb_rating;
       document.getElementById('pickYear').innerHTML = details.year;
 
