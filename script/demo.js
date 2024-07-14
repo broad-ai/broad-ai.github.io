@@ -189,7 +189,7 @@ Use exactly the following JSON structure to generate your final response (note t
     .then((data) => {
       let recommendations = [];
       let details = {
-        "title": "...", "director": "...", "year": "...", "imdb_rating": "...", "poster": "https://media.istockphoto.com/id/1301379569/vector/golden-podium-with-laurel-glowing-gold-stage-with-glitter-and-light-fog-on-dark-background.jpg?s=2048x2048&w=is&k=20&c=dZDkezuCTX6xOnuLC17aK_3p1lE18UHLyURecwMClRY=", "plot": "..."
+        "title": "...", "director": "...", "year": "...", "imdb_rating": "...", "poster": ['assets/popcorn-972047_1280.png', 'assets/ticket-33657_1280.png', 'assets/popcorn-898154_1280.png', 'assets/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)], "plot": "..."
       };
       data.response.response.forEach((element) => {
         if (element.text.indexOf('[') >= 0 && element.text.indexOf(']') > 0) {
@@ -306,7 +306,7 @@ Use exactly the following JSON structure to generate your final response (note t
     .then((resp) => resp.json())
     .then((data) => {
       let details = {
-        "title": "...", "director": "...", "year": "...", "imdb_rating": "...", "poster": "https://media.istockphoto.com/id/1301379569/vector/golden-podium-with-laurel-glowing-gold-stage-with-glitter-and-light-fog-on-dark-background.jpg?s=2048x2048&w=is&k=20&c=dZDkezuCTX6xOnuLC17aK_3p1lE18UHLyURecwMClRY=", "plot": "..."
+        "title": "...", "director": "...", "year": "...", "imdb_rating": "...", "poster": ['assets/popcorn-972047_1280.png', 'assets/ticket-33657_1280.png', 'assets/popcorn-898154_1280.png', 'assets/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)], "plot": "..."
       };
       data.response.response.forEach((element) => {
         if (element.text.indexOf('{') >= 0 && element.text.indexOf('}') > 0) {
