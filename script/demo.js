@@ -214,7 +214,7 @@ Use exactly the following JSON structure to generate your final response (note t
                 </div>
               </div>
               <div class="card">
-                <img src="`+ recommendation.poster + `" class="card-img-top" alt="...">
+                <img src="`+ recommendation.poster + `" onerror="` + ['https://cdn.pixabay.com/photo/2015/10/04/23/04/popcorn-972047_1280.png', 'https://cdn.pixabay.com/photo/2012/04/13/21/17/ticket-33657_1280.png', 'https://cdn.pixabay.com/photo/2015/08/20/21/13/popcorn-898154_1280.png'][Math.floor(Math.random() * 3)] + `" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="row card-text">
                     <span class="col-6 text-left">
@@ -245,7 +245,7 @@ Use exactly the following JSON structure to generate your final response (note t
         html += `
             <div class="col-12 col-md-4">
               <div class="card">
-                <img src="https://media.istockphoto.com/id/2052734068/vector/popcorn-box-and-white-background.jpg?s=2048x2048&w=is&k=20&c=ibJQIJSeTH09x0z1KTjoDP8PB8Rd_OuE18Hp1h3MddU=" class="card-img-top" alt="...">
+                <img src="https://cdn.pixabay.com/photo/2024/01/25/17/39/ai-generated-8532273_1280.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="row card-text">
                     <span class="col-6 text-left">
@@ -320,6 +320,7 @@ Use exactly the following JSON structure to generate your final response (note t
       document.getElementById('pickTitle').innerHTML = details.title;
       document.getElementById('pickDirector').innerHTML = details.director;
       document.getElementById('pickPoster').setAttribute('src', details.poster);
+      document.getElementById('pickPoster').setAttribute('onerror', 'https://cdn.pixabay.com/photo/2015/10/04/23/04/popcorn-972047_1280.png');
       document.getElementById('pickRating').innerHTML = details.imdb_rating;
       document.getElementById('pickYear').innerHTML = details.year;
 

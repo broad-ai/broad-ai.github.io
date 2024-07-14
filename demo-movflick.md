@@ -20,7 +20,7 @@ description: Drawn from a typical streaming service, this app will help you find
               </div>
               <div class="card">
                 <img id="pickPoster"
-                  src="https://media.istockphoto.com/id/2052734068/vector/popcorn-box-and-white-background.jpg?s=2048x2048&w=is&k=20&c=ibJQIJSeTH09x0z1KTjoDP8PB8Rd_OuE18Hp1h3MddU="
+                  src="https://cdn.pixabay.com/photo/2015/02/12/11/54/popcorn-633627_1280.png"
                   class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="row card-text">
