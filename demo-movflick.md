@@ -60,5 +60,3 @@ description: Drawn from a typical streaming service, this app will help you find
       </div>
     </div>
   </div>
-
----
