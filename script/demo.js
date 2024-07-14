@@ -319,7 +319,7 @@ Prepare exactly the following stringified JSON structure to generate your final 
       document.getElementById('plot').innerHTML = "<h4>Plot:</h4>" + details.plot;
       document.getElementById('pickTitle').innerHTML = details.title;
       document.getElementById('pickDirector').innerHTML = details.director;
-      document.getElementById('pickPoster').setAttribute('src', details.poster);
+      document.getElementById('pickPoster').setAttribute('src', details.poster.indexOf('http') >= 0 ? details.poster : ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)]);
       document.getElementById('pickRating').innerHTML = details.imdb_rating;
       document.getElementById('pickYear').innerHTML = details.year;
 
