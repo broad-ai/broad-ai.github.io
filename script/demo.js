@@ -175,7 +175,7 @@ Find similar movies sorted in descending order by rating that are:
 Limit to only 9 movies. You must retreive the fields specified in the formatting requirements below.
 
 # Format
-Use exactly the following JSON structure to generate your final response (note this is stringified JSON format):
+Prepare exactly the following stringified JSON structure to generate your final response:
 ~~~json
 {
 "html_tag": "p",
@@ -293,7 +293,7 @@ const pickRandomMovie = () => {
 You must retreive the fields specified in the formatting requirements below.
 
 # Format
-Use exactly the following JSON structure to generate your final response (note this is stringified JSON format):
+Prepare exactly the following stringified JSON structure to generate your final response:
 ~~~json
 {
 "html_tag": "p",
