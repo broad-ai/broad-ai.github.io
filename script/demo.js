@@ -162,7 +162,7 @@ const findSimilarMovies = (movie) => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      "question": `I was recommended the following movie to watch:
+      "notes": `I was recommended the following movie to watch:
 --- 
 `+ JSON.stringify(currentMovie) + `
 ---
@@ -289,7 +289,7 @@ const pickRandomMovie = () => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      "question": `Recommend one random movie (note there are 9125 choices).
+      "notes": `Recommend one random movie (note there are 9125 choices).
 You must retreive the fields specified in the formatting requirements below.
 
 # Format

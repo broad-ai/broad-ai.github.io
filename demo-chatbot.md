@@ -1,5 +1,5 @@
 ---
-layout: demo
+layout: demo-standard
 title: BroadAI Demonstration | Chatbot
 description: BroadAI will utilize appropriate agents based on the question asked.
 ---

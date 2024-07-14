@@ -1,5 +1,5 @@
 ---
-layout: demo
+layout: demo-standard
 title: BroadAI Demonstration | Concierge
 description: This multi-agent system will seek help of other agents such as researcher, weather, etc. to plan your trip.
 ---
