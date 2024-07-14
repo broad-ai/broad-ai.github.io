@@ -45,11 +45,11 @@ const goChatbot = () => {
 // ------ ..... ------ ..... ------ ..... ------ 
 const updateTask = () => {
   if (document.getElementById('radioBusiness').checked) {
-    document.getElementById('instructions').innerHTML = "<h6>Please provide any additional details so I can help you with this trip.</h6>";
+    document.getElementById('instructions').innerHTML = "<h4>Please provide any additional details so I can help you with this trip.</h4>";
     document.getElementById('notes').setAttribute('placeholder', `e.g. I will be meeting the CEO of XYZ to discuss our strategic alliance.`);
   }
   if (document.getElementById('radioPersonal').checked) {
-    document.getElementById('instructions').innerHTML = "<h6>What would you like to do on this personal trip?</h6>";
+    document.getElementById('instructions').innerHTML = "<h4>What would you like to do on this personal trip?</h4>";
     document.getElementById('notes').setAttribute('placeholder', `e.g. I'd like to visit popular attractions, go to popular restaurants and enjoy local cuisine.`);
   }
   let task = [];
@@ -102,7 +102,7 @@ const goConcierge = () => {
   document.getElementById('results').innerHTML = "<p style='color:black;font-size:2em;'>...</p>";
   document.getElementById('btnGoConcierge').disabled = true;
 
-  document.getElementById('plan').innerHTML = "<h5>Task:</h5><p>" + document.getElementById('task').value.replaceAll('\n', '<br>') + "</p>";
+  document.getElementById('plan').innerHTML = "<h4>Task:</h4><p>" + document.getElementById('task').value.replaceAll('\n', '<br>') + "</p>";
 
   // --- ask
   fetch('/go', {
