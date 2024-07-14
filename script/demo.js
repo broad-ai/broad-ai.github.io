@@ -105,7 +105,7 @@ const goConcierge = () => {
   document.getElementById('plan').innerHTML = "<h4>Task:</h4><p>" + document.getElementById('task').value.replaceAll('\n', '<br>') + "</p>";
 
   // --- ask
-  fetch('/go', {
+  fetch(broadAIapiEndpoint + '/go', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
