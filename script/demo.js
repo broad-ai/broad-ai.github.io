@@ -214,7 +214,7 @@ Use exactly the following JSON structure to generate your final response (note t
                 </div>
               </div>
               <div class="card">
-                <img src="`+ recommendation.poster + `" onerror="this.src='https://media.istockphoto.com/id/1301379569/vector/golden-podium-with-laurel-glowing-gold-stage-with-glitter-and-light-fog-on-dark-background.jpg?s=2048x2048&w=is&k=20&c=dZDkezuCTX6xOnuLC17aK_3p1lE18UHLyURecwMClRY='" class="card-img-top" alt="...">
+                <img src="`+ recommendation.poster + `" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="row card-text">
                     <span class="col-6 text-left">
@@ -320,9 +320,6 @@ Use exactly the following JSON structure to generate your final response (note t
       document.getElementById('pickTitle').innerHTML = details.title;
       document.getElementById('pickDirector').innerHTML = details.director;
       document.getElementById('pickPoster').setAttribute('src', details.poster);
-      setTimeout(() => {
-        document.getElementById('pickPoster').setAttribute('onerror', 'this.src="https://media.istockphoto.com/id/1301379569/vector/golden-podium-with-laurel-glowing-gold-stage-with-glitter-and-light-fog-on-dark-background.jpg?s=2048x2048&w=is&k=20&c=dZDkezuCTX6xOnuLC17aK_3p1lE18UHLyURecwMClRY="');
-      }, 1000);
       document.getElementById('pickRating').innerHTML = details.imdb_rating;
       document.getElementById('pickYear').innerHTML = details.year;
 
@@ -343,7 +340,6 @@ const writeSimilarStory = (title, director, year, imdb_rating, poster, plot) => 
     document.getElementById('pickTitle').innerHTML = decodeURI(title);
     document.getElementById('pickDirector').innerHTML = decodeURI(director);
     document.getElementById('pickPoster').setAttribute('src', decodeURI(poster));
-    document.getElementById('pickPoster').setAttribute('onerror', 'this.src="https://media.istockphoto.com/id/1301379569/vector/golden-podium-with-laurel-glowing-gold-stage-with-glitter-and-light-fog-on-dark-background.jpg?s=2048x2048&w=is&k=20&c=dZDkezuCTX6xOnuLC17aK_3p1lE18UHLyURecwMClRY="');
     document.getElementById('pickRating').innerHTML = imdb_rating;
     document.getElementById('pickYear').innerHTML = year;
   }
