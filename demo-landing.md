@@ -11,9 +11,10 @@ Here are some ideas to help you get a first-hand experience with Multi-Agent AI 
 
 ### Examples
 
-| [Chatbot >](/demo-chatbot.html) | [Concierge >](/demo-concierge.html) | [MovFlick >](/demo-movflick.html) |
+| Chatbot | Concierge | MovFlick |
 |---|---|---|
 | Basic use-case | Advanced use-case | Advanced use-case |
+| [Try Demo >](/demo-chatbot.html) | [Try Demo >](/demo-concierge.html) | [Try Demo >](/demo-movflick.html) |
 | A typical chatbot application using Generative AI, with a twist that it utilizes multiple agents. | Planning trips is more than just purchasing tickets. This application emulates a concierge service that will guide you with additional information around booking tickets. | Yes, this application is drawn from a typical streaming service and will help you find your pick(s) for the day. | 
 | With specific capabilities, such as, looking up weather, financial statements and stock prices of companies, etc., BroadAI will utilize appropriate agents based on the question asked. | This multi-agent system will seek help of other agents such as researcher, weather, etc. to plan your trip. Heck! it will also draft a social media message on your behalf using a trained writer agent. | This advanced use-case of BroadAI utilizes an agent that leverages Knowledge Graphs in a RAG pattern to pick recommendations. It then utilizes the writer agent from another BroadAI MAS system to write a fictional story based on the plot of the movie you pick! |
 | Multiple agents | Multiple agents | Multiple BroadAI MAS |
