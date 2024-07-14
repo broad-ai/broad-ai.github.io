@@ -20,24 +20,3 @@ title: BroadAI Demonstration | Chatbot
 </div>
 
 ---
-
-<!--
-<h3 id="movflick">
-  MovFlick
-</h3>
-<div class="top">
-  <div class="mission">
-    <form>
-      <div style="float:left;">
-      </div>
-      <div style="float:right;">
-        <input type="button" value="Go" onClick="goMovflick()">
-      </div>
-    </form>
-    <div class="plan" id="planMovflick">  </div>
-  </div>
-  <div class="lead">
-    <div id="responseMovflick"> </div>
-  </div>
-</div>
--->
