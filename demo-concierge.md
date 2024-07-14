@@ -1,6 +1,7 @@
 ---
 layout: demo
 title: BroadAI Demonstration | Concierge
+description: This multi-agent system will seek help of other agents such as researcher, weather, etc. to plan your trip.
 ---
 
 <div class="container mt-5">
@@ -52,7 +53,7 @@ title: BroadAI Demonstration | Concierge
       <div id="results"><!-- Results --></div>
     </div>
     <div class="col-12 col-md-4">
-      <div id="plan" style="font-weight:100;color:#eee;"><!-- Plan --></div>
+      <div id="plan" style="font-weight:100;color:#999;"><!-- Plan --></div>
     </div>
   </div>
 </div>
