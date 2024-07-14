@@ -7,7 +7,7 @@ title: BroadAI MAS Documentation
   <a href="/" class="button">Home</a>
   <a href="/docu-mas.html" class="button" style="background-color:#a534f6;">Build MAS</a>
   <a href="/agent-store.html" class="button" style="background-color:#feaf4d;">Agent Store</a>
-  <a href="/demo.html" class="button" style="background-color:#20a18e;">Live Demo</a>
+  <a href="/demo-landing.html" class="button" style="background-color:#20a18e;">Live Demo</a>
 </div>
 
 ---
