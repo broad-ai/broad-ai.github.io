@@ -154,7 +154,7 @@ const findSimilarMovies = (movie) => {
     "imdb_rating": document.getElementById('pickRating').innerHTML,
     "plot": document.getElementById('plot').innerHTML
   };
-  document.getElementById('story').innerHTML = "<p style='color:#999;margin-bottom:20px;'>Okay!</p><h5 style='color:#C39BD3;'>Please hang on!</h5><p style='color:#6C3483;'>Finding other movies like " + currentMovie.title + " which you might also enjoy...</p>";
+  document.getElementById('story').innerHTML = "<p style='color:#999;margin-bottom:20px;'>Okay!</p><h4 style='color:#C39BD3;'>Please hang on!</h4><p style='color:#6C3483;'>Finding other movies like " + currentMovie.title + " which you might also enjoy...</p>";
   // --- ask
   fetch(broadAIapiEndpoint + '/movflick', {
     method: "POST",
@@ -235,7 +235,7 @@ Use exactly the following JSON structure to generate your final response (note t
                     <span>`+ recommendation.director + `</span>
                   </h4>
                 </div>
-                <div class="px-3 py-3"><h5>Plot:</h5>`+ recommendation.plot + `</div>
+                <div class="px-3 py-3"><h4>Plot:</h4>`+ recommendation.plot + `</div>
               </div>
             </div>
             `;
@@ -266,7 +266,7 @@ Use exactly the following JSON structure to generate your final response (note t
                     <span>-</span>
                   </h4>
                 </div>
-                <div class="px-3"><h5>Plot:</h5>Hmmm! No further recommendations.</div>
+                <div class="px-3"><h4>Plot:</h4>Hmmm! No further recommendations.</div>
               </div>
             </div>
             `;
@@ -279,7 +279,7 @@ Use exactly the following JSON structure to generate your final response (note t
 
 // ------ ..... ------ ..... ------ ..... ------ 
 const pickRandomMovie = () => {
-  document.getElementById('story').innerHTML = "<h5 style='color:#C39BD3;'>Welcome!</h5><p style='color:#6C3483;'>Picking a movie might like...</p>";
+  document.getElementById('story').innerHTML = "<h4 style='color:#C39BD3;'>Welcome!</h4><p style='color:#6C3483;'>Picking a movie might like...</p>";
   document.getElementById('btnFindSimilarMovies').disabled = true;
   document.getElementById('btnWriteNewStory').disabled = true;
   // --- ask
@@ -316,7 +316,7 @@ Use exactly the following JSON structure to generate your final response (note t
       // -- showing results
       document.getElementById('btnFindSimilarMovies').disabled = false;
       document.getElementById('btnWriteNewStory').disabled = false;
-      document.getElementById('plot').innerHTML = "<h5>Plot:</h5>" + details.plot;
+      document.getElementById('plot').innerHTML = "<h4>Plot:</h4>" + details.plot;
       document.getElementById('pickTitle').innerHTML = details.title;
       document.getElementById('pickDirector').innerHTML = details.director;
       document.getElementById('pickPoster').setAttribute('src', details.poster);
@@ -337,7 +337,7 @@ const writeSimilarStory = (title, director, year, imdb_rating, poster, plot) => 
   document.getElementById('story').innerHTML = "<h4>Thinking of a story based on the plot:</h4> <p>" + currentPlot + "</p><h3>...</h3>";
   // -- show cover of selected movie
   if (title && director && year && imdb_rating && poster && plot) {
-    document.getElementById('plot').innerHTML = "<h5>Plot:</h5>" + decodeURI(plot);
+    document.getElementById('plot').innerHTML = "<h4>Plot:</h4>" + decodeURI(plot);
     document.getElementById('pickTitle').innerHTML = decodeURI(title);
     document.getElementById('pickDirector').innerHTML = decodeURI(director);
     document.getElementById('pickPoster').setAttribute('src', decodeURI(poster));
