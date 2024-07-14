@@ -214,7 +214,7 @@ Prepare exactly the following stringified JSON structure to generate your final 
                 </div>
               </div>
               <div class="card">
-                <img src="`+ recommendation.poster.indexOf('http') >= 0 ? recommendation.poster : ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)] + `" class="card-img-top" alt="...">
+                <img src="`+ recommendation.poster + `" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="row card-text">
                     <span class="col-6 text-left">
@@ -319,7 +319,7 @@ Prepare exactly the following stringified JSON structure to generate your final 
       document.getElementById('plot').innerHTML = "<h4>Plot:</h4>" + details.plot;
       document.getElementById('pickTitle').innerHTML = details.title;
       document.getElementById('pickDirector').innerHTML = details.director;
-      document.getElementById('pickPoster').setAttribute('src', details.poster.indexOf('http') >= 0 ? details.poster : ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)]);
+      document.getElementById('pickPoster').setAttribute('src', details.poster);
       document.getElementById('pickRating').innerHTML = details.imdb_rating;
       document.getElementById('pickYear').innerHTML = details.year;
 
