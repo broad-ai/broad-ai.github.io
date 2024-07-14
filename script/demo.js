@@ -105,7 +105,7 @@ const goConcierge = () => {
   document.getElementById('plan').innerHTML = "<h5>Task:</h5><p>" + document.getElementById('task').value.replaceAll('\n', '<br>') + "</p>";
 
   // --- ask
-  fetch('/ask', {
+  fetch('/go', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
