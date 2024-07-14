@@ -18,5 +18,10 @@ description: BroadAI will utilize appropriate agents based on the question asked
       <button class="btn btn-lg btn-primary" id="btnGoChatbot" onclick="goChatbot()">Send</button>
     </div>
   </div>
+  <div class="row">
+    <div class="col-12 px-3 py-3" id="logsChatbot">
+      <!-- logs here -->
+    </div>
+  </div>
 </div>
 

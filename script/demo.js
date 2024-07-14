@@ -34,6 +34,9 @@ const goChatbot = () => {
       sessionStorage.setItem('conversations', JSON.stringify(data.response.conversation));
       refreshChat();
 
+      document.getElementById('logsChatbot').innerHTML = "<h4>Plan:</h4><pre>" + JSON.stringify(data.plan, null, 2) + "</pre>";
+      document.getElementById('logsChatbot').innerHTML += "<h4>Response:</h4><pre>" + JSON.stringify(data.response, null, 2) + "</pre>";
+
       // -- post results formatting
       document.getElementById('btnGoChatbot').disabled = false;
       document.getElementById('chatbox').disabled = false;
