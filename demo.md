@@ -1,5 +1,5 @@
 ---
-layout: demo
+layout: demo_landing
 title: BroadAI | Demonstration
 ---
 
@@ -19,58 +19,9 @@ Here are some ideas to help you get a first-hand experience with Multi-Agent AI 
 | Contextual conversation | Utility application example | RAG using dynamic Knowledge Graph queries |
 | Zero-prompting | Minimal prompting | Extended prompting |
 
-
 ---
 
-<h3 id="chatbot">
-  Chatbot
-</h3>
-<div class="top">
-  <div class="mission">
-    <form>
-      <div style="float:left;">
-        <!-- form elements here -->
-        <textarea id="chatbox" rows="3" required></textarea>
-      </div>
-      <!--  -->
-      <div style="float:right;">
-        <input type="button" id="btnGoChatbot" value="Go" onClick="goChatbot()">
-      </div>
-    </form>
-    <div class="plan" id="planChatbot"> <!-- .. plan .. --> </div>
-  </div>
-
-  <div class="lead">
-    <div id="responseChatbot"> <!-- .. response .. --> </div>
-  </div>
-</div>
-
----
-
-<h3 id="concierge">
-  Concierge
-</h3>
-<div class="top">
-  <div class="mission">
-    <form>
-      <div style="float:left;">
-      <!-- form elements here -->
-      </div>
-      <!--  -->
-      <div style="float:right;">
-        <input type="button" value="Go" onClick="goConcierge()">
-      </div>
-    </form>
-    <div class="plan" id="planConcierge"> <!-- .. plan .. --> </div>
-  </div>
-
-  <div class="lead">
-    <div id="responseConcierge"> <!-- .. response .. --> </div>
-  </div>
-</div>
-
----
-
+<!--
 <h3 id="movflick">
   MovFlick
 </h3>
@@ -78,36 +29,15 @@ Here are some ideas to help you get a first-hand experience with Multi-Agent AI 
   <div class="mission">
     <form>
       <div style="float:left;">
-      <!-- form elements here -->
       </div>
-      <!--  -->
       <div style="float:right;">
         <input type="button" value="Go" onClick="goMovflick()">
       </div>
     </form>
-    <div class="plan" id="planMovflick"> <!-- .. plan .. --> </div>
+    <div class="plan" id="planMovflick">  </div>
   </div>
-
   <div class="lead">
-    <div id="responseMovflick"> <!-- .. response .. --> </div>
+    <div id="responseMovflick"> </div>
   </div>
 </div>
-
----
-
-
-
-<!-- 
-
-<textarea id="notes" name="notes" rows="6" required style="width:calc(100% - 20px); padding:10px; margin:0.5em 0; border:1px solid #ddd; border-radius:4px; box-sizing:border-box;"></textarea>
-<div style='padding:0;width:100%;margin-bottom:2em;'>
-  <div style="float:left;">
-    <input type="checkbox" id="history" name="history" style="margin-right: 10px;">
-    <label for="history">Enable follow up</label>
-  </div>
-  <div style="float:right;">
-    <input type="button" id="btngo" value="Go" onClick="go()" style="font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif; font-size: 18px; text-align: center; padding: 10px; margin: 0 10px 10px 0; color: #fff; background-color: #2e7bcf; border: none; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;">
-  </div>
-</div>
-
 -->
