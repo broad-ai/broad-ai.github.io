@@ -1,13 +1,10 @@
 ---
-layout: demo
+layout: demo-movflick
 title: BroadAI Demonstration | MovFlick
 description: Drawn from a typical streaming service, this app will help you find your pick(s) for the day and even create your own plot!
 ---
 
 <div class="container mt-5">
-    <div class="my-3">
-      <button class="btn btn-info" type="button" id="btnPickRandomMovie" onclick="pickRandomMovie()">Recommend</button>
-    </div>
     <div class="row">
       <!-- Random Pick -->
       <div class="col-12 col-md-3">

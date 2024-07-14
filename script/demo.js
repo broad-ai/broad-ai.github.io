@@ -156,7 +156,7 @@ const findSimilarMovies = (movie) => {
   };
   document.getElementById('story').innerHTML = "<p style='color:#999;margin-bottom:20px;'>Okay!</p><h5 style='color:#C39BD3;'>Please hang on!</h5><p style='color:#6C3483;'>Finding other movies like " + currentMovie.title + " which you might also enjoy...</p>";
   // --- ask
-  fetch('/movflick', {
+  fetch(broadAIapiEndpoint + '/movflick', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -283,7 +283,7 @@ const pickRandomMovie = () => {
   document.getElementById('btnFindSimilarMovies').disabled = true;
   document.getElementById('btnWriteNewStory').disabled = true;
   // --- ask
-  fetch('/movflick', {
+  fetch(broadAIapiEndpoint + '/movflick', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -346,7 +346,7 @@ const writeSimilarStory = (title, director, year, imdb_rating, poster, plot) => 
     document.getElementById('pickYear').innerHTML = year;
   }
   // --- ask
-  fetch('/ask', {
+  fetch(broadAIapiEndpoint + '/go', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
