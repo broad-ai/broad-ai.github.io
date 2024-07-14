@@ -37,10 +37,10 @@ description: Drawn from a typical streaming service, this app will help you find
                   <h2 class="card-title">
                     <span id="pickTitle">Loading...</span>
                   </h2>
-                  <h6 class="card-title">
+                  <h4 class="card-title">
                     <strong>Directed by: </strong>
                     <span id="pickDirector">...</span>
-                  </h6>
+                  </h4>
                 </div>
                 <div class="px-3 py-3" id="plot"><!-- movie plot here --></div>
               </div>

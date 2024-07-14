@@ -179,7 +179,7 @@ Use exactly the following JSON structure to generate your final response (note t
 ~~~json
 {
 "html_tag": "p",
-"text": "[ { \"title\": \"Toy Story\", \"director\": \"John Lasseter\", \"year\": \"1995\", \"imdb_rating\": 8.3, \"poster\": \"https://image.tmdb.org/t/p/w440_and_h660_face/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg\", \"plot\": \"A cowboy doll is profoundly threatened ...\" }, ...]"
+"text": "[ { \"title\": \"Toy Story\", \"director\": \"John Lasseter\", \"year\": \"1995\", \"imdb_rating\": 8.3, \"poster\": \"https://image.tmdb.org/t/p/w440_and_h460_face/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg\", \"plot\": \"A cowboy doll is profoundly threatened ...\" }, ...]"
 }
 ~~~
 `,
@@ -230,10 +230,10 @@ Use exactly the following JSON structure to generate your final response (note t
                   <h2 class="card-title">
                     <span>`+ recommendation.title + `</span>
                   </h2>
-                  <h6 class="card-title">
+                  <h4 class="card-title">
                     <strong>Directed by: </strong>
                     <span>`+ recommendation.director + `</span>
-                  </h6>
+                  </h4>
                 </div>
                 <div class="px-3 py-3"><h5>Plot:</h5>`+ recommendation.plot + `</div>
               </div>
@@ -261,10 +261,10 @@ Use exactly the following JSON structure to generate your final response (note t
                   <h2 class="card-title">
                     <span>Nada!</span>
                   </h2>
-                  <h6 class="card-title">
+                  <h4 class="card-title">
                     <strong>Directed by: </strong>
                     <span>-</span>
-                  </h6>
+                  </h4>
                 </div>
                 <div class="px-3"><h5>Plot:</h5>Hmmm! No further recommendations.</div>
               </div>
@@ -297,7 +297,7 @@ Use exactly the following JSON structure to generate your final response (note t
 ~~~json
 {
 "html_tag": "p",
-"text": "{ \"title\": \"Toy Story\", \"director\": \"John Lasseter\", \"year\": \"1995\", \"imdb_rating\": 8.3, \"poster\": \"https://image.tmdb.org/t/p/w440_and_h660_face/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg\", \"plot\": \"A cowboy doll is profoundly threatened ...\" }"
+"text": "{ \"title\": \"Toy Story\", \"director\": \"John Lasseter\", \"year\": \"1995\", \"imdb_rating\": 8.3, \"poster\": \"https://image.tmdb.org/t/p/w440_and_h460_face/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg\", \"plot\": \"A cowboy doll is profoundly threatened ...\" }"
 }
 ~~~
 `,
@@ -331,10 +331,10 @@ Use exactly the following JSON structure to generate your final response (note t
 
 // ------ ..... ------ ..... ------ ..... ------ 
 const writeSimilarStory = (title, director, year, imdb_rating, poster, plot) => {
+  const currentPlot = decodeURI(plot) || document.getElementById('plot').innerHTML;
   document.getElementById('btnFindSimilarMovies').disabled = true;
   document.getElementById('btnWriteNewStory').disabled = true;
-  document.getElementById('story').innerHTML = "...";
-  const currentPlot = decodeURI(plot) || document.getElementById('plot').innerHTML;
+  document.getElementById('story').innerHTML = "<h4>Thinking of a story based on the plot:</h4> <p>" + currentPlot + "</p><h3>...</h3>";
   // -- show cover of selected movie
   if (title && director && year && imdb_rating && poster && plot) {
     document.getElementById('plot').innerHTML = "<h5>Plot:</h5>" + decodeURI(plot);
