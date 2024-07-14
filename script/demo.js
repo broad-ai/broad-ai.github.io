@@ -40,7 +40,7 @@ const goChatbot = () => {
       data.plan.plan.forEach((step, s) => {
         html += "<p>Step <strong>" + (s + 1) + "</strong>: " + step.objective + "</p>";
         html += "<p>Agent.Skill: <strong>" + step.agent + "." + step.skill.name + "</strong></p>";
-        html += "<p><strong>Result</strong>: <pre>" + JSON.stringify(step.result, null, 2) + "</pre></p>";
+        html += "<p><strong>Result</strong>: <pre>" + JSON.stringify(step, null, 2) + "</pre></p>";
       });
       html += "</div>";
       document.getElementById('logs').innerHTML += html;
