@@ -214,7 +214,7 @@ Use exactly the following JSON structure to generate your final response (note t
                 </div>
               </div>
               <div class="card">
-                <img src="`+ recommendation.poster + `" onerror="` + ['https://cdn.pixabay.com/photo/2015/10/04/23/04/popcorn-972047_1280.png', 'https://cdn.pixabay.com/photo/2012/04/13/21/17/ticket-33657_1280.png', 'https://cdn.pixabay.com/photo/2015/08/20/21/13/popcorn-898154_1280.png'][Math.floor(Math.random() * 3)] + `" class="card-img-top" alt="...">
+                <img src="`+ recommendation.poster + `" onerror="` + ['https://cdn.pixabay.com/photo/2015/10/04/23/04/popcorn-972047_1280.png', 'https://cdn.pixabay.com/photo/2012/04/13/21/17/ticket-33657_1280.png', 'https://cdn.pixabay.com/photo/2015/08/20/21/13/popcorn-898154_1280.png', 'https://cdn.pixabay.com/photo/2014/12/22/00/01/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)] + `" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="row card-text">
                     <span class="col-6 text-left">
