@@ -11,7 +11,7 @@ Here are some ideas to help you get a first-hand experience with Multi-Agent AI 
 
 ### Examples
 
-| [Chatbot](/demo-chatbot.html) | [Concierge](/demo-concierge.html) | [MovFlick](/demo-movflick.html) |
+| [Chatbot >](/demo-chatbot.html) | [Concierge >](/demo-concierge.html) | [MovFlick >](/demo-movflick.html) |
 |---|---|---|
 | Basic use-case | Advanced use-case | Advanced use-case |
 | A typical chatbot application using Generative AI, with a twist that it utilizes multiple agents. | Planning trips is more than just purchasing tickets. This application emulates a concierge service that will guide you with additional information around booking tickets. | Yes, this application is drawn from a typical streaming service and will help you find your pick(s) for the day. | 
