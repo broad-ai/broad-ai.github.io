@@ -26,7 +26,7 @@ description: Drawn from a typical streaming service, this app will help you find
                   <p class="row card-text">
                     <span class="col-6 text-left">
                       <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKUcjZf0JSxm1mHIGsYM9vL_VxH0gDxHggyA&s"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKUcjZf0JSxm1mHIGsYM9vL_VxH0gDxHggyA&s" style="height:1em;"
                         alt="IMDB rating">
                       <span id="pickRating">0.0</span>
                     </span>
