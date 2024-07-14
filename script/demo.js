@@ -38,7 +38,7 @@ const goChatbot = () => {
       document.getElementById('logs').innerHTML += "<div><p>" + data.plan.reason + "</p></div>";
       let html = "<div>";
       data.plan.plan.forEach((step, s) => {
-        html += "<p>Step <strong>" + (s + 1) + "</strong>: " + step.objective + "</p>";
+        html += "<p style='margin-top:2em;'>Step <strong>" + (s + 1) + "</strong>: " + step.objective + "</p>";
         html += "<p>Agent.Skill: <strong>" + (step.agent || 'none') + "." + (step.skill ? step.skill.name : 'none') + "</strong></p>";
         html += "<p><strong>Result</strong>: <pre>" + step.result ? JSON.stringify(step.result, null, 2) : 'none' + "</pre></p>";
       });
@@ -144,7 +144,7 @@ const goConcierge = () => {
       document.getElementById('logs').innerHTML += "<div><p>" + data.plan.reason + "</p></div>";
       let html = "<div>";
       data.plan.plan.forEach((step, s) => {
-        html += "<p>Step <strong>" + (s + 1) + "</strong>: " + step.objective + "</p>";
+        html += "<p style='margin-top:2em;'>Step <strong>" + (s + 1) + "</strong>: " + step.objective + "</p>";
         html += "<p>Agent.Skill: <strong>" + (step.agent || 'none') + "." + (step.skill ? step.skill.name : 'none') + "</strong></p>";
         html += "<p><strong>Result</strong>: <pre>" + step.result ? JSON.stringify(step.result, null, 2) : 'none' + "</pre></p>";
       });
