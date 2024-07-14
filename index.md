@@ -23,15 +23,15 @@ A prominent point-of-view here is that BroadAI Agents can be built and used with
 
 ---
 
-<div class="top">
-  <div class="mission">
+<div style="display:flex;">
+  <div style="width:50%;box-shadow: 0 4px 8px 0 #999;padding: 1.2em 1em;background-color: #a534f60d;">
   <h2>BroadAI Mission:</h2>
   <p style="font-size:1.25em;">
   To enable seamless integration of diverse and versatile Agents within the BroadAI systems, empowering the development of ethical, effective, and impactful AI solutions.
   </p>
   </div>
 
-  <div class="lead" id="lead">
+  <div style="width:50%;box-shadow: 0 4px 8px 0 #999;padding: 1.2em 1em;background-color: #12c3e20d;" id="lead">
     <form>
       <h3>
         Learn, explore, and unlock endless possibilites with BroadAI.

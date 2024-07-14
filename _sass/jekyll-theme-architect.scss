@@ -32,9 +32,7 @@ header {
   border-bottom: solid 1px #2e7bcf;
 }
 
-header h1,
-header h2,
-header h3 {
+header h1 {
   width: 540px;
   margin-top: 0;
   margin-bottom: 0.2em;
@@ -44,8 +42,7 @@ header h3 {
   color: #fff;
 }
 
-header h4,
-header h5 {
+header h2 {
   width: 540px;
   margin-top: 0;
   margin-bottom: 0;
@@ -137,54 +134,6 @@ ol,
 dl {
   margin-bottom: 20px;
 }
-
-.top {
-  display: flex;
-  padding: 0;
-}
-
-.top .mission,
-.top .lead {
-  width: 50%;
-  padding: 1.2em 1em;
-  font-weight: 400;
-  box-shadow: 0 4px 8px 0 #999;
-}
-
-.top .mission {
-  margin: 1%;
-  background-color: #a534f60d;
-}
-
-.top .lead {
-  margin: 1%;
-  background-color: #12c3e20d;
-}
-
-.mission input[type=button] {
-  font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
-  font-size: 18px;
-  text-align: center;
-  padding: 10px;
-  margin: 0 10px 10px 0;
-  color: #fff;
-  background-color: #2e7bcf;
-  border: none;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-}
-
-.mission textarea {
-  width: 90%;
-  padding: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
 
 /* COMMON STYLES */
 
@@ -432,16 +381,6 @@ footer a:hover {
     content: none;
   }
 
-  .top {
-    display: block;
-  }
-
-  .top .mission,
-  .top .lead {
-    display: block;
-    width: 90%;
-  }
-
 }
 
 /* All Mobile Sizes (devices and browser) */
@@ -506,16 +445,6 @@ footer a:hover {
     padding-right: 0;
     margin-left: 0;
     content: none;
-  }
-
-  .top {
-    display: block;
-  }
-
-  .top .mission,
-  .top .lead {
-    display: block;
-    width: 90%;
   }
 
 }
