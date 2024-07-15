@@ -380,7 +380,8 @@ Using merely the inspiration from this plot, write a new fictional story in abou
     .then((data) => {
       let html = "<div style='color:#999;font-family:courier;'>";
       data.response.response.forEach((element) => {
-        html += "<" + element.html_tag + ">" + element.text + "</" + element.html_tag + ">";
+        if (element.html_tag != "pre")
+          html += "<" + element.html_tag + ">" + element.text + "</" + element.html_tag + ">";
       });
       html += "</div>";
       document.getElementById('btnFindSimilarMovies').disabled = false;
