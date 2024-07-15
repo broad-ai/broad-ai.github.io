@@ -62,11 +62,11 @@ const goChatbot = () => {
 // ------ ..... ------ ..... ------ ..... ------ 
 const updateTask = () => {
   if (document.getElementById('radioBusiness').checked) {
-    document.getElementById('instructions').innerHTML = "<srtong>Please provide any additional details so I can help you with this trip.</srtong>";
+    document.getElementById('instructions').innerHTML = "<h4>Please provide any additional details so I can help you with this trip.</h4>";
     document.getElementById('notes').setAttribute('placeholder', `e.g. I will be meeting the CEO of XYZ to discuss our strategic alliance.`);
   }
   if (document.getElementById('radioPersonal').checked) {
-    document.getElementById('instructions').innerHTML = "<srtong>What would you like to do on this personal trip?</srtong>";
+    document.getElementById('instructions').innerHTML = "<h4>What would you like to do on this personal trip?</h4>";
     document.getElementById('notes').setAttribute('placeholder', `e.g. I'd like to visit popular attractions, go to popular restaurants and enjoy local cuisine.`);
   }
   let task = [];
@@ -84,30 +84,32 @@ const updateTask = () => {
       `to ` + document.getElementById('destinationCity').value
     );
   task.push(`sometime next week.`);
-  task.push(`I will greatly benefit if I have following information:
-  `);
-  task.push(`- If cities are mentioned above, please provide:
-> Other airports connected.
-> Weather conditions.
-> Any specific mentions about the cities in news headlines.
-> If destination is outside US, please provide exchange rate using an example, such as 1 USD = X INR.
-`);
-  if (document.getElementById('radioPersonal').checked && document.getElementById('destinationCity').value) {
-    task.push(`- Recommend popular attractions I could visit around ` + document.getElementById('destinationCity').value + `.
-      `);
-    task.push(`- Tell me some interesting fact about ` + document.getElementById('destinationCity').value + `, such as any historical significance, popular sport, popular cuisine, etc. which will help me make my trip interesting.
-      `);
-    task.push(`- Draft an interesting message to post on my social media account about my visit. This will be a personal message I will be sharing with only few folks.
-      `);
-  }
   if (document.getElementById('notes').value) {
-    task.push(`Also, please consider the following in your response:
-- ` + document.getElementById('notes').value + `
-- If there is any mention of a company above, please provide brief profile and details about their latest financial performance etc.
-- If there is any mention of a meeting title, agenda, purpose, or participants, please create a list of some talking points to help me with it.
-`);
-    task.push(`Finally, if there are any online references provided, please list them in the end.
-  `);
+    task.push(`Consider following request and provide support:`);
+    task.push(`"` + document.getElementById('notes').value + `"
+    `);
+    if (document.getElementById('radioBusiness').checked) {
+      task.push(`If I mentioned a company name above, provide a summary of their business profile and latest financial performance. If I mentioned a meeting purpose, recommend talking points or an agenda outline for the meeting.
+      `);
+    }
+  }
+  if (document.getElementById('destinationCity').value) {
+    task.push(`In addition, I will greatly benefit if you can provide following information for my destination city, ` + document.getElementById('destinationCity').value + `:
+    `);
+    task.push(`- Connected airports
+    `);
+    task.push(`- Dressing accessories to consider based on weather conditions (e.g. sunglasses, umbrella, light jacket, shoes, etc.)
+    `);
+    task.push(`- If an international city, provide exchange rate (use USD as base currency) 
+    `);
+    if (document.getElementById('radioPersonal').checked) {
+      task.push(`- Interesting / historical significance
+      `);
+      task.push(`- Must visit local attractions
+      `);
+      task.push(`- A draft social media message letting my contacts know I will be in the city
+      `);
+    }
   }
   document.getElementById('task').value = task.join(' ')
 }; // updateTask
