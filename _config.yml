@@ -168,8 +168,4 @@ agents:
         action: "askAnything"
         parameters:
           question: "string | frame a question that can help generate a Neo4J Cypher query and retrieve information from knowledge graph database"
-    agent-config: 
-      neo4j: 
-        uri: "?"
-        user: "?"
-        key: "?"
+    agent-config: {} 
