@@ -87,10 +87,10 @@ const updateTask = () => {
   if (document.getElementById('notes').value) {
     task.push(`Consider following request and provide support:`);
     task.push(`"` + document.getElementById('notes').value + `"
-    `);
+`);
     if (document.getElementById('radioBusiness').checked) {
       task.push(`If I mentioned a company name above, provide a summary of their business profile and latest financial performance. If I mentioned a meeting purpose, recommend talking points or an agenda outline for the meeting.
-      `);
+  `);
     }
   }
   if (document.getElementById('destinationCity').value) {
@@ -101,6 +101,20 @@ const updateTask = () => {
     task.push(`- Dressing accessories to consider based on weather conditions (e.g. sunglasses, umbrella, light jacket, shoes, etc.)
     `);
     task.push(`- If an international city, provide exchange rate (use USD as base currency) 
+    `);
+    if (document.getElementById('radioPersonal').checked) {
+      task.push(`- Interesting / historical significance
+      `);
+      task.push(`- Must visit local attractions
+      `);
+      task.push(`- A draft social media message letting my contacts know I will be in the city
+      `);
+    }
+  }
+  if (document.getElementById('destinationCity').value) {
+    task.push(`If possible, include following my city of origin, ` + document.getElementById('originCity').value + `:
+    `);
+    task.push(`- Best day to travel weather-wise
     `);
     if (document.getElementById('radioPersonal').checked) {
       task.push(`- Interesting / historical significance
