@@ -112,9 +112,7 @@ const updateTask = () => {
     }
   }
   if (document.getElementById('originCity').value) {
-    task.push(`If possible, include following my city of origin, ` + document.getElementById('originCity').value + `:
-    `);
-    task.push(`- Best day to travel weather-wise
+    task.push(`Finally, tell me when would be a good time to return back to my city of origin, ` + document.getElementById('originCity').value + `.
     `);
   }
   document.getElementById('task').value = task.join(' ')
