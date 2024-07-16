@@ -116,14 +116,6 @@ const updateTask = () => {
     `);
     task.push(`- Best day to travel weather-wise
     `);
-    if (document.getElementById('radioPersonal').checked) {
-      task.push(`- Interesting / historical significance
-      `);
-      task.push(`- Must visit local attractions
-      `);
-      task.push(`- A draft social media message letting my contacts know I will be in the city
-      `);
-    }
   }
   document.getElementById('task').value = task.join(' ')
 }; // updateTask
