@@ -111,7 +111,7 @@ const updateTask = () => {
       `);
     }
   }
-  if (document.getElementById('destinationCity').value) {
+  if (document.getElementById('originCity').value) {
     task.push(`If possible, include following my city of origin, ` + document.getElementById('originCity').value + `:
     `);
     task.push(`- Best day to travel weather-wise
