@@ -191,8 +191,10 @@ const findSimilarMovies = (movie) => {
 --- 
 `+ JSON.stringify(currentMovie) + `
 ---
+
 ## Specific Task
-First, find similar movies based on similar genre, director, etc. Limit to a total of 6 movie recommendations. For each movie, you must extract the movie title, director, year of release, IMDB rating, poster image url, and the movie plot.
+First, find similar movies based on similar genre or director. For each movie, extract 'movie title', 'director', 'year of release', 'IMDB rating', 'url for poster image', and the 'movie plot', as specified in response format requirements below.
+Hint (Cypher): 'MATCH (g:Genre)<-[:IN_GENRE]-(m:Movie)<-[:DIRECTED]-(d:Director) WHERE d.name = "?" OR g.name = "?" RETURN m.title, d.name, ... LIMIT 3'
 
 ## Response Format
 Then, using all the movies listed in the context, generate your final response within 'text' field in stringified JSON structure shown below. It is critical that response is only in this specified format:
@@ -311,8 +313,8 @@ const pickRandomMovie = () => {
     body: JSON.stringify({
       "notes": `## Specific Task
 First, find one random movie from the 9125 choices.
-Hint (Cypher): 'MATCH (m:Movie)<-[:DIRECTED]-(d:Director) RETURN m.title, d.name ORDER BY rand() LIMIT 1'
-You must extract movie title, director, year of release, IMDB rating, poster image url, and the movie plot, as specified below.
+Hint (Cypher): 'MATCH (g:Genre)<-[:IN_GENRE]-(m:Movie)<-[:DIRECTED]-(d:Director) RETURN m.title, d.name, ... ORDER BY rand() LIMIT 1'
+You must extract 'movie title', 'director', 'year of release', 'IMDB rating', 'url for poster image', and the 'movie plot', as specified in response format requirements below.
 
 ## Response Format
 Then, using all the movies listed in the context, generate your final response within 'text' field in stringified JSON structure shown below. It is critical that response is only in this specified format:
@@ -378,7 +380,7 @@ const writeSimilarStory = (title, director, year, imdb_rating, poster, plot) => 
 ~~~
 `+ currentPlot + `
 ~~~
-Using merely the inspiration from this plot, write a new fictional story in about 500 words. Give enough details to explain the story well.
+Based on the theme of the plot above, write a catchy story in about 600 words.
 `,
     })
   })
