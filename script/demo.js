@@ -230,7 +230,7 @@ Then, using all the movies listed in the context, generate your final response w
             <div class="col-12 col-md-4">
               <div class="row mt-5">
                 <div class="col-12 text-center">
-                  <button class="btn btn-success" type="button" onclick="writeSimilarStory('`+ encodeURI(recommendation.title) + `', '` + encodeURI(recommendation.director) + `', '` + recommendation.year + `', '` + recommendation.imdb_rating + `', '` + encodeURI(recommendation.poster) + `', '` + encodeURI(recommendation.plot) + `')">Create
+                  <button class="btn btn-success" type="button" onclick="writeSimilarStory('`+ encodeURIComponent(recommendation.title) + `', '` + encodeURIComponent(recommendation.director) + `', '` + encodeURIComponent(recommendation.year) + `', '` + encodeURIComponent(recommendation.imdb_rating) + `', '` + encodeURIComponent(recommendation.poster) + `', '` + encodeURIComponent(recommendation.plot) + `')">Create
                     Story</button>
                   <p><small>inspired by this plot</small></p>
                 </div>
@@ -257,7 +257,7 @@ Then, using all the movies listed in the context, generate your final response w
                     <span>`+ recommendation.director + `</span>
                   </h4>
                 </div>
-                <div class="px-3 py-2"><p>`+ recommendation.plot + `</p></div>
+                <div class="px-3 py-2">`+ recommendation.plot + `</div>
               </div>
             </div>
             `;
@@ -340,7 +340,7 @@ Then, using all the movies listed in the context, generate your final response w
       // -- showing results
       document.getElementById('btnFindSimilarMovies').disabled = false;
       document.getElementById('btnWriteNewStory').disabled = false;
-      document.getElementById('plot').innerHTML = "<p>" + details.plot + "</p>";
+      document.getElementById('plot').innerHTML = details.plot;
       document.getElementById('pickTitle').innerHTML = details.title;
       document.getElementById('pickDirector').innerHTML = details.director;
       document.getElementById('pickPoster').setAttribute('src', details.poster);
@@ -355,20 +355,24 @@ Then, using all the movies listed in the context, generate your final response w
 
 // ------ ..... ------ ..... ------ ..... ------ 
 const writeSimilarStory = (title, director, year, imdb_rating, poster, plot) => {
-  const currentPlot = decodeURI(plot) || document.getElementById('plot').innerHTML;
   document.getElementById('btnFindSimilarMovies').disabled = true;
   document.getElementById('btnWriteNewStory').disabled = true;
-  document.getElementById('story').innerHTML = "<h4>Thinking of a story based on the plot:</h4> <p>" + currentPlot + "</p><h3>...</h3>";
+  document.getElementById('story').innerHTML = "<h4>Thinking of a story based on the plot</h4>";
   // -- show cover of selected movie
-  if (title && director && year && imdb_rating && poster && plot) {
-    document.getElementById('plot').innerHTML = "" + decodeURI(plot);
-    document.getElementById('pickTitle').innerHTML = decodeURI(title);
-    document.getElementById('pickDirector').innerHTML = decodeURI(director);
-    document.getElementById('pickPoster').setAttribute('src', decodeURI(poster));
+  if (plot)
+    document.getElementById('plot').innerHTML = decodeURIComponent(plot);
+  if (title)
+    document.getElementById('pickTitle').innerHTML = decodeURIComponent(title);
+  if (director)
+    document.getElementById('pickDirector').innerHTML = decodeURIComponent(director);
+  if (poster) {
+    document.getElementById('pickPoster').setAttribute('src', decodeURIComponent(poster));
     document.getElementById('pickPoster').setAttribute('onerror', 'this.src="' + ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)] + '"');
-    document.getElementById('pickRating').innerHTML = imdb_rating;
-    document.getElementById('pickYear').innerHTML = year;
   }
+  if (imdb_rating)
+    document.getElementById('pickRating').innerHTML = decodeURIComponent(imdb_rating);
+  if (year)
+    document.getElementById('pickYear').innerHTML = decodeURIComponent(year);
   // --- ask
   fetch(broadAIapiEndpoint + '/go', {
     method: "POST",
@@ -378,7 +382,7 @@ const writeSimilarStory = (title, director, year, imdb_rating, poster, plot) => 
     body: JSON.stringify({
       "question": `Take a look at this plot below:
 ~~~
-`+ currentPlot + `
+`+ document.getElementById('plot').innerHTML + `
 ~~~
 Based on the theme of the plot above, write a catchy story in about 600 words.
 `,
