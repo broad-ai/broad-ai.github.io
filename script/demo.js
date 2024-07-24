@@ -83,7 +83,7 @@ const updateTask = () => {
     task.push(
       `to ` + document.getElementById('destinationCity').value
     );
-  task.push(`sometime next week.`);
+  task.push(`over next week for 5 days.`);
   if (document.getElementById('notes').value) {
     task.push(`Consider following request and provide support:`);
     task.push(`"` + document.getElementById('notes').value + `"
@@ -92,28 +92,26 @@ const updateTask = () => {
       task.push(`If I mentioned a company name above, provide a summary of their business profile and latest financial performance. If I mentioned a meeting purpose, recommend talking points or an agenda outline for the meeting.
   `);
     }
+    else if (document.getElementById('radioPersonal').checked) {
+      task.push(`If you could recommend an itinerary of places I should visit and delicacies I must try, please help me plan those.
+        `);
+    }
+  }
+  if (document.getElementById('originCity').value && document.getElementById('destinationCity').value) {
+    task.push(`Could you possibly find flight options leaving ` + document.getElementById('originCity').value + ` and arrive into ` + document.getElementById('destinationCity').value + `.
+    `);
   }
   if (document.getElementById('destinationCity').value) {
     task.push(`In addition, I will greatly benefit if you can provide following information for my destination city, ` + document.getElementById('destinationCity').value + `:
     `);
-    task.push(`- Connected airports
-    `);
-    task.push(`- Dressing accessories to consider based on weather conditions (e.g. sunglasses, umbrella, light jacket, shoes, etc.)
-    `);
-    task.push(`- If an international city, provide exchange rate (use USD as base currency) 
+    task.push(`- How I should pack depending on weather conditions expected (e.g. sunglasses, umbrella, light jacket, shoes, etc.)
     `);
     if (document.getElementById('radioPersonal').checked) {
       task.push(`- Interesting / historical significance
       `);
-      task.push(`- Must visit local attractions
-      `);
-      task.push(`- A draft social media message letting my contacts know I will be in the city
+      task.push(`- Draft a social media message so I can let my contacts know I will be in the city
       `);
     }
-  }
-  if (document.getElementById('originCity').value) {
-    task.push(`Finally, tell me when would be a good time to return back to my city of origin, ` + document.getElementById('originCity').value + `.
-    `);
   }
   document.getElementById('task').value = task.join(' ')
 }; // updateTask
