@@ -179,7 +179,7 @@ const findSimilarMovies = (movie) => {
     "imdb_rating": document.getElementById('pickRating').innerHTML,
     "plot": document.getElementById('plot').innerHTML
   };
-  document.getElementById('story').innerHTML = "<p style='color:#999;margin-bottom:20px;'>Okay!</p><h4 style='color:#C39BD3;'>Please hang on!</h4><p style='color:#6C3483;'>Finding other movies like " + currentMovie.title + " which you might also enjoy...</p>";
+  document.getElementById('story').innerHTML = "<p style='color:#999;margin-bottom:20px;'>Okay!</p><h3 style='color:#C39BD3;'>Please hang on!</h3><p style='color:#6C3483;'>Finding other movies like " + currentMovie.title + " which you might also enjoy...</p>";
   // --- ask
   fetch(broadAIapiEndpoint + '/movflick', {
     method: "POST",
@@ -301,7 +301,7 @@ Then, using all the movies listed in the context, generate your final response w
 
 // ------ ..... ------ ..... ------ ..... ------ 
 const pickRandomMovie = () => {
-  document.getElementById('story').innerHTML = "<h4 style='color:#C39BD3;'>Welcome!</h4><p style='color:#6C3483;'>Picking a movie might like...</p>";
+  document.getElementById('story').innerHTML = "<h3 style='color:#C39BD3;'>Welcome!</h3><p style='color:#6C3483;'>Picking a movie might like...</p>";
   document.getElementById('btnFindSimilarMovies').disabled = true;
   document.getElementById('btnWriteNewStory').disabled = true;
   // --- ask
