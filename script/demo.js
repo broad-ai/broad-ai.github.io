@@ -257,7 +257,7 @@ Then, using all the movies listed in the context, generate your final response w
                     <span>`+ recommendation.director + `</span>
                   </h4>
                 </div>
-                <div class="px-3 py-3"><h4>Plot:</h4>`+ recommendation.plot + `</div>
+                <div class="px-3 py-2"><p>`+ recommendation.plot + `</p></div>
               </div>
             </div>
             `;
@@ -288,7 +288,7 @@ Then, using all the movies listed in the context, generate your final response w
                     <span>-</span>
                   </h4>
                 </div>
-                <div class="px-3"><h4>Plot:</h4><p>No further recommendations.</p></div>
+                <div class="px-3"><p>No further recommendations.</p></div>
               </div>
             </div>
             `;
@@ -340,7 +340,7 @@ Then, using all the movies listed in the context, generate your final response w
       // -- showing results
       document.getElementById('btnFindSimilarMovies').disabled = false;
       document.getElementById('btnWriteNewStory').disabled = false;
-      document.getElementById('plot').innerHTML = "<h4>Plot:</h4>" + details.plot;
+      document.getElementById('plot').innerHTML = "<p>" + details.plot + "</p>";
       document.getElementById('pickTitle').innerHTML = details.title;
       document.getElementById('pickDirector').innerHTML = details.director;
       document.getElementById('pickPoster').setAttribute('src', details.poster);
@@ -361,7 +361,7 @@ const writeSimilarStory = (title, director, year, imdb_rating, poster, plot) => 
   document.getElementById('story').innerHTML = "<h4>Thinking of a story based on the plot:</h4> <p>" + currentPlot + "</p><h3>...</h3>";
   // -- show cover of selected movie
   if (title && director && year && imdb_rating && poster && plot) {
-    document.getElementById('plot').innerHTML = "<h4>Plot:</h4>" + decodeURI(plot);
+    document.getElementById('plot').innerHTML = "" + decodeURI(plot);
     document.getElementById('pickTitle').innerHTML = decodeURI(title);
     document.getElementById('pickDirector').innerHTML = decodeURI(director);
     document.getElementById('pickPoster').setAttribute('src', decodeURI(poster));
