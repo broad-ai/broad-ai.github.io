@@ -3,7 +3,6 @@ const broadAIapiEndpoint = "https://broadaidemo-7yg2a2s6sq-uc.a.run.app";
 // ------ ..... ------ ..... ------ ..... ------ 
 const goChatbot = () => {
   // -- pre results formatting
-  document.getElementById('responseChatbot').innerHTML += "<p style='text-align:right;color:black;font-size:2em;'>...</p>";
   document.getElementById('btnGoChatbot').disabled = true;
   document.getElementById('chatbox').disabled = true;
 
@@ -30,7 +29,7 @@ const goChatbot = () => {
         sessionStorage.setItem('chat', sessionStorage.getItem('chat') + message);
       else
         sessionStorage.setItem('chat', message);
-      document.getElementById('responseChatbot').innerHTML = message + (message ? "<hr>" : "");
+      document.getElementById('responseChatbot').innerHTML = sessionStorage.getItem('chat') ? sessionStorage.getItem('chat') + "<hr>" : "";
 
       document.getElementById('logs').innerHTML = "<h4>Plan:</h4>";
       document.getElementById('logs').innerHTML += "<div><p>" + data.plan.reason + "</p></div>";
