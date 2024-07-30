@@ -26,11 +26,12 @@ const goChatbot = () => {
       data.response.response.forEach((line) => {
         message += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
       });
+      message += "<hr>";
       if (sessionStorage.getItem('chat'))
         sessionStorage.setItem('chat', sessionStorage.getItem('chat') + message);
       else
         sessionStorage.setItem('chat', message);
-      document.getElementById('responseChatbot').innerHTML = sessionStorage.getItem('chat') ? sessionStorage.getItem('chat') + "<hr>" : "";
+      document.getElementById('responseChatbot').innerHTML = sessionStorage.getItem('chat') ? sessionStorage.getItem('chat') : "";
 
       document.getElementById('logs').innerHTML = "<h4>Plan:</h4>";
       document.getElementById('logs').innerHTML += "<div><p>" + data.plan.reason + "</p></div>";
