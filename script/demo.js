@@ -3,6 +3,7 @@ const broadAIapiEndpoint = "https://broadaidemo-7yg2a2s6sq-uc.a.run.app";
 // ------ ..... ------ ..... ------ ..... ------ 
 const goChatbot = () => {
   // -- pre results formatting
+  document.getElementById('responseChatbot').innerHTML += "<h4>...</h4>";
   document.getElementById('btnGoChatbot').disabled = true;
   document.getElementById('chatbox').disabled = true;
 
