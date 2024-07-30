@@ -1,16 +1,6 @@
 const broadAIapiEndpoint = "https://broadaidemo-7yg2a2s6sq-uc.a.run.app";
 
 // ------ ..... ------ ..... ------ ..... ------ 
-const refreshChat = () => {
-  let messages = "";
-  if (sessionStorage.getItem('conversations'))
-    JSON.parse(sessionStorage.getItem('conversations')).forEach((qa, i) => {
-      messages += "<p style='text-align:" + ((i % 2 == 0) ? "right" : "left") + ";color:" + ((i % 2 == 0) ? "black" : "blue") + ";'>" + qa.replace('?: ', '').replace('>: ', '').replaceAll('\n', '<br>') + "</p>";
-    });
-  document.getElementById('responseChatbot').innerHTML = messages;
-}; // refreshChat
-
-// ------ ..... ------ ..... ------ ..... ------ 
 const goChatbot = () => {
   // -- pre results formatting
   document.getElementById('responseChatbot').innerHTML += "<p style='text-align:right;color:black;font-size:2em;'>...</p>";
@@ -32,7 +22,15 @@ const goChatbot = () => {
     .then((data) => {
       // -- showing results
       sessionStorage.setItem('conversations', JSON.stringify(data.response.conversation));
-      refreshChat();
+      let message = "<p style='text-align:right;color:black;'>" + document.getElementById('chatbox').value.trim() + "</p>";
+      data.response.response.forEach((line) => {
+        message += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
+      });
+      if (sessionStorage.getItem('chat'))
+        sessionStorage.setItem('chat', sessionStorage.getItem('chat') + message);
+      else
+        sessionStorage.setItem('chat', message);
+      document.getElementById('responseChatbot').innerHTML = message + (message ? "<hr>" : "");
 
       document.getElementById('logs').innerHTML = "<h4>Plan:</h4>";
       document.getElementById('logs').innerHTML += "<div><p>" + data.plan.reason + "</p></div>";
