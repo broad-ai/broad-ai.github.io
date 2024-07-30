@@ -83,35 +83,28 @@ const updateTask = () => {
       `to ` + document.getElementById('destinationCity').value
     );
   task.push(`over next week for 5 days.`);
+  if (document.getElementById('destinationCity').value) {
+    task.push(`What kind of weather should I expect in ` + document.getElementById('destinationCity').value + `?
+`);
+    if (document.getElementById('radioPersonal').checked) {
+      task.push(`Compose an email message containing a day-by-day travel itinerary of must-see tourist attractions. Include weather for each day as well.
+`);
+    }
+  }
   if (document.getElementById('notes').value) {
-    task.push(`Consider following request and provide support:`);
-    task.push(`"` + document.getElementById('notes').value + `"
+    task.push(`Also:`);
+    task.push(`- ` + document.getElementById('notes').value + `
 `);
     if (document.getElementById('radioBusiness').checked) {
-      task.push(`If I mentioned a company name above, provide a summary of their business profile and latest financial performance. If I mentioned a meeting purpose, recommend talking points or an agenda outline for the meeting.
-  `);
-    }
-    else if (document.getElementById('radioPersonal').checked) {
-      task.push(`If you could recommend an itinerary of places I should visit and delicacies I must try, please help me plan those.
-        `);
+      task.push(`- If a meeting purpose is provided, draft an agenda outline with high-level talking points.
+`);
+      task.push(`- If a company name is mentioned above, provide a brief summary about their business.
+`);
     }
   }
-  if (document.getElementById('originCity').value && document.getElementById('destinationCity').value) {
-    task.push(`Could you possibly find flight options leaving ` + document.getElementById('originCity').value + ` and arrive into ` + document.getElementById('destinationCity').value + `.
-    `);
-  }
-  if (document.getElementById('destinationCity').value) {
-    task.push(`In addition, I will greatly benefit if you can provide following information for my destination city, ` + document.getElementById('destinationCity').value + `:
-    `);
-    task.push(`- How I should pack depending on weather conditions expected (e.g. sunglasses, umbrella, light jacket, shoes, etc.)
-    `);
-    if (document.getElementById('radioPersonal').checked) {
-      task.push(`- Interesting / historical significance
-      `);
-      task.push(`- Draft a social media message so I can let my contacts know I will be in the city
-      `);
-    }
-  }
+  if (document.getElementById('originCity').value && document.getElementById('destinationCity').value)
+    task.push(`Finally, based on weather, which day would be ideally best to return back to ` + document.getElementById('originCity').value + ` from ` + document.getElementById('destinationCity').value + `? I don't like rain as it usually delays travel.
+`);
   document.getElementById('task').value = task.join(' ')
 }; // updateTask
 
