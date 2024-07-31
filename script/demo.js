@@ -342,10 +342,8 @@ const writeSimilarStory = (title, director, year, imdb_rating, poster, plot) => 
   // -- show cover of selected movie
   let _title = title ? decodeURIComponent(title) : document.getElementById('pickTitle').innerHTML;
   document.getElementById('pickTitle').innerHTML = _title;
-  console.log(_title, decodeURIComponent(title), document.getElementById('pickTitle').innerHTML);
   let _director = director ? decodeURIComponent(director) : document.getElementById('pickDirector').innerHTML;
   document.getElementById('pickDirector').innerHTML = _director;
-  console.log(_director, decodeURIComponent(director), document.getElementById('pickDirector').innerHTML);
   let _year = year ? decodeURIComponent(year) : document.getElementById('pickYear').innerHTML;
   document.getElementById('pickYear').innerHTML = _year;
   let _imdb_rating = imdb_rating ? decodeURIComponent(imdb_rating) : document.getElementById('pickRating').innerHTML;
