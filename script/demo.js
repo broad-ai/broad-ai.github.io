@@ -340,21 +340,22 @@ const writeSimilarStory = (title, director, year, imdb_rating, poster, plot) => 
   document.getElementById('btnWriteNewStory').disabled = true;
   document.getElementById('story').innerHTML = "<h4>Thinking of a story based on the plot</h4>";
   // -- show cover of selected movie
-  console.log(decodeURIComponent(title), document.getElementById('pickTitle').innerHTML);
-  let _title = decodeURIComponent(title) || document.getElementById('pickTitle').innerHTML;
+  let _title = title ? decodeURIComponent(title) : document.getElementById('pickTitle').innerHTML;
   document.getElementById('pickTitle').innerHTML = _title;
-  let _director = decodeURIComponent(director) || document.getElementById('pickDirector').innerHTML;
+  console.log(_title, decodeURIComponent(title), document.getElementById('pickTitle').innerHTML);
+  let _director = director ? decodeURIComponent(director) : document.getElementById('pickDirector').innerHTML;
   document.getElementById('pickDirector').innerHTML = _director;
-  let _year = decodeURIComponent(year) || document.getElementById('pickYear').innerHTML;
+  console.log(_director, decodeURIComponent(director), document.getElementById('pickDirector').innerHTML);
+  let _year = year ? decodeURIComponent(year) : document.getElementById('pickYear').innerHTML;
   document.getElementById('pickYear').innerHTML = _year;
-  let _imdb_rating = decodeURIComponent(imdb_rating) || document.getElementById('pickRating').innerHTML;
+  let _imdb_rating = imdb_rating ? decodeURIComponent(imdb_rating) : document.getElementById('pickRating').innerHTML;
   document.getElementById('pickRating').innerHTML = _imdb_rating;
-  let _poster = decodeURIComponent(poster) || document.getElementById('pickPoster').getAttribute('src').value;
+  let _poster = poster ? decodeURIComponent(poster) : document.getElementById('pickPoster').getAttribute('src').value;
   if (_poster) {
     document.getElementById('pickPoster').setAttribute('src', _poster);
     document.getElementById('pickPoster').setAttribute('onerror', 'this.src="' + ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)] + '"');
   }
-  let _plot = decodeURIComponent(plot) || document.getElementById('plot').innerHTML;
+  let _plot = plot ? decodeURIComponent(plot) : document.getElementById('plot').innerHTML;
   document.getElementById('plot').innerHTML = _plot;
   // --- ask
   fetch(broadAIapiEndpoint + '/go', {
