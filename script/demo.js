@@ -187,7 +187,7 @@ const findSimilarMovies = (movie) => {
 Find similar movies based on similar genre or director. For each movie, you must extract 'movie title', 'director', 'year of release', 'IMDB rating', 'url for poster image', and the 'movie plot', as specified in response format requirements below.
 
 ## Response Format
-You are expected to respond in a specific format in addition to any other response you may generate. One of the 'text' fields of the response structure must be formatted as stringified JSON object as shown below:
+You are expected to respond in a specific format in addition to any other response you may generate. One of the 'text' fields of the response structure must be formatted as stringified array of JSON objects as shown below. The 'html_tag' for that response element can be set to 'pre':
 ~~~json.stringify
 "[ { \"title\": \"<movie title>\", \"director\": \"<director name>\", \"year\": \"<year>\", \"imdb_rating\": \"<imdbRating>\", \"poster\": \"<poster url>\", \"plot\": \"<movie plot>\" }, ... ]"
 ~~~
@@ -303,7 +303,7 @@ Hint (Cypher): 'MATCH (g:Genre)<-[:IN_GENRE]-(m:Movie)<-[:DIRECTED]-(d:Director)
 You must extract 'movie title', 'director', 'year of release', 'IMDB rating', 'url for poster image', and the 'movie plot', as specified in response format requirements below.
 
 ## Response Format
-You are expected to respond in a specific format in addition to any other response you may generate. One of the 'text' fields of the response structure must be formatted as stringified JSON object as shown below:
+You are expected to respond in a specific format in addition to any other response you may generate. One of the 'text' fields of the response structure must be formatted as stringified JSON object as shown below. The 'html_tag' for that response element can be set to 'pre':
 ~~~json.stringify
 "{ \"title\": \"<movie title>\", \"director\": \"<director name>\", \"year\": \"<year>\", \"imdb_rating\": \"<imdbRating>\", \"poster\": \"<poster url>\", \"plot\": \"<movie plot>\" }"
 ~~~
