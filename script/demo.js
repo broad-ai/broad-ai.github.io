@@ -184,15 +184,14 @@ const findSimilarMovies = (movie) => {
 ---
 
 ## Specific Task
-First, find similar movies based on similar genre or director. For each movie, extract 'movie title', 'director', 'year of release', 'IMDB rating', 'url for poster image', and the 'movie plot', as specified in response format requirements below.
-Hint (Cypher): 'MATCH (g:Genre)<-[:IN_GENRE]-(m:Movie)<-[:DIRECTED]-(d:Director) WHERE d.name = "?" OR g.name = "?" RETURN m.title, d.name, ... LIMIT 3'
+Find similar movies based on similar genre or director. For each movie, you must extract 'movie title', 'director', 'year of release', 'IMDB rating', 'url for poster image', and the 'movie plot', as specified in response format requirements below.
 
 ## Response Format
-Then, using all the movies listed in the context, generate your final response within 'text' field in stringified JSON structure shown below. It is critical that response is only in this specified format:
+Generate your final response within 'text' field in stringified JSON structure shown below. It is critical that response is only in this specified format:
 ~~~json
 [{
   "html_tag": "p",
-  "text": (stringified JSON) "[{ \"title\": <movie title>, \"director\": <director name>, \"year\": <year>, \"imdb_rating\": <imdbRating>, \"poster\": <poster url>, \"plot\": <movie plot> }, ...]"
+  "text": (stringified JSON array) "[{ \"title\": <movie title>, \"director\": <director name>, \"year\": <year>, \"imdb_rating\": <imdbRating>, \"poster\": <poster url>, \"plot\": <movie plot> }, ...]"
 }]
 ~~~
 `,
@@ -201,9 +200,6 @@ Then, using all the movies listed in the context, generate your final response w
     .then((resp) => resp.json())
     .then((data) => {
       let recommendations = [];
-      let details = {
-        "title": "...", "director": "...", "year": "...", "imdb_rating": "...", "poster": ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)], "plot": "..."
-      };
       data.response.response.forEach((element) => {
         if (element.text.indexOf('[') >= 0 && element.text.indexOf(']') > 0) {
           r = JSON.parse(element.text.substring(element.text.indexOf('['), element.text.lastIndexOf(']') + 1)) || [];
@@ -217,7 +213,8 @@ Then, using all the movies listed in the context, generate your final response w
           <div class="row">`;
       if (recommendations.length) {
         recommendations.forEach((recommendation) => {
-          html += `
+          if (recommendation.title && recommendation.director && recommendation.year && recommendation.imdb_rating && recommendation.poster && recommendation.plot) {
+            html += `
             <div class="col-12 col-md-4">
               <div class="row mt-5">
                 <div class="col-12 text-center">
@@ -252,6 +249,7 @@ Then, using all the movies listed in the context, generate your final response w
               </div>
             </div>
             `;
+          }
         });
       }
       else {
@@ -303,16 +301,16 @@ const pickRandomMovie = () => {
     },
     body: JSON.stringify({
       "notes": `## Specific Task
-First, find one random movie from the 9125 choices.
+Find exactly one random movie from the 9125 choices.
 Hint (Cypher): 'MATCH (g:Genre)<-[:IN_GENRE]-(m:Movie)<-[:DIRECTED]-(d:Director) RETURN m.title, d.name, ... ORDER BY rand() LIMIT 1'
 You must extract 'movie title', 'director', 'year of release', 'IMDB rating', 'url for poster image', and the 'movie plot', as specified in response format requirements below.
 
 ## Response Format
-Then, using all the movies listed in the context, generate your final response within 'text' field in stringified JSON structure shown below. It is critical that response is only in this specified format:
+Generate your final response within 'text' field in stringified JSON structure shown below. It is critical that response is only in this specified format:
 ~~~json
 [{
   "html_tag": "p",
-  "text": (stringified JSON) "{ \"title\": <movie title>, \"director\": <director name>, \"year\": <year>, \"imdb_rating\": <imdbRating>, \"poster\": <poster url>, \"plot\": <movie plot> }"
+  "text": (stringified JSON object) "{ \"title\": <movie title>, \"director\": <director name>, \"year\": <year>, \"imdb_rating\": <imdbRating>, \"poster\": <poster url>, \"plot\": <movie plot> }"
 }]
 ~~~
 `,
