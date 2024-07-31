@@ -187,7 +187,7 @@ const findSimilarMovies = (movie) => {
 Find similar movies based on similar genre or director. For each movie, you must extract 'movie title', 'director', 'year of release', 'IMDB rating', 'url for poster image', and the 'movie plot', as specified in response format requirements below.
 
 ## Response Format
-Generate your final response within within one of the 'text' fields as stringified JSON object:
+Your response must be embedded within one of the 'text' fields as an array of stringified JSON objects.
 ~~~json.stringify
 "[ { \"title\": <movie title>, \"director\": <director name>, \"year\": <year>, \"imdb_rating\": <imdbRating>, \"poster\": <poster url>, \"plot\": <movie plot> }, ... ]"
 ~~~
@@ -303,7 +303,7 @@ Hint (Cypher): 'MATCH (g:Genre)<-[:IN_GENRE]-(m:Movie)<-[:DIRECTED]-(d:Director)
 You must extract 'movie title', 'director', 'year of release', 'IMDB rating', 'url for poster image', and the 'movie plot', as specified in response format requirements below.
 
 ## Response Format
-Generate your final response within within one of the 'text' fields as stringified JSON object:
+Your response must be embedded within one of the 'text' fields as stringified JSON object.
 ~~~json.stringify
 "{ \"title\": <movie title>, \"director\": <director name>, \"year\": <year>, \"imdb_rating\": <imdbRating>, \"poster\": <poster url>, \"plot\": <movie plot> }"
 ~~~
@@ -316,13 +316,11 @@ Generate your final response within within one of the 'text' fields as stringifi
       let details = {
         "title": "...", "director": "...", "year": "...", "imdb_rating": "...", "poster": ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)], "plot": "..."
       };
-      if (data.response.response) {
-        data.response.response.forEach((element) => {
-          if (element.text.indexOf('{') >= 0 && element.text.indexOf('}') > 0) {
-            details = JSON.parse(element.text.substring(element.text.indexOf('{'), element.text.lastIndexOf('}') + 1));
-          }
-        });
-      }
+      data.response.response.forEach((element) => {
+        if (element.text.indexOf('{') >= 0 && element.text.indexOf('}') > 0) {
+          details = JSON.parse(element.text.substring(element.text.indexOf('{'), element.text.lastIndexOf('}') + 1));
+        }
+      });
       // -- showing results
       document.getElementById('btnFindSimilarMovies').disabled = false;
       document.getElementById('btnWriteNewStory').disabled = false;
