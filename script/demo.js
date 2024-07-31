@@ -1,4 +1,5 @@
-const broadAIapiEndpoint = "https://broadaidemo-7yg2a2s6sq-uc.a.run.app";
+// const broadAIapiEndpoint = "https://broadaidemo-7yg2a2s6sq-uc.a.run.app";
+const broadAIapiEndpoint = "http://localhost:8080";
 
 // ------ ..... ------ ..... ------ ..... ------ 
 const goChatbot = () => {
@@ -321,11 +322,13 @@ Generate your final response within 'text' field in stringified JSON structure s
       let details = {
         "title": "...", "director": "...", "year": "...", "imdb_rating": "...", "poster": ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)], "plot": "..."
       };
-      data.response.response.forEach((element) => {
-        if (element.text.indexOf('{') >= 0 && element.text.indexOf('}') > 0) {
-          details = JSON.parse(element.text.substring(element.text.indexOf('{'), element.text.lastIndexOf('}') + 1));
-        }
-      });
+      if (data.response.response) {
+        data.response.response.forEach((element) => {
+          if (element.text.indexOf('{') >= 0 && element.text.indexOf('}') > 0) {
+            details = JSON.parse(element.text.substring(element.text.indexOf('{'), element.text.lastIndexOf('}') + 1));
+          }
+        });
+      }
       // -- showing results
       document.getElementById('btnFindSimilarMovies').disabled = false;
       document.getElementById('btnWriteNewStory').disabled = false;
