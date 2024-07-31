@@ -187,14 +187,9 @@ const findSimilarMovies = (movie) => {
 Find similar movies based on similar genre or director. For each movie, you must extract 'movie title', 'director', 'year of release', 'IMDB rating', 'url for poster image', and the 'movie plot', as specified in response format requirements below.
 
 ## Response Format
-Generate your final response within 'text' field in stringified JSON structure shown below. It is critical that response is only in this specified format:
-~~~json
-[
-  {
-    "html_tag": "p",
-    "text": (stringified JSON array) "[{ \"title\": <movie title>, \"director\": <director name>, \"year\": <year>, \"imdb_rating\": <imdbRating>, \"poster\": <poster url>, \"plot\": <movie plot> }, ...]"
-  }
-]
+Generate your final response within within one of the 'text' fields as stringified JSON object:
+~~~json.stringify
+"[ { \"title\": <movie title>, \"director\": <director name>, \"year\": <year>, \"imdb_rating\": <imdbRating>, \"poster\": <poster url>, \"plot\": <movie plot> }, ... ]"
 ~~~
 `,
     })
@@ -308,14 +303,9 @@ Hint (Cypher): 'MATCH (g:Genre)<-[:IN_GENRE]-(m:Movie)<-[:DIRECTED]-(d:Director)
 You must extract 'movie title', 'director', 'year of release', 'IMDB rating', 'url for poster image', and the 'movie plot', as specified in response format requirements below.
 
 ## Response Format
-Generate your final response within 'text' field in stringified JSON structure shown below. It is critical that response is only in this specified format:
-~~~json
-[
-  {
-    "html_tag": "p",
-    "text": (stringified JSON object) "{ \"title\": <movie title>, \"director\": <director name>, \"year\": <year>, \"imdb_rating\": <imdbRating>, \"poster\": <poster url>, \"plot\": <movie plot> }"
-  }
-]
+Generate your final response within within one of the 'text' fields as stringified JSON object:
+~~~json.stringify
+"{ \"title\": <movie title>, \"director\": <director name>, \"year\": <year>, \"imdb_rating\": <imdbRating>, \"poster\": <poster url>, \"plot\": <movie plot> }"
 ~~~
 `,
     })
