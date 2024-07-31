@@ -340,21 +340,22 @@ const writeSimilarStory = (title, director, year, imdb_rating, poster, plot) => 
   document.getElementById('btnWriteNewStory').disabled = true;
   document.getElementById('story').innerHTML = "<h4>Thinking of a story based on the plot</h4>";
   // -- show cover of selected movie
+  console.log(decodeURIComponent(title), document.getElementById('pickTitle').innerHTML);
   let _title = decodeURIComponent(title) || document.getElementById('pickTitle').innerHTML;
-  let _director = decodeURIComponent(director) || document.getElementById('pickDirector').innerHTML;
-  let _year = decodeURIComponent(year) || document.getElementById('pickYear').innerHTML;
-  let _imdb_rating = decodeURIComponent(imdb_rating) || document.getElementById('pickRating').innerHTML;
-  let _poster = decodeURIComponent(poster) || document.getElementById('pickPoster').getAttribute('src').value;
-  let _plot = decodeURIComponent(plot) || document.getElementById('plot').innerHTML;
-  document.getElementById('plot').innerHTML = _plot;
   document.getElementById('pickTitle').innerHTML = _title;
+  let _director = decodeURIComponent(director) || document.getElementById('pickDirector').innerHTML;
   document.getElementById('pickDirector').innerHTML = _director;
-  if (poster) {
+  let _year = decodeURIComponent(year) || document.getElementById('pickYear').innerHTML;
+  document.getElementById('pickYear').innerHTML = _year;
+  let _imdb_rating = decodeURIComponent(imdb_rating) || document.getElementById('pickRating').innerHTML;
+  document.getElementById('pickRating').innerHTML = _imdb_rating;
+  let _poster = decodeURIComponent(poster) || document.getElementById('pickPoster').getAttribute('src').value;
+  if (_poster) {
     document.getElementById('pickPoster').setAttribute('src', _poster);
     document.getElementById('pickPoster').setAttribute('onerror', 'this.src="' + ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)] + '"');
   }
-  document.getElementById('pickRating').innerHTML = _imdb_rating;
-  document.getElementById('pickYear').innerHTML = _year;
+  let _plot = decodeURIComponent(plot) || document.getElementById('plot').innerHTML;
+  document.getElementById('plot').innerHTML = _plot;
   // --- ask
   fetch(broadAIapiEndpoint + '/go', {
     method: "POST",
