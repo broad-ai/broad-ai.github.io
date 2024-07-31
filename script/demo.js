@@ -189,10 +189,12 @@ Find similar movies based on similar genre or director. For each movie, you must
 ## Response Format
 Generate your final response within 'text' field in stringified JSON structure shown below. It is critical that response is only in this specified format:
 ~~~json
-[{
-  "html_tag": "p",
-  "text": (stringified JSON array) "[{ \"title\": <movie title>, \"director\": <director name>, \"year\": <year>, \"imdb_rating\": <imdbRating>, \"poster\": <poster url>, \"plot\": <movie plot> }, ...]"
-}]
+[
+  {
+    "html_tag": "p",
+    "text": (stringified JSON array) "[{ \"title\": <movie title>, \"director\": <director name>, \"year\": <year>, \"imdb_rating\": <imdbRating>, \"poster\": <poster url>, \"plot\": <movie plot> }, ...]"
+  }
+]
 ~~~
 `,
     })
@@ -308,16 +310,19 @@ You must extract 'movie title', 'director', 'year of release', 'IMDB rating', 'u
 ## Response Format
 Generate your final response within 'text' field in stringified JSON structure shown below. It is critical that response is only in this specified format:
 ~~~json
-[{
-  "html_tag": "p",
-  "text": (stringified JSON object) "{ \"title\": <movie title>, \"director\": <director name>, \"year\": <year>, \"imdb_rating\": <imdbRating>, \"poster\": <poster url>, \"plot\": <movie plot> }"
-}]
+[
+  {
+    "html_tag": "p",
+    "text": (stringified JSON object) "{ \"title\": <movie title>, \"director\": <director name>, \"year\": <year>, \"imdb_rating\": <imdbRating>, \"poster\": <poster url>, \"plot\": <movie plot> }"
+  }
+]
 ~~~
 `,
     })
   })
     .then((resp) => resp.json())
     .then((data) => {
+      document.getElementById('story').innerHTML = "<h3 style='color:#C39BD3;'>Enjoy!</h3><p style='color:#6C3483;'>Find similar movies or request a new story based on the theme of the picked movie.</p>";
       let details = {
         "title": "...", "director": "...", "year": "...", "imdb_rating": "...", "poster": ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)], "plot": "..."
       };
