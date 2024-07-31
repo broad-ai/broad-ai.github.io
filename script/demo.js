@@ -189,7 +189,7 @@ Find similar movies based on similar genre or director. For each movie, you must
 ## Response Format
 Your response must be embedded within one of the 'text' fields as an array of stringified JSON objects.
 ~~~json.stringify
-"[ { \"title\": <movie title>, \"director\": <director name>, \"year\": <year>, \"imdb_rating\": <imdbRating>, \"poster\": <poster url>, \"plot\": <movie plot> }, ... ]"
+"[ { \"title\": \"<movie title>\", \"director\": \"<director name>\", \"year\": \"<year>\", \"imdb_rating\": \"<imdbRating>\", \"poster\": \"<poster url>\", \"plot\": \"<movie plot>\" }, ... ]"
 ~~~
 `,
     })
@@ -305,7 +305,7 @@ You must extract 'movie title', 'director', 'year of release', 'IMDB rating', 'u
 ## Response Format
 Your response must be embedded within one of the 'text' fields as stringified JSON object.
 ~~~json.stringify
-"{ \"title\": <movie title>, \"director\": <director name>, \"year\": <year>, \"imdb_rating\": <imdbRating>, \"poster\": <poster url>, \"plot\": <movie plot> }"
+"{ \"title\": \"<movie title>\", \"director\": \"<director name>\", \"year\": \"<year>\", \"imdb_rating\": \"<imdbRating>\", \"poster\": \"<poster url>\", \"plot\": \"<movie plot>\" }"
 ~~~
 `,
     })
