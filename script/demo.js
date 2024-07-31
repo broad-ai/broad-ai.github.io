@@ -92,7 +92,8 @@ const updateTask = () => {
     }
   }
   if (document.getElementById('notes').value) {
-    task.push(`Also:`);
+    task.push(`Also:
+`);
     task.push(`- ` + document.getElementById('notes').value + `
 `);
     if (document.getElementById('radioBusiness').checked) {
@@ -337,9 +338,6 @@ Then, using all the movies listed in the context, generate your final response w
       document.getElementById('pickPoster').setAttribute('onerror', 'this.src="' + ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)] + '"');
       document.getElementById('pickRating').innerHTML = details.imdb_rating;
       document.getElementById('pickYear').innerHTML = details.year;
-
-      findSimilarMovies(details);
-
     });
 }; // pickRandomMovie
 
