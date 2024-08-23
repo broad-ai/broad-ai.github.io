@@ -27,12 +27,6 @@ const goChatbot = () => {
         messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
       });
       document.getElementById('responseChatbot').innerHTML += messages + "<hr>";
-      // message += "<hr>";
-      // if (sessionStorage.getItem('chat'))
-      //   sessionStorage.setItem('chat', sessionStorage.getItem('chat') + message);
-      // else
-      //   sessionStorage.setItem('chat', message);
-      // document.getElementById('responseChatbot').innerHTML = sessionStorage.getItem('chat') ? sessionStorage.getItem('chat') : "";
 
       // -- post results formatting
       document.getElementById('btnGoChatbot').disabled = false;
