@@ -6,6 +6,7 @@ const goChatbot = () => {
   document.getElementById('btnGoChatbot').disabled = true;
   document.getElementById('chatbox').disabled = true;
   document.getElementById('logs').innerHTML = "";
+  document.getElementById('responseChatbot').scrollTop = document.getElementById('responseChatbot').scrollHeight;
 
   // --- ask
   fetch(broadAIapiEndpoint + '/go', {
@@ -27,6 +28,7 @@ const goChatbot = () => {
         messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
       });
       document.getElementById('responseChatbot').innerHTML += messages + "<hr>";
+      document.getElementById('responseChatbot').scrollTop = document.getElementById('responseChatbot').scrollHeight;
 
       // -- post results formatting
       document.getElementById('btnGoChatbot').disabled = false;
