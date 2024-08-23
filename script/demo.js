@@ -3,7 +3,7 @@ const broadAIapiEndpoint = "https://broadaidemo-7yg2a2s6sq-uc.a.run.app";
 // ------ ..... ------ ..... ------ ..... ------ 
 const goChatbot = () => {
   // -- pre results formatting
-  document.getElementById('responseChatbot').innerHTML += "<h4>...</h4>";
+  // document.getElementById('responseChatbot').innerHTML += "<h4>...</h4>";
   document.getElementById('btnGoChatbot').disabled = true;
   document.getElementById('chatbox').disabled = true;
 
@@ -22,17 +22,24 @@ const goChatbot = () => {
     .then((data) => {
       // -- showing results
       sessionStorage.setItem('conversations', JSON.stringify(data.response.conversation));
-      let message = "<p style='text-align:right;color:black;'>" + document.getElementById('chatbox').value.trim() + "</p>";
+      let messages = "<p style='text-align:right;color:black;'>" + document.getElementById('chatbox').value.trim() + "</p>";
       data.response.response.forEach((line) => {
-        message += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
+        messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
       });
-      message += "<hr>";
-      if (sessionStorage.getItem('chat'))
-        sessionStorage.setItem('chat', sessionStorage.getItem('chat') + message);
-      else
-        sessionStorage.setItem('chat', message);
-      document.getElementById('responseChatbot').innerHTML = sessionStorage.getItem('chat') ? sessionStorage.getItem('chat') : "";
+      document.getElementById('responseChatbot').innerHTML += messages + "<hr>";
+      // message += "<hr>";
+      // if (sessionStorage.getItem('chat'))
+      //   sessionStorage.setItem('chat', sessionStorage.getItem('chat') + message);
+      // else
+      //   sessionStorage.setItem('chat', message);
+      // document.getElementById('responseChatbot').innerHTML = sessionStorage.getItem('chat') ? sessionStorage.getItem('chat') : "";
 
+      // -- post results formatting
+      document.getElementById('btnGoChatbot').disabled = false;
+      document.getElementById('chatbox').disabled = false;
+      document.getElementById('chatbox').value = "";
+
+      // -- Logs
       document.getElementById('logs').innerHTML = "<h4>Plan:</h4>";
       document.getElementById('logs').innerHTML += "<div><p>" + data.plan.reason + "</p></div>";
       let html = "<div>";
@@ -43,18 +50,9 @@ const goChatbot = () => {
       });
       html += "</div>";
       document.getElementById('logs').innerHTML += html;
-
       document.getElementById('logs').innerHTML += "<hr>";
-
       document.getElementById('logs').innerHTML += "<h4>Response:</h4>";
       document.getElementById('logs').innerHTML += "<div><p>" + data.response.reason + "</p></div>";
-
-
-      // -- post results formatting
-      document.getElementById('btnGoChatbot').disabled = false;
-      document.getElementById('chatbox').disabled = false;
-      document.getElementById('chatbox').value = "";
-
     });
 }; // goChatbot
 
