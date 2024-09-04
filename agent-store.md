@@ -15,7 +15,7 @@ title: BroadAI Agent Store
 <!-- <p>{{agent}}</p> -->
 <!-- {% endfor %} -->
 
-<!-- <!-- {% for agent in site.agents %} -->
+<!-- {% for agent in site.agents %} -->
 
 <div class="container">
   <div class="card" id="{{ agent.agent-name | downcase }}">
