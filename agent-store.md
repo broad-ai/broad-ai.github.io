@@ -11,7 +11,11 @@ title: BroadAI Agent Store
   <input type="text" id="searchBox" placeholder="Search...">
 </div>
 
-{% for agent in site.agents %}
+{% for agent in site.data.agents %}
+<p>agent</p>
+{%% endfor }
+
+<!-- {% for agent in site.agents %}
 
 <div class="container">
   <div class="card" id="{{ agent.agent-name | downcase }}">
@@ -42,6 +46,6 @@ const broadai = new BroadAI([ {{ agent.agent-name | downcase }}.agent, /* other 
   </div>
 </div>
 
-{% endfor %}
+{% endfor %} -->
 
 ---

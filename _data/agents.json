@@ -1,0 +1,50 @@
+[
+  {
+    "agent": {
+      "agent-name": "Aviator",
+      "capability": "Aviator can find the status of a specific flight number or for multiple flights between two airports",
+      "skills": [
+        {
+          "skill-name": "departingFlights",
+          "objective": "Retreive flights departing from specified airport",
+          "action": "departingFlights",
+          "parameters": {
+            "iata_departure": "string | must be an IATA airport code from where flight originates, e.g. CMH for Port Columbus International Airport"
+          }
+        },
+        {
+          "skill-name": "arrivingFlights",
+          "objective": "Retreive flights arriving into specified airport",
+          "action": "arrivingFlights",
+          "parameters": {
+            "iata_arrival": "string | must be an IATA airport code from where flight lands, e.g. CMH for Port Columbus International Airport"
+          }
+        },
+        {
+          "skill-name": "specificFlight",
+          "objective": "Retreive flight details about a specific flight",
+          "action": "specificFlight",
+          "parameters": {
+            "iata_flight_number": "string | must be an IATA flight number, e.g. IATA flight number for flight 'United 5532' is 'UA5532'"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "agent": {
+      "agent-name": "CineExpert",
+      "capability": "An expert on Movies who knows everything from movie details, directors, actors and to some extent user reviews",
+      "skills": [
+        {
+          "skill-name": "exploreCineWorld",
+          "objective": "ask anything about movie(s), genre, director(s), and actor(s)",
+          "action": "exploreCineWorld",
+          "parameters": {
+            "requirement": "string | form a detailed statement of requirement that can be used to generate a Cypher query and retrieve information from knowledge graph database"
+          }
+        }
+      ]
+    }
+  }
+]
