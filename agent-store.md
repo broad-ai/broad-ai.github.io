@@ -12,7 +12,6 @@ title: BroadAI Agent Store
 </div>
 
 {% for agent in site.data.agents %}
-<!-- {% for agent in site.agents %} -->
 
 <div class="container">
   <div class="card" id="{{ agent.agent-name | downcase }}">
