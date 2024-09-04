@@ -36,11 +36,7 @@ const {{ agent.agent-name | downcase }} = require('broadai-agents/{{ agent.agent
 // integrate with BroadAI MAS object
 const broadai = new BroadAI([ {{ agent.agent-name | downcase }}.agent, /* other agents */ ], /* BroadAIConfiguration */);
 // register agent with BroadAI MAS object
-{{ agent.agent-name | downcase }}.register(broadai.config, {
-  {% for config in agent.config %} 
-    "{{ config[0] }}" : "{{ config[1] }}" 
-  {% endfor %}
-});
+{{ agent.agent-name | downcase }}.register(broadai.config, `{{ agent.config }}`);
 </code></pre>
     </div>
   </div>
