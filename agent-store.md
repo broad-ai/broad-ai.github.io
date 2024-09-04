@@ -13,7 +13,7 @@ title: BroadAI Agent Store
 
 {% for agent in site.data.agents %}
 <p>agent</p>
-{%% endfor }
+{% endfor %}
 
 <!-- {% for agent in site.agents %}
 
