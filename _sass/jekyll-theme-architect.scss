@@ -103,12 +103,6 @@ header a.button {
   right: 0;
 }
 
-code,
-pre {
-  margin-bottom: 30px;
-  color: #222;
-}
-
 code {
   padding: 0 3px;
   border: solid 1px #999;
@@ -122,7 +116,7 @@ pre {
 }
 
 pre code {
-  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  font-family: monospace;
   font-size: 16px;
   padding: 0;
   color: #222;

@@ -24,7 +24,7 @@ title: BroadAI Agent Store
           <p>{{ skill.objective }}</p>
           <ul>
             {% for parameter in skill.parameters %}
-              <li>{{ parameter[0] }}: {{ parameter[1] }}</li>
+              <li><strong>{{ parameter[0] }}</strong> : {{ parameter[1] }}</li>
             {% endfor %}
           </ul>
         </div>
@@ -36,7 +36,7 @@ const {{ agent.agent-name | downcase }} = require('broadai-agents/{{ agent.agent
 // integrate with BroadAI MAS object
 const broadai = new BroadAI([ {{ agent.agent-name | downcase }}.agent, /* other agents */ ], /* BroadAIConfiguration */);
 // register agent with BroadAI MAS object
-{{ agent.agent-name | downcase }}.register(broadai.config, `{{ agent.config }}`);
+{{ agent.agent-name | downcase }}.register(broadai.config, {{ agent.config | jsonify }});
 </code></pre>
     </div>
   </div>
