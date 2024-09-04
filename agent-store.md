@@ -32,11 +32,14 @@ title: BroadAI Agent Store
       <h4>Usage:</h4>
 <pre><code class="language-javascript">
 // import agent
-const {{ agent.agent-name | downcase }} = require('broadai-agents/{{ agent.package-name }}');
+const {{ agent.agent-name | downcase }} = require('broadai-agents/{{ agent.agent-name }}');
 // integrate with BroadAI MAS object
 const broadai = new BroadAI([ {{ agent.agent-name | downcase }}.agent, /* other agents */ ], /* BroadAIConfiguration */);
 // register agent with BroadAI MAS object
-{{ agent.agent-name | downcase }}.register(broadai.config, {{ agent.agent-config }});
+{{ agent.agent-name | downcase }}.register(broadai.config, {
+  {{ for config in agent.config }}
+    "{{ config[0] }}" : "{{ config[1] }}"
+});
 </code></pre>
     </div>
   </div>

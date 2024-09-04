@@ -27,7 +27,12 @@
           "iata_flight_number": "string | must be an IATA flight number, e.g. IATA flight number for flight 'United 5532' is 'UA5532'"
         }
       }
-    ]
+    ],
+    "config": {
+      "aviationstack": {
+        "api_key": "?"
+      }
+    }
   },
   {
     "agent-name": "CineExpert",
