@@ -303,5 +303,20 @@
       }
     ],
     "config": {}
+  },
+  {
+    "agent-name": "MedAssistant",
+    "capability": "Provide preliminary analysis based on given health conditions.",
+    "skills": [
+      {
+        "skill-name": "diagnose",
+        "objective": "Determine preliminary differential diagnosis, additional diagnostic tests, and care plan based on provided notes",
+        "action": "diagnose",
+        "parameters": {
+          "notes": "string | notes containing medical symptoms, conditions, vitals, history and any other useful information to aid diagnosis"
+        }
+      }
+    ],
+    "config": {}
   }
 ]
