@@ -76,30 +76,40 @@ const updateTask = () => {
     task.push(
       `to ` + document.getElementById('destinationCity').value
     );
-  task.push(`over next week for 5 days.`);
-  if (document.getElementById('destinationCity').value) {
-    task.push(`What kind of weather should I expect in ` + document.getElementById('destinationCity').value + `?
-`);
-    if (document.getElementById('radioPersonal').checked) {
-      task.push(`Compose an email message containing a day-by-day travel itinerary of must-see tourist attractions. Include weather for each day as well.
-`);
-    }
-  }
+  task.push(`sometime next week.`);
   if (document.getElementById('notes').value) {
-    task.push(`Also:
-`);
-    task.push(`- ` + document.getElementById('notes').value + `
-`);
+    task.push(`Consider following request and provide support:`);
+    task.push(`"` + document.getElementById('notes').value + `"
+    `);
     if (document.getElementById('radioBusiness').checked) {
-      task.push(`- If a meeting purpose is provided, draft an agenda outline with high-level talking points.
-`);
-      task.push(`- If a company name is mentioned above, provide a brief summary about their business.
-`);
+      task.push(`If I mentioned a company name above, provide a summary of their business profile and latest financial performance. If I mentioned a meeting purpose, recommend talking points or an agenda outline for the meeting.
+      `);
     }
   }
-  if (document.getElementById('originCity').value && document.getElementById('destinationCity').value)
-    task.push(`Finally, based on weather, which day would be ideally best to return back to ` + document.getElementById('originCity').value + ` from ` + document.getElementById('destinationCity').value + `? I don't like rain as it usually delays travel.
-`);
+  if (document.getElementById('destinationCity').value) {
+    task.push(`In addition, I will greatly benefit if you can provide following information for my destination city, ` + document.getElementById('destinationCity').value + `:
+        `);
+    task.push(`- Connected airports
+        `);
+    task.push(`- Dressing accessories to consider based on weather conditions (e.g. sunglasses, umbrella, light jacket, shoes, etc.)
+        `);
+    task.push(`- If an international city, provide exchange rate (use USD as base currency) 
+        `);
+    if (document.getElementById('radioPersonal').checked) {
+      task.push(`- Interesting / historical significance
+          `);
+      task.push(`- Must visit local attractions (ensure that recommendations are accurate and verify their relevance)
+          `);
+      task.push(`- A draft social media message letting my contacts know I will be in the city
+          `);
+    }
+  }
+  if (document.getElementById('originCity').value) {
+    task.push(`If possible, include following my city of origin, ` + document.getElementById('originCity').value + `:
+        `);
+    task.push(`- Best day to travel weather-wise
+        `);
+  }
   document.getElementById('task').value = task.join(' ')
 }; // updateTask
 
