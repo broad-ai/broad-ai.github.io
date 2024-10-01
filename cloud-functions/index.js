@@ -100,10 +100,10 @@ const broadAIConfiguration = {
 const broadai = new BroadAI([aviator.agent, financialAnalyst.agent, researcher.agent, weatherman.agent], broadAIConfiguration);
 
 // -- Register agents
-aviator.register(broadai.config, { "aviationstack": { "api_key": process.env['aviationstack'] } });
-financialAnalyst.register(broadai.config, { "financialmodelingprep": { "api_key": process.env['financialmodelingprep'] } });
-researcher.register(broadai.config, { "google_search_engine": { "api_key": process.env['google_search_engine'], "programmable_search_engine_id": process.env['programmable_search_engine_id'] }, "yelp": { "api_key": process.env['yelp'] } });
-weatherman.register(broadai.config, { "openweathermap": { "api_key": process.env['openweathermap'] } });
+aviator.register(broadai, { "aviationstack": { "api_key": process.env['aviationstack'] } });
+financialAnalyst.register(broadai, { "financialmodelingprep": { "api_key": process.env['financialmodelingprep'] } });
+researcher.register(broadai, { "google_search_engine": { "api_key": process.env['google_search_engine'], "programmable_search_engine_id": process.env['programmable_search_engine_id'] }, "yelp": { "api_key": process.env['yelp'] } });
+weatherman.register(broadai, { "openweathermap": { "api_key": process.env['openweathermap'] } });
 
 
 // -- Plan

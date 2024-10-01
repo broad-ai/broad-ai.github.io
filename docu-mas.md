@@ -107,7 +107,7 @@ import researcher from 'broadai-agents/researcher';
 const ai = new BroadAI([ research.agent ], /* BroadAIConfiguration */);
 
 // register the agent along with agent-specific configuration (as provided in agent documentation)
-researcher.register(ai.config, agentConfig?); // note we are passing BroadAI configuration (ai.config)
+researcher.register(ai, agentConfig?); // note we are passing BroadAI instance (ai)
 ```
 
 - **`BroadAIConfiguration`** which is providing access and structure to use the Large Language Model (LLM) of your choice. Since the API call signatures differ between different LLM providers, the configuration is flexible to adopt any large language model, including privately hosted models. 
@@ -138,7 +138,7 @@ let broadAIConfiguration = {
   /* ** (4) Conversation History Configuration ** */
   "history": {
     "enabled": true,            // -- whether conversation history should be enabled
-    "max_exchanges": 5          // -- number of Q & A exchanges that must be retained (1 exchange = 1 user question + 1 BroadAI answer)
+    "max_exchanges": 3          // -- number of Q & A exchanges that must be retained (1 exchange = 1 user question + 1 BroadAI answer)
   }
 }
 ```

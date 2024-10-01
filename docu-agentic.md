@@ -64,9 +64,9 @@ let config;
 /* Create Agent module */
 module.exports = {
 
-  register: (broadAIConfig, agentConfig) =>{
+  register: (broadAI, agentConfig) =>{
     // -- create Agentic instance
-    agentic = new Agentic(broadAIConfig);
+    agentic = new Agentic(broadAI);
     // -- config
     config = agentConfig;
   }, 
@@ -108,7 +108,7 @@ function findBusinesses(term, location) { /* function definition behind the acti
 */
 module.exports = {
 
-  register: (broadAIConfig, agentConfig) =>{ /* refer previous code snippet */ }, 
+  register: (broadAI, agentConfig) =>{ /* refer previous code snippet */ }, 
 
   // shows an example of Researcher agent that provides two skills:
   // - researchTopic : that searches internet
@@ -331,14 +331,12 @@ const flightArrivals = (iata_airport_code) => { /* implement */ } // flightArriv
 
 // -- Agent: FlightControl --
 module.exports = {
-  register: (broadaiConfig, agentConfig) => {
-    agentic = new Agentic(broadaiConfig);
+  register: (broadai, agentConfig) => {
+    agentic = new Agentic(broadai);
     cfg = agentConfig; 
-    /*
       agentConfig = {
         "aviationstack": { "api_key": "???" }
       }
-    */
   },
 
   agent: {
