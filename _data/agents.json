@@ -88,13 +88,7 @@
         }
       }
     ],
-    "config": {
-      "neo4j": {
-        "uri": "neo4j+s://??",
-        "user": "??",
-        "key": "??"
-      }
-    }
+    "config": {}
   },
   {
     "agent-name": "FinancialAnalyst",
