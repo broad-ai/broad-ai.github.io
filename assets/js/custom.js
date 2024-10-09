@@ -397,7 +397,7 @@ You are expected to respond in a specific format in addition to any other respon
               <div class="card">
                 <img src="`+ recommendation.poster + `" onerror="this.src='` + ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)] + `'" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <p class="row card-text">
+                  <div class="row">
                     <span class="col-6 text-left">
                       <img
                         src="assets/images/star.png" alt="IMDB rating">
@@ -406,14 +406,13 @@ You are expected to respond in a specific format in addition to any other respon
                     <span class="col-6 text-right">
                       <span>`+ recommendation.year + `</span>
                     </span>
-                  </p>
-                  <h2 class="card-title">
-                    <span>`+ recommendation.title + `</span>
-                  </h2>
-                  <h4 class="card-title">
-                    <strong>Directed by: </strong>
-                    <span>`+ recommendation.director + `</span>
-                  </h4>
+                  </div>
+                  <div class="mt-2">
+                    <h2><span>`+ recommendation.title + `</span></h2>
+                  </div>
+                  <div class="mt-2">
+                    <p>Director: `+ recommendation.director + `</span></p>
+                  </div>
                 </div>
                 <div class="px-3 py-2">`+ recommendation.plot + `</div>
               </div>
@@ -428,23 +427,22 @@ You are expected to respond in a specific format in addition to any other respon
               <div class="card">
                 <img src="`+ ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)] + `" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <p class="row card-text">
+                  <div class="row">
                     <span class="col-6 text-left">
                       <img
                         src="assets/images/star.png" alt="IMDB rating">
-                      <span>-</span>
+                      -
                     </span>
                     <span class="col-6 text-right">
-                      <span>----</span>
+                      -
                     </span>
-                  </p>
-                  <h2 class="card-title">
-                    <span>Nothing else here!</span>
-                  </h2>
-                  <h4 class="card-title">
-                    <strong>Directed by: </strong>
-                    <span>-</span>
-                  </h4>
+                  </div>
+                  <div class="mt-2">
+                    <h2>-</h2>
+                  </div>
+                  <div class="mt-2">
+                    <p>Director: -</p>
+                  </div>
                 </div>
                 <div class="px-3"><p>No further recommendations.</p></div>
               </div>
