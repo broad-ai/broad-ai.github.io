@@ -1,0 +1,73 @@
+.logo {
+  width: 4.6em;
+  height: 4.6em;
+}
+
+.documentation {
+  /* border-style: dotted;
+  border-width: 1px;
+  border-color: #999; */
+  padding: 1.5em 1.5em 0 1.5em;
+}
+
+.documentation div {
+  margin: 0.5em 0 0.5em 0;
+}
+
+.documentation em {
+  color: #4da6e7;
+  font-style: normal !important;
+}
+
+.documentation code {
+  display: block;
+}
+
+.documentation code pre {
+  font-size: 1.1em;
+}
+
+.documentation code pre var {
+  color: #f34b29d3;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.documentation code pre var1 {
+  color: dodgerblue;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.documentation code pre var2 {
+  color: #202020;
+  font-weight: 600;
+  font-style: normal;
+  background-color: aliceblue;
+}
+
+.documentation code pre note {
+  color: #d0d0d0;
+  font-style: normal;
+}
+
+.copy-button a {
+  display: inline-block !important;
+  padding: 5px 10px !important;
+  margin: 0.5em 1.5em 0 1.5em;
+  color: #a0a0a0 !important;
+  border: 1px solid #a0a0a0 !important;
+  border-radius: 5px;
+  font-size: 0.8em;
+  font-weight: 300 !important;
+  letter-spacing: 0.3px !important;
+}
+
+.copy-button a:after {
+  content: 'Copy';
+}
+
+.copy-button a:hover {
+  background-color: #a0a0a0;
+  color: #fff !important;
+}

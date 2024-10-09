@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="BroadAI is a multi-agent AI system (MAS) development framework">
+  <meta name="google-site-verification" content="0rLKkEIQvHRi4lPU6COp8BOn_GnyYbFJIV-d0n3NhhQ" />
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <title>BroadAI Demo | Chatbot</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-digimedia-v3.css">
+  <!-- <link rel="stylesheet" href="assets/css/animated.css"> -->
+  <link rel="stylesheet" href="assets/css/owl.css">
+  <link rel="stylesheet" href="assets/css/custom.css">
+
+</head>
+
+<body>
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky" <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <!-- ***** Logo Start ***** -->
+          <a href="index.html" class="logo">
+            <img src="assets/images/logo-v3.png" alt="BroadAI logo">
+          </a>
+          <!-- ***** Logo End ***** -->
+          <!-- ***** Menu Start ***** -->
+          <ul class="nav">
+            <li class="scroll-to-section"><a href="/">Home</a></li>
+            <li class="scroll-to-section"><a href="/#concept">Concept</a></li>
+            <li class="scroll-to-section"><a href="/#value">Value</a></li>
+            <li class="scroll-to-section"><a href="/#agents">Agent Store</a></li>
+            <li class="scroll-to-section"><a href="/demo.html">Demonstration</a></li>
+            <li class="scroll-to-section"><a href="/#contact">Contact</a></li>
+          </ul>
+          <a class='menu-trigger'>
+            <span>Menu</span>
+          </a>
+          <!-- ***** Menu End ***** -->
+        </nav>
+      </div>
+    </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="container">
+    <div id="contact" class="contact-us section">
+      <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+
+          <div class="border-first-button d-flex justify-content-end">
+            <a href="/demo.html">&lt; Back</a>
+          </div>
+
+          <h2 style="color:#4da6e7;">Chatbot</h2>
+          <p>
+            Demonstrates contextual conversation experience that engages following agents: <br>
+            <strong>Agents:</strong> Aviator | FinancialAnalyst | MedAssistant | NewsReporter | Randomizer |
+            Researcher | Weatherman | Writer
+          </p>
+
+          <div class="container mt-5">
+            <div class="row">
+              <div class="col-12 px-3 py-3" id="responseChatbot"
+                style="height: calc(50vh - 20px);border: 1px solid #ccc;margin-bottom: 2em;overflow-y: scroll;">
+                <!-- chat messages here -->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-8 col-md-10 px-0 text-left">
+                <textarea class="form-control" id="chatbox" rows="2"
+                  style="border-radius: 8px;box-shadow: 4px 8px 6px #ddd;"></textarea>
+              </div>
+              <div class="col-1 col-md-1 px-0 text-right"></div>
+              <div class="col-3 col-md-1 px-0 text-right">
+                <button class="btn btn-secondary" id="btnGoChatbot" onclick="goChatbot()">Send</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 px-3 py-3" id="logs" style="font-weight:100;color:#999;"></div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-lg-2"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <p>
+            Copyright © 2024 Mangesh Pise. All Rights Reserved.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Scripts -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <!-- <script src="assets/js/animation.js"></script> -->
+  <!-- <script src="assets/js/imagesloaded.js"></script> -->
+  <script src="assets/js/custom.js"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', '{{ site.google_analytics }}');
+  </script>
+
+</body>
+
+</html>
