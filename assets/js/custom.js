@@ -394,7 +394,7 @@ You are expected to respond in a specific format in addition to any other respon
                   <p><small>inspired by this plot</small></p>
                 </div>
               </div>
-              <div class="card">
+              <div class="card px-3 py-3">
                 <img src="`+ recommendation.poster + `" onerror="this.src='` + ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)] + `'" class="card-img-top" alt="...">
                 <div class="card-body">
                   <div class="row">
@@ -424,24 +424,19 @@ You are expected to respond in a specific format in addition to any other respon
       else {
         html += `
             <div class="col-12 col-md-6">
-              <div class="card">
-                <img src="`+ ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)] + `" class="card-img-top" alt="...">
+              <div class="card px-3 py-3">
                 <div class="card-body">
                   <div class="row">
                     <span class="col-6 text-left">
-                      <img
-                        src="assets/images/star.png" alt="IMDB rating">
-                      -
                     </span>
                     <span class="col-6 text-right">
-                      -
                     </span>
                   </div>
                   <div class="mt-2">
-                    <h2>-</h2>
+                    <h2></h2>
                   </div>
                   <div class="mt-2">
-                    <p>-</p>
+                    <p></p>
                   </div>
                 </div>
                 <div class="px-3"><p>No further recommendations.</p></div>
