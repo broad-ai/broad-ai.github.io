@@ -411,7 +411,7 @@ You are expected to respond in a specific format in addition to any other respon
                     <h2><span>`+ recommendation.title + `</span></h2>
                   </div>
                   <div class="mt-2">
-                    <p>Director: `+ recommendation.director + `</span></p>
+                    <p>`+ "Director: " + recommendation.director + `</span></p>
                   </div>
                 </div>
                 <div class="px-3 py-2">`+ recommendation.plot + `</div>
@@ -441,7 +441,7 @@ You are expected to respond in a specific format in addition to any other respon
                     <h2>-</h2>
                   </div>
                   <div class="mt-2">
-                    <p>Director: -</p>
+                    <p>-</p>
                   </div>
                 </div>
                 <div class="px-3"><p>No further recommendations.</p></div>
@@ -496,7 +496,7 @@ You are expected to respond in a specific format in addition to any other respon
       document.getElementById('btnWriteNewStory').disabled = false;
       document.getElementById('plot').innerHTML = details.plot;
       document.getElementById('pickTitle').innerHTML = details.title;
-      document.getElementById('pickDirector').innerHTML = details.director;
+      document.getElementById('pickDirector').innerHTML = "Director: " + details.director;
       document.getElementById('pickPoster').setAttribute('src', details.poster);
       document.getElementById('pickPoster').setAttribute('onerror', 'this.src="' + ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)] + '"');
       document.getElementById('pickRating').innerHTML = details.imdb_rating;
