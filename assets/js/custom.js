@@ -344,7 +344,7 @@ const findSimilarMovies = (movie) => {
     "imdb_rating": document.getElementById('pickRating').innerHTML,
     "plot": document.getElementById('plot').innerHTML
   };
-  document.getElementById('story').innerHTML = "<p style='color:#999;margin-bottom:20px;'>Okay!</p><h3 style='color:#C39BD3;'>Please hang on!</h3><p style='color:#6C3483;'>Finding other movies like " + currentMovie.title + " which you might also enjoy...</p>";
+  document.getElementById('story').innerHTML = "<h3 style='color:#C39BD3;'>Okay! Please hang on!</h3><p style='color:#6C3483;'>Finding other movies like <strong>" + currentMovie.title + "</strong> which you might also enjoy...</p>";
   // --- ask
   fetch(broadAIapiEndpoint + '/movflick', {
     method: "POST",
@@ -422,27 +422,7 @@ You are expected to respond in a specific format in addition to any other respon
         });
       }
       else {
-        html += `
-            <div class="col-12 col-md-6">
-              <div class="card px-3 py-3">
-                <div class="card-body">
-                  <div class="row">
-                    <span class="col-6 text-left">
-                    </span>
-                    <span class="col-6 text-right">
-                    </span>
-                  </div>
-                  <div class="mt-2">
-                    <h2></h2>
-                  </div>
-                  <div class="mt-2">
-                    <p></p>
-                  </div>
-                </div>
-                <div class="px-3"><p>No further recommendations.</p></div>
-              </div>
-            </div>
-            `;
+        document.getElementById('story').innerHTML = "<h3 style='color:#C39BD3;'>Sorry! No recommendations</h3><p style='color:#6C3483;'>I could not find anything similar like <strong>" + currentMovie.title + "</strong> that you might enjoy...</p>";
       }
       html += `
           </div>`;
