@@ -41,7 +41,7 @@
     items: 1,
     loop: false,
     autoplay: false,
-    nav: false,
+    nav: true,
     margin: 0,
     responsive: {
       1200: {
@@ -400,8 +400,7 @@ You are expected to respond in a specific format in addition to any other respon
                   <p class="row card-text">
                     <span class="col-6 text-left">
                       <img
-                        src="assets/images/star.png" style="height:1em;"
-                        alt="IMDB rating">
+                        src="assets/images/star.png" alt="IMDB rating">
                       <span>`+ recommendation.imdb_rating + `</span>
                     </span>
                     <span class="col-6 text-right">
@@ -432,8 +431,7 @@ You are expected to respond in a specific format in addition to any other respon
                   <p class="row card-text">
                     <span class="col-6 text-left">
                       <img
-                        src="assets/images/star.png" style="height:1em;"
-                        alt="IMDB rating">
+                        src="assets/images/star.png" alt="IMDB rating">
                       <span>-</span>
                     </span>
                     <span class="col-6 text-right">
