@@ -186,7 +186,7 @@ const registerApp = () => {
     document.getElementById('btnregister').hidden = true;
     document.getElementById('message').innerHTML = "<p>Working...</p>";
     document.getElementById('emailvalidation').innerHTML = "";
-    fetch(broadAIapiEndpoint + '/app/register', {
+    fetch('https://broadai-7yg2a2s6sq-uc.a.run.app/app/register', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
