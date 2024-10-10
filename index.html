@@ -140,6 +140,15 @@
                   outcomes by activating the right skills based on the user's input. BroadAI also supports easy
                   expansion by allowing new agents to be added from its agent store.
                 </p>
+
+                <div class="row">
+                  <div class="col-lg-12 text-center">
+                    <div class="border-first-button scroll-to-section">
+                      <a href="/demo.html">See BroadAI in action</a>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -227,6 +236,33 @@ npm install <var>broadai</var> --save
 npm install <var>broadai-agents</var> --save
                                       </pre>
                                     </code>
+                                  </div>
+                                  <!--  -->
+                                  <div>
+                                    Generate an <strong>App ID</strong> that will be used in BroadAI configuration. An
+                                    application-specific App ID allows you isolate your configuration and monitor usage.
+                                    <!-- Generate App ID -->
+                                    <div class="row mb-5"
+                                      style="border-style:dotted;border-width:1px;background-color:#f9f9f9;">
+                                      <div class="col-12 col-md-2 px-1">
+                                        <input type="text" class="form-control py-3" id="appname" name="appname"
+                                          placeholder="AppName">
+                                      </div>
+                                      <div class="col-12 col-md-3 px-1">
+                                        <input type="email" class="form-control py-3" id="owneremail" name="owneremail"
+                                          placeholder="johndoe@example.com">
+                                        <div id="emailvalidation" style="color:red;"></div>
+                                      </div>
+                                      <div class="col-12 col-md-5 px-1">
+                                        <input type="text" class="form-control py-3" id="purpose" name="purpose"
+                                          placeholder="How you will use BroadAI?">
+                                      </div>
+                                      <div class="col-12 col-md-1 px-1">
+                                        <input class="btn btn-primary mt-2" type="button" id="btnregister"
+                                          value="Generate" onClick="registerApp()">
+                                      </div>
+                                    </div>
+                                    <div id="message"></div>
                                   </div>
                                   <!--  -->
                                   <div>
@@ -859,16 +895,6 @@ const ai = new BroadAI([ <var1>writer</var1>.<var>agent</var>, <note>...</note> 
               <!-- </a> -->
             </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <div class="border-first-button scroll-to-section">
-            <a href="/demo.html">Live Demonstration</a>
-          </div>
-          <p>
-            Check out this live demonstration that uses all of the above agents
-          </p>
         </div>
       </div>
     </div>
