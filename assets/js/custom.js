@@ -168,8 +168,8 @@
 })(window.jQuery);
 
 
-const broadAIapiEndpoint = "https://broadaidemo-7yg2a2s6sq-uc.a.run.app";
-
+const broadAIDemoapiEndpoint = "https://broadaidemo-7yg2a2s6sq-uc.a.run.app";
+const broadAIapiEndpoint = "https://broadai-7yg2a2s6sq-uc.a.run.app";
 
 
 // ------ ..... ------ ..... ------ ..... ------ 
@@ -186,7 +186,7 @@ const registerApp = () => {
     document.getElementById('btnregister').hidden = true;
     document.getElementById('message').innerHTML = "<p>Working...</p>";
     document.getElementById('emailvalidation').innerHTML = "";
-    fetch('https://broadai-7yg2a2s6sq-uc.a.run.app/app/register', {
+    fetch(broadAIapiEndpoint + '/app/register', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -242,7 +242,7 @@ const goChatbot = () => {
   document.getElementById('responseChatbot').scrollTop = document.getElementById('responseChatbot').scrollHeight;
 
   // --- ask
-  fetch(broadAIapiEndpoint + '/go', {
+  fetch(broadAIDemoapiEndpoint + '/go', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -355,7 +355,7 @@ const goConcierge = () => {
 
   document.getElementById('logs').innerHTML = "<h4>Task:</h4><p>" + document.getElementById('task').value.replaceAll('\n', '<br>') + "</p>";
 
-  fetch(broadAIapiEndpoint + '/go', {
+  fetch(broadAIDemoapiEndpoint + '/go', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -409,7 +409,7 @@ const findSimilarMovies = (movie) => {
   };
   document.getElementById('story').innerHTML = "<h3 style='color:#C39BD3;'>Okay! Please hang on!</h3><p style='color:#6C3483;'>Finding other movies like <strong>" + currentMovie.title + "</strong> which you might also enjoy...</p>";
   // --- ask
-  fetch(broadAIapiEndpoint + '/movflick', {
+  fetch(broadAIDemoapiEndpoint + '/movflick', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -499,7 +499,7 @@ const pickRandomMovie = () => {
   document.getElementById('btnFindSimilarMovies').disabled = true;
   document.getElementById('btnWriteNewStory').disabled = true;
   // --- ask
-  fetch(broadAIapiEndpoint + '/movflick', {
+  fetch(broadAIDemoapiEndpoint + '/movflick', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -564,7 +564,7 @@ const writeSimilarStory = (title, director, year, imdb_rating, poster, plot) => 
   let _plot = plot ? decodeURIComponent(plot) : document.getElementById('plot').innerHTML;
   document.getElementById('plot').innerHTML = _plot;
   // --- ask
-  fetch(broadAIapiEndpoint + '/go', {
+  fetch(broadAIDemoapiEndpoint + '/go', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
