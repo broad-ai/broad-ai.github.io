@@ -2042,6 +2042,7 @@ Footer Style
 
 footer {
   /* background-image: url(../images/footer-bg-v3.jpg); */
+  background-color: #726ae3;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
