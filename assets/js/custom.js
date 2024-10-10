@@ -206,8 +206,8 @@ const registerApp = () => {
           document.getElementById('purpose').disabled = false;
           document.getElementById('btnregister').hidden = false;
 
-          document.getElementById('message').innerHTML = "<div class='col-12'>";
-          document.getElementById('message').innerHTML += "<p>AppID: <span style='color:#006400;font-weight:500;'>" + resp.appid + "</span> <br>" + resp.reason + "</p>";
+          document.getElementById('message').innerHTML = "<div class='col-12' style='border-style:dotted;border-width:1px;background-color:#fff;'>";
+          document.getElementById('message').innerHTML += "<p>AppID: <span style='color:#00500d;font-weight:600;background-color:#ffffe7;'>" + resp.appid + "</span> <br> <small>" + resp.reason + "</small></p>";
           document.getElementById('message').innerHTML += "<p>Dashboard URL: <a href = 'https://broad-ai.github.io/metering.html?appid=" + resp.appid + "'>https://broad-ai.github.io/metering.html?appid=" + resp.appid + "</a></p>";
           document.getElementById('message').innerHTML += "</div>";
         }
@@ -217,8 +217,8 @@ const registerApp = () => {
           document.getElementById('purpose').disabled = false;
           document.getElementById('btnregister').hidden = false;
 
-          document.getElementById('message').innerHTML = "<div class='col-12'>";
-          document.getElementById('message').innerHTML += "<p><span style='color:#FF0000;'>" + resp.reason + "</span></p>";
+          document.getElementById('message').innerHTML = "<div class='col-12' style='border-style:dotted;border-width:1px;background-color:#fff;'>";
+          document.getElementById('message').innerHTML += "<p><span style='color:#ff654c;'>" + resp.reason + "</span></p>";
           document.getElementById('message').innerHTML += "</div>";
         }
       });
