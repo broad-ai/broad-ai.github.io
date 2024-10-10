@@ -285,13 +285,13 @@ import <var>researcher</var> from <var>'broadai-agents/researcher'</var>;
                                       <pre>
 const <var>ai</var> = new BroadAI([ <var>research</var>.<var>agent</var> ], {
 <note>/* ** (1) BroadAI Personality ** */</note>
-  <var>"appid"</var>: "XXXXXXXX",
+  <var>"appid"</var>: "XXXXXXXX", <note>// use APPID generated above</note>
   
 <note>/* ** (2) BroadAI Personality ** */</note>
   <var>"personality"</var>:{
-    <var>"name"</var>: "<name>",                         <note>// -- default: Sutradhar, meaning conductor</note>
-    <var>"role"</var>: "<role>",                         <note>// -- default: analyst</note>
-    <var>"pov"</var>: "first-person |or| third-person",  <note>// -- default: first-person</note>
+    <var>"name"</var>: "<name>",                         <note>// default: Sutradhar, meaning conductor</note>
+    <var>"role"</var>: "<role>",                         <note>// default: analyst</note>
+    <var>"pov"</var>: "first-person |or| third-person",  <note>// default: first-person</note>
   },
 
 <note>/* ** (3) LLM Configuration ** */</note>
@@ -304,8 +304,8 @@ const <var>ai</var> = new BroadAI([ <var>research</var>.<var>agent</var> ], {
 
 <note>/* ** (4) Conversation History Configuration ** */</note>
   <var>"history"</var>: {
-    <var>"enabled"</var>: true,            <note>// -- whether conversation history should be enabled</note>
-    <var>"max_exchanges"</var>: 3          <note>// -- number of Q & A exchanges that must be retained</note>
+    <var>"enabled"</var>: true,            <note>// whether conversation history should be enabled</note>
+    <var>"max_exchanges"</var>: 3          <note>// number of Q & A exchanges that must be retained</note>
   }
 });
                                       </pre>
@@ -414,12 +414,12 @@ const Agentic = require('broadai/agentic');
 module.exports = {
 
   <var>register</var>: (<var>broadAI</var>, <var>agentConfig</var>) =>{
-    <var>agentic</var> = new Agentic(<var>broadAI</var>); <note>// -- create Agentic instance</note>
-    <var>config</var> = <var>agentConfig</var>; <note>// -- config</note>
+    <var>agentic</var> = new Agentic(<var>broadAI</var>); <note>// create Agentic instance</note>
+    <var>config</var> = <var>agentConfig</var>; <note>// config</note>
   }, 
 
   <var>agent</var>: {
-    <note>// -- read further</note>
+    <note>// read further</note>
   }
 };
                                       </pre>
