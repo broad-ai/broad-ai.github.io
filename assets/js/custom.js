@@ -206,12 +206,10 @@ const registerApp = () => {
           document.getElementById('purpose').disabled = false;
           document.getElementById('btnregister').hidden = false;
 
-          document.getElementById('message').innerHTML = "<p style='color:#006400;'>" + resp.status + "</p>";
-          document.getElementById('message').innerHTML += "<p><strong style='color:#2e7bcf;'> App ID:</strong></p>";
-          document.getElementById('message').innerHTML += "<code style='font-size:3em;'>" + resp.appid + "</code>";
-
-          document.getElementById('message').innerHTML += "<p style='color:#006400;'>" + resp.reason + "</p>";
-          document.getElementById('message').innerHTML += "<p>You can monitor usage of this App ID using the following URL: <br> <a href = 'https://broad-ai.github.io/metering.html?appid=" + resp.appid + "'>https://broad-ai.github.io/metering.html?appid=" + resp.appid + "</a></p>";
+          document.getElementById('message').innerHTML = "<div>";
+          document.getElementById('message').innerHTML += "<p>AppID: <span style='color:#006400;font-weight:500;'>" + resp.appid + "</span> <br>" + resp.reason + "</p>";
+          document.getElementById('message').innerHTML += "<p>Dashboard URL: <a href = 'https://broad-ai.github.io/metering.html?appid=" + resp.appid + "'>https://broad-ai.github.io/metering.html?appid=" + resp.appid + "</a></p>";
+          document.getElementById('message').innerHTML += "</div>";
         }
         else {
           document.getElementById('appname').disabled = false;
@@ -219,11 +217,9 @@ const registerApp = () => {
           document.getElementById('purpose').disabled = false;
           document.getElementById('btnregister').hidden = false;
 
-          document.getElementById('message').innerHTML = "<p style='color:red;'>" + resp.status + "</p>";
-          document.getElementById('message').innerHTML += "<p><strong style='color:#696969;'> App ID:</strong></p>";
-          document.getElementById('message').innerHTML += "<code style='font-size:3em;color:#C0C0C0;'>(not generated)</code>";
-
-          document.getElementById('message').innerHTML += "<p style='color:red;'>" + resp.reason + "</p>";
+          document.getElementById('message').innerHTML = "<div>";
+          document.getElementById('message').innerHTML += "<p><span style='color:#FF0000;'>" + resp.reason + "</span></p>";
+          document.getElementById('message').innerHTML += "</div>";
         }
       });
   }
