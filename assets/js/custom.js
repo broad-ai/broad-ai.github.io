@@ -642,7 +642,7 @@ const fetchUsage = () => {
           `;
         }
         else
-          html = "<h2>No usage, so far...</h2> <p>Please refer to the <a href='/docu-mas.html'>documentation</a> to learn how to use BroadAI to build next-gen AI applications, or feel free to <img src='./assets/images/icon-rocket.png' style='height:1.5em; padding: 0; margin: 0'><a href='mailto:broad.agents.ai@gmail.com?subject=Re%20using%20my%20BroadAI%20App%20ID'reach out to us</a>reach out to us.</p>";
+          html = "<h2>No usage, so far...</h2>";
         document.getElementById('dashboard').innerHTML = html;
       });
   }, 600);
