@@ -180,7 +180,7 @@ const subscribe = () => {
   if (emailRegex.test(email)) {
     document.getElementById('btnsubscribe').disabled = true;
     document.getElementById('emailvalidation_subs').innerHTML = "";
-    fetch(broadAIapiEndpoint + "/connect", {
+    fetch(broadAIapiEndpoint + "/community/subscribe", {
       "method": "POST",
       "headers": {
         "Content-Type": "application/json"
