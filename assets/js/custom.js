@@ -607,25 +607,27 @@ const fetchUsage = () => {
         if (agents.length) {
           html = ``;
           agents.forEach((agent) => {
-            html += `
-          <table style="margin-top:20px;">
+            if (agent != 'app') {
+              html += `
+          <table>
           `;
-            html += `
+              html += `
             <tr>
               <th colspan="2">`+ agent + `</th>
             </tr>
             `;
-            Object.keys(metrics[agent]).forEach((skill) => {
-              html += `
+              Object.keys(metrics[agent]).forEach((skill) => {
+                html += `
             <tr>
-              <td>`+ skill + `</td>
-              <td>`+ metrics[agent][skill] + `</td>
+              <td style="width:55%;">`+ skill + `</td>
+              <td style="width:45%;">`+ metrics[agent][skill] + `</td>
             </tr>
             `;
-            });
-            html += `
+              });
+              html += `
           </table>
           `;
+            }
           });
         }
         else
