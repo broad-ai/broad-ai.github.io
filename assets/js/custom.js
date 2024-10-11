@@ -605,22 +605,23 @@ const fetchUsage = () => {
       .then((metrics) => {
         let agents = Object.keys(metrics);
         if (agents.length) {
-          html = ``;
+          html = `
+          <table class="table">
+            <thead>
+                <tr>
+                  <th scope="col">Skill Name</th>
+                  <th scope="col"># Calls</th>
+                </tr>
+              </thead>`;
           agents.forEach((agent) => {
             if (agent != 'app') {
               html += `
-          <table class="table">
-          `;
-              html += `
             <tr>
-              <th colspan="2">`+ agent + `</th>
+              <th colspan="2" style="background-color:#f0f0f0;"></th>
             </tr>
-            <thead>
-              <tr>
-                <th scope="col">Skill Name</th>
-                <th scope="col"># Calls</th>
-              </tr>
-            </thead>
+            <tr>
+              <th colspan="2" style="color:#4da6e7;">`+ agent + `</th>
+            </tr>
             <tbody>
             `;
               Object.keys(metrics[agent]).forEach((skill) => {
@@ -633,10 +634,12 @@ const fetchUsage = () => {
               });
               html += `
             </tbody>
-          </table>
           `;
             }
           });
+          html += `
+          </table>
+          `;
         }
         else
           html = "<h2>No usage, so far...</h2> <p>Please refer to the <a href='/docu-mas.html'>documentation</a> to learn how to use BroadAI to build next-gen AI applications, or feel free to <img src='./assets/images/icon-rocket.png' style='height:1.5em; padding: 0; margin: 0'><a href='mailto:broad.agents.ai@gmail.com?subject=Re%20using%20my%20BroadAI%20App%20ID'reach out to us</a>reach out to us.</p>";
