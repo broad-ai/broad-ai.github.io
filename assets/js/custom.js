@@ -609,7 +609,7 @@ const fetchUsage = () => {
           agents.forEach((agent) => {
             if (agent != 'app') {
               html += `
-          <table>
+          <table style="width:100%;">
           `;
               html += `
             <tr>
