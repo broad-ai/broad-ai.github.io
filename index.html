@@ -157,13 +157,42 @@
     </div>
   </div>
 
+  <!-- Subscribe -->
+  <div id="contact" class="container mt-5">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-heading">
+          <h6>Stay Connected</h6>
+          <h4>Stay <em>Informed</em></h4>
+        </div>
+        <p class="mb-3">
+          Don't miss out! Leave your contact info now to stay updated!
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-3 px-1">
+        <input type="text" class="form-control py-3" id="username" name="username" placeholder="Name (John Doe)">
+      </div>
+      <div class="col-12 col-md-3 px-1">
+        <input type="email" class="form-control py-3" id="useremail" name="useremail"
+          placeholder="email (johndoe@example.com)">
+        <div id="emailvalidation_subs" style="color:red;"></div>
+      </div>
+      <div class="col-12 col-md-2 px-1">
+        <input class="btn btn-primary mt-2" type="button" id="btnsubscribe" value="Connect" onClick="subscribe()">
+      </div>
+      <div class="col-12 col-md-4" id="subscribed"></div>
+    </div>
+  </div>
+
   <div id="value" class="services section">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div class="section-heading">
             <h6>Value Proposition</h6>
-            <h4>Streamlined AI Development with Low-Code Framework</h4>
+            <h4>Low-Code <em>AI Automation</em> and <em>Scalability</em></h4>
             <div class="line-dec"></div>
             <p class="mt-4">
               BroadAI accelerates intelligent application development with its low-code, plug-and-play Multi-Agent
@@ -894,34 +923,6 @@ const ai = new BroadAI([ <var1>writer</var1>.<var>agent</var>, <note>...</note> 
               </div>
               <!-- </a> -->
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="contact" class="contact-us section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 offset-lg-3">
-          <div class="section-heading">
-            <h6>Contact Us</h6>
-            <h4>Get In Touch With Us <em>Now</em></h4>
-            <div class="line-dec"></div>
-          </div>
-        </div>
-        <div class="col-lg-12">
-          <div style="text-align: center;">
-            <p>
-              Wondering how to build your agent? or where to begin and incorporate BroadAI in your application? or stuck
-              somewhere?
-            </p>
-            <p>
-              Contacting us is plain and simple. Just send us an email at <a
-                href="mailto:broad.agents.ai@gmail.com?subject=Question%20about%20BroadAI"><strong>broad.agents.ai@gmail.com</strong></a>
-              and
-              we will get in touch with you.
-            </p>
           </div>
         </div>
       </div>
