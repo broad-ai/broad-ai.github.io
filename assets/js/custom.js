@@ -609,22 +609,30 @@ const fetchUsage = () => {
           agents.forEach((agent) => {
             if (agent != 'app') {
               html += `
-          <table style="width:100%;">
+          <table class="table">
           `;
               html += `
             <tr>
               <th colspan="2">`+ agent + `</th>
             </tr>
+            <thead>
+              <tr>
+                <th scope="col">Skill Name</th>
+                <th scope="col"># Calls</th>
+              </tr>
+            </thead>
+            <tbody>
             `;
               Object.keys(metrics[agent]).forEach((skill) => {
                 html += `
-            <tr>
-              <td style="width:55%;">`+ skill + `</td>
-              <td style="width:45%;">`+ metrics[agent][skill] + `</td>
-            </tr>
+              <tr>
+                <td>`+ skill + `</td>
+                <td>`+ metrics[agent][skill] + `</td>
+              </tr>
             `;
               });
               html += `
+            </tbody>
           </table>
           `;
             }
