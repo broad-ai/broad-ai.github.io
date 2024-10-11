@@ -193,9 +193,9 @@ const subscribe = () => {
       .then((resp) => {
         document.getElementById('btnsubscribe').disabled = false;
         if (resp.status == "aborted")
-          document.getElementById('subscribed').innerHTML = "<h6 class='p-2 m-1' style='background-color:#ff654c;color:#fff;'>Oops! " + name + ",</h6> <p><small>" + resp.reason + "</small></p>";
+          document.getElementById('subscribed').innerHTML = "<h6 class='p-2' style='background-color:#ff654c;color:#fff;'>Oops! " + name + ",</h6> <p><small>" + resp.reason + "</small></p>";
         else
-          document.getElementById('subscribed').innerHTML = "<h6 class='p-2 m-1' style='background-color:#00500d;color:#fff;'>Welcome to the community, " + name + "!</h6> <p><small>Let's stay in touch.</small></p>";
+          document.getElementById('subscribed').innerHTML = "<h6 class='p-2' style='background-color:#00500d;color:#fff;'>Welcome to the community, " + name + "!</h6> <p><small>Let's stay in touch.</small></p>";
       });
   }
   else {
