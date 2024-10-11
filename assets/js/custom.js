@@ -193,7 +193,7 @@ const subscribe = () => {
       .then((resp) => {
         document.getElementById('btnsubscribe').disabled = false;
         if (resp.error)
-          document.getElementById('subscribed').innerHTML = "<h6 style='background-color:#00500d;color:#fff;'>Oops!</h6> <p>Something went wrong. Can you please try again?</p>";
+          document.getElementById('subscribed').innerHTML = "<h6 style='background-color:#00500d;color:#fff;'>Oops! " + name + ",</h6> <p>" + resp.reason + "</p>";
         else
           document.getElementById('subscribed').innerHTML = "<h6 style='background-color:#ff654c;color:#fff;'>Welcome to the community, " + name + "!</h6> <p>Let's stay in touch.</p>";
       });
