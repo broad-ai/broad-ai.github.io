@@ -297,7 +297,7 @@ const goChatbot = () => {
 
       // -- Logs
       document.getElementById('logs').innerHTML = "<h4>Plan:</h4>";
-      document.getElementById('logs').innerHTML += "<div><p>" + data.plan.reason + "</p></div>";
+      // document.getElementById('logs').innerHTML += "<div><p>" + data.plan.reason + "</p></div>";
       let html = "<div>";
       data.plan.plan.forEach((step, s) => {
         html += "<p style='margin-top:2em;'>Step <strong>" + (s + 1) + "</strong>: " + step.objective + "</p>";
@@ -306,9 +306,9 @@ const goChatbot = () => {
       });
       html += "</div>";
       document.getElementById('logs').innerHTML += html;
-      document.getElementById('logs').innerHTML += "<hr>";
-      document.getElementById('logs').innerHTML += "<h4>Response:</h4>";
-      document.getElementById('logs').innerHTML += "<div><p>" + data.response.reason + "</p></div>";
+      // document.getElementById('logs').innerHTML += "<hr>";
+      // document.getElementById('logs').innerHTML += "<h4>Response:</h4>";
+      // document.getElementById('logs').innerHTML += "<div><p>" + data.response.reason + "</p></div>";
     });
 }; // goChatbot
 
@@ -402,7 +402,7 @@ const goConcierge = () => {
       document.getElementById('results').innerHTML += "</div>";
 
       document.getElementById('logs').innerHTML = "<h4>Plan:</h4>";
-      document.getElementById('logs').innerHTML += "<div><p>" + data.plan.reason + "</p></div>";
+      // document.getElementById('logs').innerHTML += "<div><p>" + data.plan.reason + "</p></div>";
       let html = "<div>";
       data.plan.plan.forEach((step, s) => {
         html += "<p style='margin-top:2em;'>Step <strong>" + (s + 1) + "</strong>: " + step.objective + "</p>";
@@ -411,11 +411,9 @@ const goConcierge = () => {
       });
       html += "</div>";
       document.getElementById('logs').innerHTML += html;
-
-      document.getElementById('logs').innerHTML += "<hr>";
-
-      document.getElementById('logs').innerHTML += "<h4>Response:</h4>";
-      document.getElementById('logs').innerHTML += "<div><p>" + data.response.reason + "</p></div>";
+      // document.getElementById('logs').innerHTML += "<hr>";
+      // document.getElementById('logs').innerHTML += "<h4>Response:</h4>";
+      // document.getElementById('logs').innerHTML += "<div><p>" + data.response.reason + "</p></div>";
 
       // -- post results formatting
       document.getElementById('btnGoConcierge').disabled = false;
