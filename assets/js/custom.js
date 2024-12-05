@@ -283,7 +283,7 @@ const goChatbot = () => {
     .then((data) => {
       // -- showing results
       sessionStorage.setItem('conversations', JSON.stringify(data.response.conversation));
-      let messages = "<p style='text-align:right;color:black;'>" + document.getElementById('chatbox').value.trim() + "</p>";
+      let messages = "<p style='text-align:right;color:black;'>" + data.question + "</p>";
       data.response.response.forEach((line) => {
         messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
       });
