@@ -702,7 +702,7 @@ const processFileContents = (knowledge, avgWordCountPerLine) => {
 Analyze the contents below (within '>>>' and '<<<' symbols) and perform following steps:
 1. Summarize the contents in a well-structured format using simple formatting options like paragraphs, bullets, tables, etc. 
 2. Generate 5 key questions that will help interrogate the contents better. Simply keep those questions in memory without printing them.
-3. Answer each question from step 2 strictly using the information from the contents and generate a structured response similar to an essay or a blog.
+3. Answer each question from step 2 strictly using the information from the contents and generate a structured response similar to an essay or a blog. Ignore the questions you are unable to answer for any reason.
   `;
         goChatbot();
         let disabledChatboxIntvl = setInterval(() => {
