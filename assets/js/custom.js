@@ -676,3 +676,18 @@ const fetchUsage = () => {
       });
   }, 600);
 };
+
+// ------ ..... ------ ..... ------ ..... ------ 
+const processFileContents = (knowledge, avgWordCountPerLine) => {
+  // knowledge | type: array<string> | contains file contents, one line per array element. 
+  // avgWordCountPerLine | type: number | indicates number of words per line. 
+  // use this to create processing package size, 
+  // i.e. number of knowledge lines per package.
+  document.getElementById('chatbox').value = `
+Analyze the contents below and generate 5 questions that will help interrogate the content below within '---' symbols:
+---
+`+ knowledge.join('\n') + `
+---
+  `;
+  goChatbot();
+} // processFileContents
