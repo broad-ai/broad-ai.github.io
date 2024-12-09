@@ -695,8 +695,8 @@ const processFileContents = (knowledge, avgWordCountPerLine) => {
         let chunk = "";
         chunk = knowledge.slice(currentPosition, currentPosition + packageSize).join(' ');
         currentPosition = currentPosition + packageSize;
-        document.getElementById('chatbox').value = `
->>>
+        // prepare chat
+        document.getElementById('chatbox').value = `>>>
 `+ chunk + `
 <<<
 Analyze the contents below (within '>>>' and '<<<' symbols) and perform following steps:
