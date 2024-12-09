@@ -679,15 +679,43 @@ const fetchUsage = () => {
 
 // ------ ..... ------ ..... ------ ..... ------ 
 const processFileContents = (knowledge, avgWordCountPerLine) => {
-  // knowledge | type: array<string> | contains file contents, one line per array element. 
-  // avgWordCountPerLine | type: number | indicates number of words per line. 
-  // use this to create processing package size, 
-  // i.e. number of knowledge lines per package.
-  document.getElementById('chatbox').value = `
-Analyze the contents below and generate 5 questions that will help interrogate the content below within '---' symbols:
----
-`+ knowledge.join('\n') + `
----
+  const MAX_TOKENS_LLM = (1024 * 128);
+  // -- gpt-4o : 128K input tokens & 16K output tokens
+  // -- assumption: 1 word = 1 token
+  let packageSize = Math.round(MAX_TOKENS_LLM / (avgWordCountPerLine * 2));
+
+  let currentPosition = -1;
+  let fileProcessing = false;
+
+  let fileProcessingIntvl = setInterval(() => {
+    if (!fileProcessing) {
+      currentPosition++;
+      fileProcessing = true;
+      if (currentPosition < knowledge.length) {
+        let chunk = "";
+        chunk = knowledge.slice(currentPosition, currentPosition + packageSize).join(' ');
+        currentPosition = currentPosition + packageSize;
+        document.getElementById('chatbox').value = `
+>>>
+`+ chunk + `
+<<<
+Analyze the contents below (within '>>>' and '<<<' symbols) and perform following steps:
+1. Summarize the contents in a well-structured format using simple formatting options like paragraphs, bullets, tables, etc. 
+2. Generate 5 key questions that will help interrogate the contents better. Simply keep those questions in memory without printing them.
+3. Answer each question from step 2 strictly using the information from the contents and generate a structured response similar to an essay or a blog.
   `;
-  goChatbot();
+        goChatbot();
+        let disabledChatboxIntvl = setInterval(() => {
+          if (document.getElementById('chatbox').disabled == false) {
+            clearInterval(disabledChatboxIntvl);
+            fileProcessing = false;
+          }
+        }, 100);
+      }
+      else {
+        clearInterval(fileProcessingIntvl);
+      }
+    }
+  }, 100);
+
 } // processFileContents
