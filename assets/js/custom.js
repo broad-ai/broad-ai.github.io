@@ -682,7 +682,7 @@ const processFileContents = (knowledge, avgWordCountPerLine) => {
   const MAX_TOKENS_LLM = (1024 * 128);
   // -- gpt-4o : 128K input tokens & 16K output tokens
   // -- assumption: 1 word = 1 token
-  let packageSize = Math.round(MAX_TOKENS_LLM / (avgWordCountPerLine * 2));
+  let packageSize = Math.round(MAX_TOKENS_LLM / (avgWordCountPerLine * avgWordCountPerLine));
 
   let currentPosition = -1;
   let fileProcessing = false;
