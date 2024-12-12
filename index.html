@@ -887,6 +887,42 @@ const ai = new BroadAI([ <var1>weatherman</var1>.<var>agent</var>, <note>...</no
               <!-- <a href="#"> -->
               <div class="portfolio-item">
                 <div class="thumb">
+                  <img src="assets/images/agent-tester.png" alt="agent-tester">
+                </div>
+                <div class="down-content">
+                  <h4>Tester</h4>
+                  <span>
+                    Tests, validates, or compares if results match to the expectations.
+                  </span>
+                </div>
+                <hr>
+                <div class="down-content">
+                  <strong>Skills: </strong> functionalTest
+                </div>
+                <hr>
+                <div class="copy-button d-flex justify-content-end">
+                  <a href="javascript:void(0)"
+                    onclick="navigator.clipboard.writeText(document.getElementById('tester').innerText).then(()=>alert('Copied to clipboard'))">
+                    &#128203;
+                  </a>
+                </div>
+                <div class="documentation" style="font-size:0.9em;">
+                  <code><pre id="tester">
+import <var1>tester</var1> from <var>'broadai-agents/<var1>Tester</var1>'</var>;
+const ai = new BroadAI([ <var1>tester</var1>.<var>agent</var>, <note>...</note> ], { <note>BroadAI Configuration</note> })
+<note>...</note>
+<var1>tester</var1>.register(ai,
+<note>// .. AGENT CONFIGURATION .. </note>
+{ <var2></var2> });
+                  </pre></code>
+                </div>
+              </div>
+              <!-- </a> -->
+            </div>
+            <div class="item">
+              <!-- <a href="#"> -->
+              <div class="portfolio-item">
+                <div class="thumb">
                   <img src="assets/images/agent-writer.png" alt="agent-writer">
                 </div>
                 <div class="down-content">
@@ -918,42 +954,6 @@ const ai = new BroadAI([ <var1>writer</var1>.<var>agent</var>, <note>...</note> 
     "api_key": "???" 
   } 
 </var2>});
-                  </pre></code>
-                </div>
-              </div>
-              <!-- </a> -->
-            </div>
-            <div class="item">
-              <!-- <a href="#"> -->
-              <div class="portfolio-item">
-                <div class="thumb">
-                  <img src="assets/images/agent-tester.png" alt="agent-tester">
-                </div>
-                <div class="down-content">
-                  <h4>Tester</h4>
-                  <span>
-                    Tests, validates, or compares if results match to the expectations.
-                  </span>
-                </div>
-                <hr>
-                <div class="down-content">
-                  <strong>Skills: </strong> functionalTest
-                </div>
-                <hr>
-                <div class="copy-button d-flex justify-content-end">
-                  <a href="javascript:void(0)"
-                    onclick="navigator.clipboard.writeText(document.getElementById('tester').innerText).then(()=>alert('Copied to clipboard'))">
-                    &#128203;
-                  </a>
-                </div>
-                <div class="documentation" style="font-size:0.9em;">
-                  <code><pre id="tester">
-import <var1>tester</var1> from <var>'broadai-agents/<var1>Tester</var1>'</var>;
-const ai = new BroadAI([ <var1>tester</var1>.<var>agent</var>, <note>...</note> ], { <note>BroadAI Configuration</note> })
-<note>...</note>
-<var1>tester</var1>.register(ai,
-<note>// .. AGENT CONFIGURATION .. </note>
-{ <var2></var2> });
                   </pre></code>
                 </div>
               </div>

@@ -22,7 +22,7 @@
     loop: true,
     autoplay: true,
     nav: true,
-    margin: 0,
+    autoplayTimeout: 8200,
     responsive: {
       1200: {
         items: 3
@@ -42,7 +42,6 @@
     loop: false,
     autoplay: false,
     nav: true,
-    margin: 0,
     responsive: {
       1200: {
         items: 3
