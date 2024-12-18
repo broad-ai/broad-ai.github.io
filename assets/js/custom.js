@@ -167,7 +167,8 @@
 })(window.jQuery);
 
 
-const broadAIDemoapiEndpoint = "https://broadaidemo-7yg2a2s6sq-uc.a.run.app";
+// const broadAIDemoapiEndpoint = "https://broadaidemo-7yg2a2s6sq-uc.a.run.app";
+const broadAIDemoapiEndpoint = "http://localhost:8080";
 const broadAIapiEndpoint = "https://broadai-7yg2a2s6sq-uc.a.run.app";
 
 
@@ -439,18 +440,20 @@ const findSimilarMovies = (movie) => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      "notes": `## Movie Recommended
---- 
-`+ JSON.stringify(currentMovie) + `
----
+      "notes": `## Specific Task
+Using your own descretion, find movies similar to the one provided within >>> and <<< symbols. Extract fields as specified in response format requirements below.
 
-## Specific Task
-Find similar movies based on similar genre or director. For each movie, you must extract 'movie title', 'director', 'year of release', 'IMDB rating', 'url for poster image', and the 'movie plot', as specified in response format requirements below.
+>>> 
+`+ JSON.stringify(currentMovie) + `
+<<<
 
 ## Response Format
-You are expected to respond in a specific format in addition to any other response you may generate. One of the 'text' fields of the response structure must be formatted as stringified array of JSON objects as shown below. The 'html_tag' for that response element can be set to 'pre':
-~~~json.stringify
-"[ { \"title\": \"<movie title>\", \"director\": \"<director name>\", \"year\": \"<year>\", \"imdb_rating\": \"<imdbRating>\", \"poster\": \"<poster url>\", \"plot\": \"<movie plot>\" }, ... ]"
+Respond using eact JSON structure shown below:
+~~~json
+[{
+  "html_tag": "pre",
+  "text": "[ { \"title\": \"/* movie title */\", \"director\": \"/* director name */\", \"year\": \"/* year released */\", \"imdb_rating\": \"/* imdbRating */\", \"poster\": \"/* poster image */\", \"plot\": \"/* movie plot */\" }, ... ]"
+}]
 ~~~
 `,
     })
@@ -530,20 +533,22 @@ const pickRandomMovie = () => {
     },
     body: JSON.stringify({
       "notes": `## Specific Task
-Find exactly one random movie from the 9125 choices.
-Hint (Cypher): 'MATCH (g:Genre)<-[:IN_GENRE]-(m:Movie)<-[:DIRECTED]-(d:Director) RETURN m.title, d.name, ... ORDER BY rand() LIMIT 1'
-You must extract 'movie title', 'director', 'year of release', 'IMDB rating', 'url for poster image', and the 'movie plot', as specified in response format requirements below.
+Suggest one movie from the 9125 choices and extract fields as specified in response format requirements below.
 
 ## Response Format
-You are expected to respond in a specific format in addition to any other response you may generate. One of the 'text' fields of the response structure must be formatted as stringified JSON object as shown below. The 'html_tag' for that response element can be set to 'pre':
-~~~json.stringify
-"{ \"title\": \"<movie title>\", \"director\": \"<director name>\", \"year\": \"<year>\", \"imdb_rating\": \"<imdbRating>\", \"poster\": \"<poster url>\", \"plot\": \"<movie plot>\" }"
+Respond using eact JSON structure shown below:
+~~~json
+[{
+  "html_tag": "pre",
+  "text": "{ \"title\": \"/* movie title */\", \"director\": \"/* director name */\", \"year\": \"/* year released */\", \"imdb_rating\": \"/* imdbRating */\", \"poster\": \"/* poster image */\", \"plot\": \"/* movie plot */\" }"
+}]
 ~~~
 `,
     })
   })
     .then((resp) => resp.json())
     .then((data) => {
+      console.log(data);
       document.getElementById('story').innerHTML = "<h3 style='color:#C39BD3;'>Enjoy!</h3><p style='color:#6C3483;'>Find similar movies or request a new story based on the theme of the picked movie.</p>";
       let details = {
         "title": "...", "director": "...", "year": "...", "imdb_rating": "...", "poster": ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)], "plot": "..."
