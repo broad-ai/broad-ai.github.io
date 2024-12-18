@@ -458,11 +458,21 @@ Respond using exact JSON structure shown below with references to the nodes and 
   })
     .then((resp) => resp.json())
     .then((data) => {
+      console.log(data);
       let recommendations = [];
       data.response.response.forEach((element) => {
         if (element.text.indexOf('[') >= 0 && element.text.indexOf(']') > 0) {
-          let r = JSON.parse(element.text.substring(element.text.indexOf('['), element.text.lastIndexOf(']') + 1)) || [];
-          r.forEach((rr) => recommendations.push(rr));
+          let r = [];
+          try {
+            r = JSON.parse(element.text.substring(element.text.indexOf('['), element.text.lastIndexOf(']') + 1)) || [];
+            r.forEach((rr) => recommendations.push(rr));
+          }
+          catch {
+            r = [{
+              "title": "...", "director": "...", "year": "...", "rating": "...", "poster": ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)], "plot": "..."
+            }];
+            r.forEach((rr) => recommendations.push(rr));
+          }
         }
       });
       // -- showing results
@@ -543,6 +553,7 @@ Respond using exact JSON structure shown below with references to the nodes and 
   })
     .then((resp) => resp.json())
     .then((data) => {
+      console.log(data);
       document.getElementById('story').innerHTML = "<h3 style='color:#C39BD3;'>Enjoy!</h3><p style='color:#6C3483;'>Find similar movies or request a new story based on the theme of the picked movie.</p>";
       let details = {};
       data.response.response.forEach((element) => {
