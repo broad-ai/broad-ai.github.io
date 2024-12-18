@@ -472,20 +472,19 @@ Respond using exact JSON structure shown below with references to the nodes and 
           catch {
             r = [];
           }
-          console.log(r);
           r.forEach((rr) => recommendations.push(rr));
         }
       });
+      console.log(recommendations);
       // -- showing results
       document.getElementById('btnFindSimilarMovies').disabled = false;
       document.getElementById('btnWriteNewStory').disabled = false;
-      setTimeout(() => {
-        let html = `
+      let html = `
           <div class="row">`;
-        if (recommendations.length) {
-          recommendations.forEach((recommendation) => {
-            if (recommendation.title && recommendation.director && recommendation.year && recommendation.rating && recommendation.poster && recommendation.plot) {
-              html += `
+      if (recommendations.length) {
+        recommendations.forEach((recommendation) => {
+          if (recommendation.title && recommendation.director && recommendation.year && recommendation.rating && recommendation.poster && recommendation.plot) {
+            html += `
             <div class="col-12 col-md-6">
               <div class="row mt-5">
                 <div class="col-12 text-center">
@@ -518,16 +517,15 @@ Respond using exact JSON structure shown below with references to the nodes and 
               </div>
             </div>
             `;
-            }
-          });
-        }
-        else {
-          document.getElementById('story').innerHTML = "<h3 style='color:#C39BD3;'>Sorry! No recommendations</h3><p style='color:#6C3483;'>I could not find anything similar like <strong>" + currentMovie.title + "</strong> that you might enjoy...</p>";
-        }
-        html += `
+          }
+        });
+      }
+      else {
+        document.getElementById('story').innerHTML = "<h3 style='color:#C39BD3;'>Sorry! No recommendations</h3><p style='color:#6C3483;'>I could not find anything similar like <strong>" + currentMovie.title + "</strong> that you might enjoy...</p>";
+      }
+      html += `
           </div>`;
-        document.getElementById('story').innerHTML = html;
-      }, 6000);
+      document.getElementById('story').innerHTML = html;
     });
 }; // findSimilarMovies
 
