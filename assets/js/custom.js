@@ -451,7 +451,7 @@ Respond using eact JSON structure shown below:
 ~~~json
 [{
   "html_tag": "pre",
-  "text": "[ { \"title\": \"/* movie title */\", \"director\": \"/* director name */\", \"year\": \"/* year released */\", \"imdb_rating\": \"/* imdbRating */\", \"poster\": \"/* poster image */\", \"plot\": \"/* movie plot */\" }, ... ]"
+  "text": "[ { \"title\": \"/* :Movie.title */\", \"director\": \"/* :Director.name */\", \"year\": \"/* :Movie.released */\", \"rating\": \"/* :Movie.imdbRating */\", \"poster\": \"/* :Movie.poster */\", \"plot\": \"/* :Movie.plot */\" }, ... ]"
 }]
 ~~~
 `,
@@ -539,7 +539,7 @@ Respond using eact JSON structure shown below:
 ~~~json
 [{
   "html_tag": "pre",
-  "text": "{ \"title\": \"/* movie title */\", \"director\": \"/* director name */\", \"year\": \"/* year released */\", \"imdb_rating\": \"/* imdbRating */\", \"poster\": \"/* poster image */\", \"plot\": \"/* movie plot */\" }"
+  "text": "{ \"title\": \"/* :Movie.title */\", \"director\": \"/* :Director.name */\", \"year\": \"/* :Movie.released */\", \"rating\": \"/* :Movie.imdbRating */\", \"poster\": \"/* :Movie.poster */\", \"plot\": \"/* :Movie.plot */\" }"
 }]
 ~~~
 `,
@@ -550,7 +550,7 @@ Respond using eact JSON structure shown below:
       console.log(data);
       document.getElementById('story').innerHTML = "<h3 style='color:#C39BD3;'>Enjoy!</h3><p style='color:#6C3483;'>Find similar movies or request a new story based on the theme of the picked movie.</p>";
       let details = {
-        "title": "...", "director": "...", "year": "...", "imdb_rating": "...", "poster": ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)], "plot": "..."
+        "title": "...", "director": "...", "year": "...", "rating": "...", "poster": ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)], "plot": "..."
       };
       data.response.response.forEach((element) => {
         if (element.text.indexOf('{') >= 0 && element.text.indexOf('}') > 0) {
@@ -565,7 +565,7 @@ Respond using eact JSON structure shown below:
       document.getElementById('pickDirector').innerHTML = "Director: " + details.director;
       document.getElementById('pickPoster').setAttribute('src', details.poster);
       document.getElementById('pickPoster').setAttribute('onerror', 'this.src="' + ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)] + '"');
-      document.getElementById('pickRating').innerHTML = details.imdb_rating;
+      document.getElementById('pickRating').innerHTML = details.rating;
       document.getElementById('pickYear').innerHTML = details.year;
     });
 }; // pickRandomMovie
