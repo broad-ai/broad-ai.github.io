@@ -167,8 +167,7 @@
 })(window.jQuery);
 
 
-// const broadAIDemoapiEndpoint = "https://broadaidemo-7yg2a2s6sq-uc.a.run.app";
-const broadAIDemoapiEndpoint = "http://localhost:8080";
+const broadAIDemoapiEndpoint = "https://broadaidemo-7yg2a2s6sq-uc.a.run.app";
 const broadAIapiEndpoint = "https://broadai-7yg2a2s6sq-uc.a.run.app";
 
 
