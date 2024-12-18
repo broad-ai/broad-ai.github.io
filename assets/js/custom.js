@@ -447,7 +447,7 @@ Using your own descretion, find movies similar to the one provided within >>> an
 <<<
 
 ## Response Format
-Respond using exact JSON structure shown below:
+Respond using exact JSON structure shown below with references to the nodes and fields provided between /* and */ symbols. Make sure you pick exact values from the context including URLs:
 ~~~json
 [
   { "title": "/* :Movie.title */", "director": "/* :Director.name */", "year": /* :Movie.year */, "rating": /* :Movie.imdbRating */, "poster": "/* :Movie.poster */", "plot": "/* :Movie.plot */" }, ...
@@ -489,7 +489,7 @@ Respond using exact JSON structure shown below:
                     <span class="col-6 text-left">
                       <img
                         src="assets/images/star.png" alt="IMDB rating">
-                      <span>`+ recommendation.imdb_rating + `</span>
+                      <span>`+ recommendation.rating + `</span>
                     </span>
                     <span class="col-6 text-right">
                       <span>`+ recommendation.year + `</span>
@@ -534,7 +534,7 @@ const pickRandomMovie = () => {
 Suggest one movie from the 9125 choices and extract fields as specified in response format requirements below.
 
 ## Response Format
-Respond using exact JSON structure shown below:
+Respond using exact JSON structure shown below with references to the nodes and fields provided between /* and */ symbols. Make sure you pick exact values from the context including URLs:
 ~~~json
 { "title": "/* :Movie.title */", "director": "/* :Director.name */", "year": /* :Movie.year */, "rating": /* :Movie.imdbRating */, "poster": "/* :Movie.poster */", "plot": "/* :Movie.plot */" }
 ~~~
