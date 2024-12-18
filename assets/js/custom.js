@@ -473,6 +473,7 @@ Respond using exact JSON structure shown below with references to the nodes and 
             }];
             r.forEach((rr) => recommendations.push(rr));
           }
+          console.log(recommendations);
         }
       });
       // -- showing results
