@@ -462,9 +462,11 @@ Respond using exact JSON structure shown below with references to the nodes and 
       let recommendations = [];
       data.response.response.forEach((element) => {
         if (element.text.indexOf('[') >= 0 && element.text.indexOf(']') > 0) {
+          console.log(element.text);
           let r = [];
           try {
             r = JSON.parse(element.text.substring(element.text.indexOf('['), element.text.lastIndexOf(']') + 1)) || [];
+            console.log(r);
             r.forEach((rr) => recommendations.push(rr));
           }
           catch {
@@ -473,18 +475,18 @@ Respond using exact JSON structure shown below with references to the nodes and 
             }];
             r.forEach((rr) => recommendations.push(rr));
           }
-          console.log(recommendations);
         }
       });
       // -- showing results
       document.getElementById('btnFindSimilarMovies').disabled = false;
       document.getElementById('btnWriteNewStory').disabled = false;
-      let html = `
+      setTimeout(() => {
+        let html = `
           <div class="row">`;
-      if (recommendations.length) {
-        recommendations.forEach((recommendation) => {
-          if (recommendation.title && recommendation.director && recommendation.year && recommendation.rating && recommendation.poster && recommendation.plot) {
-            html += `
+        if (recommendations.length) {
+          recommendations.forEach((recommendation) => {
+            if (recommendation.title && recommendation.director && recommendation.year && recommendation.rating && recommendation.poster && recommendation.plot) {
+              html += `
             <div class="col-12 col-md-6">
               <div class="row mt-5">
                 <div class="col-12 text-center">
@@ -517,14 +519,15 @@ Respond using exact JSON structure shown below with references to the nodes and 
               </div>
             </div>
             `;
-          }
-        });
-      }
-      else {
-        document.getElementById('story').innerHTML = "<h3 style='color:#C39BD3;'>Sorry! No recommendations</h3><p style='color:#6C3483;'>I could not find anything similar like <strong>" + currentMovie.title + "</strong> that you might enjoy...</p>";
-      }
-      html += `
+            }
+          });
+        }
+        else {
+          document.getElementById('story').innerHTML = "<h3 style='color:#C39BD3;'>Sorry! No recommendations</h3><p style='color:#6C3483;'>I could not find anything similar like <strong>" + currentMovie.title + "</strong> that you might enjoy...</p>";
+        }
+        html += `
           </div>`;
+      }, 6000);
       document.getElementById('story').innerHTML = html;
     });
 }; // findSimilarMovies
