@@ -450,7 +450,7 @@ Using your own descretion, find movies similar to the one provided within >>> an
 Respond using exact JSON structure shown below:
 ~~~json
 [
-  { \"title\": \"/* :Movie.title */\", \"director\": \"/* :Director.name */\", \"year\": \"/* :Movie.released */\", \"rating\": \"/* :Movie.imdbRating */\", \"poster\": \"/* :Movie.poster */\", \"plot\": \"/* :Movie.plot */\" }, ...
+  { "title": "/* :Movie.title */", "director": "/* :Director.name */", "year": /* :Movie.released */, "rating": /* :Movie.imdbRating */, "poster": "/* :Movie.poster */", "plot": "/* :Movie.plot */" }, ...
 ]
 ~~~
 `,
@@ -536,7 +536,7 @@ Suggest one movie from the 9125 choices and extract fields as specified in respo
 ## Response Format
 Respond using exact JSON structure shown below:
 ~~~json
-{ \"title\": \"/* :Movie.title */\", \"director\": \"/* :Director.name */\", \"year\": \"/* :Movie.released */\", \"rating\": \"/* :Movie.imdbRating */\", \"poster\": \"/* :Movie.poster */\", \"plot\": \"/* :Movie.plot */\" }
+{ "title": "/* :Movie.title */", "director": "/* :Director.name */", "year": /* :Movie.released */, "rating": /* :Movie.imdbRating */, "poster": "/* :Movie.poster */", "plot": "/* :Movie.plot */" }
 ~~~
 `,
     })
