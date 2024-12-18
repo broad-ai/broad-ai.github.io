@@ -447,12 +447,11 @@ Using your own descretion, find movies similar to the one provided within >>> an
 <<<
 
 ## Response Format
-Respond using eact JSON structure shown below:
+Respond using exact JSON structure shown below:
 ~~~json
-[{
-  "html_tag": "pre",
-  "text": "[ { \"title\": \"/* :Movie.title */\", \"director\": \"/* :Director.name */\", \"year\": \"/* :Movie.released */\", \"rating\": \"/* :Movie.imdbRating */\", \"poster\": \"/* :Movie.poster */\", \"plot\": \"/* :Movie.plot */\" }, ... ]"
-}]
+[
+  { \"title\": \"/* :Movie.title */\", \"director\": \"/* :Director.name */\", \"year\": \"/* :Movie.released */\", \"rating\": \"/* :Movie.imdbRating */\", \"poster\": \"/* :Movie.poster */\", \"plot\": \"/* :Movie.plot */\" }, ...
+]
 ~~~
 `,
     })
@@ -535,12 +534,9 @@ const pickRandomMovie = () => {
 Suggest one movie from the 9125 choices and extract fields as specified in response format requirements below.
 
 ## Response Format
-Respond using eact JSON structure shown below:
+Respond using exact JSON structure shown below:
 ~~~json
-[{
-  "html_tag": "pre",
-  "text": "{ \"title\": \"/* :Movie.title */\", \"director\": \"/* :Director.name */\", \"year\": \"/* :Movie.released */\", \"rating\": \"/* :Movie.imdbRating */\", \"poster\": \"/* :Movie.poster */\", \"plot\": \"/* :Movie.plot */\" }"
-}]
+{ \"title\": \"/* :Movie.title */\", \"director\": \"/* :Director.name */\", \"year\": \"/* :Movie.released */\", \"rating\": \"/* :Movie.imdbRating */\", \"poster\": \"/* :Movie.poster */\", \"plot\": \"/* :Movie.plot */\" }
 ~~~
 `,
     })
