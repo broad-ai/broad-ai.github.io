@@ -451,8 +451,8 @@ Respond using exact JSON structure shown below with references to the nodes and 
 ~~~json
 {
   "movies":[
-    { "title": "/* :Movie.title */", "director": "/* :Director.name */", "year": /* :Movie.year */, "rating": /* :Movie.imdbRating */, "poster": "/* :Movie.poster */", "plot": "/* :Movie.plot */" }, ...
-    ]
+    { "title": "/* :Movie.title */", "director": "/* :Director.name */", "year": /* :Movie.year */, "rating": /* :Movie.imdbRating */, "poster": "/* :Movie.poster */", "plot": "/* :Movie.plot */" },
+     ... ]
 }
 ~~~
 `,
@@ -463,18 +463,17 @@ Respond using exact JSON structure shown below with references to the nodes and 
       console.log(data);
       let recommendations = [];
       data.response.response.forEach((element) => {
-        if (element.text.indexOf('{') >= 0 && element.text.indexOf('}') > 0) {
+        if (element.text.indexOf('[') >= 0 && element.text.indexOf(']') > 0) {
           console.log(element.text);
-          let r = {};
+          let r = [];
           try {
-            r = JSON.parse(element.text.substring(element.text.indexOf('{'), element.text.lastIndexOf('}') + 1)) || [];
+            r = JSON.parse(element.text.substring(element.text.indexOf('['), element.text.lastIndexOf(']') + 1));
           }
           catch {
-            r = { "movies": [] };
+            r = [];
           }
           console.log(r);
-          if (r.movies)
-            r.movies.forEach((rr) => recommendations.push(rr));
+          r.forEach((rr) => recommendations.push(rr));
         }
       });
       // -- showing results
