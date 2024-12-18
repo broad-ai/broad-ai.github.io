@@ -428,7 +428,7 @@ const findSimilarMovies = (movie) => {
     "title": document.getElementById('pickTitle').innerHTML,
     "director": document.getElementById('pickDirector').innerHTML,
     "year": document.getElementById('pickYear').innerHTML,
-    "imdb_rating": document.getElementById('pickRating').innerHTML,
+    "rating": document.getElementById('pickRating').innerHTML,
     "plot": document.getElementById('plot').innerHTML
   };
   document.getElementById('story').innerHTML = "<h3 style='color:#C39BD3;'>Okay! Please hang on!</h3><p style='color:#6C3483;'>Finding other movies like <strong>" + currentMovie.title + "</strong> which you might also enjoy...</p>";
@@ -461,7 +461,7 @@ Respond using exact JSON structure shown below with references to the nodes and 
       let recommendations = [];
       data.response.response.forEach((element) => {
         if (element.text.indexOf('[') >= 0 && element.text.indexOf(']') > 0) {
-          r = JSON.parse(element.text.substring(element.text.indexOf('['), element.text.lastIndexOf(']') + 1)) || [];
+          let r = JSON.parse(element.text.substring(element.text.indexOf('['), element.text.lastIndexOf(']') + 1)) || [];
           r.forEach((rr) => recommendations.push(rr));
         }
       });
@@ -472,12 +472,12 @@ Respond using exact JSON structure shown below with references to the nodes and 
           <div class="row">`;
       if (recommendations.length) {
         recommendations.forEach((recommendation) => {
-          if (recommendation.title && recommendation.director && recommendation.year && recommendation.imdb_rating && recommendation.poster && recommendation.plot) {
+          if (recommendation.title && recommendation.director && recommendation.year && recommendation.rating && recommendation.poster && recommendation.plot) {
             html += `
             <div class="col-12 col-md-6">
               <div class="row mt-5">
                 <div class="col-12 text-center">
-                  <button class="btn btn-success" type="button" onclick="writeSimilarStory('`+ encodeURIComponent(recommendation.title) + `', '` + encodeURIComponent(recommendation.director) + `', '` + encodeURIComponent(recommendation.year) + `', '` + encodeURIComponent(recommendation.imdb_rating) + `', '` + encodeURIComponent(recommendation.poster) + `', '` + encodeURIComponent(recommendation.plot) + `')">Create
+                  <button class="btn btn-success" type="button" onclick="writeSimilarStory('`+ encodeURIComponent(recommendation.title) + `', '` + encodeURIComponent(recommendation.director) + `', '` + encodeURIComponent(recommendation.year) + `', '` + encodeURIComponent(recommendation.rating) + `', '` + encodeURIComponent(recommendation.poster) + `', '` + encodeURIComponent(recommendation.plot) + `')">Create
                     Story</button>
                   <p><small>inspired by this plot</small></p>
                 </div>
@@ -571,7 +571,7 @@ Respond using exact JSON structure shown below with references to the nodes and 
 }; // pickRandomMovie
 
 // ------ ..... ------ ..... ------ ..... ------ 
-const writeSimilarStory = (title, director, year, imdb_rating, poster, plot) => {
+const writeSimilarStory = (title, director, year, rating, poster, plot) => {
   document.getElementById('btnFindSimilarMovies').disabled = true;
   document.getElementById('btnWriteNewStory').disabled = true;
   document.getElementById('story').innerHTML = "<h4>Thinking of a story based on the plot</h4>";
@@ -582,8 +582,8 @@ const writeSimilarStory = (title, director, year, imdb_rating, poster, plot) => 
   document.getElementById('pickDirector').innerHTML = _director;
   let _year = year ? decodeURIComponent(year) : document.getElementById('pickYear').innerHTML;
   document.getElementById('pickYear').innerHTML = _year;
-  let _imdb_rating = imdb_rating ? decodeURIComponent(imdb_rating) : document.getElementById('pickRating').innerHTML;
-  document.getElementById('pickRating').innerHTML = _imdb_rating;
+  let _rating = rating ? decodeURIComponent(rating) : document.getElementById('pickRating').innerHTML;
+  document.getElementById('pickRating').innerHTML = _rating;
   let _poster = poster ? decodeURIComponent(poster) : document.getElementById('pickPoster').getAttribute('src').value;
   if (_poster) {
     document.getElementById('pickPoster').setAttribute('src', _poster);
