@@ -449,9 +449,11 @@ Using your own descretion, find movies similar to the one provided within >>> an
 ## Response Format
 Respond using exact JSON structure shown below with references to the nodes and fields provided between /* and */ symbols. Make sure you pick exact values from the context including URLs:
 ~~~json
-[
-  { "title": "/* :Movie.title */", "director": "/* :Director.name */", "year": /* :Movie.year */, "rating": /* :Movie.imdbRating */, "poster": "/* :Movie.poster */", "plot": "/* :Movie.plot */" }, ...
-]
+{
+  "movies":[
+    { "title": "/* :Movie.title */", "director": "/* :Director.name */", "year": /* :Movie.year */, "rating": /* :Movie.imdbRating */, "poster": "/* :Movie.poster */", "plot": "/* :Movie.plot */" }, ...
+    ]
+}
 ~~~
 `,
     })
@@ -461,20 +463,18 @@ Respond using exact JSON structure shown below with references to the nodes and 
       console.log(data);
       let recommendations = [];
       data.response.response.forEach((element) => {
-        if (element.text.indexOf('[') >= 0 && element.text.indexOf(']') > 0) {
+        if (element.text.indexOf('{') >= 0 && element.text.indexOf('}') > 0) {
           console.log(element.text);
-          let r = [];
+          let r = {};
           try {
-            r = JSON.parse(element.text.substring(element.text.indexOf('['), element.text.lastIndexOf(']') + 1)) || [];
-            console.log(r);
-            r.forEach((rr) => recommendations.push(rr));
+            r = JSON.parse(element.text.substring(element.text.indexOf('{'), element.text.lastIndexOf('}') + 1)) || [];
           }
           catch {
-            r = [{
-              "title": "...", "director": "...", "year": "...", "rating": "...", "poster": ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)], "plot": "..."
-            }];
-            r.forEach((rr) => recommendations.push(rr));
+            r = { "movies": [] };
           }
+          console.log(r);
+          if (r.movies)
+            r.movies.forEach((rr) => recommendations.push(rr));
         }
       });
       // -- showing results
@@ -527,8 +527,8 @@ Respond using exact JSON structure shown below with references to the nodes and 
         }
         html += `
           </div>`;
+        document.getElementById('story').innerHTML = html;
       }, 6000);
-      document.getElementById('story').innerHTML = html;
     });
 }; // findSimilarMovies
 
