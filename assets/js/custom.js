@@ -710,11 +710,9 @@ const processFileContents = (knowledge, avgWordCountPerLine) => {
         document.getElementById('chatbox').value = `>>>
 `+ chunk + `
 <<<
-Analyze the content within '>>>' and '<<<' symbols and generate a response similar to a blog or an essay using following approach:
-1. Organize the content in well-structured sections using simple formatting options like paragraphs, bullets, tables, etc. 
-2. Expand the sections by asking yourself at least 1 (maximum of 3) deep-dive question and answer them using the information from the content.
-3. If you encounter numeric data, provide a brief analysis and insights from it.
+Organize the original content provided within '>>>' and '<<<' symbols in well-structured sections using simple formatting options like titles / subtitles, paragraphs, bullets, tables, etc. If you encounter numeric data, analyze it and provide your insights from it.
   `;
+        sessionStorage.clear('conversation');
         goChatbot();
         let disabledChatboxIntvl = setInterval(() => {
           if (document.getElementById('chatbox').disabled == false) {
