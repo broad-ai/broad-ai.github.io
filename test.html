@@ -1,0 +1,29 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <!-- <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: false });
+  </script> -->
+</head>
+
+<body>
+
+  <div style="text-align:left;color:#6a5acd;">
+    <pre class="mermaid" id="diag-1734668061921">
+      timeline
+        2021: hello
+        2022: world
+    </pre>
+    <script>const showDiagram = () => { fetch("https://cdn.jsdelivr.net/npm/mermaid@11.4.1/+esm").then(resp => resp.text()).then(scr => { let s = document.createElement('script'); s.type = 'module'; s.text = scr; document.head.appendChild(s); mermaid.initialize({ startOnLoad: true }); console.log(mermaid); }); };</script>
+    <button onclick="showDiagram()">Click Me</button>
+  </div>
+
+</body>
+
+
+</html>
