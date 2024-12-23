@@ -294,6 +294,7 @@ const clearChat = () => {
 
 const goChatbot = () => {
   // -- pre results formatting
+  document.getElementById('chat').innerHTML = "<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre>" + getRandomMessage() + "...</pre></p></div>";
   let intvlMsgs = setInterval(() => {
     document.getElementById('chat').innerHTML = "<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre>" + getRandomMessage() + "...</pre></p></div>";
   }, 10000);
