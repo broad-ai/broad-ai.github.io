@@ -64,8 +64,8 @@
   <div class="container">
     <div id="contact" class="contact-us section">
       <div class="row">
-        <div class="col-lg-2"></div>
-        <div class="col-lg-8">
+        <!-- <div class="col-lg-1"></div> -->
+        <div class="col-lg-12">
 
           <div class="border-first-button d-flex justify-content-end">
             <a href="/demo.html">&lt; Back</a>
@@ -74,40 +74,38 @@
           <h2 style="color:#4da6e7;">Chatbot</h2>
           <p>
             Demonstrates contextual conversation experience that engages following agents: <br>
-            <strong>Agents:</strong> Aviator | EVCharger | FinancialAnalyst | MedAssistant | NewsReporter |
-            Randomizer | Researcher | Weatherman | Writer
+            <strong>Agents:</strong> Aviator | Draftsman | EVCharger | FinancialAnalyst | MedAssistant | NewsReporter |
+            Randomizer | Researcher | Tester | Weatherman | Writer
           </p>
 
-          <div class="container mt-4">
-            <div class="row">
-              <div class="col-12 px-3 py-3" id="responseChatbot"
-                style="height: calc(60vh - 24px);border: 1px solid #ccc;margin-bottom: 2em;overflow-y: scroll;">
-                <!-- chat messages here -->
+          <div class="container-fluid mt-4">
+            <div class="row mt-2">
+              <div class="col-12 col-sm-9 col-md-8 col-lg-7">
+                <div class="row">
+                  <div class="col-12" id="chat">
+                    <!-- chat messages here -->
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div class="col-10 col-sm-8 col-md-9 col-lg-10 p-1">
+                    <textarea class="form-control" id="chatbox" rows="3"></textarea>
+                  </div>
+                  <div class="col-2 col-sm-4 col-md-3 col-lg-2 p-1">
+                    <button class="btn btn-primary" id="btnAsk" onclick="ask()">Ask</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-3 col-md-4 col-lg-3" id="logs">
+                <!-- logs -->
               </div>
             </div>
-            <div class="row">
-              <div class="col">
-                <div id="file-reader"></div>
-                <input type="hidden" id="api-endpoint" value="https://broadaidemo-7yg2a2s6sq-uc.a.run.app">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-8 col-md-10 px-0 text-left">
-                <textarea class="form-control" id="chatbox" rows="3"
-                  style="border-radius: 8px;box-shadow: 4px 8px 6px #ddd;"></textarea>
-              </div>
-              <div class="col-1 col-md-1 px-0 text-right"></div>
-              <div class="col-3 col-md-1 px-0 text-right">
-                <button class="btn btn-secondary mt-4" id="btnGoChatbot" onclick="goChatbot()">Send</button>
-              </div>
-            </div>
-            <div class="row mt-5">
-              <div class="col-12 px-3 py-3" id="logs" style="font-weight:100;color:#999;"></div>
+            <div class="row mt-2" id="agents">
+              <!-- agents -->
             </div>
           </div>
 
         </div>
-        <div class="col-lg-2"></div>
+        <!-- <div class="col-lg-1"></div> -->
       </div>
     </div>
   </div>

@@ -167,7 +167,8 @@
 })(window.jQuery);
 
 
-const broadAIDemoapiEndpoint = "https://broadaidemo-7yg2a2s6sq-uc.a.run.app";
+// const broadAIDemoapiEndpoint = "https://broadaidemo-7yg2a2s6sq-uc.a.run.app";
+const broadAIDemoapiEndpoint = "http://localhost:8080";
 const broadAIapiEndpoint = "https://broadai-7yg2a2s6sq-uc.a.run.app";
 
 
@@ -260,12 +261,45 @@ const registerApp = () => {
 
 
 // ------ ..... ------ ..... ------ ..... ------ 
+const getRandomMessage = () => {
+  const waitMessages = [
+    "Working ...",
+    "Almost there ...",
+    "Loading things up ...",
+    "Hang tight ...",
+    "Please wait ...",
+    "Finishing touches ...",
+    "Almost done ...",
+    "Wrapping it up ...",
+    "Nearly finished ...",
+    "Final steps ...",
+    "Right around the corner ...",
+    "Tying up loose ends ...",
+    "Final checks in progress ...",
+    "Almost good to go ...",
+    "Fine-tuning ...",
+    "Preparing final details ...",
+    "Won't be long now ...",
+    "Bringing it all together ...",
+    "Getting there, hang tight ..."
+  ];
+  return waitMessages[Math.floor(Math.random() * waitMessages.length)];
+}; // getRandomMessage
+
+const clearChat = () => {
+  sessionStorage.clear('conversation');
+  document.getElementById('chat').innerHTML = "";
+  document.getElementById('logs').innerHTML = "";
+  document.getElementById('agents').innerHTML = "";
+}; // clearChat
+
 const goChatbot = () => {
   // -- pre results formatting
-  document.getElementById('btnGoChatbot').disabled = true;
+  let intvlMsgs = setInterval(() => {
+    document.getElementById('chat').innerHTML = "<div class='p-3' style='font-size:1.5em;'><img src='/assets/images/load-35_128.gif' style='height:3em;'><pre>" + getRandomMessage() + "...</pre></p></div>";
+  }, 10000);
+  document.getElementById('btnAsk').disabled = true;
   document.getElementById('chatbox').disabled = true;
-  document.getElementById('logs').innerHTML = "";
-  document.getElementById('responseChatbot').scrollTop = document.getElementById('responseChatbot').scrollHeight;
 
   // --- ask
   fetch(broadAIDemoapiEndpoint + '/go', {
@@ -275,39 +309,134 @@ const goChatbot = () => {
     },
     body: JSON.stringify({
       "question": document.getElementById('chatbox').value,
-      "conversations": JSON.parse(sessionStorage.getItem('conversations')) || []
+      "conversation": JSON.parse(sessionStorage.getItem('conversation')) || []
     })
   })
-    .then((resp) => resp.json())
-    .then((data) => {
-      // -- showing results
-      sessionStorage.setItem('conversations', JSON.stringify(data.response.conversation));
-      let messages = "<p style='text-align:right;color:black;'>" + data.question + "</p>";
-      data.response.response.forEach((line) => {
-        messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
-      });
-      document.getElementById('responseChatbot').innerHTML += messages + "<hr>";
-      document.getElementById('responseChatbot').scrollTop = document.getElementById('responseChatbot').scrollHeight;
-
-      // -- post results formatting
-      document.getElementById('btnGoChatbot').disabled = false;
-      document.getElementById('chatbox').disabled = false;
-      document.getElementById('chatbox').value = "";
-
-      // -- Logs
-      document.getElementById('logs').innerHTML = "<h4>Plan:</h4>";
-      // document.getElementById('logs').innerHTML += "<div><p>" + data.plan.reason + "</p></div>";
-      let html = "<div>";
-      data.plan.plan.forEach((step, s) => {
-        html += "<p style='margin-top:2em;'>Step <strong>" + (s + 1) + "</strong>: " + step.objective + "</p>";
-        html += "<p>Agent.Skill: <strong>" + (step.agent || 'none') + "." + (step.skill ? step.skill.name : 'none') + "</strong></p>";
-        html += "<p><strong>Result</strong>: <pre>" + step.result ? JSON.stringify(step.result, null, 2) : 'none' + "</pre></p>";
-      });
-      html += "</div>";
-      document.getElementById('logs').innerHTML += html;
-      // document.getElementById('logs').innerHTML += "<hr>";
-      // document.getElementById('logs').innerHTML += "<h4>Response:</h4>";
-      // document.getElementById('logs').innerHTML += "<div><p>" + data.response.reason + "</p></div>";
+    .then((resp) => {
+      let reader = resp.body.pipeThrough(new TextDecoderStream()).getReader();
+      let payload = {};
+      const readStream = (reader) => {
+        reader.read().then((r) => {
+          if (r.done) {
+            // -- showing results
+            sessionStorage.setItem('conversation', JSON.stringify(payload.result.conversation));
+            let messages = "<div style='text-align:right;margin-bottom:1em;'><a href='javascript:clearChat();'>Clear</a></pre></div>"
+            messages += "<h5 style='color:black;background:#eee;padding:1em;'>" + payload.result.question + "</h5>";
+            payload.result.response.forEach((line) => {
+              messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
+            });
+            messages += "<hr class='m-2'><pre class='text-danger'><strong>Conversation History:</strong>";
+            messages += "<div style='font-size:0.8em;'>";
+            payload.result.conversation.forEach((talk) => {
+              if (talk.indexOf('?:') >= 0)
+                messages += "<p><strong class='text-info'>" + talk.replaceAll('?:', 'Q:') + "</strong></p>";
+              else if (talk.indexOf('>:') >= 0)
+                messages += "<p><span class='text-muted'>" + talk.replaceAll('>:', '=>') + "</span></p>";
+              else
+                messages += "<p><span class='text-muted'>" + talk + "</span></p>";
+            });
+            messages += "</div>";
+            document.getElementById('chat').innerHTML = messages;
+            document.getElementById('chatbox').value = "";
+            // -- post results formatting
+            clearInterval(intvlMsgs);
+            document.getElementById('btnAsk').disabled = false;
+            document.getElementById('chatbox').disabled = false;
+            document.getElementById('chatbox').value = "";
+            return;
+          }
+          try {
+            payload = JSON.parse(r.value)
+          }
+          catch {
+            console.log(r.value);
+          }
+          let logs = `
+          <table class='table mb-1'>
+            <tbody>
+              <tr>
+                <td><strong>Status:</strong> <span class='text-danger'>`+ payload.status + `</span></td>
+              </tr>
+            </tbody>
+          </table>`;
+          if (payload.result.plan) {
+            console.log(payload.result.plan);
+            payload.result.plan.forEach((step) => {
+              logs += `
+            <table class='table mt-1'>
+              <thead>
+                <tr>
+                <th>`+ (step.sequence + 1) + `.  <span class='text-info'>` + step.objective + `</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class='py-0'><span class='text-muted'>Agent &rarr; Skill</span>&emsp;|&emsp;<span class='text-success'>`+ step.agent + ` </span> &rarr; <span class='text-success'>` + step.skill.name + `</span></td>
+                </tr>
+                <tr>
+                  <td class='text-muted'>`+ (step.result ? (typeof step.result == 'object' ? JSON.stringify(step.result) : step.result) : '...') + `</td>
+                </tr>
+              </tbody>
+            </table>
+              `;
+            });
+          }
+          else if (payload.result.agents) {
+            let agents = `
+            <div class='col-12 col-sm-6 col-md-4 col-lg-3'>
+              <h3 style='margin-top:auto;margin-bottom:auto;'>
+                Available Agents:
+              </h3>
+            </div>
+              `;
+            payload.result.agents.forEach((agent) => {
+              agents += `
+          <div class='col-12 col-sm-6 col-md-4 col-lg-3'>
+            <table class='table mt-1'>
+              <thead>
+                <tr>
+                <th><strong>Agent:</strong> <span class='text-info'>` + agent.agent + `</span></th>
+                </tr>
+                <tr>
+                <td>` + agent.capability + `</span></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class='text-muted'>
+                    <ol>`;
+              agent.skills.forEach((skill) => {
+                agents += `
+                <li class='mb-1'><strong>`+ skill.skill + `</strong>: <span class='text-meta'>` + skill.objective + `</span></li>
+                `;
+              });
+              agents += `
+                      </ol>
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+              `;
+            });
+            document.getElementById('agents').innerHTML = agents;
+          }
+          else {
+            logs += `
+            <table class='table mt-1'>
+              <tbody>
+                <tr>
+                  <td class='text-muted'><pre>`+ JSON.stringify(payload.result, null, 2) + `</pre></td>
+                </tr>
+              </tbody>
+            </table>
+              `;
+          }
+          document.getElementById('logs').innerHTML = logs;
+          readStream(reader);
+        });
+      }; // readStream
+      readStream(reader);
     });
 }; // goChatbot
 
