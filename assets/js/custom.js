@@ -262,25 +262,26 @@ const registerApp = () => {
 // ------ ..... ------ ..... ------ ..... ------ 
 const getRandomMessage = () => {
   const waitMessages = [
-    "Working ...",
-    "Almost there ...",
-    "Loading things up ...",
-    "Hang tight ...",
-    "Please wait ...",
-    "Finishing touches ...",
-    "Almost done ...",
-    "Wrapping it up ...",
-    "Nearly finished ...",
-    "Final steps ...",
-    "Right around the corner ...",
-    "Tying up loose ends ...",
-    "Final checks in progress ...",
-    "Almost good to go ...",
-    "Fine-tuning ...",
-    "Preparing final details ...",
-    "Won't be long now ...",
-    "Bringing it all together ...",
-    "Getting there, hang tight ..."
+    "Processing...",
+    "Loading...",
+    "Please wait...",
+    "In progress...",
+    "Working on it...",
+    "Fetching data...",
+    "One moment...",
+    "Executing request...",
+    "Hang tight...",
+    "Updating...",
+    "Retrieving information...",
+    "Getting things ready...",
+    "Hold tight...",
+    "Setting things up...",
+    "Just a sec...",
+    "Running tasks...",
+    "Preparing data...",
+    "Analyzing...",
+    "Communicating with server...",
+    "Performing operation..."
   ];
   return waitMessages[Math.floor(Math.random() * waitMessages.length)];
 }; // getRandomMessage
