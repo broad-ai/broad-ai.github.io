@@ -295,7 +295,7 @@ const clearChat = () => {
 const goChatbot = () => {
   // -- pre results formatting
   let intvlMsgs = setInterval(() => {
-    document.getElementById('chat').innerHTML = "<div class='p-3' style='font-size:1.5em;'><img src='/assets/images/load-35_128.gif' style='height:3em;'><pre>" + getRandomMessage() + "...</pre></p></div>";
+    document.getElementById('chat').innerHTML = "<div class='p-3'><img src='/assets/images/load-35_128.gif'><pre>" + getRandomMessage() + "...</pre></p></div>";
   }, 10000);
   document.getElementById('btnAsk').disabled = true;
   document.getElementById('chatbox').disabled = true;
