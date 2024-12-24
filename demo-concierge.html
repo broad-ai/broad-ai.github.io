@@ -80,25 +80,32 @@
           <div class="container-fluid mt-4">
             <div class="row mt-2">
               <div class="col-12 col-sm-9 col-md-8 col-lg-7">
-                <div class="row">
+                <div class="row mt-2">
                   <div class="col-12" id="chat">
                     <!-- response here -->
                   </div>
                 </div>
                 <div class="row mt-2">
-                  <!-- Trip Planner -->
-                  <!--  -->
-                  <!--  -->
-                  <div class="row mt-2">
-                    <div class="col-10 col-sm-8 col-md-9 col-lg-10 p-1">
-                      <div id="file-reader"></div>
-                      <input type="hidden" id="api-endpoint" value="https://broadaidemo-7yg2a2s6sq-uc.a.run.app">
-                      <textarea class="form-control" id="notes"
-                        placeholder="Additional notes / requirements for your trip" rows="3"></textarea>
+                  <div class="col-12">
+                    <div class="row">
+                      <div class="col">
+                        <input type="text" class="form-control" id="origin" placeholder="Origin">
+                      </div>
+                      <div class="col">
+                        <input type="text" class="form-control" id="destination" placeholder="Destination">
+                      </div>
                     </div>
-                    <div class="col-2 col-sm-4 col-md-3 col-lg-2 p-1">
-                      <button class="btn btn-primary" id="btnGoConcierge" onclick="goConcierge()">Plan</button>
-                    </div>
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div class="col-12 text-end">
+                    <textarea class="form-control" id="notes"
+                      placeholder="Additional notes / requirements for your trip" rows="3"></textarea>
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div class="col-12 text-end">
+                    <button class="btn btn-primary" id="btnGoConcierge" onclick="goConcierge()">Plan</button>
                   </div>
                 </div>
               </div>
@@ -110,62 +117,6 @@
               <!-- agents -->
             </div>
           </div>
-
-          <!-- <div class="container mt-4">
-            <div class="row">
-              <div class="col-12 col-md-5 py-2">
-                <h4>Trip type:</h4>
-                <div class="d-flex px-2">
-                  <div class="form-check mx-2">
-                    <input class="form-check-input" type="radio" name="tripType" id="radioBusiness"
-                      onchange="updateTask()">
-                    <label class="form-check-label" for="radioBusiness">
-                      Business
-                    </label>
-                  </div>
-                  <div class="form-check mx-2">
-                    <input class="form-check-input" type="radio" name="tripType" id="radioPersonal"
-                      onchange="updateTask()">
-                    <label class="form-check-label" for="radioPersonal">
-                      Personal
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-3 py-3">
-                <input type="text" class="form-control py-4" id="originCity" placeholder="Origin city"
-                  onkeyup="updateTask()">
-              </div>
-              <div class="col-12 col-md-3 py-3">
-                <input type="text" class="form-control py-4" id="destinationCity" placeholder="Destination city"
-                  onkeyup="updateTask()">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 col-md-12 py-0" id="instructions">
-              </div>
-              <div class="col-12 col-md-11 py-2">
-                <textarea class="form-control py-4" id="notes"
-                  placeholder="Additional notes / requirements for your trip" rows="3"
-                  onkeyup="updateTask()"></textarea>
-              </div>
-              <div class="col-12 col-md-1 py-3">
-                <button class="btn btn-secondary" id="btnGoConcierge" onclick="goConcierge()">Submit</button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 col-md-12">
-                <input type="hidden" class="form-control" id="task">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 col-md-12">
-                <div id="results">
-        </div>
-      </div>
-    </div>
-  </div> -->
-
         </div>
         <!-- <div class="col-lg-1"></div> -->
       </div>

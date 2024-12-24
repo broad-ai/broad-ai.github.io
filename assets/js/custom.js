@@ -333,7 +333,7 @@ const goChatbot = () => {
               messages += "<ul class='mb-5'>";
               payload.result.conversation.forEach((talk) => {
                 if (talk.indexOf('?:') >= 0)
-                  messages += "<li><strong class='text-info'>" + talk.replaceAll('?:', 'Q:') + "</strong></li>";
+                  messages += "<li><strong class='text-info'>" + talk.replaceAll('?:', '<br>Q:') + "</strong></li>";
                 else if (talk.indexOf('>:') >= 0)
                   messages += "<li><span class='text-muted'>" + talk.replaceAll('>:', '=>') + "</span></li>";
                 else
@@ -454,7 +454,19 @@ const goConcierge = () => {
   document.getElementById('btnGoConcierge').disabled = true;
 
   // -- formulate question
-  let question = `
+  let origin = document.getElementById('origin').value;
+  let destination = document.getElementById('destination').value;
+  let notes = document.getElementById('notes').value;
+  let question = `Help me plan a trip from ` + origin + ` to ` + destination + `. `;
+  if (notes)
+    question += `
+Take following preferences into consideration:
+- `+ notes + `
+- Avoid rain, long wait times, delays.
+- Airlines is preferred over driving and driving is preferred over trains. Water transportations must be absolutely avoided.
+- I prefer starting my journey the night before, and returning before midnight.
+- Accomodations must be 3-star or above, but also within budget.
+- Attractions are of two kinds: must-see and nice-to-see (optional). It is important to know Parks and Museum operating hours.
   `;
 
   fetch(broadAIDemoapiEndpoint + '/go', {
@@ -487,7 +499,7 @@ const goConcierge = () => {
             //   messages += "<ul class='mb-5'>";
             //   payload.result.conversation.forEach((talk) => {
             //     if (talk.indexOf('?:') >= 0)
-            //       messages += "<li><strong class='text-info'>" + talk.replaceAll('?:', 'Q:') + "</strong></li>";
+            //       messages += "<li><strong class='text-info'>" + talk.replaceAll('?:', '<br>Q:') + "</strong></li>";
             //     else if (talk.indexOf('>:') >= 0)
             //       messages += "<li><span class='text-muted'>" + talk.replaceAll('>:', '=>') + "</span></li>";
             //     else
