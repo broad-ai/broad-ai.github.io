@@ -326,8 +326,8 @@ const goChatbot = () => {
             payload.result.response.forEach((line) => {
               messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
             });
-            messages += "<hr class='m-2'><pre class='text-danger'><strong>Conversation History:</strong>";
-            messages += "<div style='font-size:0.8em;'>";
+            messages += "<hr class='mt-2'><pre class='text-danger'><strong>Conversation History:</strong>";
+            messages += "<div class='mb-5'>";
             payload.result.conversation.forEach((talk) => {
               if (talk.indexOf('?:') >= 0)
                 messages += "<p><strong class='text-info'>" + talk.replaceAll('?:', 'Q:') + "</strong></p>";
