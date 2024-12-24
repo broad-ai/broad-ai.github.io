@@ -457,7 +457,7 @@ const goConcierge = () => {
   let origin = document.getElementById('origin').value;
   let destination = document.getElementById('destination').value;
   let notes = document.getElementById('notes').value;
-  let question = `Help me plan a memorable trip from ` + origin + ` to ` + destination + ` for my family (myself, my spouse, and the kids). Recommend the best day to travel based on evaluating multiple factors, such as weather, safety, etc. Provide an exhaustive itinerary that guides what will be done daily (or at a granularity of morning, afternoon, and evening).;
+  let question = `Help me plan a memorable trip from ` + origin + ` to ` + destination + ` for me and my family (spouse and kids). Recommend the best day to travel based on evaluating multiple factors, such as weather, safety, etc. Provide an exhaustive itinerary that guides what will be done daily (or at a granularity of morning, afternoon, and evening).;
   Take following preferences also into consideration:`;
   if (notes)
     question += `- ` + notes;
@@ -468,14 +468,13 @@ const goConcierge = () => {
 - Include a pictorial representation (e.g. mindmap) showing key elements of the planning you took into consideration.
   `;
 
-  fetch(broadAIDemoapiEndpoint + '/go', {
+  fetch(broadAIDemoapiEndpoint + '/plan', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      "question": question,
-      "conversations": []
+      "question": question
     })
   })
     .then((resp) => {
@@ -486,26 +485,11 @@ const goConcierge = () => {
           if (r.done) {
             // -- showing results
             let messages = "<div style='text-align:right;margin-bottom:1em;'><a href='javascript:clearChat();'>Clear</a></pre></div>"
-            messages += "<h3 style='color:black;background:#eee;padding:1em;'>" + (payload.result.question || document.getElementById('chatbox').value) + "</h3>";
             if (payload.result.response) {
               payload.result.response.forEach((line) => {
                 messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
               });
             }
-            // if (payload.result.conversation) {
-            //   sessionStorage.setItem('conversation', JSON.stringify(payload.result.conversation));
-            //   messages += "<hr class='mt-2'><pre class='text-danger'><strong>Conversation History:</strong></pre>";
-            //   messages += "<ul class='mb-5'>";
-            //   payload.result.conversation.forEach((talk) => {
-            //     if (talk.indexOf('?:') >= 0)
-            //       messages += "<li><strong class='text-info'>" + talk.replaceAll('?:', '<br>Q:') + "</strong></li>";
-            //     else if (talk.indexOf('>:') >= 0)
-            //       messages += "<li><span class='text-muted'>" + talk.replaceAll('>:', '=>') + "</span></li>";
-            //     else
-            //       messages += "<li><span class='text-muted'>" + talk + "</span></li>";
-            //   });
-            //   messages += "</ul>";
-            // }
             document.getElementById('chat').innerHTML = messages;
             // -- post results formatting
             clearInterval(intvlMsgs);
