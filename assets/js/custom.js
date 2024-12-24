@@ -322,7 +322,7 @@ const goChatbot = () => {
             // -- showing results
             sessionStorage.setItem('conversation', JSON.stringify(payload.result.conversation));
             let messages = "<div style='text-align:right;margin-bottom:1em;'><a href='javascript:clearChat();'>Clear</a></pre></div>"
-            messages += "<h5 style='color:black;background:#eee;padding:1em;'>" + payload.result.question + "</h5>";
+            messages += "<h3 style='color:black;background:#eee;padding:1em;'>" + payload.result.question + "</h3>";
             payload.result.response.forEach((line) => {
               messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
             });
@@ -473,21 +473,21 @@ const goConcierge = () => {
             // -- showing results
             sessionStorage.setItem('conversation', JSON.stringify(payload.result.conversation));
             let messages = "<div style='text-align:right;margin-bottom:1em;'><a href='javascript:clearChat();'>Clear</a></pre></div>"
-            messages += "<h5 style='color:black;background:#eee;padding:1em;'>" + payload.result.question + "</h5>";
+            messages += "<h3 style='color:black;background:#eee;padding:1em;'>" + payload.result.question + "</h3>";
             payload.result.response.forEach((line) => {
               messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
             });
-            messages += "<hr class='m-2'><pre class='text-danger'><strong>Conversation History:</strong>";
-            messages += "<div style='font-size:0.8em;'>";
-            payload.result.conversation.forEach((talk) => {
-              if (talk.indexOf('?:') >= 0)
-                messages += "<p><strong class='text-info'>" + talk.replaceAll('?:', 'Q:') + "</strong></p>";
-              else if (talk.indexOf('>:') >= 0)
-                messages += "<p><span class='text-muted'>" + talk.replaceAll('>:', '=>') + "</span></p>";
-              else
-                messages += "<p><span class='text-muted'>" + talk + "</span></p>";
-            });
-            messages += "</div>";
+            // messages += "<hr class='mt-2'><pre class='text-danger'><strong>Conversation History:</strong></pre>";
+            // messages += "<ul class='mb-5'>";
+            // payload.result.conversation.forEach((talk) => {
+            //   if (talk.indexOf('?:') >= 0)
+            //     messages += "<li><strong class='text-info'>" + talk.replaceAll('?:', 'Q:') + "</strong></li>";
+            //   else if (talk.indexOf('>:') >= 0)
+            //     messages += "<li><span class='text-muted'>" + talk.replaceAll('>:', '=>') + "</span></li>";
+            //   else
+            //     messages += "<li><span class='text-muted'>" + talk + "</span></li>";
+            // });
+            // messages += "</ul>";
             document.getElementById('chat').innerHTML = messages;
             // -- post results formatting
             clearInterval(intvlMsgs);
