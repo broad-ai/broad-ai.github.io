@@ -442,74 +442,13 @@ const goChatbot = () => {
 }; // goChatbot
 
 // ------ ..... ------ ..... ------ ..... ------ 
-const updateTask = () => {
-  if (document.getElementById('radioBusiness').checked) {
-    document.getElementById('instructions').innerHTML = "<h4>Please provide any additional details so I can help you with this trip.</h4>";
-    document.getElementById('notes').setAttribute('placeholder', `e.g. I will be meeting the CEO of XYZ to discuss our strategic alliance.`);
-  }
-  if (document.getElementById('radioPersonal').checked) {
-    document.getElementById('instructions').innerHTML = "<h4>What would you like to do on this personal trip?</h4>";
-    document.getElementById('notes').setAttribute('placeholder', `e.g. I'd like to visit popular attractions, go to popular restaurants and enjoy local cuisine.`);
-  }
-  let task = [];
-  task.push(`I am taking a`);
-  task.push(
-    document.getElementById('radioBusiness').checked ? `business trip`
-      : (document.getElementById('radioPersonal').checked ? `personal trip` : `trip`)
-  );
-  if (document.getElementById('originCity').value)
-    task.push(
-      `from ` + document.getElementById('originCity').value
-    );
-  if (document.getElementById('destinationCity').value)
-    task.push(
-      `to ` + document.getElementById('destinationCity').value
-    );
-  task.push(`sometime next week.`);
-  if (document.getElementById('notes').value) {
-    task.push(`Consider following request and provide support:`);
-    task.push(`"` + document.getElementById('notes').value + `"
-    `);
-    if (document.getElementById('radioBusiness').checked) {
-      task.push(`If I mentioned a company name above, provide a summary of their business profile and latest financial performance. If I mentioned a meeting purpose, recommend talking points or an agenda outline for the meeting.
-      `);
-    }
-  }
-  if (document.getElementById('destinationCity').value) {
-    task.push(`In addition, I will greatly benefit if you can provide following information for my destination city, ` + document.getElementById('destinationCity').value + `:
-        `);
-    task.push(`- Connected airports
-        `);
-    task.push(`- Dressing accessories to consider based on weather conditions (e.g. sunglasses, umbrella, light jacket, shoes, etc.)
-        `);
-    task.push(`- If an international city, provide exchange rate (use USD as base currency) 
-        `);
-    if (document.getElementById('radioPersonal').checked) {
-      task.push(`- Interesting / historical significance
-          `);
-      task.push(`- Must visit local attractions (ensure that recommendations are accurate and verify their relevance)
-          `);
-      task.push(`- A draft social media message letting my contacts know I will be in the city
-          `);
-    }
-  }
-  if (document.getElementById('originCity').value) {
-    task.push(`If possible, include following my city of origin, ` + document.getElementById('originCity').value + `:
-        `);
-    task.push(`- Best day to travel weather-wise
-        `);
-  }
-  document.getElementById('task').value = task.join(' ')
-}; // updateTask
-
-
-// ------ ..... ------ ..... ------ ..... ------ 
 const goConcierge = () => {
   // -- pre results formatting
-  document.getElementById('results').innerHTML = "<p style='color:black;font-size:2em;'>...</p>";
+  document.getElementById('chat').innerHTML = "<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>" + getRandomMessage() + "</pre></p></div>";
+  let intvlMsgs = setInterval(() => {
+    document.getElementById('chat').innerHTML = "<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>" + getRandomMessage() + "...</pre></p></div>";
+  }, 10000);
   document.getElementById('btnGoConcierge').disabled = true;
-
-  document.getElementById('logs').innerHTML = "<h4>Task:</h4><p>" + document.getElementById('task').value.replaceAll('\n', '<br>') + "</p>";
 
   fetch(broadAIDemoapiEndpoint + '/go', {
     method: "POST",
@@ -517,35 +456,132 @@ const goConcierge = () => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      "question": document.getElementById('task').value,
+      "question": question,
       "conversations": []
     })
   })
-    .then((resp) => resp.json())
-    .then((data) => {
-      // -- showing results
-      document.getElementById('results').innerHTML = "<div>";
-      data.response.response.forEach((element) => {
-        document.getElementById('results').innerHTML += "<" + element.html_tag + ">" + element.text + "</" + element.html_tag + ">";
-      });
-      document.getElementById('results').innerHTML += "</div>";
-
-      document.getElementById('logs').innerHTML = "<h4>Plan:</h4>";
-      // document.getElementById('logs').innerHTML += "<div><p>" + data.plan.reason + "</p></div>";
-      let html = "<div>";
-      data.plan.plan.forEach((step, s) => {
-        html += "<p style='margin-top:2em;'>Step <strong>" + (s + 1) + "</strong>: " + step.objective + "</p>";
-        html += "<p>Agent.Skill: <strong>" + (step.agent || 'none') + "." + (step.skill ? step.skill.name : 'none') + "</strong></p>";
-        html += "<p><strong>Result</strong>: <pre>" + step.result ? JSON.stringify(step.result, null, 2) : 'none' + "</pre></p>";
-      });
-      html += "</div>";
-      document.getElementById('logs').innerHTML += html;
-      // document.getElementById('logs').innerHTML += "<hr>";
-      // document.getElementById('logs').innerHTML += "<h4>Response:</h4>";
-      // document.getElementById('logs').innerHTML += "<div><p>" + data.response.reason + "</p></div>";
-
-      // -- post results formatting
-      document.getElementById('btnGoConcierge').disabled = false;
+    .then((resp) => {
+      let reader = resp.body.pipeThrough(new TextDecoderStream()).getReader();
+      let payload = {};
+      const readStream = (reader) => {
+        reader.read().then((r) => {
+          if (r.done) {
+            // -- showing results
+            sessionStorage.setItem('conversation', JSON.stringify(payload.result.conversation));
+            let messages = "<div style='text-align:right;margin-bottom:1em;'><a href='javascript:clearChat();'>Clear</a></pre></div>"
+            messages += "<h5 style='color:black;background:#eee;padding:1em;'>" + payload.result.question + "</h5>";
+            payload.result.response.forEach((line) => {
+              messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
+            });
+            messages += "<hr class='m-2'><pre class='text-danger'><strong>Conversation History:</strong>";
+            messages += "<div style='font-size:0.8em;'>";
+            payload.result.conversation.forEach((talk) => {
+              if (talk.indexOf('?:') >= 0)
+                messages += "<p><strong class='text-info'>" + talk.replaceAll('?:', 'Q:') + "</strong></p>";
+              else if (talk.indexOf('>:') >= 0)
+                messages += "<p><span class='text-muted'>" + talk.replaceAll('>:', '=>') + "</span></p>";
+              else
+                messages += "<p><span class='text-muted'>" + talk + "</span></p>";
+            });
+            messages += "</div>";
+            document.getElementById('chat').innerHTML = messages;
+            // -- post results formatting
+            clearInterval(intvlMsgs);
+            document.getElementById('btnGoConcierge').disabled = true;
+            return;
+          }
+          try {
+            payload = JSON.parse(r.value)
+          }
+          catch {
+            console.log(r.value);
+          }
+          let logs = `
+          <table class='table mb-1'>
+            <tbody>
+              <tr>
+                <td><strong>Status:</strong> <span class='text-danger'>`+ payload.status + `</span></td>
+              </tr>
+            </tbody>
+          </table>`;
+          if (payload.result.plan) {
+            console.log(payload.result.plan);
+            payload.result.plan.forEach((step) => {
+              logs += `
+            <table class='table mt-1'>
+              <thead>
+                <tr>
+                <th>`+ (step.sequence + 1) + `.  <span class='text-info'>` + step.objective + `</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class='py-0'><span class='text-muted'>Agent &rarr; Skill</span>&emsp;|&emsp;<span class='text-success'>`+ step.agent + ` </span> &rarr; <span class='text-success'>` + step.skill.name + `</span></td>
+                </tr>
+                <tr>
+                  <td class='text-muted'>`+ (step.result ? (typeof step.result == 'object' ? JSON.stringify(step.result) : step.result) : '...') + `</td>
+                </tr>
+              </tbody>
+            </table>
+              `;
+            });
+          }
+          else if (payload.result.agents) {
+            let agents = `
+            <div class='col-12 col-sm-6 col-md-4 col-lg-3'>
+              <h3 style='margin-top:auto;margin-bottom:auto;'>
+                Available Agents:
+              </h3>
+            </div>
+              `;
+            payload.result.agents.forEach((agent) => {
+              agents += `
+          <div class='col-12 col-sm-6 col-md-4 col-lg-3'>
+            <table class='table mt-1'>
+              <thead>
+                <tr>
+                <th><strong>Agent:</strong> <span class='text-info'>` + agent.agent + `</span></th>
+                </tr>
+                <tr>
+                <td>` + agent.capability + `</span></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class='text-muted'>
+                    <ol>`;
+              agent.skills.forEach((skill) => {
+                agents += `
+                <li class='mb-1'><strong>`+ skill.skill + `</strong>: <span class='text-meta'>` + skill.objective + `</span></li>
+                `;
+              });
+              agents += `
+                      </ol>
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+              `;
+            });
+            document.getElementById('agents').innerHTML = agents;
+          }
+          else {
+            logs += `
+            <table class='table mt-1'>
+              <tbody>
+                <tr>
+                  <td class='text-muted'><pre>`+ JSON.stringify(payload.result, null, 2) + `</pre></td>
+                </tr>
+              </tbody>
+            </table>
+              `;
+          }
+          document.getElementById('logs').innerHTML = logs;
+          readStream(reader);
+        });
+      }; // readStream
+      readStream(reader);
     });
 }; // goConcierge
 

@@ -64,8 +64,8 @@
   <div class="container">
     <div id="contact" class="contact-us section">
       <div class="row">
-        <div class="col-lg-2"></div>
-        <div class="col-lg-8">
+        <!-- <div class="col-lg-1"></div> -->
+        <div class="col-lg-12">
 
           <div class="border-first-button d-flex justify-content-end">
             <a href="/demo.html">&lt; Back</a>
@@ -77,7 +77,41 @@
             <strong>Agents:</strong> Aviator | FinancialAnalyst | Weatherman | Writer
           </p>
 
-          <div class="container mt-4">
+          <div class="container-fluid mt-4">
+            <div class="row mt-2">
+              <div class="col-12 col-sm-9 col-md-8 col-lg-7">
+                <div class="row">
+                  <div class="col-12" id="chat">
+                    <!-- chat messages here -->
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <!-- Trip Planner -->
+                  <!--  -->
+                  <!--  -->
+                  <div class="row mt-2">
+                    <div class="col-10 col-sm-8 col-md-9 col-lg-10 p-1">
+                      <div id="file-reader"></div>
+                      <input type="hidden" id="api-endpoint" value="https://broadaidemo-7yg2a2s6sq-uc.a.run.app">
+                      <textarea class="form-control" id="notes"
+                        placeholder="Additional notes / requirements for your trip" rows="3"></textarea>
+                    </div>
+                    <div class="col-2 col-sm-4 col-md-3 col-lg-2 p-1">
+                      <button class="btn btn-primary" id="btnGoConcierge" onclick="goConcierge()">Plan</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-3 col-md-4 col-lg-3" id="logs">
+                <!-- logs -->
+              </div>
+            </div>
+            <div class="row mt-2" id="agents">
+              <!-- agents -->
+            </div>
+          </div>
+
+          <!-- <div class="container mt-4">
             <div class="row">
               <div class="col-12 col-md-5 py-2">
                 <h4>Trip type:</h4>
@@ -109,7 +143,6 @@
             </div>
             <div class="row">
               <div class="col-12 col-md-12 py-0" id="instructions">
-                <!-- additional details -->
               </div>
               <div class="col-12 col-md-11 py-2">
                 <textarea class="form-control py-4" id="notes"
@@ -127,16 +160,14 @@
             </div>
             <div class="row">
               <div class="col-12 col-md-12">
-                <div id="results"><!-- Results --></div>
-              </div>
-              <div class="col-12 col-md-12">
-                <div id="logs" style="font-weight:100;color:#999;"></div>
-              </div>
-            </div>
-          </div>
+                <div id="results">
+        </div>
+      </div>
+    </div>
+  </div> -->
 
         </div>
-        <div class="col-lg-2"></div>
+        <!-- <div class="col-lg-1"></div> -->
       </div>
     </div>
   </div>
