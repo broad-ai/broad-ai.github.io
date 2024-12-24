@@ -320,23 +320,27 @@ const goChatbot = () => {
         reader.read().then((r) => {
           if (r.done) {
             // -- showing results
-            sessionStorage.setItem('conversation', JSON.stringify(payload.result.conversation));
             let messages = "<div style='text-align:right;margin-bottom:1em;'><a href='javascript:clearChat();'>Clear</a></pre></div>"
-            messages += "<h3 style='color:black;background:#eee;padding:1em;'>" + payload.result.question + "</h3>";
-            payload.result.response.forEach((line) => {
-              messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
-            });
-            messages += "<hr class='mt-2'><pre class='text-danger'><strong>Conversation History:</strong></pre>";
-            messages += "<ul class='mb-5'>";
-            payload.result.conversation.forEach((talk) => {
-              if (talk.indexOf('?:') >= 0)
-                messages += "<li><strong class='text-info'>" + talk.replaceAll('?:', 'Q:') + "</strong></li>";
-              else if (talk.indexOf('>:') >= 0)
-                messages += "<li><span class='text-muted'>" + talk.replaceAll('>:', '=>') + "</span></li>";
-              else
-                messages += "<li><span class='text-muted'>" + talk + "</span></li>";
-            });
-            messages += "</ul>";
+            messages += "<h3 style='color:black;background:#eee;padding:1em;'>" + (payload.result.question || document.getElementById('chatbox').value) + "</h3>";
+            if (payload.result.response) {
+              payload.result.response.forEach((line) => {
+                messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
+              });
+            }
+            if (payload.result.conversation) {
+              sessionStorage.setItem('conversation', JSON.stringify(payload.result.conversation));
+              messages += "<hr class='mt-2'><pre class='text-danger'><strong>Conversation History:</strong></pre>";
+              messages += "<ul class='mb-5'>";
+              payload.result.conversation.forEach((talk) => {
+                if (talk.indexOf('?:') >= 0)
+                  messages += "<li><strong class='text-info'>" + talk.replaceAll('?:', 'Q:') + "</strong></li>";
+                else if (talk.indexOf('>:') >= 0)
+                  messages += "<li><span class='text-muted'>" + talk.replaceAll('>:', '=>') + "</span></li>";
+                else
+                  messages += "<li><span class='text-muted'>" + talk + "</span></li>";
+              });
+              messages += "</ul>";
+            }
             document.getElementById('chat').innerHTML = messages;
             document.getElementById('chatbox').value = "";
             // -- post results formatting
@@ -361,7 +365,6 @@ const goChatbot = () => {
             </tbody>
           </table>`;
           if (payload.result.plan) {
-            console.log(payload.result.plan);
             payload.result.plan.forEach((step) => {
               logs += `
             <table class='table mt-1'>
@@ -471,23 +474,27 @@ const goConcierge = () => {
         reader.read().then((r) => {
           if (r.done) {
             // -- showing results
-            sessionStorage.setItem('conversation', JSON.stringify(payload.result.conversation));
             let messages = "<div style='text-align:right;margin-bottom:1em;'><a href='javascript:clearChat();'>Clear</a></pre></div>"
-            messages += "<h3 style='color:black;background:#eee;padding:1em;'>" + payload.result.question + "</h3>";
-            payload.result.response.forEach((line) => {
-              messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
-            });
-            // messages += "<hr class='mt-2'><pre class='text-danger'><strong>Conversation History:</strong></pre>";
-            // messages += "<ul class='mb-5'>";
-            // payload.result.conversation.forEach((talk) => {
-            //   if (talk.indexOf('?:') >= 0)
-            //     messages += "<li><strong class='text-info'>" + talk.replaceAll('?:', 'Q:') + "</strong></li>";
-            //   else if (talk.indexOf('>:') >= 0)
-            //     messages += "<li><span class='text-muted'>" + talk.replaceAll('>:', '=>') + "</span></li>";
-            //   else
-            //     messages += "<li><span class='text-muted'>" + talk + "</span></li>";
-            // });
-            // messages += "</ul>";
+            messages += "<h3 style='color:black;background:#eee;padding:1em;'>" + (payload.result.question || document.getElementById('chatbox').value) + "</h3>";
+            if (payload.result.response) {
+              payload.result.response.forEach((line) => {
+                messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
+              });
+            }
+            // if (payload.result.conversation) {
+            //   sessionStorage.setItem('conversation', JSON.stringify(payload.result.conversation));
+            //   messages += "<hr class='mt-2'><pre class='text-danger'><strong>Conversation History:</strong></pre>";
+            //   messages += "<ul class='mb-5'>";
+            //   payload.result.conversation.forEach((talk) => {
+            //     if (talk.indexOf('?:') >= 0)
+            //       messages += "<li><strong class='text-info'>" + talk.replaceAll('?:', 'Q:') + "</strong></li>";
+            //     else if (talk.indexOf('>:') >= 0)
+            //       messages += "<li><span class='text-muted'>" + talk.replaceAll('>:', '=>') + "</span></li>";
+            //     else
+            //       messages += "<li><span class='text-muted'>" + talk + "</span></li>";
+            //   });
+            //   messages += "</ul>";
+            // }
             document.getElementById('chat').innerHTML = messages;
             // -- post results formatting
             clearInterval(intvlMsgs);
@@ -509,7 +516,6 @@ const goConcierge = () => {
             </tbody>
           </table>`;
           if (payload.result.plan) {
-            console.log(payload.result.plan);
             payload.result.plan.forEach((step) => {
               logs += `
             <table class='table mt-1'>
