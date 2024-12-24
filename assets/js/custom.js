@@ -457,10 +457,11 @@ const goConcierge = () => {
   let origin = document.getElementById('origin').value;
   let destination = document.getElementById('destination').value;
   let notes = document.getElementById('notes').value;
-  let question = `Help me plan a memorable trip for my family of myself, spouse and kids from ` + origin + ` to ` + destination + `. Recommend best day to travel based by evaluating multiple factors, such as weather, safety, etc. Provide an exhaustive itinerary that clearly guides on what will be done on a daily basis (or at a granularity of morning, afternoon, and evening). `;
+  let question = `Help me plan a memorable trip from ` + origin + ` to ` + destination + ` for my family (myself, my spouse, and the kids). Recommend the best day to travel based on evaluating multiple factors, such as weather, safety, etc. Provide an exhaustive itinerary that guides what will be done daily (or at a granularity of morning, afternoon, and evening).;
+  Take following preferences also into consideration:`;
   if (notes)
-    question += `Take following preferences also into consideration:
-- `+ notes + `
+    question += `- ` + notes;
+  question += `
 - Avoid rain, long wait times, delays.
 - Preferred mode of transportation (in most to least order): Air, Land, Sea.
 - Only focus on must-see attractions. Include Park and Museum operating hours.
