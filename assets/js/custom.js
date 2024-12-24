@@ -297,7 +297,7 @@ const goChatbot = () => {
   // -- pre results formatting
   document.getElementById('chat').innerHTML = "<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>" + getRandomMessage() + "</pre></p></div>";
   let intvlMsgs = setInterval(() => {
-    document.getElementById('chat').innerHTML = "<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>" + getRandomMessage() + "...</pre></p></div>";
+    document.getElementById('chat').innerHTML = "<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>" + getRandomMessage() + "</pre></p></div>";
   }, 10000);
   document.getElementById('btnAsk').disabled = true;
   document.getElementById('chatbox').disabled = true;
@@ -326,17 +326,17 @@ const goChatbot = () => {
             payload.result.response.forEach((line) => {
               messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
             });
-            messages += "<hr class='mt-2'><pre class='text-danger'><strong>Conversation History:</strong>";
-            messages += "<div class='mb-5'>";
+            messages += "<hr class='mt-2'><pre class='text-danger'><strong>Conversation History:</strong></pre>";
+            messages += "<ul class='mb-5'>";
             payload.result.conversation.forEach((talk) => {
               if (talk.indexOf('?:') >= 0)
-                messages += "<p><strong class='text-info'>" + talk.replaceAll('?:', 'Q:') + "</strong></p>";
+                messages += "<li><strong class='text-info'>" + talk.replaceAll('?:', 'Q:') + "</strong></li>";
               else if (talk.indexOf('>:') >= 0)
-                messages += "<p><span class='text-muted'>" + talk.replaceAll('>:', '=>') + "</span></p>";
+                messages += "<li><span class='text-muted'>" + talk.replaceAll('>:', '=>') + "</span></li>";
               else
-                messages += "<p><span class='text-muted'>" + talk + "</span></p>";
+                messages += "<li><span class='text-muted'>" + talk + "</span></li>";
             });
-            messages += "</div>";
+            messages += "</ul>";
             document.getElementById('chat').innerHTML = messages;
             document.getElementById('chatbox').value = "";
             // -- post results formatting
@@ -446,9 +446,13 @@ const goConcierge = () => {
   // -- pre results formatting
   document.getElementById('chat').innerHTML = "<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>" + getRandomMessage() + "</pre></p></div>";
   let intvlMsgs = setInterval(() => {
-    document.getElementById('chat').innerHTML = "<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>" + getRandomMessage() + "...</pre></p></div>";
+    document.getElementById('chat').innerHTML = "<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>" + getRandomMessage() + "</pre></p></div>";
   }, 10000);
   document.getElementById('btnGoConcierge').disabled = true;
+
+  // -- formulate question
+  let question = `
+  `;
 
   fetch(broadAIDemoapiEndpoint + '/go', {
     method: "POST",
