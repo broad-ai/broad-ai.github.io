@@ -457,11 +457,11 @@ const goConcierge = () => {
   let origin = document.getElementById('origin').value;
   let destination = document.getElementById('destination').value;
   let notes = document.getElementById('notes').value;
-  let question = `Help me plan a trip from ` + origin + ` to ` + destination + `. I need a complete itinerary. `;
+  let question = `Help me plan a memorable trip from ` + origin + ` to ` + destination + `. Provide full day-by-day itinerary. `;
   if (notes)
     question += `Take following preferences into consideration:
 - `+ notes + `
-- Trip must begin next week and number of days will depend on things to do.
+- Trip must begin next week (recommend best day and number of days).
 - Avoid rain, long wait times, delays.
 - Airlines is preferred over driving and driving is preferred over trains.
 - Prefer start journey before first day of the trip.
