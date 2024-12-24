@@ -457,16 +457,15 @@ const goConcierge = () => {
   let origin = document.getElementById('origin').value;
   let destination = document.getElementById('destination').value;
   let notes = document.getElementById('notes').value;
-  let question = `Help me plan a trip from ` + origin + ` to ` + destination + `. `;
+  let question = `Help me plan a trip from ` + origin + ` to ` + destination + `. I need a complete itinerary. `;
   if (notes)
-    question += `
-Take following preferences into consideration:
+    question += `Take following preferences into consideration:
 - `+ notes + `
+- Trip must begin next week and number of days will depend on things to do.
 - Avoid rain, long wait times, delays.
-- Airlines is preferred over driving and driving is preferred over trains. Water transportations must be absolutely avoided.
-- I prefer starting my journey the night before, and returning before midnight.
-- Accomodations must be 3-star or above, but also within budget.
-- Attractions are of two kinds: must-see and nice-to-see (optional). It is important to know Parks and Museum operating hours.
+- Airlines is preferred over driving and driving is preferred over trains.
+- Prefer start journey before first day of the trip.
+- Only focus on must-see attractions. Include Park and Museum operating hours.
   `;
 
   fetch(broadAIDemoapiEndpoint + '/go', {
