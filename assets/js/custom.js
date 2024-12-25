@@ -488,7 +488,10 @@ const goConcierge = () => {
             document.getElementById('chat').innerHTML = messages;
             // -- post results formatting
             clearInterval(intvlMsgs);
-            document.getElementById('btnGoConcierge').disabled = true;
+            document.getElementById('btnGoConcierge').disabled = false;
+            document.getElementById('origin').value = "";
+            document.getElementById('destination').value = "";
+            document.getElementById('notes').value = "";
             return;
           }
           try {
@@ -594,7 +597,6 @@ const goMovies = () => {
   let intvlMsgs = setInterval(() => {
     document.getElementById('chat').innerHTML = "<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>" + getRandomMessage() + "</pre></p></div>";
   }, 10000);
-  document.getElementById('btnGoConcierge').disabled = true;
 
   // -- formulate question
   let searchCriteria = `
@@ -622,7 +624,6 @@ const goMovies = () => {
             document.getElementById('chat').innerHTML = messages;
             // -- post results formatting
             clearInterval(intvlMsgs);
-            document.getElementById('btnGoConcierge').disabled = true;
             return;
           }
           try {
