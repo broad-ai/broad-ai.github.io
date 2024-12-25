@@ -610,12 +610,28 @@ const goMovies = () => {
       const readStream = (reader) => {
         reader.read().then((r) => {
           if (r.done) {
+            let movies = [];
+
             // -- showing results
             let messages = "<div style='text-align:right;margin-bottom:1em;'><a href='javascript:clearChat();'>Clear</a></pre></div>"
             if (payload.result.response) {
               payload.result.response.forEach((line) => {
-                messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
+                // -- extracting JSON response from results
+                if (line.text.indexOf('{') >= 0 && line.text.lastIndexOf('}') > 0) {
+                  let jsnResp = line.text.substring(line.text.indexOf('{'), line.text.lastIndexOf('}') + 1);
+                  jsnResp = jsnResp.replaceAll(new RegExp('/\\*[\\s\\S]*?\\*/', 'gm'), '');
+                  try {
+                    jsnResp = JSON.parse(jsnResp);
+                  }
+                  catch {
+                    jsnResp = { movies: [] };
+                  }
+                  jsnResp.movies.forEach((movie) => movies.push(movie));
+                }
+                else
+                  messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
               });
+              messages = "<pre>" + JSON.stringify(jsnResp, null, 2) + "</pre>";
             }
             document.getElementById('chat').innerHTML = messages;
             // -- post results formatting
