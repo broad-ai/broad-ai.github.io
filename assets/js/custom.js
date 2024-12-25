@@ -167,7 +167,7 @@
 })(window.jQuery);
 
 
-const broadAIDemoapiEndpoint = "https://broadaidemo-1060329301373.us-central1.run.app";
+const broadAIDemoapiEndpoint = "https://broadaidemo-7yg2a2s6sq-uc.a.run.app";
 const broadAIapiEndpoint = "https://broadai-7yg2a2s6sq-uc.a.run.app";
 
 
