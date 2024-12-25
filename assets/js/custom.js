@@ -354,9 +354,11 @@ const goChatbot = () => {
             payload = JSON.parse(r.value)
           }
           catch {
-            console.log(r.value);
+            console.log(r);
+            payload = { status: "Please wait...", result: null };
           }
-          let logs = `
+          if (payload.result) {
+            let logs = `
           <table class='table mb-1'>
             <tbody>
               <tr>
@@ -364,9 +366,9 @@ const goChatbot = () => {
               </tr>
             </tbody>
           </table>`;
-          if (payload.result.plan) {
-            payload.result.plan.forEach((step) => {
-              logs += `
+            if (payload.result.plan) {
+              payload.result.plan.forEach((step) => {
+                logs += `
             <table class='table mt-1'>
               <thead>
                 <tr>
@@ -383,18 +385,18 @@ const goChatbot = () => {
               </tbody>
             </table>
               `;
-            });
-          }
-          else if (payload.result.agents) {
-            let agents = `
+              });
+            }
+            else if (payload.result.agents) {
+              let agents = `
             <div class='col-12 col-sm-6 col-md-4 col-lg-3'>
               <h3 style='margin-top:auto;margin-bottom:auto;'>
                 Available Agents:
               </h3>
             </div>
               `;
-            payload.result.agents.forEach((agent) => {
-              agents += `
+              payload.result.agents.forEach((agent) => {
+                agents += `
           <div class='col-12 col-sm-6 col-md-4 col-lg-3'>
             <table class='table mt-1'>
               <thead>
@@ -409,12 +411,12 @@ const goChatbot = () => {
                 <tr>
                   <td class='text-muted'>
                     <ol>`;
-              agent.skills.forEach((skill) => {
-                agents += `
+                agent.skills.forEach((skill) => {
+                  agents += `
                 <li class='mb-1'><strong>`+ skill.skill + `</strong>: <span class='text-meta'>` + skill.objective + `</span></li>
                 `;
-              });
-              agents += `
+                });
+                agents += `
                       </ol>
                     </td>
                 </tr>
@@ -422,11 +424,11 @@ const goChatbot = () => {
             </table>
           </div>
               `;
-            });
-            document.getElementById('agents').innerHTML = agents;
-          }
-          else {
-            logs += `
+              });
+              document.getElementById('agents').innerHTML = agents;
+            }
+            else {
+              logs += `
             <table class='table mt-1'>
               <tbody>
                 <tr>
@@ -435,8 +437,9 @@ const goChatbot = () => {
               </tbody>
             </table>
               `;
+            }
+            document.getElementById('logs').innerHTML = logs;
           }
-          document.getElementById('logs').innerHTML = logs;
           readStream(reader);
         });
       }; // readStream
@@ -457,18 +460,147 @@ const goConcierge = () => {
   let origin = document.getElementById('origin').value;
   let destination = document.getElementById('destination').value;
   let notes = document.getElementById('notes').value;
-  let question = `Help me plan a memorable trip from ` + origin + ` to ` + destination + ` for me and my family (spouse and kids). Recommend the best day to travel based on evaluating multiple factors, such as weather, safety, etc. Provide an exhaustive itinerary that guides what will be done daily (or at a granularity of morning, afternoon, and evening).;
-  Take following preferences also into consideration:`;
-  if (notes)
-    question += `- ` + notes;
-  question += `
-- Avoid rain, long wait times, delays.
-- Preferred mode of transportation (in most to least order): Air, Land, Sea.
-- Only focus on must-see attractions. Include Park and Museum operating hours.
-- Include a pictorial representation (e.g. mindmap) showing key elements of the planning you took into consideration.
-  `;
 
   fetch(broadAIDemoapiEndpoint + '/plan', {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "origin": origin,
+      "destination": destination,
+      "notes": notes
+    })
+  })
+    .then((resp) => {
+      let reader = resp.body.pipeThrough(new TextDecoderStream()).getReader();
+      let payload = {};
+      const readStream = (reader) => {
+        reader.read().then((r) => {
+          if (r.done) {
+            // -- showing results
+            let messages = "<div style='text-align:right;margin-bottom:1em;'><a href='javascript:clearChat();'>Clear</a></pre></div>"
+            if (payload.result.response) {
+              payload.result.response.forEach((line) => {
+                messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
+              });
+            }
+            document.getElementById('chat').innerHTML = messages;
+            // -- post results formatting
+            clearInterval(intvlMsgs);
+            document.getElementById('btnGoConcierge').disabled = true;
+            return;
+          }
+          try {
+            payload = JSON.parse(r.value)
+          }
+          catch {
+            payload = { status: "Please wait...", result: null };
+          }
+          if (payload.result) {
+            let logs = `
+          <table class='table mb-1'>
+            <tbody>
+              <tr>
+                <td><strong>Status:</strong> <span class='text-danger'>`+ payload.status + `</span></td>
+              </tr>
+            </tbody>
+          </table>`;
+            if (payload.result.plan) {
+              payload.result.plan.forEach((step) => {
+                logs += `
+            <table class='table mt-1'>
+              <thead>
+                <tr>
+                <th>`+ (step.sequence + 1) + `.  <span class='text-info'>` + step.objective + `</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class='py-0'><span class='text-muted'>Agent &rarr; Skill</span>&emsp;|&emsp;<span class='text-success'>`+ step.agent + ` </span> &rarr; <span class='text-success'>` + step.skill.name + `</span></td>
+                </tr>
+                <tr>
+                  <td class='text-muted'>`+ (step.result ? (typeof step.result == 'object' ? JSON.stringify(step.result) : step.result) : '...') + `</td>
+                </tr>
+              </tbody>
+            </table>
+              `;
+              });
+            }
+            else if (payload.result.agents) {
+              let agents = `
+            <div class='col-12 col-sm-6 col-md-4 col-lg-3'>
+              <h3 style='margin-top:auto;margin-bottom:auto;'>
+                Available Agents:
+              </h3>
+            </div>
+              `;
+              payload.result.agents.forEach((agent) => {
+                agents += `
+          <div class='col-12 col-sm-6 col-md-4 col-lg-3'>
+            <table class='table mt-1'>
+              <thead>
+                <tr>
+                <th><strong>Agent:</strong> <span class='text-info'>` + agent.agent + `</span></th>
+                </tr>
+                <tr>
+                <td>` + agent.capability + `</span></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class='text-muted'>
+                    <ol>`;
+                agent.skills.forEach((skill) => {
+                  agents += `
+                <li class='mb-1'><strong>`+ skill.skill + `</strong>: <span class='text-meta'>` + skill.objective + `</span></li>
+                `;
+                });
+                agents += `
+                      </ol>
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+              `;
+              });
+              document.getElementById('agents').innerHTML = agents;
+            }
+            else {
+              logs += `
+            <table class='table mt-1'>
+              <tbody>
+                <tr>
+                  <td class='text-muted'><pre>`+ JSON.stringify(payload.result, null, 2) + `</pre></td>
+                </tr>
+              </tbody>
+            </table>
+              `;
+            }
+            document.getElementById('logs').innerHTML = logs;
+          }
+          readStream(reader);
+        });
+      }; // readStream
+      readStream(reader);
+    });
+}; // goConcierge
+
+// ------ ..... ------ ..... ------ ..... ------ 
+const goMovies = () => {
+  // -- pre results formatting
+  document.getElementById('chat').innerHTML = "<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>" + getRandomMessage() + "</pre></p></div>";
+  let intvlMsgs = setInterval(() => {
+    document.getElementById('chat').innerHTML = "<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>" + getRandomMessage() + "</pre></p></div>";
+  }, 10000);
+  document.getElementById('btnGoConcierge').disabled = true;
+
+  // -- formulate question
+  let question = `
+  `;
+
+  fetch(broadAIDemoapiEndpoint + '/recommend', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -500,9 +632,10 @@ const goConcierge = () => {
             payload = JSON.parse(r.value)
           }
           catch {
-            console.log(r.value);
+            payload = { status: "Please wait...", result: null };
           }
-          let logs = `
+          if (payload.result) {
+            let logs = `
           <table class='table mb-1'>
             <tbody>
               <tr>
@@ -510,9 +643,9 @@ const goConcierge = () => {
               </tr>
             </tbody>
           </table>`;
-          if (payload.result.plan) {
-            payload.result.plan.forEach((step) => {
-              logs += `
+            if (payload.result.plan) {
+              payload.result.plan.forEach((step) => {
+                logs += `
             <table class='table mt-1'>
               <thead>
                 <tr>
@@ -529,18 +662,18 @@ const goConcierge = () => {
               </tbody>
             </table>
               `;
-            });
-          }
-          else if (payload.result.agents) {
-            let agents = `
+              });
+            }
+            else if (payload.result.agents) {
+              let agents = `
             <div class='col-12 col-sm-6 col-md-4 col-lg-3'>
               <h3 style='margin-top:auto;margin-bottom:auto;'>
                 Available Agents:
               </h3>
             </div>
               `;
-            payload.result.agents.forEach((agent) => {
-              agents += `
+              payload.result.agents.forEach((agent) => {
+                agents += `
           <div class='col-12 col-sm-6 col-md-4 col-lg-3'>
             <table class='table mt-1'>
               <thead>
@@ -555,12 +688,12 @@ const goConcierge = () => {
                 <tr>
                   <td class='text-muted'>
                     <ol>`;
-              agent.skills.forEach((skill) => {
-                agents += `
+                agent.skills.forEach((skill) => {
+                  agents += `
                 <li class='mb-1'><strong>`+ skill.skill + `</strong>: <span class='text-meta'>` + skill.objective + `</span></li>
                 `;
-              });
-              agents += `
+                });
+                agents += `
                       </ol>
                     </td>
                 </tr>
@@ -568,11 +701,11 @@ const goConcierge = () => {
             </table>
           </div>
               `;
-            });
-            document.getElementById('agents').innerHTML = agents;
-          }
-          else {
-            logs += `
+              });
+              document.getElementById('agents').innerHTML = agents;
+            }
+            else {
+              logs += `
             <table class='table mt-1'>
               <tbody>
                 <tr>
@@ -581,223 +714,15 @@ const goConcierge = () => {
               </tbody>
             </table>
               `;
+            }
+            document.getElementById('logs').innerHTML = logs;
           }
-          document.getElementById('logs').innerHTML = logs;
           readStream(reader);
         });
       }; // readStream
       readStream(reader);
     });
-}; // goConcierge
-
-// ------ ..... ------ ..... ------ ..... ------ 
-const findSimilarMovies = (movie) => {
-  document.getElementById('btnFindSimilarMovies').disabled = true;
-  document.getElementById('btnWriteNewStory').disabled = true;
-
-  const currentMovie = movie || {
-    "title": document.getElementById('pickTitle').innerHTML,
-    "director": document.getElementById('pickDirector').innerHTML,
-    "year": document.getElementById('pickYear').innerHTML,
-    "rating": document.getElementById('pickRating').innerHTML,
-    "plot": document.getElementById('plot').innerHTML
-  };
-  document.getElementById('story').innerHTML = "<h3 style='color:#C39BD3;'>Okay! Please hang on!</h3><p style='color:#6C3483;'>Finding other movies like <strong>" + currentMovie.title + "</strong> which you might also enjoy...</p>";
-  // --- ask
-  fetch(broadAIDemoapiEndpoint + '/movflick', {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      "notes": `## Specific Task
-Using your own descretion, find movies similar to the one provided within >>> and <<< symbols. Extract fields as specified in response format requirements below.
-
->>> 
-`+ JSON.stringify(currentMovie) + `
-<<<
-
-## Response Format
-Respond using exact JSON structure shown below with references to the nodes and fields provided between /* and */ symbols. Make sure you pick exact values from the context including URLs:
-~~~json
-{
-  "movies":[
-    { "title": "/* :Movie.title */", "director": "/* :Director.name */", "year": /* :Movie.year */, "rating": /* :Movie.imdbRating */, "poster": "/* :Movie.poster */", "plot": "/* :Movie.plot */" },
-     ... ]
-}
-~~~
-`,
-    })
-  })
-    .then((resp) => resp.json())
-    .then((data) => {
-      let recommendations = [];
-      data.response.response.forEach((element) => {
-        if (element.text.indexOf('[') >= 0 && element.text.indexOf(']') > 0) {
-          let r = [];
-          try {
-            r = JSON.parse(element.text.substring(element.text.indexOf('['), element.text.lastIndexOf(']') + 1));
-          }
-          catch {
-            r = [];
-          }
-          r.forEach((rr) => recommendations.push(rr));
-        }
-      });
-      // -- showing results
-      document.getElementById('btnFindSimilarMovies').disabled = false;
-      document.getElementById('btnWriteNewStory').disabled = false;
-      let html = `
-          <div class="row">`;
-      if (recommendations.length) {
-        recommendations.forEach((recommendation) => {
-          if (recommendation.title && recommendation.director && recommendation.year && recommendation.rating && recommendation.poster && recommendation.plot) {
-            html += `
-            <div class="col-12 col-md-6">
-              <div class="row mt-5">
-                <div class="col-12 text-center">
-                  <button class="btn btn-success" type="button" onclick="writeSimilarStory('`+ encodeURIComponent(recommendation.title) + `', '` + encodeURIComponent(recommendation.director) + `', '` + encodeURIComponent(recommendation.year) + `', '` + encodeURIComponent(recommendation.rating) + `', '` + encodeURIComponent(recommendation.poster) + `', '` + encodeURIComponent(recommendation.plot) + `')">Create
-                    Story</button>
-                  <p><small>inspired by this plot</small></p>
-                </div>
-              </div>
-              <div class="card px-3 py-3">
-                <img src="`+ recommendation.poster + `" onerror="this.src='` + ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)] + `'" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <div class="row">
-                    <span class="col-6 text-left">
-                      <img
-                        src="assets/images/star.png" alt="IMDB rating">
-                      <span>`+ recommendation.rating + `</span>
-                    </span>
-                    <span class="col-6 text-right">
-                      <span>`+ recommendation.year + `</span>
-                    </span>
-                  </div>
-                  <div class="mt-2">
-                    <h2><span>`+ recommendation.title + `</span></h2>
-                  </div>
-                  <div class="mt-2">
-                    <p>`+ "Director: " + recommendation.director + `</span></p>
-                  </div>
-                </div>
-                <div class="px-3 py-2">`+ recommendation.plot + `</div>
-              </div>
-            </div>
-            `;
-          }
-        });
-      }
-      else {
-        document.getElementById('story').innerHTML = "<h3 style='color:#C39BD3;'>Sorry! No recommendations</h3><p style='color:#6C3483;'>I could not find anything similar like <strong>" + currentMovie.title + "</strong> that you might enjoy...</p>";
-      }
-      html += `
-          </div>`;
-      document.getElementById('story').innerHTML = html;
-    });
-}; // findSimilarMovies
-
-// ------ ..... ------ ..... ------ ..... ------ 
-const pickRandomMovie = () => {
-  document.getElementById('story').innerHTML = "<h3 style='color:#C39BD3;'>Welcome!</h3><p style='color:#6C3483;'>Picking a movie might like...</p>";
-  document.getElementById('btnFindSimilarMovies').disabled = true;
-  document.getElementById('btnWriteNewStory').disabled = true;
-  // --- ask
-  fetch(broadAIDemoapiEndpoint + '/movflick', {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      "notes": `## Specific Task
-Suggest one movie from the 9125 choices and extract fields as specified in response format requirements below.
-
-## Response Format
-Respond using exact JSON structure shown below with references to the nodes and fields provided between /* and */ symbols. Make sure you pick exact values from the context including URLs:
-~~~json
-{ "title": "/* :Movie.title */", "director": "/* :Director.name */", "year": /* :Movie.year */, "rating": /* :Movie.imdbRating */, "poster": "/* :Movie.poster */", "plot": "/* :Movie.plot */" }
-~~~
-`,
-    })
-  })
-    .then((resp) => resp.json())
-    .then((data) => {
-      document.getElementById('story').innerHTML = "<h3 style='color:#C39BD3;'>Enjoy!</h3><p style='color:#6C3483;'>Find similar movies or request a new story based on the theme of the picked movie.</p>";
-      let details = {};
-      data.response.response.forEach((element) => {
-        if (element.text.indexOf('{') >= 0 && element.text.indexOf('}') > 0) {
-          try {
-            details = JSON.parse(element.text.substring(element.text.indexOf('{'), element.text.lastIndexOf('}') + 1));
-          }
-          catch {
-            details = {
-              "title": "...", "director": "...", "year": "...", "rating": "...", "poster": ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)], "plot": "..."
-            };
-          }
-        }
-      });
-      // -- showing results
-      document.getElementById('btnFindSimilarMovies').disabled = false;
-      document.getElementById('btnWriteNewStory').disabled = false;
-      document.getElementById('plot').innerHTML = details.plot;
-      document.getElementById('pickTitle').innerHTML = details.title;
-      document.getElementById('pickDirector').innerHTML = "Director: " + details.director;
-      document.getElementById('pickPoster').setAttribute('src', details.poster);
-      document.getElementById('pickPoster').setAttribute('onerror', 'this.src="' + ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)] + '"');
-      document.getElementById('pickRating').innerHTML = details.rating;
-      document.getElementById('pickYear').innerHTML = details.year;
-    });
-}; // pickRandomMovie
-
-// ------ ..... ------ ..... ------ ..... ------ 
-const writeSimilarStory = (title, director, year, rating, poster, plot) => {
-  document.getElementById('btnFindSimilarMovies').disabled = true;
-  document.getElementById('btnWriteNewStory').disabled = true;
-  document.getElementById('story').innerHTML = "<h4>Thinking of a story based on the plot</h4>";
-  // -- show cover of selected movie
-  let _title = title ? decodeURIComponent(title) : document.getElementById('pickTitle').innerHTML;
-  document.getElementById('pickTitle').innerHTML = _title;
-  let _director = director ? decodeURIComponent(director) : document.getElementById('pickDirector').innerHTML;
-  document.getElementById('pickDirector').innerHTML = _director;
-  let _year = year ? decodeURIComponent(year) : document.getElementById('pickYear').innerHTML;
-  document.getElementById('pickYear').innerHTML = _year;
-  let _rating = rating ? decodeURIComponent(rating) : document.getElementById('pickRating').innerHTML;
-  document.getElementById('pickRating').innerHTML = _rating;
-  let _poster = poster ? decodeURIComponent(poster) : document.getElementById('pickPoster').getAttribute('src').value;
-  if (_poster) {
-    document.getElementById('pickPoster').setAttribute('src', _poster);
-    document.getElementById('pickPoster').setAttribute('onerror', 'this.src="' + ['assets/images/popcorn-972047_1280.png', 'assets/images/ticket-33657_1280.png', 'assets/images/popcorn-898154_1280.png', 'assets/images/popcorn-576599_1280.png'][Math.floor(Math.random() * 4)] + '"');
-  }
-  let _plot = plot ? decodeURIComponent(plot) : document.getElementById('plot').innerHTML;
-  document.getElementById('plot').innerHTML = _plot;
-  // --- ask
-  fetch(broadAIDemoapiEndpoint + '/go', {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      "question": `Take a look at this plot below:
-~~~
-`+ document.getElementById('plot').innerHTML + `
-~~~
-Based on the theme of the plot above, write a catchy story in about 600 words.
-`,
-    })
-  })
-    .then((resp) => resp.json())
-    .then((data) => {
-      let html = "<div style='color:#999;font-family:courier;'>";
-      data.response.response.forEach((element) => {
-        if (element.html_tag != "pre")
-          html += "<" + element.html_tag + ">" + element.text + "</" + element.html_tag + ">";
-      });
-      html += "</div>";
-      document.getElementById('btnFindSimilarMovies').disabled = false;
-      document.getElementById('btnWriteNewStory').disabled = false;
-      document.getElementById('story').innerHTML = html;
-    });
-}; // writeSimilarStory
+}; // goMovies
 
 
 // ------ ..... ------ ..... ------ ..... ------ 
