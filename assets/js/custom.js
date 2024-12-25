@@ -598,10 +598,6 @@ const goMovies = () => {
     document.getElementById('chat').innerHTML = "<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>" + getRandomMessage() + "</pre></p></div>";
   }, 10000);
 
-  // -- formulate question
-  let searchCriteria = `
-  `;
-
   fetch(broadAIDemoapiEndpoint + '/recommend', {
     method: "POST",
     headers: {
