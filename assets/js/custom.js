@@ -167,7 +167,7 @@
 })(window.jQuery);
 
 
-const broadAIDemoapiEndpoint = "https://broadaidemo-7yg2a2s6sq-uc.a.run.app";
+const broadAIDemoapiEndpoint = "https://broadaidemo-1060329301373.us-central1.run.app";
 const broadAIapiEndpoint = "https://broadai-7yg2a2s6sq-uc.a.run.app";
 
 
@@ -597,17 +597,14 @@ const goMovies = () => {
   document.getElementById('btnGoConcierge').disabled = true;
 
   // -- formulate question
-  let question = `
+  let searchCriteria = `
   `;
 
   fetch(broadAIDemoapiEndpoint + '/recommend', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      "question": question
-    })
+    }
   })
     .then((resp) => {
       let reader = resp.body.pipeThrough(new TextDecoderStream()).getReader();
