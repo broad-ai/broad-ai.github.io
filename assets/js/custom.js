@@ -642,21 +642,21 @@ const goMovies = () => {
                 messages += "<hr> <div class='row p-3'>";
                 movies.forEach((movie) => {
                   let movieCard = `
- <div class="card col-12 col-sm-6 col-md-4 col-lg-4">
-   <img src="`+ movie.image + `" class="card-img-top p-0" alt="` + movie.name + `">
-   <div class="card-body p-0">
-     <h2 class="card-title">`+ movie.name + `</h2>
-     <h4 class="card-subtitle mb-2 text-muted"><i class="bi bi-person-badge"></i> `+ movie.director + `</h4>
-     <hr>
-     <div class='row'>
-       <div class='col'><i class="bi bi-clock-history"></i> `+ movie.year + `</div>
-       <div class='col'><i class="bi bi-star"></i> `+ movie.rating + `</div>
-     </div>
-     <hr>
-     <p class="card-text text-muted"><i class="bi bi-paperclip"></i> `+ movie.plot + `</p>
-   </div>
- </div>
-                   `;
+                  <div class="card col-12 col-sm-6 col-md-4 col-lg-4 m-1">
+                    <img src="`+ movie.image + `" class="card-img-top" alt="` + movie.name + `">
+                    <div class="card-body">
+                      <h2 class="card-title">`+ movie.name + `</h2>
+                      <h4 class="card-subtitle mb-2 text-muted">`+ movie.director + `</h4>
+                      <hr>
+                      <div class='row'>
+                        <div class='col text-start'><span class='text-muted'>Year: </span>`+ movie.year + `</div>
+                        <div class='col text-end'><span class='text-muted'>Rating: </span>`+ movie.rating + `</div>
+                      </div>
+                      <hr>
+                      <p class="card-text text-muted">`+ movie.plot + `</p>
+                    </div>
+                  </div>
+                                    `;
                   messages += movieCard;
                 });
                 messages += "</div>"
