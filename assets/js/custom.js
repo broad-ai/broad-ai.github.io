@@ -389,11 +389,10 @@ const goChatbot = () => {
             }
             else if (payload.result.agents) {
               let agents = `
-            <div class='col-12 col-sm-6 col-md-4 col-lg-3'>
-              <h3 style='margin-top:auto;margin-bottom:auto;'>
-                Available Agents:
-              </h3>
-            </div>
+            <h3 style='margin-top:auto;margin-bottom:auto;'>
+              Available Agents:
+            </h3>
+        <div class='row'>
               `;
               payload.result.agents.forEach((agent) => {
                 agents += `
@@ -425,6 +424,8 @@ const goChatbot = () => {
           </div>
               `;
               });
+              agents += `
+        </div>`;
               document.getElementById('agents').innerHTML = agents;
             }
             else {
@@ -497,7 +498,6 @@ const goConcierge = () => {
             payload = JSON.parse(r.value)
           }
           catch {
-            console.log(r);
             payload = { status: "Please wait...", result: null };
           }
           if (payload.result) {
@@ -532,11 +532,10 @@ const goConcierge = () => {
             }
             else if (payload.result.agents) {
               let agents = `
-            <div class='col-12 col-sm-6 col-md-4 col-lg-3'>
-              <h3 style='margin-top:auto;margin-bottom:auto;'>
-                Available Agents:
-              </h3>
-            </div>
+            <h3 style='margin-top:auto;margin-bottom:auto;'>
+              Available Agents:
+            </h3>
+        <div class='row'>
               `;
               payload.result.agents.forEach((agent) => {
                 agents += `
@@ -568,6 +567,8 @@ const goConcierge = () => {
           </div>
               `;
               });
+              agents += `
+        </div>`;
               document.getElementById('agents').innerHTML = agents;
             }
             else {
@@ -620,7 +621,7 @@ const goMovies = () => {
               let movies = [];
 
               // -- showing results
-              let messages = "<div style='text-align:right;margin-bottom:1em;'><a href='javascript:clearChat();'>Clear</a></pre></div>";
+              let messages = "<div style='text-align:right;margin-bottom:1em;'><a href='javascript:clearChat();'>Clear</a></pre></div>"
               if (payload.result.response) {
                 payload.result.response.forEach((line) => {
                   // -- extracting JSON response from results
@@ -677,7 +678,6 @@ const goMovies = () => {
               payload = JSON.parse(r.value)
             }
             catch {
-              console.log(r);
               payload = { status: "Please wait...", result: null };
             }
             if (payload.result) {
@@ -712,42 +712,43 @@ const goMovies = () => {
               }
               else if (payload.result.agents) {
                 let agents = `
-            <div class='col-12 col-sm-6 col-md-4 col-lg-3'>
               <h3 style='margin-top:auto;margin-bottom:auto;'>
                 Available Agents:
               </h3>
-            </div>
-              `;
+          <div class='row'>
+                `;
                 payload.result.agents.forEach((agent) => {
                   agents += `
-          <div class='col-12 col-sm-6 col-md-4 col-lg-3'>
-            <table class='table mt-1'>
-              <thead>
-                <tr>
-                <th><strong>Agent:</strong> <span class='text-info'>` + agent.agent + `</span></th>
-                </tr>
-                <tr>
-                <td>` + agent.capability + `</span></td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class='text-muted'>
-                    <ol>`;
+            <div class='col-12 col-sm-6 col-md-4 col-lg-3'>
+              <table class='table mt-1'>
+                <thead>
+                  <tr>
+                  <th><strong>Agent:</strong> <span class='text-info'>` + agent.agent + `</span></th>
+                  </tr>
+                  <tr>
+                  <td>` + agent.capability + `</span></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class='text-muted'>
+                      <ol>`;
                   agent.skills.forEach((skill) => {
                     agents += `
-                <li class='mb-1'><strong>`+ skill.skill + `</strong>: <span class='text-meta'>` + skill.objective + `</span></li>
-                `;
+                  <li class='mb-1'><strong>`+ skill.skill + `</strong>: <span class='text-meta'>` + skill.objective + `</span></li>
+                  `;
                   });
                   agents += `
-                      </ol>
-                    </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-              `;
+                        </ol>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+                `;
                 });
+                agents += `
+          </div>`;
                 document.getElementById('agents').innerHTML = agents;
               }
               else {
@@ -859,7 +860,6 @@ const goSimilarMovies = (movie, director, year, rating) => {
               payload = JSON.parse(r.value)
             }
             catch {
-              console.log(r);
               payload = { status: "Please wait...", result: null };
             }
             if (payload.result) {
@@ -894,42 +894,43 @@ const goSimilarMovies = (movie, director, year, rating) => {
               }
               else if (payload.result.agents) {
                 let agents = `
-            <div class='col-12 col-sm-6 col-md-4 col-lg-3'>
               <h3 style='margin-top:auto;margin-bottom:auto;'>
                 Available Agents:
               </h3>
-            </div>
-              `;
+          <div class='row'>
+                `;
                 payload.result.agents.forEach((agent) => {
                   agents += `
-          <div class='col-12 col-sm-6 col-md-4 col-lg-3'>
-            <table class='table mt-1'>
-              <thead>
-                <tr>
-                <th><strong>Agent:</strong> <span class='text-info'>` + agent.agent + `</span></th>
-                </tr>
-                <tr>
-                <td>` + agent.capability + `</span></td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class='text-muted'>
-                    <ol>`;
+            <div class='col-12 col-sm-6 col-md-4 col-lg-3'>
+              <table class='table mt-1'>
+                <thead>
+                  <tr>
+                  <th><strong>Agent:</strong> <span class='text-info'>` + agent.agent + `</span></th>
+                  </tr>
+                  <tr>
+                  <td>` + agent.capability + `</span></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class='text-muted'>
+                      <ol>`;
                   agent.skills.forEach((skill) => {
                     agents += `
-                <li class='mb-1'><strong>`+ skill.skill + `</strong>: <span class='text-meta'>` + skill.objective + `</span></li>
-                `;
+                  <li class='mb-1'><strong>`+ skill.skill + `</strong>: <span class='text-meta'>` + skill.objective + `</span></li>
+                  `;
                   });
                   agents += `
-                      </ol>
-                    </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-              `;
+                        </ol>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+                `;
                 });
+                agents += `
+          </div>`;
                 document.getElementById('agents').innerHTML = agents;
               }
               else {
@@ -952,7 +953,6 @@ const goSimilarMovies = (movie, director, year, rating) => {
       });
   });
 }; // goSimilarMovies
-
 
 // ------ ..... ------ ..... ------ ..... ------ 
 const fetchUsage = () => {
