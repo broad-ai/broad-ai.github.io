@@ -322,24 +322,26 @@ const goChatbot = () => {
             // -- showing results
             let messages = "<div style='text-align:right;margin-bottom:1em;'><a href='javascript:clearChat();'>Clear</a></pre></div>"
             messages += "<h3 style='color:black;background:#eee;padding:1em;'>" + (payload.result.question || document.getElementById('chatbox').value) + "</h3>";
-            if (payload.result.response) {
-              payload.result.response.forEach((line) => {
-                messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
-              });
-            }
-            if (payload.result.conversation) {
-              sessionStorage.setItem('conversation', JSON.stringify(payload.result.conversation));
-              messages += "<hr class='mt-2'><pre class='text-danger'><strong>Conversation History:</strong></pre>";
-              messages += "<ul class='mb-5'>";
-              payload.result.conversation.forEach((talk) => {
-                if (talk.indexOf('?:') >= 0)
-                  messages += "<li><strong class='text-info'>" + talk.replaceAll('?:', '<br>Q:') + "</strong></li>";
-                else if (talk.indexOf('>:') >= 0)
-                  messages += "<li><span class='text-muted'>" + talk.replaceAll('>:', '=>') + "</span></li>";
-                else
-                  messages += "<li><span class='text-muted'>" + talk + "</span></li>";
-              });
-              messages += "</ul>";
+            if (payload.result) {
+              if (payload.result.response) {
+                payload.result.response.forEach((line) => {
+                  messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
+                });
+              }
+              if (payload.result.conversation) {
+                sessionStorage.setItem('conversation', JSON.stringify(payload.result.conversation));
+                messages += "<hr class='mt-2'><pre class='text-danger'><strong>Conversation History:</strong></pre>";
+                messages += "<ul class='mb-5'>";
+                payload.result.conversation.forEach((talk) => {
+                  if (talk.indexOf('?:') >= 0)
+                    messages += "<li><strong class='text-info'>" + talk.replaceAll('?:', '<br>Q:') + "</strong></li>";
+                  else if (talk.indexOf('>:') >= 0)
+                    messages += "<li><span class='text-muted'>" + talk.replaceAll('>:', '=>') + "</span></li>";
+                  else
+                    messages += "<li><span class='text-muted'>" + talk + "</span></li>";
+                });
+                messages += "</ul>";
+              }
             }
             document.getElementById('chat').innerHTML = messages;
             document.getElementById('chatbox').value = "";
@@ -480,11 +482,13 @@ const goConcierge = () => {
         reader.read().then((r) => {
           if (r.done) {
             // -- showing results
-            let messages = "<div style='text-align:right;margin-bottom:1em;'><a href='javascript:clearChat();'>Clear</a></pre></div>"
-            if (payload.result.response) {
-              payload.result.response.forEach((line) => {
-                messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
-              });
+            let messages = "<div style='text-align:right;margin-bottom:1em;'><a href='javascript:clearChat();'>Clear</a></pre></div>";
+            if (payload.result) {
+              if (payload.result.response) {
+                payload.result.response.forEach((line) => {
+                  messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
+                });
+              }
             }
             document.getElementById('chat').innerHTML = messages;
             // -- post results formatting
@@ -621,27 +625,28 @@ const goMovies = () => {
               let movies = [];
 
               // -- showing results
-              let messages = "<div style='text-align:right;margin-bottom:1em;'><a href='javascript:clearChat();'>Clear</a></pre></div>"
-              if (payload.result.response) {
-                payload.result.response.forEach((line) => {
-                  // -- extracting JSON response from results
-                  let jsnMovies = { "movies": [] };
-                  if (line.text.indexOf('{') >= 0 && line.text.lastIndexOf('}') > 0) {
-                    try {
-                      jsnMovies = JSON.parse(line.text.substring(line.text.indexOf('{'), line.text.lastIndexOf('}') + 1).replaceAll(new RegExp('/\\*[\\s\\S]*?\\*/', 'gm'), ''));
+              let messages = "<div style='text-align:right;margin-bottom:1em;'><a href='javascript:clearChat();'>Clear</a></pre></div>";
+              if (payload.result) {
+                if (payload.result.response) {
+                  payload.result.response.forEach((line) => {
+                    // -- extracting JSON response from results
+                    let jsnMovies = { "movies": [] };
+                    if (line.text.indexOf('{') >= 0 && line.text.lastIndexOf('}') > 0) {
+                      try {
+                        jsnMovies = JSON.parse(line.text.substring(line.text.indexOf('{'), line.text.lastIndexOf('}') + 1).replaceAll(new RegExp('/\\*[\\s\\S]*?\\*/', 'gm'), ''));
+                      }
+                      catch {
+                        console.log(line.text);
+                      }
+                      if (jsnMovies.movies)
+                        jsnMovies.movies.forEach((movie) => movies.push(movie));
                     }
-                    catch {
-                      console.log(line.text);
-                    }
-                    if (jsnMovies.movies)
-                      jsnMovies.movies.forEach((movie) => movies.push(movie));
-                  }
-                  else
-                    messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
-                });
-                messages += "<hr> <div class='row p-1'>";
-                movies.forEach((movie) => {
-                  let movieCard = `
+                    else
+                      messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
+                  });
+                  messages += "<hr> <div class='row p-1'>";
+                  movies.forEach((movie) => {
+                    let movieCard = `
 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
   <div class="card">
     <img src="`+ movie.image + `" class="card-img-top" alt="` + movie.name + `">
@@ -665,9 +670,10 @@ const goMovies = () => {
   </div>
 </div>
                   `;
-                  messages += movieCard;
-                });
-                messages += "</div>"
+                    messages += movieCard;
+                  });
+                  messages += "</div>"
+                }
               }
               document.getElementById('chat').innerHTML = messages;
               // -- post results formatting
@@ -803,27 +809,28 @@ const goSimilarMovies = (movie, director, year, rating) => {
               let movies = [];
 
               // -- showing results
-              let messages = "<div style='text-align:right;margin-bottom:1em;'><a href='javascript:clearChat();'>Clear</a></pre></div>"
-              if (payload.result.response) {
-                payload.result.response.forEach((line) => {
-                  // -- extracting JSON response from results
-                  let jsnMovies = { "movies": [] };
-                  if (line.text.indexOf('{') >= 0 && line.text.lastIndexOf('}') > 0) {
-                    try {
-                      jsnMovies = JSON.parse(line.text.substring(line.text.indexOf('{'), line.text.lastIndexOf('}') + 1).replaceAll(new RegExp('/\\*[\\s\\S]*?\\*/', 'gm'), ''));
+              let messages = "<div style='text-align:right;margin-bottom:1em;'><a href='javascript:clearChat();'>Clear</a></pre></div>";
+              if (payload.result) {
+                if (payload.result.response) {
+                  payload.result.response.forEach((line) => {
+                    // -- extracting JSON response from results
+                    let jsnMovies = { "movies": [] };
+                    if (line.text.indexOf('{') >= 0 && line.text.lastIndexOf('}') > 0) {
+                      try {
+                        jsnMovies = JSON.parse(line.text.substring(line.text.indexOf('{'), line.text.lastIndexOf('}') + 1).replaceAll(new RegExp('/\\*[\\s\\S]*?\\*/', 'gm'), ''));
+                      }
+                      catch {
+                        console.log(line.text);
+                      }
+                      if (jsnMovies.movies)
+                        jsnMovies.movies.forEach((movie) => movies.push(movie));
                     }
-                    catch {
-                      console.log(line.text);
-                    }
-                    if (jsnMovies.movies)
-                      jsnMovies.movies.forEach((movie) => movies.push(movie));
-                  }
-                  else
-                    messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
-                });
-                messages += "<hr> <div class='row p-1'>";
-                movies.forEach((movie) => {
-                  let movieCard = `
+                    else
+                      messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
+                  });
+                  messages += "<hr> <div class='row p-1'>";
+                  movies.forEach((movie) => {
+                    let movieCard = `
 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
   <div class="card">
     <img src="`+ movie.image + `" class="card-img-top" alt="` + movie.name + `">
@@ -847,9 +854,10 @@ const goSimilarMovies = (movie, director, year, rating) => {
   </div>
 </div>
                   `;
-                  messages += movieCard;
-                });
-                messages += "</div>"
+                    messages += movieCard;
+                  });
+                  messages += "</div>"
+                }
               }
               document.getElementById('chat').innerHTML = messages;
               // -- post results formatting
