@@ -343,6 +343,9 @@ const goChatbot = () => {
                 messages += "</ul>";
               }
             }
+            else {
+              messages += "<h4 style='text-align:left;color:#6a5acd;'>Oops! Something didn't work right.</h4><p>Would you please mind try again?</p>";
+            }
             document.getElementById('chat').innerHTML = messages;
             document.getElementById('chatbox').value = "";
             // -- post results formatting
@@ -489,6 +492,9 @@ const goConcierge = () => {
                   messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
                 });
               }
+            }
+            else {
+              messages += "<h4 style='text-align:left;color:#6a5acd;'>Oops! Something didn't work right.</h4><p>Would you please mind try again?</p>";
             }
             document.getElementById('chat').innerHTML = messages;
             // -- post results formatting
@@ -676,6 +682,9 @@ const goMovies = () => {
                   messages += "</div>"
                 }
               }
+              else {
+                messages += "<h4 style='text-align:left;color:#6a5acd;'>Oops! Something didn't work right.</h4><p>Would you please mind try again?</p>";
+              }
               document.getElementById('chat').innerHTML = messages;
               // -- post results formatting
               clearInterval(intvlMsgs);
@@ -859,6 +868,9 @@ const goSimilarMovies = (movie, director, year, rating) => {
                     messages += movieCard;
                   });
                   messages += "</div>"
+                }
+                else {
+                  messages += "<h4 style='text-align:left;color:#6a5acd;'>Oops! Something didn't work right.</h4><p>Would you please mind try again?</p>";
                 }
               }
               document.getElementById('chat').innerHTML = messages;
