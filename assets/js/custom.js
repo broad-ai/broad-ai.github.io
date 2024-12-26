@@ -357,7 +357,7 @@ const goChatbot = () => {
           }
           catch {
             console.log(r);
-            payload = { status: "Please wait...", result: null };
+            // payload = { status: "Please wait...", result: null };
           }
           if (payload.result) {
             let logs = `
@@ -502,7 +502,8 @@ const goConcierge = () => {
             payload = JSON.parse(r.value)
           }
           catch {
-            payload = { status: "Please wait...", result: null };
+            console.log(r);
+            // payload = { status: "Please wait...", result: null };
           }
           if (payload.result) {
             let logs = `
@@ -684,7 +685,8 @@ const goMovies = () => {
               payload = JSON.parse(r.value)
             }
             catch {
-              payload = { status: "Please wait...", result: null };
+              console.log(r);
+              // payload = { status: "Please wait...", result: null };
             }
             if (payload.result) {
               let logs = `
@@ -868,7 +870,8 @@ const goSimilarMovies = (movie, director, year, rating) => {
               payload = JSON.parse(r.value)
             }
             catch {
-              payload = { status: "Please wait...", result: null };
+              console.log(r);
+              // payload = { status: "Please wait...", result: null };
             }
             if (payload.result) {
               let logs = `
