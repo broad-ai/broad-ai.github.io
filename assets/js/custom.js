@@ -497,6 +497,7 @@ const goConcierge = () => {
             payload = JSON.parse(r.value)
           }
           catch {
+            console.log(r);
             payload = { status: "Please wait...", result: null };
           }
           if (payload.result) {
@@ -619,7 +620,7 @@ const goMovies = () => {
               let movies = [];
 
               // -- showing results
-              let messages = "<div style='text-align:right;margin-bottom:1em;'><a href='javascript:clearChat();'>Clear</a></pre></div>"
+              let messages = "<div style='text-align:right;margin-bottom:1em;'><a href='javascript:clearChat();'>Clear</a></pre></div>";
               if (payload.result.response) {
                 payload.result.response.forEach((line) => {
                   // -- extracting JSON response from results
@@ -676,6 +677,7 @@ const goMovies = () => {
               payload = JSON.parse(r.value)
             }
             catch {
+              console.log(r);
               payload = { status: "Please wait...", result: null };
             }
             if (payload.result) {
@@ -857,6 +859,7 @@ const goSimilarMovies = (movie, director, year, rating) => {
               payload = JSON.parse(r.value)
             }
             catch {
+              console.log(r);
               payload = { status: "Please wait...", result: null };
             }
             if (payload.result) {
