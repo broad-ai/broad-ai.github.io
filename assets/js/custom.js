@@ -633,7 +633,8 @@ const goMovies = () => {
                     catch {
                       console.log(line.text);
                     }
-                    jsnMovies.movies.forEach((movie) => movies.push(movie));
+                    if (jsnMovies.movies)
+                      jsnMovies.movies.forEach((movie) => movies.push(movie));
                   }
                   else
                     messages += "<" + line.html_tag + " style='text-align:left;color:#6a5acd;'>" + line.text + "</" + line.html_tag + ">";
@@ -641,20 +642,21 @@ const goMovies = () => {
                 messages += "<hr> <div class='row p-3'>";
                 movies.forEach((movie) => {
                   let movieCard = `
-<div class="card col-12 col-sm-6 col-md-4 col-lg-4">
-  <img src="`+ movie.image + `" class="card-img-top" alt="` + movie.name + `">
-  <div class="card-body">
-    <h2 class="card-title">`+ movie.name + `</h2>
-    <h4 class="card-subtitle mb-2 text-muted"><i class="bi bi-person-badge"></i> `+ movie.director + `</h4>
-    <hr>
-    <div class='row'>
-      <div class='col'><i class="bi bi-clock-history"></i> `+ movie.year + `</div>
-      <div class='col'><i class="bi bi-star"></i> `+ movie.rating + `</div>
-    </div>
-    <p class="card-text text-muted"><i class="bi bi-paperclip"></i> `+ movie.plot + `</p>
-  </div>
-</div>
-                  `;
+ <div class="card col-12 col-sm-6 col-md-4 col-lg-4">
+   <img src="`+ movie.image + `" class="card-img-top p-0" alt="` + movie.name + `">
+   <div class="card-body p-0">
+     <h2 class="card-title">`+ movie.name + `</h2>
+     <h4 class="card-subtitle mb-2 text-muted"><i class="bi bi-person-badge"></i> `+ movie.director + `</h4>
+     <hr>
+     <div class='row'>
+       <div class='col'><i class="bi bi-clock-history"></i> `+ movie.year + `</div>
+       <div class='col'><i class="bi bi-star"></i> `+ movie.rating + `</div>
+     </div>
+     <hr>
+     <p class="card-text text-muted"><i class="bi bi-paperclip"></i> `+ movie.plot + `</p>
+   </div>
+ </div>
+                   `;
                   messages += movieCard;
                 });
                 messages += "</div>"
