@@ -40,6 +40,7 @@ const goChatbot = () => {
                     console.log(payloads);
                     document.getElementById('btnAsk').disabled = false;
                     document.getElementById('chatbox').disabled = false;
+                    document.getElementById('chatbox').value = "";
                 }
             });
         }; // processSteam
