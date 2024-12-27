@@ -153,6 +153,41 @@ const fetchUsage = () => {
   }, 600);
 }; // fetchUsage
 
+// ------ ..... ------ ..... ------ ..... ------ 
+const getRandomMessage = () => {
+  const waitMessages = [
+    "Processing...",
+    "Loading...",
+    "Please wait...",
+    "In progress...",
+    "Working on it...",
+    "Fetching data...",
+    "One moment...",
+    "Executing request...",
+    "Hang tight...",
+    "Updating...",
+    "Retrieving information...",
+    "Getting things ready...",
+    "Hold tight...",
+    "Setting things up...",
+    "Just a sec...",
+    "Running tasks...",
+    "Preparing data...",
+    "Analyzing...",
+    "Communicating with server...",
+    "Performing operation..."
+  ];
+  return waitMessages[Math.floor(Math.random() * waitMessages.length)];
+}; // getRandomMessage
+
+const clearChat = () => {
+  sessionStorage.clear('conversation');
+  document.getElementById('response').innerHTML = "";
+  document.getElementById('status').innerHTML = "";
+  document.getElementById('plan').innerHTML = "";
+  document.getElementById('agents').innerHTML = "";
+}; // clearChat
+
 
 // ------ ..... ------ ..... ------ ..... ------ 
 (function ($) {
