@@ -9,7 +9,7 @@ const goChatbot = () => {
     let intvlResponses = setInterval(() => {
         DOMResponse.innerHTML = `<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>` + getRandomMessage() + `</pre></p></div>`;
     }, 10000);
-    let payload = {};
+    let payloads = [];
     document.getElementById('btnAsk').disabled = true;
     document.getElementById('chatbox').disabled = true;
     // -- engage BroadAI
@@ -29,25 +29,18 @@ const goChatbot = () => {
         let streamReader = resp.body.pipeThrough(new TextDecoderStream()).getReader();
         // -- function: process streamed response
         const processSteam = (reader) => {
-            let buffer = '';
             reader.read().then((chunk) => {
                 if (!chunk.done) {
-                    if (chunk.value.indexOf('\n') == -1)
-                        buffer += chunk.value;
-                    else {
-                        buffer += chunk.value;
-                        let cutoffat = buffer.indexOf('\n');
-                        let obj = JSON.parse(buffer.slice(0, cutoffat));
-                        buffer = buffer.slice(cutoffat + 1);
-                        payload = processPayload(obj, DOMResponse, DOMStatus, DOMPlan, DOMAgents);
-                    }
+                    payloads = processPayload(chunk, DOMResponse, DOMStatus, DOMPlan, DOMAgents);
                     processSteam(streamReader);
                 }
                 else {
                     // -- post-processing DOM adjustments
                     clearInterval(intvlResponses);
+                    console.log(payloads);
                     document.getElementById('btnAsk').disabled = false;
                     document.getElementById('chatbox').disabled = false;
+                    document.getElementById('chatbox').value = "";
                 }
             });
         }; // processSteam

@@ -15,7 +15,7 @@ const getRandomMessage = () => {
         "Retrieving information...",
         "Getting things ready...",
         "Hold tight...",
-        "Setting things upayload...",
+        "Setting things up...",
         "Just a sec...",
         "Running tasks...",
         "Preparing data...",
@@ -159,7 +159,7 @@ const renderConversation = (conversation) => {
 
 
 // ------ ..... ------ ..... ------ ..... ------ 
-const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => {
+const processPayload = (chunk, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => {
     /**
      * ** Response Structure ** *
      * ------------------------------*
@@ -168,57 +168,72 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
         result: {
             question: question,
             plan: planResults,
-            response: respayload.response,
+            response: resp.response,
             conversation: conversation
         }
     }
     * ------------------------------* */
-    console.log(payload);
-    // -- STATUS
-    if (payload.status)
-        DOMStatus.innerHTML = renderStatus(payload.status);
-
-    if (payload.result) {
-
-        // -- AGENTS
-        if (payload.result.agents)
-            DOMAgents.innerHTML = renderAgents(payload.result.agents);
-
-        // -- PLAN
-        if (payload.result.plan)
-            DOMPlan.innerHTML = renderPlan(payload.result.plan);
-
-        // -- RESPONSE
-        if (payload.result.question && payload.result.response) {
-            DOMResponse.innerHTML = renderResponse(payload.result.question, payload.result.response);
-            if (payload.result.conversation) {
-                sessionStorage.setItem('conversation', JSON.stringify(payload.result.conversation));
-                DOMResponse.innerHTML += renderConversation(payload.result.conversation);
-            }
+    let payload = [];
+    if (!chunk.done) {
+        try {
+            payload.push(JSON.parse(chunk.value));
         }
+        catch {
+            let packets = chunk.value.replaceAll('}{', '}}|{{').split('}|{');
+            packets.forEach((packet) => {
+                try { payload.push(JSON.parse(packet)); }
+                catch { console.log("Discarding packet", packet) }
+            });
+        }
+        console.log("Received", payload.length, "packet(s) for processing");
+        payload.forEach((p) => {
+            // -- STATUS
+            if (p.status)
+                DOMStatus.innerHTML = renderStatus(p.status);
 
-        // -- CATCH ALL
-        if (!payload.result.question && !payload.result.plan && !payload.result.response && !payload.result.conversation)
-            DOMStatus.innerHTML += `
+            if (p.result) {
+
+                // -- AGENTS
+                if (p.result.agents)
+                    DOMAgents.innerHTML = renderAgents(p.result.agents);
+
+                // -- PLAN
+                if (p.result.plan)
+                    DOMPlan.innerHTML = renderPlan(p.result.plan);
+
+                // -- RESPONSE
+                if (p.result.question && p.result.response) {
+                    DOMResponse.innerHTML = renderResponse(p.result.question, p.result.response);
+                    if (p.result.conversation) {
+                        sessionStorage.setItem('conversation', JSON.stringify(p.result.conversation));
+                        DOMResponse.innerHTML += renderConversation(p.result.conversation);
+                    }
+                }
+
+                // -- CATCH ALL
+                if (!p.result.question && !p.result.plan && !p.result.response && !p.result.conversation)
+                    DOMStatus.innerHTML += `
                 <table class='table mt-1'>
                     <tbody>
                         <tr>
                             <td class='text-muted'>
-                                <pre>`+ JSON.stringify(payload.result, null, 2) + `</pre>
+                                <pre>`+ JSON.stringify(p.result, null, 2) + `</pre>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 `;
-    }
-    else {
-        html = `
+            }
+            else {
+                html = `
             <h4 style='text-align:left;color:#6a5acd;'>
                 Oops! Something didn't work right.
             </h4>
             <p>
                 Would you please mind try again?
             </p>`;
+            }
+        });
+        return payload;
     }
-    return payload;
 }; // processPayload
