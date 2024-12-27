@@ -85,7 +85,7 @@
             <div class="row mt-2">
               <div class="col-12 col-sm-9 col-md-8 col-lg-7">
                 <div class="row mt-2">
-                  <div class="col-12" id="chat">
+                  <div class="col-12" id="response">
                     <!-- response here -->
                   </div>
                 </div>
@@ -113,12 +113,15 @@
                   </div>
                 </div>
               </div>
-              <div class="col-12 col-sm-3 col-md-4 col-lg-3" id="logs">
-                <!-- logs -->
+              <div class="col-12 col-sm-3 col-md-4 col-lg-3">
+                <div id="status"><!-- status --> </div>
+                <div id="plan"> <!-- plan and results --> </div>
               </div>
             </div>
-            <div class="row mt-2" id="agents">
-              <!-- agents -->
+            <div class="row mt-2">
+              <div class="col-12">
+                <div id="agents"><!-- agents --></div>
+              </div>
             </div>
           </div>
         </div>
@@ -148,6 +151,8 @@
   <!-- <script src="assets/js/animation.js"></script> -->
   <!-- <script src="assets/js/imagesloaded.js"></script> -->
   <script src="assets/js/custom.js"></script>
+  <script src="assets/js/payload.js"></script>
+  <script src="assets/js/demo-concierge.js"></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NLHD8SK1HK"></script>
   <script>
@@ -163,7 +168,7 @@
     fetch("https://ipinfo.io/json").then((resp) => resp.json()).then((geo) => {
       document.getElementById('origin').value = geo.city + ", " + geo.region;
     });
-  }, 1000);
+  }, 600);
 </script>
 
 </html>

@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
 
-  <title>BroadAI Demo | Chatbot</title>
+  <title>BroadAI Demo | Movie recommendations</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -29,7 +29,7 @@
 
 </head>
 
-<body>
+<body onload="goMovies()">
 
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky" <div class="container">
@@ -64,20 +64,18 @@
   <div class="container">
     <div id="contact" class="contact-us section">
       <div class="row">
-        <!-- <div class="col-lg-1"></div> -->
+        <div class="col-lg-1"></div>
         <div class="col-lg-12">
 
           <div class="border-first-button d-flex justify-content-end">
             <a href="/demo.html">&lt; Back</a>
           </div>
 
-          <h2 style="color:#4da6e7;">Chatbot</h2>
+          <h2 style="color:#4da6e7;">Cine Expert</h2>
           <p>
-            Demonstrates contextual conversation experience that engages following agents: <br>
-            <strong>Agents:</strong>&emsp;<span class="text-info">Aviator</span> | <span
-              class="text-info">EVCharger</span> | <span class="text-info">Cineexpert</span> | <span
-              class="text-info">Draftsman</span> | <span class="text-info">Evaluator</span> | <span
-              class="text-info">Financialanalyst</span> | <span class="text-info">Medassistant</span> | <span
+            Demonstrates a movie recommendation service that leverages knowledge graph and write fictional stories
+            through following agents: <br>
+            <strong>Agents:</strong>&emsp;<span class="text-info">Cineexpert</span> | <span
               class="text-info">Newsreporter</span> | <span class="text-info">Randomizer</span> | <span
               class="text-info">Researcher</span> | <span class="text-info">Weatherman</span> | <span
               class="text-info">Writer</span>
@@ -86,42 +84,22 @@
           <div class="container-fluid mt-4">
             <div class="row mt-2">
               <div class="col-12 col-sm-9 col-md-8 col-lg-7">
-                <div class="row">
-                  <div class="col-12" id="response">
-                    <!-- chat messages here -->
-                  </div>
-                </div>
                 <div class="row mt-2">
-                  <div class="col-12">
-                    <div id="file-reader"></div>
-                    <input type="hidden" id="api-endpoint" value="https://broadaidemo-7yg2a2s6sq-uc.a.run.app">
-                  </div>
-                </div>
-                <div class="row mt-2">
-                  <div class="col-12">
-                    <textarea class="form-control" id="chatbox" rows="3"></textarea>
-                  </div>
-                </div>
-                <div class="row mt-2">
-                  <div class="col-12 text-end">
-                    <button class="btn btn-primary" id="btnAsk" onclick="goChatbot()">Ask</button>
+                  <div class="col-12" id="chat">
+                    <!-- response here -->
                   </div>
                 </div>
               </div>
-              <div class="col-12 col-sm-3 col-md-4 col-lg-3">
-                <div id="status"><!-- status --> </div>
-                <div id="plan"> <!-- plan and results --> </div>
+              <div class="col-12 col-sm-3 col-md-4 col-lg-3" id="logs">
+                <!-- logs -->
               </div>
             </div>
-            <div class="row mt-2">
-              <div class="col-12">
-                <div id="agents"><!-- agents --></div>
-              </div>
+            <div class="row mt-2" id="agents">
+              <!-- agents -->
             </div>
           </div>
-
         </div>
-        <!-- <div class="col-lg-1"></div> -->
+        <div class="col-lg-1"></div>
       </div>
     </div>
   </div>
@@ -146,10 +124,7 @@
   <script src="assets/js/owl-carousel.js"></script>
   <!-- <script src="assets/js/animation.js"></script> -->
   <!-- <script src="assets/js/imagesloaded.js"></script> -->
-  <script src="https://broadaidemo-7yg2a2s6sq-uc.a.run.app/file-reader-client"></script>
   <script src="assets/js/custom.js"></script>
-  <script src="assets/js/payload.js"></script>
-  <script src="assets/js/demo-chatbot.js"></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NLHD8SK1HK"></script>
   <script>
