@@ -1,3 +1,4 @@
+
 // ------ ..... ------ ..... ------ ..... ------ 
 const getRandomMessage = () => {
     const waitMessages = [
@@ -28,7 +29,7 @@ const getRandomMessage = () => {
 // ------ ..... ------ ..... ------ ..... ------ 
 const clearChat = () => {
     sessionStorage.clear('conversation');
-    document.getElementById('chat').innerHTML = "";
+    document.getElementById('response').innerHTML = "";
     document.getElementById('status').innerHTML = "";
     document.getElementById('plan').innerHTML = "";
     document.getElementById('agents').innerHTML = "";
