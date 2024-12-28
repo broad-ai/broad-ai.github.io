@@ -60,7 +60,7 @@ const renderPlan = (plan) => {
       </thead>
       <tbody>
         <tr>
-          <td class='py-0'><span class='text-muted'>Agent &rarr; Skill</span>&emsp;|&emsp;<span class='text-success'>`+ step.agent + ` </span> &rarr; <span class='text-success'>` + step.skill.name + `</span></td>
+          <td class='py-0'><span class='text-muted'>Agent &rarr; Skill</span>&emsp;|&emsp;<span class='text-success'>`+ step.agent + ` </span> &rarr; <span class='text-success'>` + (step.skill.name || step.skill) + `</span></td>
         </tr>
         <tr>
           <td class='text-muted'>`+ (step.result ? (typeof step.result == 'object' ? JSON.stringify(step.result) : step.result) : '...') + `</td>
