@@ -1,30 +1,29 @@
 // ------ ..... ------ ..... ------ ..... ------ 
-const renderMovieCards = (payloads, DOMResponse) => {
+const renderMovieCards = (payload, DOMResponse) => {
     let movies = [];
-    payloads.forEach((payload) => {
-        if (payload.result) {
-            if (payload.result.response) {
-                DOMResponse.innerHTML = ``;
-                payload.result.response.forEach((line) => {
-                    // -- extracting JSON response from results
-                    let jsnMovies = { "movies": [] };
-                    if (line.text.indexOf('{') >= 0 && line.text.lastIndexOf('}') > 0) {
-                        try {
-                            jsnMovies = JSON.parse(line.text.substring(line.text.indexOf('{'), line.text.lastIndexOf('}') + 1).replaceAll(new RegExp('/\\*[\\s\\S]*?\\*/', 'gm'), ''));
-                        }
-                        catch {
-                            console.log(line.text);
-                        }
-                        if (jsnMovies.movies)
-                            jsnMovies.movies.forEach((movie) => movies.push(movie));
+    if (payload.result) {
+        if (payload.result.response) {
+            // DOMResponse.innerHTML = ``;
+            payload.result.response.forEach((line) => {
+                // -- extracting JSON response from results
+                let jsnMovies = { "movies": [] };
+                if (line.text.indexOf('{') >= 0 && line.text.lastIndexOf('}') > 0) {
+                    try {
+                        jsnMovies = JSON.parse(line.text.substring(line.text.indexOf('{'), line.text.lastIndexOf('}') + 1).replaceAll(new RegExp('/\\*[\\s\\S]*?\\*/', 'gm'), ''));
                     }
-                });
-                // -- render all movies in cards
-                if (movies.length) {
-                    let html = `
+                    catch {
+                        console.log(line.text);
+                    }
+                    if (jsnMovies.movies)
+                        jsnMovies.movies.forEach((movie) => movies.push(movie));
+                }
+            });
+            // -- render all movies in cards
+            if (movies.length) {
+                let html = `
                   <div class='row p-1'>`;
-                    movies.forEach((movie) => {
-                        html += `
+                movies.forEach((movie) => {
+                    html += `
                       <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                       <div class="card">
                           <img src="`+ movie.image + `" class="card-img-top" alt="` + movie.name + `">
@@ -47,22 +46,21 @@ const renderMovieCards = (payloads, DOMResponse) => {
                           </div>
                       </div>
                       </div>`;
-                    });
-                    html += `</div>`;
-                    DOMResponse.innerHTML += html;
-                }
+                });
+                html += `</div>`;
+                DOMResponse.innerHTML += html;
             }
-            else {
-                DOMResponse.innerHTML += `
+        }
+        else {
+            DOMResponse.innerHTML += `
                     <h3>Oops! Something didn't go as well as expected.</h3>
                     <p>Do you mind <a href='javascript:window.location.reload();'>refreshing</a> this page again?</p>
                     <hr>
                     <small>
                         <pre>`+ JSON.stringify(payload, null, 2) + `</pre>
                     </small>`;
-            }
         }
-    }); // forEach
+    }
 }; // renderMovieCards
 
 // ------ ..... ------ ..... ------ ..... ------ 
@@ -76,7 +74,7 @@ const goMovies = () => {
     let intvlResponses = setInterval(() => {
         DOMResponse.innerHTML = `<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>` + getRandomMessage() + `</pre></p></div>`;
     }, 10000);
-    let payloads = [];
+    let payload = {};
     // -- get location data for weather and news
     fetch("https://ipinfo.io/json").then((resp) => resp.json()).then((geo) => {
         // -- engage BroadAI
@@ -96,17 +94,32 @@ const goMovies = () => {
         }).then((resp) => {
             let streamReader = resp.body.pipeThrough(new TextDecoderStream()).getReader();
             // -- function: process streamed response
+            let buffer = '';
             const processSteam = (reader) => {
                 reader.read().then((chunk) => {
                     if (!chunk.done) {
-                        payloads = processPayload(chunk, DOMResponse, DOMStatus, DOMPlan, DOMAgents);
+                        if (chunk.value.indexOf('\n') == -1)
+                            buffer += chunk.value;
+                        else {
+                            buffer += chunk.value;
+                            let cutoffat = buffer.indexOf('\n');
+                            try {
+                                let obj = JSON.parse(buffer.slice(0, cutoffat));
+                                buffer = buffer.slice(cutoffat + 1);
+                                console.log("Parsed chunk: ", obj);
+                                payload = processPayload(obj, DOMResponse, DOMStatus, DOMPlan, DOMAgents);
+                            }
+                            catch {
+                                console.log("Could not parse JSON object: ", buffer, cutoffat, buffer.slice(0, cutoffat));
+                            }
+                        }
                         processSteam(streamReader);
                     }
                     else {
                         // -- post-processing DOM adjustments
                         clearInterval(intvlResponses);
-                        console.log(payloads);
-                        renderMovieCards(payloads, DOMResponse);
+                        console.log(payload);
+                        renderMovieCards(payload, DOMResponse);
                     }
                 });
             }; // processSteam
@@ -118,6 +131,7 @@ const goMovies = () => {
 
 // ------ ..... ------ ..... ------ ..... ------ 
 const goSimilarMovies = (movie, director, year, rating) => {
+    clearChat();
     let DOMResponse = document.getElementById('response');
     let DOMStatus = document.getElementById('status');
     let DOMPlan = document.getElementById('plan');
@@ -127,7 +141,7 @@ const goSimilarMovies = (movie, director, year, rating) => {
     let intvlResponses = setInterval(() => {
         DOMResponse.innerHTML = `<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>` + getRandomMessage() + `</pre></p></div>`;
     }, 10000);
-    let payloads = [];
+    let payload = {};
     // -- engage BroadAI
     let conversation = [];
     try { conversation = JSON.parse(sessionStorage.getItem('conversation')); }
@@ -146,17 +160,31 @@ const goSimilarMovies = (movie, director, year, rating) => {
     }).then((resp) => {
         let streamReader = resp.body.pipeThrough(new TextDecoderStream()).getReader();
         // -- function: process streamed response
+        let buffer = '';
         const processSteam = (reader) => {
             reader.read().then((chunk) => {
                 if (!chunk.done) {
-                    payloads = processPayload(chunk, DOMResponse, DOMStatus, DOMPlan, DOMAgents);
+                    if (chunk.value.indexOf('\n') == -1)
+                        buffer += chunk.value;
+                    else {
+                        buffer += chunk.value;
+                        let cutoffat = buffer.indexOf('\n');
+                        try {
+                            let obj = JSON.parse(buffer.slice(0, cutoffat));
+                            buffer = buffer.slice(cutoffat + 1);
+                            console.log("Parsed chunk: ", obj);
+                            payload = processPayload(obj, DOMResponse, DOMStatus, DOMPlan, DOMAgents);
+                        }
+                        catch {
+                            console.log("Could not parse JSON object: ", buffer, cutoffat, buffer.slice(0, cutoffat));
+                        }
+                    }
                     processSteam(streamReader);
                 }
                 else {
                     // -- post-processing DOM adjustments
                     clearInterval(intvlResponses);
-                    console.log(payloads);
-                    renderMovieCards(payloads, DOMResponse);
+                    renderMovieCards(payload, DOMResponse);
                 }
             });
         }; // processSteam
