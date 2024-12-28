@@ -3,7 +3,7 @@ const renderMovieCards = (payload, DOMResponse) => {
     let movies = [];
     if (payload.result) {
         if (payload.result.response) {
-            // DOMResponse.innerHTML = ``;
+            DOMResponse.innerHTML = ``;
             payload.result.response.forEach((line) => {
                 // -- extracting JSON response from results
                 let jsnMovies = { "movies": [] };
@@ -17,11 +17,17 @@ const renderMovieCards = (payload, DOMResponse) => {
                     if (jsnMovies.movies)
                         jsnMovies.movies.forEach((movie) => movies.push(movie));
                 }
+                else if (line.text.indexOf('References') == -1 || line.text.indexOf('Disclaimer') == -1) {
+                    DOMResponse.innerHTML += `
+                        <` + line.html_tag + ` style='text-align:left;color:#6a5acd;'>`
+                        + line.text +
+                        `</` + line.html_tag + `>`;
+                }
             });
             // -- render all movies in cards
             if (movies.length) {
                 let html = `
-                  <div class='row p-1'>`;
+                  <div class='row'>`;
                 movies.forEach((movie) => {
                     html += `
                       <div class="col-12 col-sm-12 col-md-6 col-lg-6">
