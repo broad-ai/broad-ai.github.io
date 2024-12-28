@@ -9,7 +9,7 @@ const goChatbot = () => {
     let intvlResponses = setInterval(() => {
         DOMResponse.innerHTML = `<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>` + getRandomMessage() + `</pre></p></div>`;
     }, 10000);
-    let payloads = [];
+    let payload = {};
     document.getElementById('btnAsk').disabled = true;
     document.getElementById('chatbox').disabled = true;
     // -- engage BroadAI
@@ -28,19 +28,32 @@ const goChatbot = () => {
     }).then((resp) => {
         let streamReader = resp.body.pipeThrough(new TextDecoderStream()).getReader();
         // -- function: process streamed response
+        let buffer = '';
         const processSteam = (reader) => {
             reader.read().then((chunk) => {
                 if (!chunk.done) {
-                    payloads = processPayload(chunk, DOMResponse, DOMStatus, DOMPlan, DOMAgents);
+                    if (chunk.value.indexOf('\n') == -1)
+                        buffer += chunk.value;
+                    else {
+                        buffer += chunk.value;
+                        let cutoffat = buffer.indexOf('\n');
+                        try {
+                            let obj = JSON.parse(buffer.slice(0, cutoffat));
+                            buffer = buffer.slice(cutoffat + 1);
+                            console.log("Parsed chunk: ", obj);
+                            payload = processPayload(obj, DOMResponse, DOMStatus, DOMPlan, DOMAgents);
+                        }
+                        catch {
+                            console.log("Could not parse JSON object: ", buffer, cutoffat, buffer.slice(0, cutoffat));
+                        }
+                    }
                     processSteam(streamReader);
                 }
                 else {
                     // -- post-processing DOM adjustments
                     clearInterval(intvlResponses);
-                    console.log(payloads);
                     document.getElementById('btnAsk').disabled = false;
                     document.getElementById('chatbox').disabled = false;
-                    document.getElementById('chatbox').value = "";
                 }
             });
         }; // processSteam
