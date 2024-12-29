@@ -1,5 +1,6 @@
 // ------ ..... ------ ..... ------ ..... ------ 
 const goChatbot = () => {
+    clearChat();
     let DOMResponse = document.getElementById('response');
     let DOMStatus = document.getElementById('status');
     let DOMPlan = document.getElementById('plan');

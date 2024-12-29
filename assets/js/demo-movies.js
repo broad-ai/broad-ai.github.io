@@ -71,6 +71,7 @@ const renderMovieCards = (payload, DOMResponse) => {
 
 // ------ ..... ------ ..... ------ ..... ------ 
 const goMovies = () => {
+    clearChat();
     let DOMResponse = document.getElementById('response');
     let DOMStatus = document.getElementById('status');
     let DOMPlan = document.getElementById('plan');
