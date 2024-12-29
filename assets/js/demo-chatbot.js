@@ -1,10 +1,12 @@
 // ------ ..... ------ ..... ------ ..... ------ 
 const goChatbot = () => {
-    clearChat();
     let DOMResponse = document.getElementById('response');
     let DOMStatus = document.getElementById('status');
     let DOMPlan = document.getElementById('plan');
     let DOMAgents = document.getElementById('agents');
+    DOMStatus.innerHTML = "";
+    DOMPlan.innerHTML = "";
+    DOMAgents.innerHTML = "";
     // -- pre-processing DOM adjustments
     DOMResponse.innerHTML = `<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>` + getRandomMessage() + `</pre></p></div>`;
     let intvlResponses = setInterval(() => {
