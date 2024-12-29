@@ -59,6 +59,8 @@ const goConcierge = () => {
                     document.getElementById('origin').disabled = false;
                     document.getElementById('destination').disabled = false;
                     document.getElementById('notes').disabled = false;
+                    document.getElementById('destination').value = "";
+                    document.getElementById('notes').value = "";
                 }
             });
         }; // processSteam

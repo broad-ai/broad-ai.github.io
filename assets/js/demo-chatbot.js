@@ -54,6 +54,7 @@ const goChatbot = () => {
                     clearInterval(intvlResponses);
                     document.getElementById('btnAsk').disabled = false;
                     document.getElementById('chatbox').disabled = false;
+                    document.getElementById('chatbox').value = "";
                 }
             });
         }; // processSteam
