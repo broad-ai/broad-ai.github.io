@@ -995,6 +995,42 @@ const ai = new BroadAI([ <var1>evcharger</var1>.<var>agent</var>, <note>...</not
               </div>
               <!-- </a> -->
             </div>
+            <div class="item">
+              <!-- <a href="#"> -->
+              <div class="portfolio-item">
+                <div class="thumb">
+                  <img src="assets/images/agent-draftsman.png" alt="agent-draftsman">
+                </div>
+                <div class="down-content">
+                  <h4>Draftsman</h4>
+                  <span>
+                    Generate graphical visualizations of multiple types of diagrams and charts
+                  </span>
+                </div>
+                <hr>
+                <div class="down-content">
+                  <strong>Skills: </strong> drawDiagram | drawChart
+                </div>
+                <hr>
+                <div class="copy-button d-flex justify-content-end">
+                  <a href="javascript:void(0)"
+                    onclick="navigator.clipboard.writeText(document.getElementById('draftsman').innerText).then(()=>alert('Copied to clipboard'))">
+                    &#128203;
+                  </a>
+                </div>
+                <div class="documentation" style="font-size:0.9em;">
+                  <code><pre id="draftsman">
+import <var1>draftsman</var1> from <var>'broadai-agents/<var1>Draftsman</var1>'</var>;
+const ai = new BroadAI([ <var1>draftsman</var1>.<var>agent</var>, <note>...</note> ], { <note>BroadAI Configuration</note> })
+<note>...</note>
+<var1>draftsman</var1>.register(ai,
+<note>// .. AGENT CONFIGURATION .. </note>
+{ <var2></var2> });
+                  </pre></code>
+                </div>
+              </div>
+              <!-- </a> -->
+            </div>
           </div>
         </div>
       </div>
