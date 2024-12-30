@@ -25,7 +25,7 @@ const goChatbot = () => {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            "question": document.getElementById('chatbox').value,
+            "question": document.getElementById('chatbox').value + "\nMy location: " + (sessionStorage.getItem('usergeo') || 'not available'),
             "conversation": conversation
         })
     }).then((resp) => {
