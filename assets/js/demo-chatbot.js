@@ -87,7 +87,7 @@ const processFileContents = (knowledge, avgWordCountPerLine) => {
                 document.getElementById('chatbox').value = `>>>
   `+ chunk + `
   <<<
-  Organize the original content provided within '>>>' and '<<<' symbols in well-structured sections using simple formatting options like titles / subtitles, paragraphs, bullets, tables, etc. If you encounter numeric data, analyze it and provide your insights from it.
+Read the contents provided within '>>>' and '<<<' symbols. Then structure the information so that it is easy to comprehend and follow-up questions can be asked. It is therefore important that no information from the content can be skipped.
     `;
                 sessionStorage.clear('conversation');
                 goChatbot();
