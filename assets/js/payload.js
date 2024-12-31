@@ -121,7 +121,7 @@ const renderResponse = (question, response) => {
     <h3 style='color:black;background:#eee;padding:1em;'>` + question + `</h3>`;
     response.forEach((line) => {
         html += `
-            <` + line.html_tag + ` style='text-align:left;color:#6a5acd;'>`
+            <` + line.html_tag + `>`
             + line.text +
             `</` + line.html_tag + `>`;
     });
