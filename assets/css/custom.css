@@ -134,3 +134,7 @@ h6 {
 #agents td {
   word-wrap: break-word;
 }
+
+code {
+  margin: 2em 0;
+}
