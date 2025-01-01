@@ -16,7 +16,7 @@ const goMovies = () => {
         let conversation = [];
         try { conversation = JSON.parse(sessionStorage.getItem('conversation')); }
         catch { sessionStorage.clear('conversation'); }
-        fetch(broadAIDemoapiEndpoint + '/movie/recommend', {
+        fetch(broadAIDemoapiEndpoint + '/movie', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
