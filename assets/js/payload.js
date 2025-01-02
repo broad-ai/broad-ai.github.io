@@ -38,7 +38,7 @@ const clearChat = () => {
 /** Utility functions */
 const renderStatus = (status) => {
     let html = `
-<table class='table mb-1'>
+<table class='table table-responsive mb-1'>
   <tbody>
     <tr>
       <td><strong>Status:</strong> <span class='text-danger'>`+ status + `</span></td>
@@ -52,7 +52,7 @@ const renderPlan = (plan) => {
     let html = ``;
     plan.forEach((step) => {
         html += `
-    <table class='table mt-1'>
+    <table class='table table-responsive mt-1'>
       <thead>
         <tr>
             <th>`+ (step.sequence + 1) + `.  <span class='text-info'>` + step.objective + `</span></th>
@@ -80,7 +80,7 @@ const renderAgents = (agents) => {
     agents.forEach((agent) => {
         html += `
         <div class='col-12 col-sm-6 col-md-4 col-lg-3'>
-            <table class='table mt-1'>
+            <table class='table table-responsive mt-1'>
                 <thead>
                     <tr>
                         <th><strong>Agent:</strong> <span class='text-info'>` + agent.agent + `</span></th>
