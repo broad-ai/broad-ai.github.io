@@ -353,13 +353,12 @@ const <var>ai</var> = new BroadAI([ <var>research</var>.<var>agent</var> ], {
                                     request.
                                     <code>
                                       <pre>
-<var>ai</var>.go(user_request, refined_plan, conversations).then((<var>response</var>)=>{ 
+<var>ai</var>.go(user_request, conversations).then((<var>response</var>)=>{ 
   console.log(<var>response</var>);
 }).catch((<var>err</var>)=>console.log(<var>err</var>));
                                       </pre>
                                     </code>
-                                    where, <em>refined_plan</em> is a boolean value indicating whether BroadAI should
-                                    critically audit it’s initial plan and generate an updated plan, while
+                                    where,
                                     <em>conversations</em> is an array of conversation history to allow contextual
                                     chat-like experience.
                                   </div>
@@ -475,7 +474,7 @@ module.exports = {
       {
         <var>"skill-name"</var>: "researchTopic",
         <var>"objective"</var>: "Search internet for information about the given topic",
-        <var>"action"</var>: researchTopic, 
+        <var>"action"</var>: <strong>researchTopic</strong>,  <note>// implemented later as a function</note>
         <var>"parameters"</var>: {
           <var>"topic"</var>: "string | topic that must be researched"
         }
@@ -483,7 +482,7 @@ module.exports = {
       {
         <var>"skill-name"</var>: "findBusinesses",
         <var>"objective"</var>: "Search specific business type around a 10 mile radius of a given location",
-        <var>"action"</var>: findBusinesses,  
+        <var>"action"</var>: <strong>findBusinesses</strong>,  <note>// implemented later as a function</note>
         <var>"parameters"</var>: {
           <var>"term"</var>: "string | business type, e.g. diner, coffee, tailor, etc.",
           <var>"location"</var>: "string | address or landmark within a city and state"
@@ -500,12 +499,27 @@ module.exports = {
                                   <div>
                                     Finally, you must implement the functionality of the skills as functions where the
                                     parameters must match with the agent definition. These
-                                    functions can utilize helper functions, such as <em>createPrompt()</em>,
-                                    <em>getGenAIResponse()</em>, and <em>callExternalResource()</em>.
+                                    functions can utilize helper functions, such as <em>createPrompt()</em> to create an
+                                    LLM prompt in a structured manner so that developers with basic GenAI training can
+                                    write effective prompts,
+                                    <em>getGenAIResponse()</em> to call the LLM in a simple step, and
+                                    <em>callExternalResource()</em> to just as simply also call external API endpoints,
+                                    for example for grounding your LLM prompts with contextual data.
                                     <code>
                                       <pre>
-function researchTopic(<var>topic</var>) { <note>/* function definition */</note> };
-function findBusinesses(<var>term</var>, <var>location</var>) { <note>/* function definition */</note> };
+module.exports = {
+
+  function <strong>researchTopic</strong>(<var>topic</var>) { 
+    <note>/* function definition */</note> 
+  };
+
+  function <strong>findBusinesses</strong>(<var>term</var>, <var>location</var>) { 
+    <note>/* function definition */</note> 
+  };
+
+  <var>register</var>: (<var>broadAI</var>, <var>agentConfig</var>) =>{ <note>/* refer previous code snippet */</note> }, 
+  <var>agent</var>: { <note>/* refer previous code snippet */</note> }
+}
                                       </pre>
                                     </code>
                                   </div>
