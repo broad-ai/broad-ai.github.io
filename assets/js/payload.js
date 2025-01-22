@@ -50,12 +50,12 @@ const renderStatus = (status) => {
 
 const renderPlan = (plan) => {
     let html = ``;
-    plan.forEach((step) => {
+    plan.forEach((step, s) => {
         html += `
     <table class='table table-responsive mt-1'>
       <thead>
         <tr>
-            <th>`+ (step.sequence + 1) + `.  <span class='text-info'>` + step.objective + `</span></th>
+            <th>`+ (s + 1) + `.  <span class='text-info'>` + step.objective + `</span></th>
         </tr>
       </thead>
       <tbody>
