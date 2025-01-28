@@ -25,7 +25,7 @@ const goChatbot = () => {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            "question": document.getElementById('chatbox').value + "\nMy location: " + (sessionStorage.getItem('usergeo') || 'not available'),
+            "question": document.getElementById('chatbox').value + "Just as an FYI, I am from " + (sessionStorage.getItem('usergeo') || 'not available') + ". Selectively use this information only if it is relevant in my case, else ignore it.",
             "conversation": conversation
         })
     }).then((resp) => {
@@ -87,7 +87,7 @@ const processFileContents = (knowledge, avgWordCountPerLine) => {
                 document.getElementById('chatbox').value = `>>>
   `+ chunk + `
   <<<
-Read the contents provided within '>>>' and '<<<' symbols. Then structure the information so that it is easy to comprehend and follow-up questions can be asked. It is therefore important that no information from the content can be skipped.
+Read the contents provided within '>>>' and '<<<' symbols. Analyze the content and format it most suitable for it's type. Also provide a high-level analysis of the content and make recommendations on what can be done with this data.
     `;
                 sessionStorage.clear('conversation');
                 goChatbot();
