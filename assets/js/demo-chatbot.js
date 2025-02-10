@@ -68,9 +68,37 @@ const goChatbot = () => {
 // ------ ..... ------ ..... ------ ..... ------ 
 const processFileContents = (chunks) => {
     document.getElementById('response').innerHTML = "";
-    chunks.forEach((chunk) => {
-        document.getElementById('response').innerHTML += ("<p>" + chunk + "</p>");
-    });
+    let processing = false;
+    let i = -1;
+    let completeResponse = "";
+    let intvlProcessChunks = setInterval(() => {
+        if (!processing) {
+            processing = true;
+            i++;
+            if (i < chunks.length) {
+                document.getElementById('chatbox').value = `Analyze the contents within '>>>' and '<<<' symbols. Take following actions:
+1. format it most suitably considering type of information,
+2. provide a high-level analysis of the content, and 
+3. recommend advice or actions that can be taken utilizing this content.
+>>>
+`+ chunks[i] + `
+<<<
+`;
+                goChatbot();
+                let disabledChatboxIntvl = setInterval(() => {
+                    if (document.getElementById('chatbox').disabled == false) {
+                        clearInterval(disabledChatboxIntvl);
+                        completeResponse += document.getElementById('response').innerHTML;
+                        processing = false;
+                    }
+                }, 100);
+            }
+            else {
+                clearInterval(intvlProcessChunks);
+                document.getElementById('response').innerHTML = completeResponse;
+            }
+        }
+    }, 100);
     //     const MAX_TOKENS_LLM = (1024 * 128);
     //     // -- gpt-4o : 128K input tokens & 16K output tokens
     //     // -- assumption: 1 word = 1 token
