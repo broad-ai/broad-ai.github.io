@@ -66,41 +66,42 @@ const goChatbot = () => {
 }; // goChatbot
 
 // ------ ..... ------ ..... ------ ..... ------ 
-const processFileContents = (knowledge, avgWordCountPerLine) => {
-    const MAX_TOKENS_LLM = (1024 * 128);
-    // -- gpt-4o : 128K input tokens & 16K output tokens
-    // -- assumption: 1 word = 1 token
-    let packageSize = Math.round(MAX_TOKENS_LLM / (avgWordCountPerLine * avgWordCountPerLine));
+const processFileContents = (chunks) => {
+    console.log(chunks);
+    //     const MAX_TOKENS_LLM = (1024 * 128);
+    //     // -- gpt-4o : 128K input tokens & 16K output tokens
+    //     // -- assumption: 1 word = 1 token
+    //     let packageSize = Math.round(MAX_TOKENS_LLM / (avgWordCountPerLine * avgWordCountPerLine));
 
-    let currentPosition = -1;
-    let fileProcessing = false;
+    //     let currentPosition = -1;
+    //     let fileProcessing = false;
 
-    let fileProcessingIntvl = setInterval(() => {
-        if (!fileProcessing) {
-            currentPosition++;
-            fileProcessing = true;
-            if (currentPosition < knowledge.length) {
-                let chunk = "";
-                chunk = knowledge.slice(currentPosition, currentPosition + packageSize).join(' ');
-                currentPosition = currentPosition + packageSize;
-                // prepare chat
-                document.getElementById('chatbox').value = `>>>
-  `+ chunk + `
-  <<<
-Read the contents provided within '>>>' and '<<<' symbols. Analyze the content and format it most suitable for it's type. Also provide a high-level analysis of the content and make recommendations on what can be done with this data.
-    `;
-                sessionStorage.clear('conversation');
-                goChatbot();
-                let disabledChatboxIntvl = setInterval(() => {
-                    if (document.getElementById('chatbox').disabled == false) {
-                        clearInterval(disabledChatboxIntvl);
-                        fileProcessing = false;
-                    }
-                }, 100);
-            }
-            else {
-                clearInterval(fileProcessingIntvl);
-            }
-        }
-    }, 100);
+    //     let fileProcessingIntvl = setInterval(() => {
+    //         if (!fileProcessing) {
+    //             currentPosition++;
+    //             fileProcessing = true;
+    //             if (currentPosition < knowledge.length) {
+    //                 let chunk = "";
+    //                 chunk = knowledge.slice(currentPosition, currentPosition + packageSize).join(' ');
+    //                 currentPosition = currentPosition + packageSize;
+    //                 // prepare chat
+    //                 document.getElementById('chatbox').value = `>>>
+    //   `+ chunk + `
+    //   <<<
+    // Read the contents provided within '>>>' and '<<<' symbols. Analyze the content and format it most suitable for it's type. Also provide a high-level analysis of the content and make recommendations on what can be done with this data.
+    //     `;
+    //                 sessionStorage.clear('conversation');
+    //                 goChatbot();
+    //                 let disabledChatboxIntvl = setInterval(() => {
+    //                     if (document.getElementById('chatbox').disabled == false) {
+    //                         clearInterval(disabledChatboxIntvl);
+    //                         fileProcessing = false;
+    //                     }
+    //                 }, 100);
+    //             }
+    //             else {
+    //                 clearInterval(fileProcessingIntvl);
+    //             }
+    //         }
+    //     }, 100);
 } // processFileContents
