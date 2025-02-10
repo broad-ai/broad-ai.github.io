@@ -91,7 +91,7 @@ const processFileContents = (chunks) => {
             else {
                 clearInterval(intvlProcessChunks);
                 let metadata = [];
-                try { metadata = JSON.parse(sessionStorage.getItem('conversation')); } catch (e) { }
+                try { metadata = JSON.parse(sessionStorage.getItem('conversation')); } catch (e) { console.log(sessionStorage.getItem('conversation')); }
                 document.getElementById('chatbox').value = `Analyze and format information below appropriately considering the type of information it contains along with any specific recommend actions that must be taken utilizing this content.
 >>>`;
                 metadata.forEach((p) => {
