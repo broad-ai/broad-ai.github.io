@@ -70,7 +70,6 @@ const processFileContents = (chunks) => {
     document.getElementById('response').innerHTML = "";
     let processing = false;
     let i = -1;
-    let completeResponse = "";
     let intvlProcessChunks = setInterval(() => {
         if (!processing) {
             processing = true;
@@ -85,14 +84,23 @@ const processFileContents = (chunks) => {
                 let disabledChatboxIntvl = setInterval(() => {
                     if (document.getElementById('chatbox').disabled == false) {
                         clearInterval(disabledChatboxIntvl);
-                        completeResponse += document.getElementById('response').innerHTML;
                         processing = false;
                     }
                 }, 100);
             }
             else {
                 clearInterval(intvlProcessChunks);
-                document.getElementById('response').innerHTML = completeResponse;
+                let metadata = [];
+                try { metadata = JSON.parse(sessionStorage.getItem('conversation')); } catch (e) { }
+                document.getElementById('chatbox').value = `Analyze and format information below appropriately considering the type of information it contains along with any specific recommend actions that must be taken utilizing this content.
+>>>`;
+                metadata.forEach((p) => {
+                    if (p.indexOf('>:'))
+                        document.getElementById('chatbox').value += p;
+                });
+                document.getElementById('chatbox').value += `
+<<<`;
+                goChatbot();
             }
         }
     }, 100);
