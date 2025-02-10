@@ -67,7 +67,10 @@ const goChatbot = () => {
 
 // ------ ..... ------ ..... ------ ..... ------ 
 const processFileContents = (chunks) => {
-    console.log(chunks);
+    document.getElementById('chat').innerHTML = "";
+    chunks.forEach((chunk) => {
+        document.getElementById('chat').innerHTML += ("<p>" + chunk + "</p>");
+    });
     //     const MAX_TOKENS_LLM = (1024 * 128);
     //     // -- gpt-4o : 128K input tokens & 16K output tokens
     //     // -- assumption: 1 word = 1 token
