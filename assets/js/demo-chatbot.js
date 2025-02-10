@@ -75,7 +75,7 @@ const processFileContents = (chunks) => {
             processing = true;
             i++;
             if (i < chunks.length) {
-                document.getElementById('chatbox').value = `Analyze and format the contents below appropriately considering the type of information it contains along with any specific recommend actions that must be taken utilizing this content.
+                document.getElementById('chatbox').value = `Analyze this:
 >>>
 `+ chunks[i] + `
 <<<
@@ -92,7 +92,7 @@ const processFileContents = (chunks) => {
                 clearInterval(intvlProcessChunks);
                 let metadata = [];
                 try { metadata = JSON.parse(sessionStorage.getItem('conversation')); } catch (e) { console.log(sessionStorage.getItem('conversation')); }
-                document.getElementById('chatbox').value = `Analyze and format information below appropriately considering the type of information it contains along with any specific recommend actions that must be taken utilizing this content.
+                document.getElementById('chatbox').value = `Analyze and format the information below appropriately considering the type of information it contains along with any specific recommend actions that must be taken utilizing this content.
 >>>`;
                 metadata.forEach((p) => {
                     if (p.indexOf('>:'))
