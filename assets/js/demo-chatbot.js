@@ -76,10 +76,7 @@ const processFileContents = (chunks) => {
             processing = true;
             i++;
             if (i < chunks.length) {
-                document.getElementById('chatbox').value = `Analyze the contents within '>>>' and '<<<' symbols. Take following actions:
-1. format it most suitably considering type of information,
-2. provide a high-level analysis of the content, and 
-3. recommend advice or actions that can be taken utilizing this content.
+                document.getElementById('chatbox').value = `Analyze and format the contents below appropriately considering the type of information it contains along with any specific recommend actions that must be taken utilizing this content.
 >>>
 `+ chunks[i] + `
 <<<
