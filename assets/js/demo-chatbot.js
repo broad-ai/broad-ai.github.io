@@ -25,7 +25,7 @@ const goChatbot = () => {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            "question": document.getElementById('chatbox').value + "Just as an FYI, I am from " + (sessionStorage.getItem('usergeo') || 'not available') + ". Selectively use this information only if it is relevant in my case, else ignore it.",
+            "question": document.getElementById('chatbox').value,
             "conversation": conversation
         })
     }).then((resp) => {

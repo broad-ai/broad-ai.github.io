@@ -153,12 +153,5 @@
   </script>
 
 </body>
-<script>
-  setTimeout(() => {
-    fetch("https://ipinfo.io/json").then((resp) => resp.json()).then((geo) => {
-      sessionStorage.setItem('usergeo', geo.city + ", " + geo.region + " " + geo.country);
-    });
-  }, 600);
-</script>
 
 </html>
