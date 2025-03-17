@@ -6,10 +6,8 @@ const goConcierge = () => {
     let DOMPlan = document.getElementById('plan');
     let DOMAgents = document.getElementById('agents');
     // -- pre-processing DOM adjustments
-    DOMResponse.innerHTML = `<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>` + getRandomMessage() + `</pre></p></div>`;
-    let intvlResponses = setInterval(() => {
-        DOMResponse.innerHTML = `<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>` + getRandomMessage() + `</pre></p></div>`;
-    }, 10000);
+    DOMResponse.style.paddingBottom = "3em";
+    DOMResponse.innerHTML = `<img class='m-2 float-end' src='/assets/images/load-35_128.gif' style='width:3em; height:3em;'>`;
     let payload = {};
     document.getElementById('btnGoConcierge').disabled = true;
     document.getElementById('origin').disabled = true;
@@ -55,7 +53,6 @@ const goConcierge = () => {
                 }
                 else {
                     // -- post-processing DOM adjustments
-                    clearInterval(intvlResponses);
                     document.getElementById('btnGoConcierge').disabled = false;
                     document.getElementById('origin').disabled = false;
                     document.getElementById('destination').disabled = false;

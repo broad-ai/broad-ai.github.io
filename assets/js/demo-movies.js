@@ -5,10 +5,8 @@ const goMovies = () => {
     let DOMPlan = document.getElementById('plan');
     let DOMAgents = document.getElementById('agents');
     // -- pre-processing DOM adjustments
-    DOMResponse.innerHTML = `<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>` + getRandomMessage() + `</pre></p></div>`;
-    let intvlResponses = setInterval(() => {
-        DOMResponse.innerHTML = `<div class='p-3'><img src='/assets/images/load-35_128.gif' style='width:60px; height:60px;'><pre class='text-primary'>` + getRandomMessage() + `</pre></p></div>`;
-    }, 10000);
+    DOMResponse.style.paddingBottom = "3em";
+    DOMResponse.innerHTML = `<img class='m-2 float-end' src='/assets/images/load-35_128.gif' style='width:3em; height:3em;'>`;
     let payload = {};
     // -- get location data for weather and news
     fetch("https://ipinfo.io/json").then((resp) => resp.json()).then((geo) => {
@@ -49,10 +47,6 @@ const goMovies = () => {
                             }
                         }
                         processSteam(streamReader);
-                    }
-                    else {
-                        // -- post-processing DOM adjustments
-                        clearInterval(intvlResponses);
                     }
                 });
             }; // processSteam
