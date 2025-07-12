@@ -118,7 +118,7 @@ const renderResponse = (question, response) => {
         <pre><a href='javascript:clearChat();'>Clear</a></pre>
     </div>`;
     html += `
-    <h3 style='color:black;background:#eee;padding:1em;'>` + question + `</h3>`;
+    <p><small style='color:#d0d0d0;background:#f0f0f0;padding:1em;'>` + question + `</small></p>`;
     response.forEach((line) => {
         html += `
             <` + line.html_tag + `>`
@@ -176,7 +176,7 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
     // -- STATUS
     if (payload.status) {
         DOMStatus.innerHTML += renderStatus(payload.status);
-        DOMResponse.innerHTML += `<br class='mt-2'><em class='text-muted' style='font-size:1.2em;font-weight:300;'>` + payload.status + `</em>`;
+        // DOMResponse.innerHTML += `<br class='mt-2'><em class='text-muted' style='font-size:1.2em;font-weight:300;'>` + payload.status + `</em>`;
     }
 
     if (payload.result) {
