@@ -183,7 +183,7 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
 
         // -- PLAN
         if (payload.result.plan)
-            DOMPlan.innerHTML += renderPlan(payload.result.plan);
+            DOMPlan.innerHTML = renderPlan(payload.result.plan);
 
         // -- RESPONSE
         if (payload.result.question && payload.result.response) {
