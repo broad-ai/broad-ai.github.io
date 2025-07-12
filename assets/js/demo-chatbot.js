@@ -59,8 +59,6 @@ const goChatbot = (file) => {
         DOMStatus.innerHTML = "";
         DOMPlan.innerHTML = "";
         DOMAgents.innerHTML = "";
-        // -- pre-processing DOM adjustments
-        DOMResponse.innerHTML = `<img class='m-2 float-end' src='/assets/images/load-35_128.gif' style='width:3em; height:3em;'>`;
         // -- engage BroadAI
         let conversation = [];
         try { conversation = JSON.parse(sessionStorage.getItem('conversation')); }

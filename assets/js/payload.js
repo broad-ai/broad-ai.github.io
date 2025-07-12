@@ -114,12 +114,7 @@ const renderAgents = (agents) => {
 }; // renderAgents
 
 const renderResponse = (question, response) => {
-    let html = `
-    <div style='text-align:right;margin-bottom:1em;'>
-        <pre><a href='javascript:clearChat();'>Clear</a></pre>
-    </div>`;
-    // html += `
-    // <p>---<br><small style='color:#d0d0d0;line-height:0.9;'>` + question + `</small><br>---</p>`;
+    let html = ``;
     response.forEach((line) => {
         html += `
             <` + line.html_tag + `>`
