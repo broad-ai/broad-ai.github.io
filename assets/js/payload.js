@@ -117,8 +117,8 @@ const renderResponse = (question, response) => {
     <div style='text-align:right;margin-bottom:1em;'>
         <pre><a href='javascript:clearChat();'>Clear</a></pre>
     </div>`;
-    html += `
-    <p>---<br><small style='color:#d0d0d0;line-height:0.9;'>` + question + `</small><br>---</p>`;
+    // html += `
+    // <p>---<br><small style='color:#d0d0d0;line-height:0.9;'>` + question + `</small><br>---</p>`;
     response.forEach((line) => {
         html += `
             <` + line.html_tag + `>`
