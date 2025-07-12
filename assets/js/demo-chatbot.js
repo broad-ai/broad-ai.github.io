@@ -112,30 +112,20 @@ const goChatbot = (file) => {
 }; // goChatbot
 
 // ------ ..... ------ ..... ------ ..... ------ 
-const processFileContents = (knowledge, avgWordCountPerLine) => {
-    const MAX_TOKENS_LLM = (1024 * 128);
-    // -- gpt-4o : 128K input tokens & 16K output tokens
-    // -- assumption: 1 word = 1 token
-    let packageSize = Math.round(MAX_TOKENS_LLM / (avgWordCountPerLine * avgWordCountPerLine));
-
-    let currentPosition = -1;
+const processFileContents = (chunks) => {
+    let i = -1;
     let fileProcessing = false;
-
     let fileProcessingIntvl = setInterval(() => {
         if (!fileProcessing) {
-            currentPosition++;
+            i++;
             fileProcessing = true;
-            if (currentPosition < knowledge.length) {
-                let chunk = "";
-                chunk = knowledge.slice(currentPosition, currentPosition + packageSize).join(' ');
-                currentPosition = currentPosition + packageSize;
-                // prepare chat
-                document.getElementById('chatbox').value = `>>>
-  `+ chunk + `
+            if (i < chunks.length) {
+                document.getElementById('chatbox').value = `
+>>>
+`+ chunk + `
 <<<
 Using contents provided within '>>>' and '<<<' symbols, generate a script for my podcast show where I explain the content in educational mode. Make it entertaining, conversational, and informational. Give due credit to the authors of the content, if available, or else refer to them and their work in third-person.
-    `;
-                sessionStorage.clear('conversation');
+`;
                 goChatbot(true);
                 let disabledChatboxIntvl = setInterval(() => {
                     if (document.getElementById('chatbox').disabled == false) {
@@ -149,8 +139,4 @@ Using contents provided within '>>>' and '<<<' symbols, generate a script for my
             }
         }
     }, 100);
-} // processFileContents
-
-document.addEventListener('response-ready', (evt) => {
-    console.log(evt);
-});
+}; // processFileContents
