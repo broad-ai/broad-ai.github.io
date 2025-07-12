@@ -128,7 +128,10 @@ const processFileContents = (chunks) => {
 
 # Task
 Generate a script for my podcast using provided content where I explain it in educational, entertaining, and conversational mode. Give due credit to the authors of the content, if available, or else refer to them and their work in third-person.
-Notice the part number of the content and depending on whether it is first and/or last, create an intro and outro section at the begining and end. 
+Notice the part number of the content and:
+- if it is the first part, prepare an intro.
+- if it is the last part, prepare and outro.
+- for all interim parts, maintain a tone of continuity even if you might not have visibility to previous parts.
 `;
                 goChatbot(true);
                 let disabledChatboxIntvl = setInterval(() => {

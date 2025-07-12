@@ -175,7 +175,7 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
     * ------------------------------* */
     // -- STATUS
     if (payload.status) {
-        DOMStatus.innerHTML = renderStatus(payload.status);
+        DOMStatus.innerHTML += renderStatus(payload.status);
         DOMResponse.innerHTML += `<br class='mt-2'><em class='text-muted' style='font-size:1.2em;font-weight:300;'>` + payload.status + `</em>`;
     }
 
@@ -183,15 +183,15 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
 
         // -- AGENTS
         if (payload.result.agents)
-            DOMAgents.innerHTML = renderAgents(payload.result.agents);
+            DOMAgents.innerHTML += renderAgents(payload.result.agents);
 
         // -- PLAN
         if (payload.result.plan)
-            DOMPlan.innerHTML = renderPlan(payload.result.plan);
+            DOMPlan.innerHTML += renderPlan(payload.result.plan);
 
         // -- RESPONSE
         if (payload.result.question && payload.result.response) {
-            DOMResponse.innerHTML = renderResponse(payload.result.question, payload.result.response);
+            DOMResponse.innerHTML += renderResponse(payload.result.question, payload.result.response);
             if (payload.result.conversation) {
                 sessionStorage.setItem('conversation', JSON.stringify(payload.result.conversation));
                 DOMResponse.innerHTML += renderConversation(payload.result.conversation);
