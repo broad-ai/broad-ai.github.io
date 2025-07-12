@@ -176,7 +176,7 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
     * ------------------------------* */
     // -- STATUS
     if (payload.status) {
-        DOMStatus.innerHTML += renderStatus(payload.status);
+        DOMStatus.innerHTML = renderStatus(payload.status);
         // DOMResponse.innerHTML += `<br class='mt-2'><em class='text-muted' style='font-size:1.2em;font-weight:300;'>` + payload.status + `</em>`;
     }
 
