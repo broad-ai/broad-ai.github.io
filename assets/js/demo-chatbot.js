@@ -121,10 +121,14 @@ const processFileContents = (chunks) => {
             fileProcessing = true;
             if (i < chunks.length) {
                 document.getElementById('chatbox').value = `
->>>
-`+ chunk + `
-<<<
-Using contents provided within '>>>' and '<<<' symbols, generate a script for my podcast show where I explain the content in educational mode. Make it entertaining, conversational, and informational. Give due credit to the authors of the content, if available, or else refer to them and their work in third-person.
+# Content (Part number ` + (i + 1) + ` of ` + chunks.length + `)
+---
+`+ chunks[i] + `
+---
+
+# Task
+Generate a script for my podcast using provided content where I explain it in educational, entertaining, and conversational mode. Give due credit to the authors of the content, if available, or else refer to them and their work in third-person.
+Notice the part number of the content and depending on whether it is first and/or last, create an intro and outro section at the begining and end. 
 `;
                 goChatbot(true);
                 let disabledChatboxIntvl = setInterval(() => {
