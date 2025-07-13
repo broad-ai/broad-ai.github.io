@@ -170,7 +170,20 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
                 body: JSON.stringify({
                     "text": response.speak
                 })
-            }).then((resp) => resp.json()).then((data) => {
+            }).then((resp) => {
+                // Optional: Log the raw Response object if you want to inspect headers, status, etc.
+                console.log("Raw Response object:", resp);
+
+                // Check if the response was successful (e.g., status 200-299)
+                if (!resp.ok) {
+                    // You might want to parse error messages here
+                    return resp.json().then(errorData => {
+                        throw new Error(`API error! Status: ${resp.status}, Message: ${errorData.message || JSON.stringify(errorData)}`);
+                    });
+                }
+                // Parse the response body as JSON
+                return resp.json();
+            }).then((data) => {
                 console.log(data);
                 const speakButton = document.getElementById(speakid);
                 if (speakButton) { // Always good to check if the element exists before trying to manipulate it
