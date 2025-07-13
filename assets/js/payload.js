@@ -187,8 +187,8 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
 
         // -- RESPONSE
         if (payload.result.question && payload.result.response) {
-            let response = renderResponse(payload.result.question, payload.result.response);
-            DOMResponse.innerHTML += response;
+            let currentResponse = renderResponse(payload.result.question, payload.result.response);
+            DOMResponse.innerHTML += currentResponse;
             if (payload.result.conversation) {
                 sessionStorage.setItem('conversation', JSON.stringify(payload.result.conversation));
                 DOMResponse.innerHTML += renderConversation(payload.result.conversation);
@@ -196,8 +196,9 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
             // -- trigger for speaking the output
             document.getElementById('speak').disabled = false;
             document.getElementById('speak').addEventListener('click', () => {
+                console.log(response);
                 document.getElementById('speak').disabled = true;
-                puter.ai.txt2speech(response.replace(/<[^>]*>/g, ''), {
+                puter.ai.txt2speech(currentResponse.replace(/<[^>]*>/g, ''), {
                     language: 'en-US',
                     engine: 'generative'
                 }).then((audio) => {
