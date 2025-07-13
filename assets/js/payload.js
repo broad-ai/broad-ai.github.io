@@ -162,33 +162,34 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
             let response = renderResponse(payload.result.response, speakid);
             DOMResponse.innerHTML += response.html;
             // -- trigger for speaking the output
-            // fetch(broadAIDemoapiEndpoint + '/speak', {
-            //     method: "POST",
-            //     headers: {
-            //         "Content-Type": "application/json"
-            //     },
-            //     body: JSON.stringify({
-            //         "text": response.speak
-            //     })
-            // }).then((resp) => {
-            const speakButton = document.getElementById(speakid);
-            if (speakButton) { // Always good to check if the element exists before trying to manipulate it
-                speakButton.disabled = false;
-                speakButton.addEventListener('click', () => {
-                    speakButton.disabled = true;
-                    // let audio = new Audio(resp.speech);
-                    // audio.play()
-                    //     .then(() => console.log("Speaking..."))
-                    //     .catch((e) => console.log(e));
-                    puter.ai.txt2speech(response.speak).then((audio) => {
-                        audio.play();
-                        speakButton.disabled = false;
-                    });
-                }); // addEventListener
-            }
-            else
-                console.log("No speech button");
-            // });
+            fetch(broadAIDemoapiEndpoint + '/speak', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    "text": response.speak
+                })
+            }).then((resp) => {
+                console.log(resp);
+                const speakButton = document.getElementById(speakid);
+                if (speakButton) { // Always good to check if the element exists before trying to manipulate it
+                    speakButton.disabled = false;
+                    speakButton.addEventListener('click', () => {
+                        speakButton.disabled = true;
+                        // let audio = new Audio(resp.speech);
+                        // audio.play()
+                        //     .then(() => console.log("Speaking..."))
+                        //     .catch((e) => console.log(e));
+                        puter.ai.txt2speech(response.speak).then((audio) => {
+                            audio.play();
+                            speakButton.disabled = false;
+                        });
+                    }); // addEventListener
+                }
+                else
+                    console.log("No speech button");
+            }).catch((e) => console.log(e));
         }
 
         // -- CATCH ALL
