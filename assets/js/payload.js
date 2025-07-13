@@ -95,6 +95,7 @@ const renderResponse = (question, response) => {
             voice: 'Joanna'
         }).then((audio) => {
             audio.play();
+            document.getElementById('speak').disabled = false;
         });
     }); // addEventListener
     return html;
