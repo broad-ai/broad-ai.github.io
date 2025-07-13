@@ -75,12 +75,11 @@ const renderAgents = (agents) => {
     return JSON.stringify(agents, null, 3);
 }; // renderAgents
 
-const renderResponse = (response) => {
-    let speechid = "speak-" + new Date().getTime();
+const renderResponse = (response, speakid) => {
     let speechResponse = ``;
     let html = `
         <div style="text-align:right;">
-            <button type="button" id="`+ speechid + `" class="btn btn-primary align-items-center mb-3">
+            <button type="button" id="`+ speakid + `" class="btn btn-primary align-items-center mb-3">
                 <img src="/assets/images/speaker-xxl.png" style="width:20px; height:20px;" alt="Speak"> &nbsp;Listen
             </button>
         </div>
@@ -92,21 +91,7 @@ const renderResponse = (response) => {
             `</` + line.html_tag + `>`;
         speechResponse += line.text;
     });
-    // -- trigger for speaking the output
-    const speakButton = document.getElementById(speechid);
-    if (speakButton) { // Always good to check if the element exists before trying to manipulate it
-        speakButton.disabled = false;
-        speakButton.addEventListener('click', () => {
-            speakButton.disabled = true;
-            puter.ai.txt2speech(speechResponse, {
-                engine: 'generative'
-            }).then((audio) => {
-                audio.play();
-                speakButton.disabled = false;
-            });
-        }); // addEventListener
-    }
-    return html;
+    return { html: html, speak: speechResponse };
 }; // renderResponse
 
 const renderConversation = (conversation) => {
@@ -172,8 +157,27 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
 
         // -- RESPONSE
         if (payload.result.question && payload.result.response) {
-            let currentResponse = renderResponse(payload.result.response);
-            DOMResponse.innerHTML += currentResponse;
+            let speakid = "speak-" + new Date().getTime();
+            let response = renderResponse(payload.result.response, speakid);
+            DOMResponse.innerHTML += response.html;
+            // -- trigger for speaking the output
+            const speakButton = document.getElementById(speakid);
+            if (speakButton) { // Always good to check if the element exists before trying to manipulate it
+                speakButton.disabled = false;
+                speakButton.addEventListener('click', () => {
+                    console.log("Getting ready to speak ...");
+                    speakButton.disabled = true;
+                    puter.ai.txt2speech(response.speak, {
+                        engine: 'generative'
+                    }).then((audio) => {
+                        audio.play();
+                        console.log("Speaking ...");
+                        speakButton.disabled = false;
+                    });
+                }); // addEventListener
+            }
+            else
+                console.log("No speech button");
         }
 
         // -- CATCH ALL
