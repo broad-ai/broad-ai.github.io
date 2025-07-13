@@ -190,15 +190,10 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
             let currentResponse = renderResponse(payload.result.question, payload.result.response);
             DOMResponse.innerHTML += currentResponse;
             // -- trigger for speaking the output
-            document.getElementById('speak').disabled = false;
             document.getElementById('speak').addEventListener('click', () => {
-                alert(response);
-                document.getElementById('speak').disabled = true;
                 puter.ai.txt2speech(currentResponse.replace(/<[^>]*>/g, ''), {
-                    language: 'en-US',
-                }).then((audio) => {
-                    audio.play();
-                });
+                    language: 'en-US'
+                }).then((audio) => audio.play());
             }); // addEventListener
         }
 
