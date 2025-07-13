@@ -89,7 +89,8 @@ const renderResponse = (response, speakid) => {
             <` + line.html_tag + `>`
             + line.text +
             `</` + line.html_tag + `>`;
-        speechResponse += line.text;
+        if (line.text.indexOf('References:') == -1 || line.text.indexOf('Disclaimer:') == -1)
+            speechResponse += line.text;
     });
     return { html: html, speak: speechResponse };
 }; // renderResponse
