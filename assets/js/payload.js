@@ -121,6 +121,11 @@ const renderResponse = (question, response) => {
             + line.text +
             `</` + line.html_tag + `>`;
     });
+    html += `
+        <button style="background-color: #3b82f6;color: #fff;" id="speak">
+            <img src="/assets/images/noun-speaking-72422.png" alt="Speak">
+        </button>
+    `;
     return html;
 }; // renderResponse
 
