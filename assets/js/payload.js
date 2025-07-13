@@ -73,44 +73,6 @@ const renderPlan = (plan) => {
 
 const renderAgents = (agents) => {
     return JSON.stringify(agents, null, 3);
-    // let html = `
-    // <h3 style='margin-top:auto;margin-bottom:auto;'>
-    //   Available Agents:
-    // </h3>
-    // <div class='row'>`;
-    // agents.forEach((agent) => {
-    //     html += `
-    //     <div class='col-12 col-sm-6 col-md-4 col-lg-3'>
-    //         <table class='table table-responsive mt-1'>
-    //             <thead>
-    //                 <tr>
-    //                     <th><strong>Agent:</strong> <span class='text-info'>` + agent.agent + `</span></th>
-    //                 </tr>
-    //                 <tr>
-    //                     <td><span class='text-muted'>` + agent.capability + `</span></td>
-    //                 </tr>
-    //             </thead>
-    //             <tbody>
-    //                 <tr>
-    //                     <td class='text-muted'>
-    //                         <ol>`;
-    //     agent.skills.forEach((skill) => {
-    //         html += `
-    //                             <li class='mb-1'><strong>`+ skill.skill + `</strong>: <span class='text-mute'>` + skill.objective + `</span></li>
-    //                     `;
-    //     });
-    //     html += `
-    //                         </ol>
-    //                     </td>
-    //                 </tr>
-    //             </tbody>
-    //         </table>
-    //     </div>
-    //   `;
-    // });
-    // html += `
-    // </div>`;
-    // return html;
 }; // renderAgents
 
 const renderResponse = (question, response) => {
@@ -121,6 +83,14 @@ const renderResponse = (question, response) => {
             + line.text +
             `</` + line.html_tag + `>`;
     });
+    // -- trigger for speaking the output
+    document.getElementById('speak').addEventListener('click', () => {
+        puter.ai.txt2speech(response.replace(/<[^>]*>/g, ''), {
+            language: 'en-US',
+            engine: 'standard',
+            voice: 'Danielle'
+        }).then((audio) => audio.play());
+    }); // addEventListener
     return html;
 }; // renderResponse
 
@@ -189,12 +159,6 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
         if (payload.result.question && payload.result.response) {
             let currentResponse = renderResponse(payload.result.question, payload.result.response);
             DOMResponse.innerHTML += currentResponse;
-            // -- trigger for speaking the output
-            document.getElementById('speak').addEventListener('click', () => {
-                puter.ai.txt2speech(currentResponse.replace(/<[^>]*>/g, ''), {
-                    language: 'en-US'
-                }).then((audio) => audio.play());
-            }); // addEventListener
         }
 
         // -- CATCH ALL
