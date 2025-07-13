@@ -8,9 +8,11 @@ const goChatbot = (file) => {
     let payload = {};
     document.getElementById('btnAsk').disabled = true;
     document.getElementById('chatbox').disabled = true;
+    let conversation = [];
+    try { conversation = JSON.parse(sessionStorage.getItem('conversation')); }
+    catch { sessionStorage.clear('conversation'); }
     if (file) {
         // -- engage BroadAI
-        let conversation = [];
         fetch(broadAIDemoapiEndpoint + '/analyzefile', {
             method: "POST",
             headers: {
@@ -60,9 +62,6 @@ const goChatbot = (file) => {
         DOMPlan.innerHTML = "";
         DOMAgents.innerHTML = "";
         // -- engage BroadAI
-        let conversation = [];
-        try { conversation = JSON.parse(sessionStorage.getItem('conversation')); }
-        catch { sessionStorage.clear('conversation'); }
         fetch(broadAIDemoapiEndpoint + '/go', {
             method: "POST",
             headers: {
@@ -119,17 +118,29 @@ const processFileContents = (chunks) => {
             fileProcessing = true;
             if (i < chunks.length) {
                 document.getElementById('chatbox').value = `
-# Content (Part number ` + (i + 1) + ` of ` + chunks.length + `)
+# Content
 ---
+## Part ` + (i + 1) + ` of ` + chunks.length + `
 `+ chunks[i] + `
 ---
 
-# Task
-Generate a script for my podcast using provided content where I explain it in educational, entertaining, and conversational mode. Give due credit to the authors of the content, if available, or else refer to them and their work in third-person.
-Notice the part number of the content and:
-- if it is the first part, prepare an intro.
-- if it is the last part, prepare and outro.
-- for all interim parts, maintain a tone of continuity even if you might not have visibility to previous parts.
+# Core Directives:
+1.  Audience-Centric: Write for an audio-only format. Focus on clarity, conciseness, and conversational flow.
+2.  Educational & Engaging: Maintain an informative yet captivating tone. Explain technical terms simply.
+3.  Credit & Attribution: If author details are provided, credit them by name. Otherwise, use third-person references (e.g., "researchers suggest," "studies indicate").
+4.  No Redundancy: Synthesize information; do not repeat content unnecessarily across segments.
+5.  Active Voice: Prioritize active voice for dynamic delivery.
+
+# Content Structure Directives (based on part number and total parts):
+- First Chunk:
+    * Intro: Craft a compelling intro that hooks the listener, briefly introduces the topic, and sets the episode's stage.
+    * No Outro unless this is the only part
+- Interim parts:
+    * Continuity: Seamlessly transition from the previous segment, maintaining a consistent flow and building on the established topic.
+    * No Intro/Outro
+- Last part:
+    * Continuity: Maintain flow from previous segments, if any.
+    * Outro: Develop a strong outro that summarizes key takeaways, reinforces the main message, and provides a clear conclusion. You may suggest further engagement (e.g., "learn more at our website").
 `;
                 goChatbot(true);
                 let disabledChatboxIntvl = setInterval(() => {
