@@ -7,7 +7,6 @@ const goConcierge = () => {
     let DOMAgents = document.getElementById('agents');
     // -- pre-processing DOM adjustments
     DOMResponse.style.paddingBottom = "3em";
-    DOMResponse.innerHTML = `<img class='m-2 float-end' src='/assets/images/load-35_128.gif' style='width:3em; height:3em;'>`;
     let payload = {};
     document.getElementById('btnGoConcierge').disabled = true;
     document.getElementById('origin').disabled = true;
@@ -17,6 +16,10 @@ const goConcierge = () => {
     let conversation = [];
     try { conversation = JSON.parse(sessionStorage.getItem('conversation')); }
     catch { sessionStorage.clear('conversation'); }
+    DOMStatus.innerHTML = "";
+    DOMPlan.innerHTML = "";
+    DOMAgents.innerHTML = "";
+    DOMResponse.innerHTML = "";
     fetch(broadAIDemoapiEndpoint + '/plan', {
         method: "POST",
         headers: {
