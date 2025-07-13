@@ -76,16 +76,18 @@ const renderAgents = (agents) => {
 }; // renderAgents
 
 const renderResponse = (question, response) => {
+    let speechResponse = ``;
     let html = ``;
     response.forEach((line) => {
         html += `
             <` + line.html_tag + `>`
             + line.text +
             `</` + line.html_tag + `>`;
+        speechResponse += line.text;
     });
     // -- trigger for speaking the output
     document.getElementById('speak').addEventListener('click', () => {
-        puter.ai.txt2speech(response.replace(/<[^>]*>/g, ''), {
+        puter.ai.txt2speech(speechResponse, {
             language: 'en-US',
             engine: 'standard',
             voice: 'Danielle'
