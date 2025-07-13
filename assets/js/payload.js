@@ -92,7 +92,7 @@ const renderResponse = (question, response) => {
         puter.ai.txt2speech(speechResponse, {
             language: 'en-US',
             engine: 'generative',
-            voice: 'Joanna'
+            voice: 'Ruth'
         }).then((audio) => {
             audio.play();
             document.getElementById('speak').disabled = false;
