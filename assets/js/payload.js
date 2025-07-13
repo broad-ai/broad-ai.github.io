@@ -89,8 +89,8 @@ const renderResponse = (question, response) => {
     document.getElementById('speak').addEventListener('click', () => {
         puter.ai.txt2speech(speechResponse, {
             language: 'en-US',
-            engine: 'standard',
-            voice: 'Joanna'
+            engine: 'generative',
+            voice: 'Danielle'
         }).then((audio) => audio.play());
     }); // addEventListener
     return html;
