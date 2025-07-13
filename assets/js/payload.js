@@ -189,7 +189,7 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
                 }
                 else
                     console.log("No speech button");
-            }).catch((e) => console.log(e));
+            });
         }
 
         // -- CATCH ALL
