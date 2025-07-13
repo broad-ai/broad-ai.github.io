@@ -6,8 +6,11 @@ const goMovies = () => {
     let DOMAgents = document.getElementById('agents');
     // -- pre-processing DOM adjustments
     DOMResponse.style.paddingBottom = "3em";
-    DOMResponse.innerHTML = `<img class='m-2 float-end' src='/assets/images/load-35_128.gif' style='width:3em; height:3em;'>`;
     let payload = {};
+    DOMStatus.innerHTML = "";
+    DOMPlan.innerHTML = "";
+    DOMAgents.innerHTML = "";
+    DOMResponse.innerHTML = "";
     // -- get location data for weather and news
     fetch("https://ipinfo.io/json").then((resp) => resp.json()).then((geo) => {
         // -- engage BroadAI
