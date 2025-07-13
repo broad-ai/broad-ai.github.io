@@ -87,11 +87,15 @@ const renderResponse = (question, response) => {
     });
     // -- trigger for speaking the output
     document.getElementById('speak').addEventListener('click', () => {
+        document.getElementById('speak').disabled = true;
         puter.ai.txt2speech(speechResponse, {
             language: 'en-US',
             engine: 'generative',
             voice: 'Danielle'
-        }).then((audio) => audio.play());
+        }).then((audio) => {
+            audio.play();
+            document.getElementById('speak').disabled = false;
+        });
     }); // addEventListener
     return html;
 }; // renderResponse
