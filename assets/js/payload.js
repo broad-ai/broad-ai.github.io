@@ -170,14 +170,14 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
                 body: JSON.stringify({
                     "text": response.speak
                 })
-            }).then((resp) => {
-                console.log(resp);
+            }).then((resp) => resp.json()).then((data) => {
+                console.log(data);
                 const speakButton = document.getElementById(speakid);
                 if (speakButton) { // Always good to check if the element exists before trying to manipulate it
                     speakButton.disabled = false;
                     speakButton.addEventListener('click', () => {
                         speakButton.disabled = true;
-                        // let audio = new Audio(resp.speech);
+                        // let audio = new Audio(data.speech);
                         // audio.play()
                         //     .then(() => console.log("Speaking..."))
                         //     .catch((e) => console.log(e));
