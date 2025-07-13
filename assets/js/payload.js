@@ -76,8 +76,14 @@ const renderAgents = (agents) => {
 }; // renderAgents
 
 const renderResponse = (question, response) => {
+    let speechid = "speak-" + new Date().getTime();
     let speechResponse = ``;
-    let html = ``;
+    let html = `
+        <div style="text-align:right;">
+            <button type="button" id="`+ speechid + `" class="btn btn-primary align-items-center mb-3" disabled>
+                <img src="/assets/images/speaker-xxl.png" style="width:20px; height:20px;" alt="Speak"> &nbsp;Listen
+            </button>
+        </div>`;
     response.forEach((line) => {
         html += `
             <` + line.html_tag + `>`
@@ -86,14 +92,14 @@ const renderResponse = (question, response) => {
         speechResponse += line.text;
     });
     // -- trigger for speaking the output
-    document.getElementById('speak').disabled = false;
-    document.getElementById('speak').addEventListener('click', () => {
-        document.getElementById('speak').disabled = true;
+    document.getElementById(speechid).disabled = false;
+    document.getElementById(speechid).addEventListener('click', () => {
+        document.getElementById(speechid).disabled = true;
         puter.ai.txt2speech(speechResponse, {
             engine: 'generative'
         }).then((audio) => {
             audio.play();
-            document.getElementById('speak').disabled = false;
+            document.getElementById(speechid).disabled = false;
         });
     }); // addEventListener
     return html;
