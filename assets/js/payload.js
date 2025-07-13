@@ -90,7 +90,7 @@ const renderResponse = (question, response) => {
         puter.ai.txt2speech(speechResponse, {
             language: 'en-US',
             engine: 'standard',
-            voice: 'Danielle'
+            voice: 'Joanna'
         }).then((audio) => audio.play());
     }); // addEventListener
     return html;
