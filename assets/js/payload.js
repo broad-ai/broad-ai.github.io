@@ -86,6 +86,7 @@ const renderResponse = (question, response) => {
         speechResponse += line.text;
     });
     // -- trigger for speaking the output
+    document.getElementById('speak').disabled = false;
     document.getElementById('speak').addEventListener('click', () => {
         document.getElementById('speak').disabled = true;
         puter.ai.txt2speech(speechResponse, {
@@ -94,7 +95,6 @@ const renderResponse = (question, response) => {
             voice: 'Joanna'
         }).then((audio) => {
             audio.play();
-            document.getElementById('speak').disabled = false;
         });
     }); // addEventListener
     return html;
