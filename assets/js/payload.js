@@ -89,8 +89,8 @@ const renderResponse = (response, speakid) => {
             <` + line.html_tag + `>`
             + line.text +
             `</` + line.html_tag + `>`;
-        if (line.text.indexOf('References:') == -1 || line.text.indexOf('Disclaimer:') == -1)
-            speechResponse += line.text;
+        if (line.text.indexOf('References') == -1 || line.text.indexOf('Disclaimer') == -1)
+            speechResponse += (JSON.stringify(line.text) + " ");
     });
     return { html: html, speak: speechResponse };
 }; // renderResponse
@@ -168,7 +168,7 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    "text": JSON.stringify(response.speak)
+                    "text": response.speak
                 })
             }).then((resp) => {
                 console.log(resp);
