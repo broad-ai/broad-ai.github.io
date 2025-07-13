@@ -51,6 +51,18 @@ const goChatbot = (file) => {
                         document.getElementById('btnAsk').disabled = false;
                         document.getElementById('chatbox').disabled = false;
                         document.getElementById('chatbox').value = "";
+                        // -- trigger for speaking the output
+                        document.getElementById('speak').disabled = false;
+                        document.getElementById('speak').addEventListener('click', () => {
+                            console.log(response);
+                            document.getElementById('speak').disabled = true;
+                            puter.ai.txt2speech(currentResponse.replace(/<[^>]*>/g, ''), {
+                                language: 'en-US',
+                                engine: 'generative'
+                            }).then((audio) => {
+                                audio.play();
+                            });
+                        }); // addEventListener
                     }
                 });
             }; // processSteam
@@ -100,6 +112,18 @@ const goChatbot = (file) => {
                         document.getElementById('btnAsk').disabled = false;
                         document.getElementById('chatbox').disabled = false;
                         document.getElementById('chatbox').value = "";
+                        // -- trigger for speaking the output
+                        document.getElementById('speak').disabled = false;
+                        document.getElementById('speak').addEventListener('click', () => {
+                            console.log(response);
+                            document.getElementById('speak').disabled = true;
+                            puter.ai.txt2speech(currentResponse.replace(/<[^>]*>/g, ''), {
+                                language: 'en-US',
+                                engine: 'generative'
+                            }).then((audio) => {
+                                audio.play();
+                            });
+                        }); // addEventListener
                     }
                 });
             }; // processSteam
