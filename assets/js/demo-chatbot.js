@@ -132,13 +132,13 @@ const processFileContents = (chunks) => {
 5.  Active Voice: Prioritize active voice for dynamic delivery.
 
 # Content Structure Directives (based on part number and total parts):
-- First Chunk:
+- First Part:
     * Intro: Craft a compelling intro that hooks the listener, briefly introduces the topic, and sets the episode's stage.
     * No Outro unless this is the only part
-- Interim parts:
+- Interim Parts:
     * Continuity: Seamlessly transition from the previous segment, maintaining a consistent flow and building on the established topic.
     * No Intro/Outro
-- Last part:
+- Last Part:
     * Continuity: Maintain flow from previous segments, if any.
     * Outro: Develop a strong outro that summarizes key takeaways, reinforces the main message, and provides a clear conclusion. You may suggest further engagement (e.g., "learn more at our website").
 `;
