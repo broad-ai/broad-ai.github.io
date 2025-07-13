@@ -146,10 +146,9 @@ const processFileContents = (chunks) => {
                 let disabledChatboxIntvl = setInterval(() => {
                     if (document.getElementById('chatbox').disabled == false) {
                         clearInterval(disabledChatboxIntvl);
-                        puter.ai.txt2speech(document.getElementById('response').innerHTML)
-                            .then((audio) => {
-                                audio.play();
-                            });
+                        puter.ai.txt2speech(`Hello world! Puter is pretty amazing, don't you agree?`).then((audio) => {
+                            audio.play();
+                        });
                         fileProcessing = false;
                     }
                 }, 100);
