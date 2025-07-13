@@ -90,9 +90,7 @@ const renderResponse = (question, response) => {
     document.getElementById('speak').addEventListener('click', () => {
         document.getElementById('speak').disabled = true;
         puter.ai.txt2speech(speechResponse, {
-            language: 'en-US',
-            engine: 'generative',
-            voice: 'Ruth'
+            engine: 'generative'
         }).then((audio) => {
             audio.play();
             document.getElementById('speak').disabled = false;
