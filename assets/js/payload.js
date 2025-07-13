@@ -166,11 +166,9 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
             if (speakButton) { // Always good to check if the element exists before trying to manipulate it
                 speakButton.disabled = false;
                 speakButton.addEventListener('click', () => {
-                    console.log("Getting ready to speak ...");
                     speakButton.disabled = true;
                     puter.ai.txt2speech(response.speak).then((audio) => {
                         audio.play();
-                        console.log("Speaking ...");
                         speakButton.disabled = false;
                     });
                 }); // addEventListener
