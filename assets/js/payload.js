@@ -168,9 +168,7 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
                 speakButton.addEventListener('click', () => {
                     console.log("Getting ready to speak ...");
                     speakButton.disabled = true;
-                    puter.ai.txt2speech(response.speak, {
-                        engine: 'generative'
-                    }).then((audio) => {
+                    puter.ai.txt2speech(response.speak).then((audio) => {
                         audio.play();
                         console.log("Speaking ...");
                         speakButton.disabled = false;
