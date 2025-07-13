@@ -122,9 +122,9 @@ const renderResponse = (question, response) => {
             `</` + line.html_tag + `>`;
     });
     html += `
-        <button style="background-color: #3498db;color: #fff;padding: 12px 24px;border: none;border-radius: 50%;text-align: center;text-decoration: none;" id="speak">
-            <img src="/assets/images/noun-speaking-72422.png" style="width: 20px;height: 20px;vertical-align: middle;" alt="Speak">
-        </button>
+    <button type="button" class="btn btn-primary d-inline-flex align-items-center">
+      <img src="/assets/images/noun-speaking-72422.png" alt="Speak"> Speak
+    </button>
     `;
     return html;
 }; // renderResponse

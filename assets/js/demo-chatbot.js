@@ -52,7 +52,9 @@ const goChatbot = (file) => {
                         document.getElementById('chatbox').disabled = false;
                         document.getElementById('chatbox').value = "";
                         // -- trigger for speaking the output
+                        document.getElementById('speak').setAttribute('disabled', 'false');
                         document.getElementById('speak').addEventListener('click', () => {
+                            document.getElementById('speak').setAttribute('disabled', 'true');
                             puter.ai.txt2speech(document.getElementById('response').innerHTML.replace(/<[^>]*>/g, ''), {
                                 language: 'en-US',
                                 engine: 'generative'
