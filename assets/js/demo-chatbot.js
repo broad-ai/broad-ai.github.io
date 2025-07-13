@@ -47,6 +47,10 @@ const goChatbot = (file) => {
                         processSteam(streamReader);
                     }
                     else {
+                        // -- add speak button
+                        let speakButton = document.createElement('button');
+                        speakButton.textContent = "Speak";
+                        DOMResponse.appendChild(speakButton);
                         // -- post-processing DOM adjustments
                         document.getElementById('btnAsk').disabled = false;
                         document.getElementById('chatbox').disabled = false;
@@ -146,11 +150,13 @@ const processFileContents = (chunks) => {
                 let disabledChatboxIntvl = setInterval(() => {
                     if (document.getElementById('chatbox').disabled == false) {
                         clearInterval(disabledChatboxIntvl);
-                        puter.ai.txt2speech(`Hello world! Puter is pretty amazing, don't you agree?`, {
-                            language: 'en-US',
-                            engine: 'generative'
-                        }).then((audio) => {
-                            audio.play();
+                        document.getElementById('speak').addEventListener('click', () => {
+                            puter.ai.txt2speech(document.getElementById('response').innerHTML.replace(/<[^>]*>/g, ''), {
+                                language: 'en-US',
+                                engine: 'generative'
+                            }).then((audio) => {
+                                audio.play();
+                            });
                         });
                         fileProcessing = false;
                     }
