@@ -80,7 +80,7 @@ const renderResponse = (response) => {
     let speechResponse = ``;
     let html = `
         <div style="text-align:right;">
-            <button type="button" id="`+ speechid + `" class="btn btn-primary align-items-center mb-3" disabled>
+            <button type="button" id="`+ speechid + `" class="btn btn-primary align-items-center mb-3">
                 <img src="/assets/images/speaker-xxl.png" style="width:20px; height:20px;" alt="Speak"> &nbsp;Listen
             </button>
         </div>
