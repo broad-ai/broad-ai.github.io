@@ -90,7 +90,7 @@ const renderResponse = (response, speakid) => {
             + line.text +
             `</` + line.html_tag + `>`;
         if (line.text.indexOf('References') == -1 || line.text.indexOf('Disclaimer') == -1)
-            speechResponse += line.text;
+            speechResponse += (line.text + " ");
     });
     return { html: html, speak: speechResponse };
 }; // renderResponse
@@ -162,47 +162,19 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
             let response = renderResponse(payload.result.response, speakid);
             DOMResponse.innerHTML += response.html;
             // -- trigger for speaking the output
-            fetch(broadAIDemoapiEndpoint + '/speak', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    "text": response.speak
-                })
-            }).then((resp) => {
-                // Optional: Log the raw Response object if you want to inspect headers, status, etc.
-                console.log("Raw Response object:", resp);
-
-                // Check if the response was successful (e.g., status 200-299)
-                if (!resp.ok) {
-                    // You might want to parse error messages here
-                    return resp.json().then(errorData => {
-                        throw new Error(`API error! Status: ${resp.status}, Message: ${errorData.message || JSON.stringify(errorData)}`);
+            const speakButton = document.getElementById(speakid);
+            if (speakButton) { // Always good to check if the element exists before trying to manipulate it
+                speakButton.disabled = false;
+                speakButton.addEventListener('click', () => {
+                    speakButton.disabled = true;
+                    puter.ai.txt2speech(response.speak).then((audio) => {
+                        audio.play();
+                        speakButton.disabled = false;
                     });
-                }
-                // Parse the response body as JSON
-                return resp.json();
-            }).then((data) => {
-                console.log(data);
-                const speakButton = document.getElementById(speakid);
-                if (speakButton) { // Always good to check if the element exists before trying to manipulate it
-                    speakButton.disabled = false;
-                    speakButton.addEventListener('click', () => {
-                        speakButton.disabled = true;
-                        // let audio = new Audio(data.speech);
-                        // audio.play()
-                        //     .then(() => console.log("Speaking..."))
-                        //     .catch((e) => console.log(e));
-                        puter.ai.txt2speech(response.speak).then((audio) => {
-                            audio.play();
-                            speakButton.disabled = false;
-                        });
-                    }); // addEventListener
-                }
-                else
-                    console.log("No speech button");
-            });
+                }); // addEventListener
+            }
+            else
+                console.log("No speech button");
         }
 
         // -- CATCH ALL
