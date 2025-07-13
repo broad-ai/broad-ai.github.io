@@ -121,11 +121,6 @@ const renderResponse = (question, response) => {
             + line.text +
             `</` + line.html_tag + `>`;
     });
-    html += `
-    <button type="button" class="btn btn-primary d-inline-flex align-items-center">
-      <img src="/assets/images/noun-speaking-72422.png" alt="Speak"> Speak
-    </button>
-    `;
     return html;
 }; // renderResponse
 
@@ -192,11 +187,23 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
 
         // -- RESPONSE
         if (payload.result.question && payload.result.response) {
-            DOMResponse.innerHTML += renderResponse(payload.result.question, payload.result.response);
+            let response = renderResponse(payload.result.question, payload.result.response);
+            DOMResponse.innerHTML += response;
             if (payload.result.conversation) {
                 sessionStorage.setItem('conversation', JSON.stringify(payload.result.conversation));
                 DOMResponse.innerHTML += renderConversation(payload.result.conversation);
             }
+            // -- trigger for speaking the output
+            document.getElementById('speak').disabled = false;
+            document.getElementById('speak').addEventListener('click', () => {
+                document.getElementById('speak').disabled = true;
+                puter.ai.txt2speech(response.replace(/<[^>]*>/g, ''), {
+                    language: 'en-US',
+                    engine: 'generative'
+                }).then((audio) => {
+                    audio.play();
+                });
+            });
         }
 
         // -- CATCH ALL
