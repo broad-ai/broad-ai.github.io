@@ -168,7 +168,7 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    "text": response.speak
+                    "text": JSON.stringify(response.speak)
                 })
             }).then((resp) => {
                 console.log(resp);
