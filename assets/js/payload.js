@@ -91,7 +91,7 @@ const renderResponse = (question, response) => {
         document.getElementById('speak').disabled = true;
         puter.ai.txt2speech(speechResponse, {
             language: 'en-US',
-            engine: 'neural',
+            engine: 'generative',
             voice: 'Joanna'
         }).then((audio) => {
             audio.play();
