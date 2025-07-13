@@ -75,7 +75,7 @@ const renderAgents = (agents) => {
     return JSON.stringify(agents, null, 3);
 }; // renderAgents
 
-const renderResponse = (question, response) => {
+const renderResponse = (response) => {
     let speechid = "speak-" + new Date().getTime();
     let speechResponse = ``;
     let html = `
@@ -93,16 +93,19 @@ const renderResponse = (question, response) => {
         speechResponse += line.text;
     });
     // -- trigger for speaking the output
-    document.getElementById('"' + speechid + '"').disabled = false;
-    document.getElementById('"' + speechid + '"').addEventListener('click', () => {
-        document.getElementById('"' + speechid + '"').disabled = true;
-        puter.ai.txt2speech(speechResponse, {
-            engine: 'generative'
-        }).then((audio) => {
-            audio.play();
-            document.getElementById('"' + speechid + '"').disabled = false;
-        });
-    }); // addEventListener
+    const speakButton = document.getElementById(speechid);
+    if (speakButton) { // Always good to check if the element exists before trying to manipulate it
+        speakButton.disabled = false;
+        speakButton.addEventListener('click', () => {
+            speakButton.disabled = true;
+            puter.ai.txt2speech(speechResponse, {
+                engine: 'generative'
+            }).then((audio) => {
+                audio.play();
+                speakButton.disabled = false;
+            });
+        }); // addEventListener
+    }
     return html;
 }; // renderResponse
 
@@ -169,7 +172,7 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
 
         // -- RESPONSE
         if (payload.result.question && payload.result.response) {
-            let currentResponse = renderResponse(payload.result.question, payload.result.response);
+            let currentResponse = renderResponse(payload.result.response);
             DOMResponse.innerHTML += currentResponse;
         }
 
