@@ -169,7 +169,7 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
                     speakButton.disabled = true;
                     puter.ai.txt2speech(response.speak, {
                         language: 'en-US',
-                        engine: 'generative',
+                        engine: 'neural',
                         voice: 'Ruth'
                     }).then((audio) => {
                         audio.play();
