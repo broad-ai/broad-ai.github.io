@@ -90,7 +90,7 @@ const renderResponse = (response, speakid) => {
             + line.text +
             `</` + line.html_tag + `>`;
         if (line.text.indexOf('References') == -1 || line.text.indexOf('Disclaimer') == -1)
-            speechResponse += (line.text + " ");
+            speechResponse += (line.text + ".\n");
     });
     return { html: html, speak: speechResponse };
 }; // renderResponse
@@ -167,7 +167,11 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
                 speakButton.disabled = false;
                 speakButton.addEventListener('click', () => {
                     speakButton.disabled = true;
-                    puter.ai.txt2speech(response.speak).then((audio) => {
+                    puter.ai.txt2speech(response.speak, {
+                        language: 'en-US',
+                        engine: 'generative',
+                        voice: 'Ruth'
+                    }).then((audio) => {
                         audio.play();
                         speakButton.disabled = false;
                     });
