@@ -76,7 +76,7 @@ const renderAgents = (agents) => {
 }; // renderAgents
 
 const renderResponse = (response, speakid) => {
-    let speechResponse;
+    let speechResponse = ``;
     let html = `
         <div style="text-align:right;">
             <button type="button" id="`+ speakid + `" class="btn btn-primary align-items-center mb-3">
@@ -90,7 +90,7 @@ const renderResponse = (response, speakid) => {
             + line.text +
             `</` + line.html_tag + `>`;
         if (line.text.indexOf('References') == -1 || line.text.indexOf('Disclaimer') == -1)
-            speechResponse += (line.text + ".\n");
+            speechResponse += (line.text + `.\n`);
     });
     return { html: html, speak: speechResponse };
 }; // renderResponse
@@ -170,11 +170,11 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
                     puter.ai.txt2speech(response.speak, {
                         language: 'en-US',
                         engine: 'standard',
-                        voice: 'Kendra'
+                        voice: 'Salli'
                     }).then((audio) => {
                         audio.play();
                         speakButton.disabled = false;
-                    });
+                    }).catch((e) => console.log(e));
                 }); // addEventListener
             }
             else
