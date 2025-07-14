@@ -169,8 +169,8 @@ const processPayload = (payload, DOMResponse, DOMStatus, DOMPlan, DOMAgents) => 
                     speakButton.disabled = true;
                     puter.ai.txt2speech(response.speak, {
                         language: 'en-US',
-                        engine: 'neural',
-                        voice: 'Ruth'
+                        engine: 'standard',
+                        voice: 'Kendra'
                     }).then((audio) => {
                         audio.play();
                         speakButton.disabled = false;
