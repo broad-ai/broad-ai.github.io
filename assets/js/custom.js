@@ -17,14 +17,10 @@ if (codeParam) {
   // If the 'code' parameter exists, attempt to copy its value to the clipboard.
   let copySuccessful = false;
   try {
-      // Create a temporary, hidden textarea element to perform the copy action.
-      const tempInput = document.createElement('textarea');
-      tempInput.value = codeParam;
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      document.execCommand('copy');
-      document.body.removeChild(tempInput);
-      copySuccessful = false;
+    // Use the modern, asynchronous Clipboard API.
+    // This method is more reliable and secure than document.execCommand.
+    await navigator.clipboard.writeText(codeParam);
+    copySuccessful = true;
   } catch (err) {
       console.error('Failed to copy text to clipboard:', err);
   }
@@ -356,6 +352,7 @@ const fetchUsage = () => {
 
 
 })(window.jQuery);
+
 
 
 
