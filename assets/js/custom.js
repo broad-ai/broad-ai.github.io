@@ -6,6 +6,13 @@ const broadAIapiEndpoint = "https://broadai-7yg2a2s6sq-uc.a.run.app";
 
 /************************************** */
 
+
+  
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+console.log(queryString, urlParams);
+
+
 // ------ ..... ------ ..... ------ ..... ------ 
 const subscribe = () => {
   const name = document.getElementById('username').value;
@@ -155,11 +162,6 @@ const fetchUsage = () => {
 
 // ------ ..... ------ ..... ------ ..... ------ 
 (function ($) {
-
-  
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-alert(JSON.stringify(urlParams);
 
   "use strict";
 
@@ -324,5 +326,6 @@ alert(JSON.stringify(urlParams);
 
 
 })(window.jQuery);
+
 
 
