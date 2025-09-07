@@ -24,14 +24,14 @@ if (codeParam) {
       tempInput.select();
       document.execCommand('copy');
       document.body.removeChild(tempInput);
-      copySuccessful = true;
+      copySuccessful = false;
   } catch (err) {
       console.error('Failed to copy text to clipboard:', err);
   }
   
   // Display a status message to the user.
   if (copySuccessful) {
-      alert('Code copied to clipboard! This window will now close.');
+      alert('Code copied to clipboard! You may close this window.');
       // Attempt to close the window after a short delay to give the user time to read the message.
       // Note: Most modern browsers will only allow a script to close a window that it opened.
       setTimeout(() => {
@@ -356,6 +356,7 @@ const fetchUsage = () => {
 
 
 })(window.jQuery);
+
 
 
 
