@@ -9,34 +9,34 @@ const broadAIapiEndpoint = "https://broadai-7yg2a2s6sq-uc.a.run.app";
 // ------ ..... ------ ..... ------ ..... ------ 
   // HANDLE AUTH CODE for OAUTH2 HANDSHAKE
 // ------ ..... ------ ..... ------ ..... ------ 
-  
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const codeParam = urlParams.get('code');
-if (codeParam) {
-  // If the 'code' parameter exists, attempt to copy its value to the clipboard.
-  let copySuccessful = false;
-  try {
-    // Use the modern, asynchronous Clipboard API.
-    // This method is more reliable and secure than document.execCommand.
-    await navigator.clipboard.writeText(codeParam);
-    copySuccessful = true;
-  } catch (err) {
-      console.error('Failed to copy text to clipboard:', err);
+document.addEventListener('DOMContentLoaded', async () => {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const codeParam = urlParams.get('code');
+  if (codeParam) {
+    // If the 'code' parameter exists, attempt to copy its value to the clipboard.
+    let copySuccessful = false;
+    try {
+      // Use the modern, asynchronous Clipboard API.
+      // This method is more reliable and secure than document.execCommand.
+      await navigator.clipboard.writeText(codeParam);
+      copySuccessful = true;
+    } catch (err) {
+        console.error('Failed to copy text to clipboard:', err);
+    }
+    // Display a status message to the user.
+    if (copySuccessful) {
+        alert('Code copied to clipboard! You may close this window.');
+        // Attempt to close the window after a short delay to give the user time to read the message.
+        // Note: Most modern browsers will only allow a script to close a window that it opened.
+        setTimeout(() => {
+            window.close();
+        }, 2000);
+    } else {
+        alert('Failed to copy code to clipboard. Please copy manually:\n' + codeParam);
+    }
   }
-  
-  // Display a status message to the user.
-  if (copySuccessful) {
-      alert('Code copied to clipboard! You may close this window.');
-      // Attempt to close the window after a short delay to give the user time to read the message.
-      // Note: Most modern browsers will only allow a script to close a window that it opened.
-      setTimeout(() => {
-          window.close();
-      }, 2000);
-  } else {
-      alert('Failed to copy code to clipboard. Please copy manually:\n' + codeParam);
-  }
-}
+});
 
 
 // ------ ..... ------ ..... ------ ..... ------ 
@@ -352,6 +352,7 @@ const fetchUsage = () => {
 
 
 })(window.jQuery);
+
 
 
 
